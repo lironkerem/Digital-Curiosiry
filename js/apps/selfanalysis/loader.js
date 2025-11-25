@@ -1,4 +1,4 @@
-/*  /js/apps/selfanalysis/loader.js  – bullet-proof  */
+/*  /js/apps/selfanalysis/loader.js  – bullet-proof loader for the Self-Analysis mini-app */
 export default class SelfAnalysisLauncher {
   constructor(bigApp) { this.bigApp = bigApp; }
 
@@ -6,23 +6,29 @@ export default class SelfAnalysisLauncher {
     const host = document.getElementById('calculator-tab');
     if (!host) return;
 
-    /* 1.  create iframe only once ******************************/
-    if (!host.querySelector('iframe')) {
-      const iframe = document.createElement('iframe');
+    // Defensive: remove any legacy markup so the iframe is the only content in the tab.
+    // This prevents duplicate UIs and ID collisions (old vs new calculator DOM).
+    host.innerHTML = '';
+
+    /* 1. create iframe only once ******************************************/
+    let iframe = host.querySelector('iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
       iframe.style.cssText = 'width:100%;height:100%;border:none;display:block';
       // allow programmatic focus
       iframe.setAttribute('tabindex', '0');
       host.appendChild(iframe);
 
-      /* 2.  write content AFTER iframe onload ****************/
+      /* 2. write content AFTER fetching HTML & CSS for the mini-app *********/
       Promise.all([
         fetch('/js/apps/selfanalysis/index.html').then(r => r.text()),
         fetch('/js/apps/selfanalysis/css/styles.css').then(r => r.text())
       ]).then(([html, css]) => {
         const doc = iframe.contentDocument;
         doc.open();
+
         // Inject <base> so relative paths in index.html resolve to the mini-app folder.
-        // Also ensure pdf-lib (global) and jspdf are available before app boot.
+        // Also include global libs expected by the mini-app (pdf-lib, jspdf).
         doc.write(`
           <!doctype html>
           <html>
@@ -87,10 +93,11 @@ export default class SelfAnalysisLauncher {
       });
     }
 
-    /* 4.  every time user enters tab – re-validate ************/
-    const iframe = host.querySelector('iframe');
+    /* 4. every time user enters tab – re-validate the mini-app form *******/
+    // If iframe already exists, trigger its revalidation (called on tab re-entry)
+    iframe = host.querySelector('iframe');
     if (iframe && iframe.contentWindow && iframe.contentWindow.revalidateForm) {
-      try { iframe.contentWindow.revalidateForm(); } catch (e) { /* ignore */ }
+      try { iframe.contentWindow.revalidateForm(); } catch (e) { /* noop */ }
     }
   }
 }
