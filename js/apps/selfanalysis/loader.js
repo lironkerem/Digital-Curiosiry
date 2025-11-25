@@ -23,12 +23,18 @@ export default class SelfAnalysisLauncher {
         doc.write(`
           <!doctype html>
           <html>
-          <head>
-            <meta charset="utf-8">
-            <base href="/js/apps/selfanalysis/">
-            <style>${css}</style>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
-          </head>
+// inside doc.write(...) — head section
+<head>
+  <meta charset="utf-8">
+  <base href="/js/apps/selfanalysis/">
+  <style>${css}</style>
+
+  <!-- Add pdf-lib (global) which PDFAssembler expects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"><\/script>
+
+  <!-- Keep jspdf if needed by other code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
+</head>
           <body>
             ${new DOMParser().parseFromString(html, 'text/html').body.innerHTML}
             <script type="module">
