@@ -329,7 +329,7 @@ class TarotEngine {
 
     tab.innerHTML = `
       <div class="min-h-screen p-6">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto">
           <!-- Spread Selection UI -->
           <div class="text-center mb-8">
             <h2 class="text-4xl font-bold mb-4" style="color: var(--neuro-text);">Tarot Guidance</h2>

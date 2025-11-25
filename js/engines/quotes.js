@@ -17,7 +17,7 @@ class QuotesEngine {
 
     tab.innerHTML = `
       <div class="min-h-screen bg-gray-900 p-6">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto">
           <h2 class="text-4xl font-bold text-white mb-4">Wisdom & Quotes</h2>
           <p class="text-gray-400 mb-8">Inspiration from spiritual teachers</p>
 

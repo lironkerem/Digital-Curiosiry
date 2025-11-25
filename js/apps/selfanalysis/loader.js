@@ -29,7 +29,7 @@ export default class SelfAnalysisLauncher {
       // 3.  wrap inside the SAME layout every other engine uses
       host.innerHTML = `
         <div class="min-h-screen p-6">
-          <div class="max-w-6xl mx-auto">
+          <div class="max-w-7xl mx-auto">
             <!-- title block -->
             <div class="text-center mb-8">
               <h2 class="text-4xl font-bold mb-4" style="color:var(--neuro-text)">

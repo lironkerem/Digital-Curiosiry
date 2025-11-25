@@ -82,7 +82,7 @@ class MeditationsEngine {
     
     tab.innerHTML = `
       <div class="min-h-screen p-6" style="background: var(--neuro-bg);">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto">
           
           <!-- Header -->
           <div class="text-center mb-8">

@@ -430,7 +430,7 @@ export class KarmaShopEngine {
 
           <div class="neuro-card mb-8" style="padding: 40px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); text-align: center;">
             <h3 class="text-2xl font-bold mb-2" style="color: white;">Your Karma Balance</h3>
-            <p class="text-6xl font-bold mb-4" style="color: white;">${karma}</p>
+            <p class="text-7xl font-bold mb-4" style="color: white;">${karma}</p>
             <p class="text-sm" style="color: rgba(255,255,255,0.8);">
               Earn more by completing daily quests and practices
             </p>

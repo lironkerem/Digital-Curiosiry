@@ -276,7 +276,7 @@ class EnergyEngineEnhanced {
 
     tab.innerHTML = `
       <div class="min-h-screen p-6" style="background: var(--neuro-bg);">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto">
           
           <!-- Header -->
           <div class="mb-6">
@@ -428,7 +428,7 @@ class EnergyEngineEnhanced {
               <div class="space-y-4">
                 ${filteredJournal.length === 0 ? `
                   <div class="card text-center" style="padding: 4rem;">
-                    <div class="text-6xl mb-4">📝</div>
+                    <div class="text-7xl mb-4">📝</div>
                     <p style="color: var(--neuro-text-light);">
                       ${this.searchQuery ? 'No entries found matching your search' : 'No journal entries yet. Your check-ins will appear here.'}
                     </p>

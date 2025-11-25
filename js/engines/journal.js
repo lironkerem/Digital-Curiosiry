@@ -10,7 +10,7 @@ class JournalEngine {
     const tab = document.getElementById('journal-tab');
     tab.innerHTML = `
       <div class="min-h-screen p-6" style="background: var(--neuro-bg);">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto">
           <h2 class="text-4xl font-bold mb-4" style="color: var(--neuro-text);">Journal</h2>
           <p style="color: var(--neuro-text-light); font-size: 1.1rem;" class="mb-8">Your private space for reflection</p>
           
