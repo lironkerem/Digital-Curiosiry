@@ -232,7 +232,7 @@ export default class ProjectCuriosityApp {
     }
   }
 
-loadModules() {
+  loadModules() {
     this.dashboard.render();
 
     if (window.FeaturesManager) {
@@ -270,8 +270,32 @@ loadModules() {
             calcTab.style.visibility = 'visible';
             calcTab.style.opacity = '1';
           }
-          if (window.initCalculator) window.initCalculator();
-          else if (window.calculatorInstance) console.log('Calculator already initialized');
+          if (window.initCalculator) {
+            try {
+              window.initCalculator();
+            } catch (e) {
+              console.warn('initCalculator threw', e);
+            }
+            // attempt to focus iframe & revalidate shortly after initCalculator runs
+            setTimeout(() => {
+              try {
+                const iframe = document.getElementById('calculator-tab')?.querySelector('iframe');
+                if (iframe) {
+                  // make sure iframe is focusable
+                  iframe.setAttribute('tabindex', '0');
+                  try { iframe.focus(); } catch (e) {}
+                  try {
+                    iframe.contentWindow?.revalidateForm?.();
+                    iframe.contentWindow?.document?.getElementById('first-name')?.focus?.();
+                  } catch (e) {
+                    // ignore cross-timing errors
+                  }
+                }
+              } catch (e) { /* noop */ }
+            }, 220);
+          } else if (window.calculatorInstance) {
+            console.log('Calculator already initialized');
+          }
         }
         break;
 
@@ -319,7 +343,7 @@ loadModules() {
 
   randomFrom(array) {
     if (!Array.isArray(array) || !array.length) return null;
-    return array[Math.floor(Math.random() * array.length)];
+    return array[Math.floor(Math.random() * (i + 1))];
   }
 
   shuffle(array) {
@@ -331,3 +355,4 @@ loadModules() {
     return arr;
   }
 }
+```

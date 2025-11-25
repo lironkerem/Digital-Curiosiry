@@ -10,6 +10,8 @@ export default class SelfAnalysisLauncher {
     if (!host.querySelector('iframe')) {
       const iframe = document.createElement('iframe');
       iframe.style.cssText = 'width:100%;height:100%;border:none;display:block';
+      // allow programmatic focus
+      iframe.setAttribute('tabindex', '0');
       host.appendChild(iframe);
 
       /* 2.  write content AFTER iframe onload ****************/
@@ -19,27 +21,28 @@ export default class SelfAnalysisLauncher {
       ]).then(([html, css]) => {
         const doc = iframe.contentDocument;
         doc.open();
-        // Inject base so relative paths in index.html resolve to the mini-app folder.
+        // Inject <base> so relative paths in index.html resolve to the mini-app folder.
+        // Also ensure pdf-lib (global) and jspdf are available before app boot.
         doc.write(`
           <!doctype html>
           <html>
-<head>
-  <meta charset="utf-8">
-  <base href="/js/apps/selfanalysis/">
-  <style>${css}</style>
+          <head>
+            <meta charset="utf-8">
+            <base href="/js/apps/selfanalysis/">
+            <style>${css}</style>
 
-  <!-- Add pdf-lib (global) which PDFAssembler expects -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"><\/script>
+            <!-- pdf-lib: used by PDFAssembler (global) -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"><\/script>
 
-  <!-- Keep jspdf if needed by other code -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
-</head>
+            <!-- jspdf: kept for compatibility if used elsewhere -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
+          </head>
           <body>
             ${new DOMParser().parseFromString(html, 'text/html').body.innerHTML}
             <script type="module">
               (async () => {
                 try {
-                  // Relative import resolves to /js/apps/selfanalysis/js/app.js because of the <base>
+                  // Relative import resolves to /js/apps/selfanalysis/js/app.js because of <base>
                   const mod = await import('./js/app.js');
                   try { mod.bootSelfAnalysis(document.body); }
                   catch (e) {
@@ -54,15 +57,40 @@ export default class SelfAnalysisLauncher {
           </html>
         `);
         doc.close();
+
+        // 3. Try to focus the first input inside the iframe as soon as possible.
+        //    Retry for a short while until the mini-app finishes initializing.
+        (function tryFocusIframeInput() {
+          const maxAttempts = 30; // ~4.5s (30 * 150ms)
+          let attempts = 0;
+          const timer = setInterval(() => {
+            attempts += 1;
+            try {
+              const idoc = iframe.contentDocument;
+              if (!idoc) return;
+              const firstInput = idoc.getElementById('first-name') || idoc.querySelector('input, textarea, [tabindex]');
+              if (firstInput) {
+                try { iframe.focus(); } catch (e) {}
+                try { firstInput.focus(); } catch (e) {}
+                try { iframe.contentWindow?.revalidateForm?.(); } catch (e) {}
+                clearInterval(timer);
+                return;
+              }
+            } catch (e) {
+              // Access can fail while iframe initializing; ignore and retry
+            }
+            if (attempts >= maxAttempts) clearInterval(timer);
+          }, 150);
+        })();
       }).catch(err => {
         console.error('Failed to fetch Self‑Analysis HTML or CSS for iframe:', err);
       });
     }
 
-    /* 3.  every time user enters tab – re-validate ************/
+    /* 4.  every time user enters tab – re-validate ************/
     const iframe = host.querySelector('iframe');
     if (iframe && iframe.contentWindow && iframe.contentWindow.revalidateForm) {
-      iframe.contentWindow.revalidateForm();   // mini-app function – see below
+      try { iframe.contentWindow.revalidateForm(); } catch (e) { /* ignore */ }
     }
   }
 }
