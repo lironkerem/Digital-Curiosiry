@@ -1,54 +1,58 @@
-/*  /js/apps/selfanalysis/loader.js  – iframe-free loader  */
+/*  /js/apps/selfanalysis/loader.js  – iframe-free, CSS-scoped, bullet-proof loader  */
 export default class SelfAnalysisLauncher {
   constructor(bigApp) { this.bigApp = bigApp; }
 
-  // ----------  public: called by Big-App when tab becomes active  ----------
+  /* ---- public: Big-App calls this when calculator-tab becomes active ---- */
   render() {
     const host = document.getElementById('calculator-tab');
     if (!host) return;
 
-    // 1. wipe previous content (keeps id collisions away)
-    host.innerHTML = '';
+    host.innerHTML = '';                       // remove any previous content
 
-    // 2. fetch mini-app assets (same files as before)
     Promise.all([
       fetch('/js/apps/selfanalysis/index.html').then(r => r.text()),
       fetch('/js/apps/selfanalysis/css/styles.css').then(r => r.text())
     ]).then(([html, css]) => {
-      // 3. inject CSS once (scoped to the tab)
+      // 1.  inject scoped CSS (once only)
       if (!document.getElementById('selfanalysis-css')) {
-        const style = document.createElement('style');
-        style.id = 'selfanalysis-css';
-        style.textContent = css;
+        const style       = document.createElement('style');
+        style.id          = 'selfanalysis-css';
+        style.textContent = this._scopeCss(css, 'selfanalysis-scope');
         document.head.appendChild(style);
       }
 
-      // 4. drop the mini-app markup straight into the tab
-      host.innerHTML = new DOMParser()
-        .parseFromString(html, 'text/html')
-        .body.innerHTML;
+      // 2.  wrap mini-app markup so CSS rules only hit inside this wrapper
+      const bodyHTML = new DOMParser().parseFromString(html, 'text/html').body.innerHTML;
+      host.innerHTML = `<div class="selfanalysis-scope">${bodyHTML}</div>`;
 
-      // 5. load the mini-app’s own JS as a *module* (same as before)
+      // 3.  load mini-app ES-module and boot it
       return import('/js/apps/selfanalysis/js/app.js');
     }).then(mod => {
-      // 6. boot the mini-app (it will think it lives in its own world)
-      mod.bootSelfAnalysis(host);
-
-      // 7. focus first input (same helper you already had)
-      this._focusFirstInput(host);
-    }).catch(err => console.error('Self-Analysis loader failed', err));
+      mod.bootSelfAnalysis(host);              // mini-app thinks it owns the world
+      this._focusFirstInput(host);             // UX nicety
+    }).catch(err => console.error('Self-Analysis loader failed:', err));
   }
 
-  // ----------  private ----------
+  /* ---- private: scope every CSS rule ---- */
+  _scopeCss(cssText, scopeClass) {
+    return cssText
+      .replace(/([^{}]+){/g, (m, sel) => {
+        if (sel.trim().startsWith('@')) return m;               // leave @media / @keyframes alone
+        const scoped = sel
+          .split(',')
+          .map(s => `.${scopeClass} ${s.trim()}`)
+          .join(', ');
+        return `${scoped} {`;
+      });
+  }
+
+  /* ---- private: focus first input after mini-app renders ---- */
   _focusFirstInput(host) {
     let tries = 0;
     const id = setInterval(() => {
       const first = host.querySelector('#first-name');
-      if (first) {
-        first.focus();
-        clearInterval(id);
-      }
-      if (++tries > 30) clearInterval(id); // 4.5 s max
+      if (first) { first.focus(); clearInterval(id); }
+      if (++tries > 30) clearInterval(id);        // 4.5 s max
     }, 150);
   }
 }
