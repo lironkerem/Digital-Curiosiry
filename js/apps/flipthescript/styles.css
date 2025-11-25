@@ -1,0 +1,719 @@
+/* ===== ROOT VARIABLES - Neumorphic Theme ===== */
+:root {
+  --neuro-bg: #e0e5ec;
+  --neuro-shadow-dark: #b8bec5;
+  --neuro-shadow-light: #ffffff;
+  --neuro-text: #2c3e50;
+  --neuro-text-light: #6c757d;
+  --neuro-text-lighter: #8e9aaf;
+  --neuro-accent: #667eea;
+  --neuro-accent-light: #764ba2;
+  --neuro-success: #22c55e;
+  --neuro-warning: #f59e0b;
+  --neuro-error: #ef4444;
+  --neuro-info: #3b82f6;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 30px;
+  --radius-full: 9999px;
+
+  --primary-color: #3F7652;
+
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  --font-heading: 'Amatic SC', cursive;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== FLIP THE SCRIPT SCOPED STYLES ===== */
+#flip-script-tab .page {
+  width: 980px;
+  max-width: calc(100% - 36px);
+  padding: 18px;
+  margin: 28px auto;
+}
+
+#flip-script-tab .app-container.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 26px;
+}
+
+/* ===== HEADER ===== */
+#flip-script-tab .main-header {
+  text-align: center;
+  width: 100%;
+  max-width: 860px;
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  padding: 20px 24px;
+  margin-bottom: 10px;
+  box-shadow: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .main-header h1 {
+  font-family: var(--font-heading);
+  font-size: 4.375rem;
+  margin: 0;
+}
+
+#flip-script-tab .main-header h3 {
+  font-family: var(--font-heading);
+  font-size: 2.1875rem;
+  margin: 6px 0 0 0;
+  color: rgba(255,255,255,0.95);
+}
+
+/* Project Curiosity Branded Header */
+#flip-script-tab .main-header.project-curiosity {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light)) !important;
+  position: relative;
+  padding: 15px 24px !important;
+  text-align: center !important;
+}
+
+#flip-script-tab .main-header.project-curiosity h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 5vw + 16px, 70px) !important;
+  color: white;
+  margin: 0;
+  font-weight: 700;
+}
+
+#flip-script-tab .main-header.project-curiosity::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(55px, 12vw, 120px);
+  height: clamp(55px, 12vw, 120px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ===== INPUT SECTION ===== */
+#flip-script-tab .input-section {
+  transition: all 0.5s ease;
+}
+
+#flip-script-tab .input-section.minimized {
+  opacity: 0.6;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+#flip-script-tab .input-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+#flip-script-tab .input-main {
+  display: flex;
+  flex-direction: column;
+}
+
+#flip-script-tab .textarea-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#flip-script-tab .voice-input-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: var(--neuro-bg);
+  box-shadow: 6px 6px 12px var(--neuro-shadow-dark), -6px -6px 12px var(--neuro-shadow-light);
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+#flip-script-tab .voice-input-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .voice-input-btn.listening {
+  animation: pulse 1.5s ease-in-out infinite;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6),
+              6px 6px 12px var(--neuro-shadow-dark), 
+              -6px -6px 12px var(--neuro-shadow-light);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+#flip-script-tab textarea#negative-input {
+  width: 100%;
+  flex: 1;
+  border-radius: var(--radius-md);
+  border: none;
+  padding: 12px 60px 12px 12px;
+  font-family: var(--font-heading);
+  font-size: 1.5625rem;
+  resize: none;
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  box-shadow: inset 8px 8px 16px var(--neuro-shadow-dark), inset -8px -8px 16px var(--neuro-shadow-light);
+  transition: all 0.3s ease;
+}
+
+#flip-script-tab .char-counter {
+  text-align: right;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  color: var(--neuro-text-light);
+  margin-top: 5px;
+}
+
+#flip-script-tab .char-counter.warning { color: var(--neuro-warning); }
+#flip-script-tab .char-counter.danger { color: var(--neuro-error); }
+
+/* ===== FLIP SUGGESTIONS ===== */
+#flip-script-tab .flip-suggestions {
+  padding: 12px;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-md);
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#flip-script-tab .suggestion-label {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin: 0 0 8px 0;
+  color: var(--neuro-text);
+  text-align: center;
+}
+
+#flip-script-tab .suggestion-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  flex: 1;
+}
+
+#flip-script-tab .suggestion-btn {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  cursor: pointer;
+  box-shadow: 4px 4px 8px var(--neuro-shadow-dark), -4px -4px 8px var(--neuro-shadow-light);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#flip-script-tab .suggestion-btn:hover {
+  box-shadow: inset 3px 3px 6px var(--neuro-shadow-dark), inset -3px -3px 6px var(--neuro-shadow-light);
+}
+
+/* ===== BUTTONS ===== */
+#flip-script-tab .btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#flip-script-tab .btn {
+  width: 100%;
+  min-height: 56px;
+  font-size: 1.5625rem;
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  box-shadow: 12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
+  transition: all 0.3s ease;
+}
+
+#flip-script-tab .btn.primary {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+}
+
+#flip-script-tab .btn:hover:not(:disabled) {
+  box-shadow: inset 6px 6px 12px var(--neuro-shadow-dark), inset -6px -6px 12px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#flip-script-tab .flip-main-btn {
+  min-height: 90px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  box-shadow: 0 20px 45px rgba(102, 126, 234, 0.5),
+              12px 12px 24px var(--neuro-shadow-dark), 
+              -12px -12px 24px var(--neuro-shadow-light);
+  position: relative;
+  overflow: hidden;
+}
+
+#flip-script-tab .flip-main-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+#flip-script-tab .flip-main-btn:hover::before {
+  left: 100%;
+}
+
+#flip-script-tab .flip-main-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 55px rgba(102, 126, 234, 0.6),
+              inset 0 0 0 rgba(0,0,0,0);
+}
+
+#flip-script-tab .clear-small-btn {
+  min-height: 45px;
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+/* ===== PROGRESS BAR ===== */
+#flip-script-tab .progress-wrapper {
+  margin-top: 18px;
+  transition: opacity 0.3s ease;
+}
+
+#flip-script-tab .progress-wrapper.hidden {
+  display: none;
+}
+
+#flip-script-tab .progress-bar {
+  width: 100%;
+  height: 30px;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .progress-inner {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.5625rem;
+  transition: width 0.3s ease;
+  border-radius: var(--radius-full);
+}
+
+/* ===== OUTPUT SECTION ===== */
+#flip-script-tab .output-main-event {
+  width: 100%;
+  max-width: 860px;
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#flip-script-tab .output-main-event.hidden {
+  display: none;
+}
+
+#flip-script-tab .output-main-event.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+#flip-script-tab .output-card {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  padding: 3rem 2rem;
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4), 
+              20px 20px 40px var(--neuro-shadow-dark), 
+              -20px -20px 40px var(--neuro-shadow-light);
+  text-align: center;
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#flip-script-tab .output-header h2 {
+  font-family: var(--font-heading);
+  font-size: 3.125rem;
+  margin: 0 0 1.5rem 0;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+#flip-script-tab .flipped-text {
+  font-family: var(--font-heading);
+  font-size: 2.1875rem;
+  line-height: 1.6;
+  color: white;
+  margin: 2rem 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-weight: 400;
+}
+
+#flip-script-tab .flip-another-inside {
+  width: 100%;
+  font-size: 1.875rem;
+  padding: 1.25rem 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(10px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#flip-script-tab .flip-another-inside:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== ACTION ICONS ===== */
+#flip-script-tab .action-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+#flip-script-tab .icon-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(10px);
+  font-size: 1.8rem;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#flip-script-tab .icon-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* ===== COLLAPSIBLE CARDS ===== */
+#flip-script-tab .collapsible-card {
+  width: 100%;
+  max-width: 860px;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: var(--neuro-bg);
+  box-shadow: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+  margin-bottom: 2rem;
+}
+
+#flip-script-tab .collapse-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--neuro-bg);
+  color: var(--neuro-accent);
+  border: none;
+  padding: 18px 24px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 3.125rem;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  position: relative;
+  justify-content: flex-start;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+#flip-script-tab .collapse-toggle:hover {
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .collapse-toggle h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 3.125rem;
+  color: var(--neuro-accent);
+}
+
+#flip-script-tab .collapse-icon {
+  color: var(--neuro-accent);
+  font-weight: 700;
+  font-size: 2.1875rem;
+  transition: transform 0.3s ease;
+}
+
+#flip-script-tab .collapse-content {
+  background: var(--neuro-bg);
+  border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+  padding: 22px 26px;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  max-height: 3000px;
+  opacity: 1;
+  overflow: visible;
+}
+
+#flip-script-tab .collapse-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 26px;
+}
+
+/* ===== SAVED FLIPS ===== */
+#flip-script-tab .search-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  font-family: var(--font-heading);
+  font-size: 1.5625rem;
+  box-shadow: inset 6px 6px 12px var(--neuro-shadow-dark), inset -6px -6px 12px var(--neuro-shadow-light);
+  margin-bottom: 15px;
+}
+
+#flip-script-tab #saved-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#flip-script-tab .saved-item {
+  background: var(--neuro-bg);
+  border-radius: var(--radius-lg);
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  box-shadow: 12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .saved-item:hover {
+  transform: translateX(5px);
+}
+
+#flip-script-tab .saved-item.favorite {
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .saved-item p {
+  font-family: var(--font-heading);
+  font-size: 1.5625rem;
+  margin: 0;
+  flex: 1;
+}
+
+#flip-script-tab .small-btn {
+  padding: 5px 10px;
+  margin: 0 3px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--neuro-bg);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  box-shadow: 4px 4px 8px var(--neuro-shadow-dark), -4px -4px 8px var(--neuro-shadow-light);
+  transition: all 0.2s ease;
+}
+
+#flip-script-tab .small-btn:hover {
+  box-shadow: inset 3px 3px 6px var(--neuro-shadow-dark), inset -3px -3px 6px var(--neuro-shadow-light);
+}
+
+#flip-script-tab .backup-restore {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+#flip-script-tab .backup-restore .btn {
+  width: auto;
+  min-width: 150px;
+  min-height: 45px;
+  font-size: 1.5625rem;
+}
+
+/* ===== ANIMATIONS ===== */
+.flip-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 3.5rem;
+  animation: floatAway 2s ease-out forwards;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+@keyframes floatAway {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(720deg);
+  }
+}
+
+.whoosh-overlay, .whoosh-overlay-2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(circle at center, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+  opacity: 0;
+  animation: whooshEffect 1.5s ease-out;
+}
+
+@keyframes whooshEffect {
+  0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
+  100% { opacity: 0; transform: scale(2) rotate(360deg); }
+}
+
+.halo-ring {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9996;
+  border: 3px solid rgba(102, 126, 234, 0.6);
+  border-radius: 50%;
+  animation: haloExpand 1.5s ease-out forwards;
+}
+
+@keyframes haloExpand {
+  0% {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    width: 800px;
+    height: 800px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#flip-script-tab .text-reveal {
+  animation: textReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes textReveal {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  #flip-script-tab .page {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  #flip-script-tab .input-layout {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  #flip-script-tab .flip-main-btn {
+    min-height: 70px;
+    font-size: 2rem;
+  }
+
+  #flip-script-tab .saved-item {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  #flip-script-tab .action-icons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  #flip-script-tab .main-header.project-curiosity {
+    padding: 12px 24px !important;
+  }
+  
+  #flip-script-tab .main-header.project-curiosity::before {
+    width: 40px !important;
+    height: 40px !important;
+    left: 10px !important;
+  }
+  
+  #flip-script-tab .collapse-toggle h2 {
+    font-size: clamp(1.5rem, 5vw, 3.125rem) !important;
+  }
+  
+  #flip-script-tab .saved-item p {
+    font-size: clamp(1rem, 3.5vw, 1.5625rem) !important;
+  }
+}

@@ -1,0 +1,1490 @@
+/* =========================================
+   SELF-ANALYSIS PRO - NEUMORPHIC THEME
+   Preserves all functionality with modern design
+   ========================================= */
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+  /* Neumorphic Colors */
+  --neuro-bg: #e0e5ec;
+  --neuro-shadow-dark: #b8bec5;
+  --neuro-shadow-light: #ffffff;
+  --neuro-text: #2c3e50;
+  --neuro-text-light: #6c757d;
+  --neuro-text-lighter: #8e9aaf;
+  --neuro-accent: #667eea;
+  --neuro-accent-light: #764ba2;
+  --neuro-success: #22c55e;
+  --neuro-warning: #f59e0b;
+  --neuro-error: #ef4444;
+  --neuro-info: #3b82f6;
+
+  /* Legacy color mappings */
+  --primary-color: #667eea;
+  --text-muted: #8e9aaf;
+  --page-bg: #e0e5ec;
+  --card-bg: #e0e5ec;
+  --border-color: #b8bec5;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 30px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* Typography - Fluid Responsive */
+  --font-h1: clamp(24px, 5vw + 16px, 70px);
+  --font-h2: clamp(20px, 3.5vw + 11.5px, 50px);
+  --font-h3: clamp(16px, 2.5vw + 8px, 35px);
+  --font-h4: clamp(14px, 1.75vw + 5.75px, 25px);
+  --font-body: clamp(14px, 1.75vw + 5.75px, 25px);
+  --font-input: clamp(14px, 1.75vw + 8px, 25px);
+  --font-button: clamp(14px, 1.75vw + 5.75px, 25px);
+  --font-small: clamp(12px, 1.25vw + 4.5px, 18px);
+  --font-tiny: clamp(11px, 1.1vw + 4px, 16px);
+
+  --font-family: "Amatic SC", cursive;
+}
+
+/* ===== GLOBAL RESET ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 18px;
+  background: var(--neuro-bg);
+  font-family: var(--font-family);
+  color: var(--neuro-text);
+  font-size: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--neuro-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neuro-shadow-dark);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1 {
+  font-size: var(--font-h1);
+  margin: 6px 0 18px;
+  text-align: center;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  padding: 15px 20px;
+  border-radius: var(--radius-xl);
+  position: relative;
+  box-shadow: 12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
+}
+
+h1::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(55px, 12vw, 120px);
+  height: clamp(55px, 12vw, 120px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media (max-width: 480px) {
+  h1::before {
+    left: 10px;
+  }
+}
+
+h2 {
+  font-size: var(--font-h2);
+  margin: 0 0 18px;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+}
+
+h3 {
+  font-size: var(--font-h3);
+  margin: 0 0 12px;
+  font-weight: 800;
+  color: var(--neuro-text);
+}
+
+h4 {
+  font-size: var(--font-h4);
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--neuro-text);
+}
+
+h5 {
+  font-size: var(--font-body);
+  margin: 0 0 8px;
+  font-weight: 600;
+  color: var(--neuro-text);
+}
+
+p, .explanation-text, .expandable-content {
+  font-size: var(--font-body);
+  line-height: 1.6;
+  color: var(--neuro-text);
+}
+
+#summary-numerology-content,
+#summary-astrology-content,
+#summary-tree-content {
+  color: var(--neuro-text) !important;
+}
+
+#summary-numerology-content *,
+#summary-astrology-content *,
+#summary-tree-content * {
+  color: var(--neuro-text) !important;
+}
+
+#personal-narrative-content {
+  color: var(--neuro-text) !important;
+  white-space: pre-line;
+}
+
+.placeholder-text {
+  color: var(--neuro-error) !important;
+  font-style: italic;
+}
+
+/* ===== STEP PROGRESS INDICATOR ===== */
+.step-indicator {
+  position: sticky;
+  top: 18px;
+  z-index: 100;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-xl);
+  padding: 15px 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
+}
+
+@media (max-width: 768px) {
+  .step-indicator {
+    flex-direction: column;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  position: relative;
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: opacity var(--transition-normal);
+}
+
+@media (max-width: 768px) {
+  .step-item {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+}
+
+.step-item.completed {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.step-item.active {
+  opacity: 1;
+}
+
+.step-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--neuro-bg);
+  box-shadow: inset 3px 3px 6px var(--neuro-shadow-dark), inset -3px -3px 6px var(--neuro-shadow-light);
+  transition: all var(--transition-normal);
+}
+
+.step-item.completed .step-dot {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  box-shadow: 4px 4px 8px var(--neuro-shadow-dark), -4px -4px 8px var(--neuro-shadow-light);
+}
+
+.step-item.active .step-dot {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  transform: scale(1.3);
+  box-shadow: 6px 6px 12px var(--neuro-shadow-dark), -6px -6px 12px var(--neuro-shadow-light);
+}
+
+.step-label {
+  font-size: var(--font-small);
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--neuro-text);
+}
+
+@media (max-width: 768px) {
+  .step-label {
+    white-space: normal;
+    text-align: left;
+  }
+}
+
+.step-connector {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--neuro-bg);
+  box-shadow: inset 1px 1px 2px var(--neuro-shadow-dark), inset -1px -1px 2px var(--neuro-shadow-light);
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .step-connector {
+    display: none;
+  }
+}
+
+.step-item:last-child .step-connector {
+  display: none;
+}
+
+.step-item.completed .step-connector {
+  background: linear-gradient(90deg, var(--neuro-accent), var(--neuro-accent-light));
+  box-shadow: none;
+}
+
+/* ===== LAYOUT ===== */
+.page {
+  width: 980px;
+  max-width: calc(100% - 36px);
+  padding: 18px;
+  background: var(--neuro-bg);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 12px;
+  }
+}
+
+.top-row {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .top-row {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-card {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .form-card {
+    flex: 1;
+    max-width: 440px;
+  }
+  
+  .summary-card {
+    flex: 1;
+    max-width: 440px;
+  }
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--neuro-bg);
+  border-radius: var(--radius-2xl);
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 20px 15px;
+    border-radius: var(--radius-xl);
+  }
+}
+
+/* Watermarks - Story */
+.story-watermark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  width: clamp(28px, 7.5vw, 60px);
+  height: clamp(28px, 7.5vw, 60px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Story.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  transition: all var(--transition-normal);
+}
+
+.story-watermark:has(.expandable-card.expanded)::before,
+.story-watermark.story-expanded::before {
+  top: 20px;
+  transform: none;
+  width: clamp(55px, 15vw, 120px);
+  height: clamp(55px, 15vw, 120px);
+}
+
+/* Watermarks - Numerology */
+.numerology-watermark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  width: clamp(28px, 7.5vw, 60px);
+  height: clamp(28px, 7.5vw, 60px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Numerology.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  transition: all var(--transition-normal);
+}
+
+.numerology-watermark.expanded::before {
+  top: 20px;
+  transform: none;
+  width: clamp(55px, 15vw, 120px);
+  height: clamp(55px, 15vw, 120px);
+}
+
+/* Watermarks - Astrology */
+.astrology-watermark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  width: clamp(28px, 7.5vw, 60px);
+  height: clamp(28px, 7.5vw, 60px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Astrology.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  transition: all var(--transition-normal);
+}
+
+.astrology-watermark.expanded::before {
+  top: 20px;
+  transform: none;
+  width: clamp(55px, 15vw, 120px);
+  height: clamp(55px, 15vw, 120px);
+}
+
+/* Watermarks - Tree of Life */
+.tree-watermark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  width: clamp(28px, 7.5vw, 60px);
+  height: clamp(28px, 7.5vw, 60px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Tree%20of%20Life.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  transition: all var(--transition-normal);
+}
+
+.tree-watermark.expanded::before {
+  top: 20px;
+  transform: none;
+  width: clamp(55px, 15vw, 120px);
+  height: clamp(55px, 15vw, 120px);
+}
+
+/* Watermarks - CTA Logo */
+.cta-logo-watermark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  width: clamp(23px, 6.25vw, 50px);
+  height: clamp(23px, 6.25vw, 50px);
+  background-image: url('https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Watermarks/Logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  transition: all var(--transition-normal);
+}
+
+.cta-logo-watermark.expanded::before {
+  top: 15px;
+  transform: none;
+  width: clamp(37px, 10vw, 80px);
+  height: clamp(37px, 10vw, 80px);
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.form-card, .summary-card {
+  width: 440px;
+  min-width: 320px;
+  max-width: 100%;
+  flex: 1;
+}
+
+.details-card {
+  width: 100%;
+  max-width: 920px;
+  margin: 30px auto 0;
+}
+
+@media (max-width: 980px) {
+  .form-card, .summary-card, .details-card {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ===== FORMS ===== */
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--neuro-bg);
+  font-size: var(--font-input);
+  font-family: var(--font-family);
+  color: var(--neuro-text);
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+  transition: all var(--transition-normal);
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light), 0 0 0 2px var(--neuro-accent);
+}
+
+.form-input.error {
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light), 0 0 0 2px var(--neuro-error);
+}
+
+.form-input:not(.error):valid,
+.form-input:not(.error)[value]:not([value=""]) {
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light), 0 0 0 2px var(--neuro-success);
+}
+
+.form-group label {
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+}
+
+.validation-icon {
+  display: none;
+}
+
+.error-message {
+  color: var(--neuro-error);
+  font-size: var(--font-small);
+  margin-top: 6px;
+  display: none;
+}
+
+/* ===== CHECKBOX ===== */
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--neuro-bg);
+  border-radius: 6px;
+  box-shadow: inset 3px 3px 6px var(--neuro-shadow-dark), inset -3px -3px 6px var(--neuro-shadow-light);
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--neuro-accent);
+  font-weight: bold;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  width: 100%;
+  min-height: 56px;
+  font-size: var(--font-button);
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-family);
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    min-height: 48px;
+    border-radius: var(--radius-md);
+  }
+}
+
+.btn:hover:not(:disabled) {
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+}
+
+.btn:active:not(:disabled) {
+  box-shadow: inset 6px 6px 12px var(--neuro-shadow-dark), inset -6px -6px 12px var(--neuro-shadow-light);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#btn-analyze {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+}
+
+#btn-analyze:hover:not(:disabled) {
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), inset -4px -4px 8px rgba(255,255,255,0.1);
+}
+
+.controls {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ===== EXPANDABLE CARDS ===== */
+.expandable-card {
+  background: var(--neuro-bg);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+  transition: all var(--transition-normal);
+}
+
+.expandable-card:hover {
+  box-shadow: 12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
+}
+
+.expandable-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: var(--font-h3);
+  font-weight: 800;
+  user-select: none;
+  color: var(--neuro-text);
+}
+
+.expandable-card .expandable-card .expandable-header {
+  font-size: var(--font-h4);
+  color: var(--neuro-text);
+}
+
+.chevron {
+  display: inline-block;
+  transition: transform var(--transition-normal);
+  vertical-align: middle;
+  line-height: 1;
+  font-size: var(--font-h3);
+  color: var(--neuro-accent);
+}
+
+.expandable-card .expandable-card .chevron {
+  font-size: var(--font-h4);
+  color: var(--neuro-accent);
+}
+
+.expanded .chevron {
+  transform: rotate(90deg);
+}
+
+.expandable-content {
+  display: none;
+  margin-top: 16px;
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+}
+
+.expanded .expandable-content {
+  display: block;
+  animation: fadeIn var(--transition-normal);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== NUMEROLOGY DATA ===== */
+.calculation-trace {
+  white-space: pre-wrap;
+  font-size: var(--font-body);
+  margin-top: 8px;
+  color: var(--neuro-text);
+}
+
+.sum-line {
+  font-size: var(--font-body);
+  margin-top: 6px;
+  color: var(--neuro-text);
+}
+
+.final-number {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+}
+
+.explanation-heading {
+  font-weight: 800;
+  font-size: var(--font-body);
+  margin-top: 10px;
+  color: var(--neuro-text);
+}
+
+.explanation-text {
+  font-size: var(--font-body);
+  white-space: pre-wrap;
+  color: var(--neuro-text);
+}
+
+.data-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: var(--font-body);
+}
+
+.data-label {
+  font-weight: 400;
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+}
+
+.data-value {
+  font-weight: 700;
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+}
+
+/* ===== TAROT CARDS ===== */
+.tarot-card {
+  transition: transform var(--transition-normal);
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media (max-width: 768px) {
+  .tarot-card {
+    width: calc(50% - 8px);
+    margin: 4px;
+  }
+}
+
+.tarot-card:hover {
+  transform: translateY(-5px);
+}
+
+.tarot-card-inner {
+  transition: all var(--transition-normal);
+  position: relative;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  box-shadow: 6px 6px 12px var(--neuro-shadow-dark), -6px -6px 12px var(--neuro-shadow-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 0;
+  height: auto;
+}
+
+.tarot-card:hover .tarot-card-inner {
+  box-shadow: 10px 10px 20px var(--neuro-shadow-dark), -10px -10px 20px var(--neuro-shadow-light);
+  transform: scale(1.02);
+}
+
+.tarot-card-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(224, 229, 236, 0.9);
+  border-radius: var(--radius-sm);
+  z-index: 10;
+}
+
+.tarot-spinner {
+  border: 3px solid rgba(102, 126, 234, 0.2);
+  border-top: 3px solid var(--neuro-accent);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tarot-card img {
+  display: block;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  position: relative;
+  z-index: 5;
+}
+
+.tarot-card img.loaded {
+  opacity: 1;
+}
+
+.tarot-modal {
+  display: none;
+  position: fixed;
+  z-index: 10002;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  animation: fadeIn var(--transition-normal);
+}
+
+.tarot-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarot-modal-content {
+  background: var(--neuro-bg);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+  animation: slideUp var(--transition-normal);
+  position: relative;
+}
+
+.tarot-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 35px;
+  font-weight: bold;
+  color: var(--neuro-text);
+  cursor: pointer;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.tarot-modal-close:hover {
+  color: var(--neuro-accent);
+}
+
+.tarot-modal h3 {
+  color: var(--neuro-text);
+  margin-top: 0;
+  font-size: var(--font-h3);
+  text-align: center;
+}
+
+.tarot-modal-body {
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+  line-height: 1.6;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tarot-section-wrapper {
+  margin-top: 20px !important;
+}
+
+.tarot-section-wrapper h3 {
+  margin: 0 0 12px 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-wrapper {
+  margin-top: 12px;
+  width: 100%;
+  display: block;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 18px;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
+}
+
+.progress-inner {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--neuro-accent), var(--neuro-accent-light));
+  border-radius: var(--radius-full);
+  transition: width 0.12s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.progress-text {
+  margin-top: 6px;
+  font-size: var(--font-tiny);
+  color: var(--neuro-text-light);
+}
+
+/* ===== TOOLTIPS ===== */
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  color: var(--neuro-accent);
+  background: var(--neuro-bg);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  vertical-align: middle;
+  line-height: 1;
+  box-shadow: 4px 4px 8px var(--neuro-shadow-dark), -4px -4px 8px var(--neuro-shadow-light);
+}
+
+.tooltip::before {
+  content: 'i';
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  max-width: 280px;
+  background-color: var(--neuro-text);
+  color: #fff;
+  text-align: left;
+  border-radius: var(--radius-md);
+  padding: 7px 12px;
+  position: absolute;
+  z-index: 99;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  font-size: var(--font-small);
+  font-family: var(--font-family);
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark);
+}
+
+.tooltip:hover .tooltip-text,
+.tooltip:focus .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== LOCATION DROPDOWN ===== */
+.location-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56px;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-md);
+  display: none;
+  z-index: 200;
+  max-height: 220px;
+  overflow: auto;
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+}
+
+.location-item,
+.location-option {
+  padding: 8px;
+  cursor: pointer;
+  font-size: var(--font-body);
+  color: var(--neuro-text);
+  border-bottom: 1px solid rgba(184, 190, 197, 0.3);
+}
+
+.location-item:hover,
+.location-option:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+}
+
+/* ===== ERROR MODAL ===== */
+.error-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn var(--transition-normal);
+}
+
+.error-modal-content {
+  background: var(--neuro-bg);
+  padding: 30px;
+  border-radius: var(--radius-xl);
+  max-width: 500px;
+  box-shadow: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+  text-align: center;
+}
+
+.error-modal-content h3 {
+  margin: 0 0 15px 0;
+  font-size: var(--font-h3);
+}
+
+.error-modal-content p {
+  margin: 0 0 20px 0;
+  color: var(--neuro-text);
+  font-size: var(--font-body);
+}
+
+.error-modal-content .btn {
+  background: linear-gradient(135deg, var(--neuro-info), #60a5fa);
+  color: white;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* ===== TOAST NOTIFICATIONS ===== */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  color: white;
+  font-size: var(--font-tiny);
+  z-index: 10001;
+  transform: translateX(120%);
+  transition: transform 0.25s;
+  max-width: 320px;
+  box-shadow: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  background: var(--neuro-success);
+}
+
+.toast.error {
+  background: var(--neuro-error);
+}
+
+.toast.warning {
+  background: var(--neuro-warning);
+  color: var(--neuro-text);
+}
+
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+}
+
+/* ===== NATAL CHART ===== */
+.natal-chart-section,
+.natal-planets-section,
+.natal-houses-section,
+.natal-aspects-section {
+  margin-bottom: 2rem;
+}
+
+.natal-chart-svg {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.natal-chart-section h3 {
+  font-size: var(--font-h3);
+  text-align: center;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 600;
+  color: var(--neuro-text);
+}
+
+.natal-planets-section h3,
+.natal-houses-section h3,
+.natal-aspects-section h3 {
+  font-size: var(--font-h3);
+  text-align: center;
+  margin: 1.2rem 0 0.5rem 0;
+  font-weight: 600;
+  color: var(--neuro-text);
+}
+
+.natal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: var(--font-body);
+}
+
+.natal-table th,
+.natal-table td {
+  padding: 10px 8px;
+  text-align: center;
+  color: var(--neuro-text);
+  border: none;
+}
+
+.natal-table th {
+  background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+}
+
+.natal-table td {
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  box-shadow: inset 2px 2px 4px var(--neuro-shadow-dark), inset -2px -2px 4px var(--neuro-shadow-light);
+}
+
+.natal-table tr:nth-child(even) td {
+  background: rgba(224, 229, 236, 0.5);
+}
+
+.natal-table tr:hover td {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+/* ===== CTA IMAGES (Sessions & Workshops) ===== */
+.cta-image-grid {
+  display: grid;
+  gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.cta-image-grid.sessions {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-image-grid.workshops {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-image-card {
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--transition-normal);
+  text-align: center;
+}
+
+.cta-image-card:hover {
+  transform: translateY(-5px);
+}
+
+.cta-image-inner {
+  background: var(--neuro-bg);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  box-shadow: 6px 6px 12px var(--neuro-shadow-dark), -6px -6px 12px var(--neuro-shadow-light);
+  transition: all var(--transition-normal);
+  position: relative;
+  min-height: 150px;
+}
+
+.cta-image-card:hover .cta-image-inner {
+  box-shadow: 10px 10px 20px var(--neuro-shadow-dark), -10px -10px 20px var(--neuro-shadow-light);
+  transform: scale(1.02);
+}
+
+.cta-image-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(224, 229, 236, 0.9);
+  border-radius: var(--radius-sm);
+  z-index: 10;
+}
+
+.cta-image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  position: relative;
+  z-index: 5;
+}
+
+.cta-image-card img.loaded {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .cta-image-grid.sessions,
+  .cta-image-grid.workshops {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-image-grid.sessions,
+  .cta-image-grid.workshops {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== ACCESSIBILITY ===== */
+*:focus-visible {
+  outline: 3px solid var(--neuro-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  body {
+    padding: 4px !important;
+  }
+
+  .page {
+    max-width: 100% !important;
+    padding: 8px !important;
+  }
+
+  .card {
+    padding: 12px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  h1 {
+    font-size: 24px !important;
+    padding: 8px 10px !important;
+  }
+
+  h1::before {
+    width: 40px !important;
+    height: 40px !important;
+    left: 5px !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+    padding: 6px 10px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  .form-input,
+  .btn,
+  p,
+  .data-label,
+  .data-value {
+    font-size: 14px !important;
+  }
+
+  .expandable-header {
+    font-size: 16px !important;
+  }
+
+  .step-indicator {
+    padding: 8px !important;
+  }
+
+  .step-dot {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fireworks {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(2) translateY(-30px);
+  }
+}
+
+/* ===== PDF LOADING POPUP ===== */
+#pdf-loading-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--neuro-bg);
+  border-radius: var(--radius-lg);
+  padding: 20px 25px;
+  box-shadow: 12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.pdf-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  border-top: 4px solid var(--neuro-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ===== FORM GROUP SPACING ===== */
+.form-group {
+  margin-bottom: 10px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+/* ===== MISC SPACING FIXES ===== */
+.explanation-text + div:not(.tarot-section-wrapper) > h5:first-child,
+.explanation-heading + div:not(.tarot-section-wrapper) > h5:first-child {
+  margin-top: 10px !important;
+}
+
+div[style*="margin: 10px 0"] {
+  margin: 10px 0 !important;
+}
+
+.expandable-content div[style*="margin-bottom: 15px"] h5 {
+  margin: 0 0 8px 0 !important;
+}
+
+.expandable-content div[style*="margin-bottom: 15px"] > div {
+  margin-top: 0 !important;
+}
+
+#step-4-section .explanation-text {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .step-indicator,
+  .user-menu,
+  .btn,
+  #toast-container,
+  .tarot-modal,
+  .error-modal {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
+  /*  tablets & phones  –  hide Quick-Summary + Step indicator  */
+@media (max-width: 768px) {
+  .summary-card,
+  #step-indicator {
+    display: none;
+  }
+}

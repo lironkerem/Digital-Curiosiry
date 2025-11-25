@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover,
+               user-scalable=no">
+    <meta name="description" content="Aanandoham's Digital Curiosity - Your complete spiritual growth companion">
+    <title>Digital Curiosity - Aanandoham</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+
+    <!-- Neumorphic Theme Styles -->
+    <link rel="stylesheet" href="css/neumorphic-theme.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    
+    <!-- Authentication Screen -->
+    <div id="auth-screen">
+        <!-- Managed by AuthManager -->
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="app-container">
+        <div id="main-app" class="hidden">
+            
+            <!-- Navigation gets inserted here by NavigationManager -->
+
+            <!-- Main Content Area -->
+            <main id="main-content">
+                
+                <!-- Dashboard Tab -->
+                <div id="dashboard-tab" class="tab-content active">
+                    <!-- Managed by DashboardManager -->
+                </div>
+
+                <!-- Self Analysis Pro Tab -->
+                <div id="calculator-tab" class="tab-content hidden">
+                  
+                  <div class="text-center mb-8" style="padding-top: 2rem;">
+                    <h2 class="text-4xl font-bold mb-4" style="color: var(--neuro-text);">Self-Analysis Pro</h2>
+                    <p style="color: var(--neuro-text-light); font-size: 1.1rem;">Discover your spiritual blueprint through numerology, astrology, and the Tree of Life</p>
+                  </div>
+                  
+                  <!-- Main Grid: Form + Quick Summary Side by Side -->
+                  <div class="calc-main-grid">
+                    
+                    <!-- LEFT: Main Form Section -->
+                    <div class="card calc-form-card">
+                      <h3 style="color: var(--neuro-text); font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">🔮 Enter Your Details</h3>
+                      
+                      <form id="calculator-form">
+                        <!-- Name Fields -->
+                        <div class="calc-form-row">
+                          <div class="form-group">
+                            <label for="calc-first-name">First Name</label>
+                            <input type="text" id="calc-first-name" class="form-input" placeholder="First name" required maxlength="40" />
+                          </div>
+                          <div class="form-group">
+                            <label for="calc-middle-name">Middle Name <span class="optional">(optional)</span></label>
+                            <input type="text" id="calc-middle-name" class="form-input" placeholder="Middle name" maxlength="40" />
+                          </div>
+                          <div class="form-group">
+                            <label for="calc-last-name">Last Name</label>
+                            <input type="text" id="calc-last-name" class="form-input" placeholder="Last name" required maxlength="40" />
+                          </div>
+                        </div>
+
+                        <!-- Date & Location -->
+                        <div class="calc-form-row">
+                          <div class="form-group">
+                            <label for="calc-date-of-birth">Date of Birth</label>
+                            <input type="date" id="calc-date-of-birth" class="form-input" required />
+                          </div>
+                          <div class="form-group">
+                            <label for="calc-time-of-birth">Time of Birth <span class="optional">(optional)</span></label>
+                            <input type="time" id="calc-time-of-birth" class="form-input" />
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="calc-location-birth">Birth Location <span class="optional">(optional)</span></label>
+                          <input type="text" id="calc-location-birth" class="form-input" placeholder="City, Country" maxlength="200" />
+                          <div class="location-dropdown" id="calc-location-dropdown"></div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="checkbox-label">
+                            <input type="checkbox" id="calc-include-y" />
+                            Include Y as vowel
+                          </label>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="calc-actions">
+                          <button type="submit" id="calc-analyze-btn" class="btn btn-primary hover-lift" disabled>✨ Analyze My Self</button>
+                          <button type="button" id="calc-clear-btn" class="btn btn-secondary hover-lift">🔄 Clear Form</button>
+                          <button type="button" id="calc-pdf-btn" class="btn btn-success hover-lift" disabled>📥 Download PDF</button>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="calc-progress-wrapper" id="calc-progress-bar" style="display: none;">
+                          <div class="progress-bar">
+                            <div class="progress-inner" id="calc-progress-inner">0%</div>
+                          </div>
+                          <div class="progress-text" id="calc-progress-text">Starting...</div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- RIGHT: Quick Summary Section -->
+                    <div class="card calc-summary-card">
+                      <h3 style="color: var(--neuro-text); font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">📊 Quick Summary</h3>
+                      
+                      <div class="calc-summary-sections">
+                        <!-- Numerology Summary -->
+                        <div class="calc-expandable-card expanded">
+                          <div class="calc-expandable-header">
+                            <span class="chevron">›</span>
+                            <h3>🔢 Numerology</h3>
+                          </div>
+                          <div class="calc-expandable-content">
+                            <div id="calc-num-summary" class="calc-summary-content placeholder">
+                              Complete your analysis to see your numerology summary...
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Astrology Summary -->
+                        <div class="calc-expandable-card expanded">
+                          <div class="calc-expandable-header">
+                            <span class="chevron">›</span>
+                            <h3>⭐ Astrology</h3>
+                          </div>
+                          <div class="calc-expandable-content">
+                            <div id="calc-astro-summary" class="calc-summary-content placeholder">
+                              Complete your analysis to see your astrology summary...
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Tree of Life Summary -->
+                        <div class="calc-expandable-card expanded">
+                          <div class="calc-expandable-header">
+                            <span class="chevron">›</span>
+                            <h3>🌳 Tree of Life</h3>
+                          </div>
+                          <div class="calc-expandable-content">
+                            <div id="calc-tree-summary" class="calc-summary-content placeholder">
+                              Complete your analysis to see your Tree of Life summary...
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- END Main Grid -->
+
+                  <!-- Detailed Results Section -->
+                  <div class="card" id="calc-results-section">
+                    <h3 style="color: var(--neuro-text); font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">🔍 Deeper Analysis</h3>
+
+                    <!-- Numerology Details -->
+                    <div class="calc-expandable-card">
+                      <div class="calc-expandable-header">
+                        <span class="chevron">›</span>
+                        <h3>Your Numerology Report</h3>
+                      </div>
+                      <div class="calc-expandable-content">
+                        <div id="calc-numerology-cards" class="calc-cards-grid"></div>
+                      </div>
+                    </div>
+
+                    <!-- Astrology Details -->
+                    <div class="calc-expandable-card">
+                      <div class="calc-expandable-header">
+                        <span class="chevron">›</span>
+                        <h3>Your Astrology Report</h3>
+                      </div>
+                      <div class="calc-expandable-content">
+                        <div id="calc-astrology-cards" class="calc-cards-grid"></div>
+                      </div>
+                    </div>
+
+                    <!-- Tree of Life Details -->
+                    <div class="calc-expandable-card">
+                      <div class="calc-expandable-header">
+                        <span class="chevron">›</span>
+                        <h3>Your Tree of Life Report</h3>
+                      </div>
+                      <div class="calc-expandable-content">
+                        <div id="calc-tree-cards" class="calc-cards-grid"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Personal Narrative Section -->
+                  <div class="card" id="calc-narrative-section">
+                    <div class="calc-expandable-card expanded">
+                      <div class="calc-expandable-header">
+                        <span class="chevron">›</span>
+                        <h3 style="color: var(--neuro-text); font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">📜 Your Personal Analysis Story</h3>
+                      </div>
+                      <div class="calc-expandable-content">
+                        <div id="calc-narrative-content" class="calc-narrative-text placeholder">
+                          Complete your analysis to receive your personalized narrative...
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- END Calculator Tab -->
+
+                <!-- Flip The Script Tab -->
+                <div id="flip-script-tab" class="tab-content hidden">
+                    <!-- Managed by FlipScriptEngine -->
+                </div>
+
+                <!-- Meditations Tab -->
+                <div id="meditations-tab" class="tab-content hidden">
+                    <!-- Managed by MeditationsEngine -->
+                </div>
+
+                <!-- Tarot Tab -->
+                <div id="tarot-tab" class="tab-content hidden">
+                    <!-- Managed by TarotEngine -->
+                </div>
+
+                <!-- Energy Tracking Tab -->
+                <div id="energy-tab" class="tab-content hidden">
+                    <!-- Managed by EnergyEngine -->
+                </div>
+
+                <!-- Happiness Boosters Tab -->
+                <div id="happiness-tab" class="tab-content hidden">
+                    <!-- Managed by HappinessEngine -->
+                </div>
+
+                <!-- Gratitude Journal Tab -->
+                <div id="gratitude-tab" class="tab-content hidden">
+                    <!-- Managed by GratitudeEngine -->
+                </div>
+
+                <!-- Journal Tab -->
+                <div id="journal-tab" class="tab-content hidden">
+                    <!-- Managed by JournalEngine -->
+                </div>
+
+                <!-- Karma Shop Tab -->
+                <div id="karma-shop-tab" class="tab-content hidden">
+                    <!-- Managed by KarmaShopEngine -->
+                </div>
+
+                <!-- Shadow Alchemy Tab -->
+                <div id="shadow-alchemy-tab" class="tab-content hidden">
+                    <!-- Managed by ShadowAlchemyEngine -->
+                </div>
+
+            </main>
+
+            <!-- Global Modals/Overlays -->
+            <div id="modal-container">
+                <!-- For popups, confirmations, etc. -->
+            </div>
+
+            <!-- Audio Player (Fixed Bottom) -->
+            <div id="audio-player" class="hidden">
+                <!-- Managed by MeditationsEngine -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-spinner" class="hidden">
+        <div class="loading-spinner-inner">
+            <div class="spinner"></div>
+            <p class="mt-4">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+<!-- ============================================ -->
+<!-- CONSOLIDATED JAVASCRIPT - ALL ES6 MODULES -->
+<!-- ============================================ -->
+
+<!-- Core Utilities -->
+<script type="module" src="js/core/utils.js"></script>
+
+<!-- Tarot Engine -->
+<script type="module" src="js/engines/TarotEngine.js"></script>
+
+<!-- Gamification Engine -->
+<script type="module" src="js/engines/GamificationEngine.js"></script>
+
+<!-- Karma Shop Engine -->
+<script type="module" src="js/engines/KarmaShopEngine.js"></script>
+
+<!-- Features Module -->
+<script type="module" src="js/engines/energy-engine-enhanced.js"></script>
+<script type="module" src="js/core/features.js"></script>
+
+<!-- ============================================ -->
+<!-- INITIALIZATION SCRIPT WITH PROPER DATA LOADING -->
+<!-- ============================================ -->
+<script type="module">
+    // Load data FIRST, then initialize app
+    async function initializeApp() {
+        console.log('🚀 Project Curiosity - Digital Spiritual Platform');
+        
+        try {
+            // 1. Load affirmations data
+            const affirmationsModule = await import('./js/data/affirmations.js');
+            window.affirmations = affirmationsModule.default;
+            console.log('✅ Affirmations loaded:', Object.keys(window.affirmations).length, 'categories');
+            
+            // 2. Load quotes data
+            const { QUOTES, getRandomQuote, getQuoteOfTheDay } = await import('./js/data/quotes-data.js');
+            window.QuotesData = { QUOTES, getRandomQuote, getQuoteOfTheDay };
+            console.log('✅ Quotes loaded');
+            
+            // 3. Load Core modules
+            const Core = await import('./js/core/index.js');
+            
+            // 4. Initialize the app
+            window.app = new Core.ProjectCuriosityApp({
+                AppState:           Core.AppState,
+                AuthManager:        Core.AuthManager,
+                NavigationManager:  Core.NavigationManager,
+                DashboardManager:   Core.DashboardManager
+            });
+            
+            window.app.init();
+            
+        } catch (err) {
+            console.error('Failed to initialize app:', err);
+        }
+    }
+    
+    // Wait for DOM, then load data and init app
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+        initializeApp();
+    }
+</script>
+
+</body>
+</html>
