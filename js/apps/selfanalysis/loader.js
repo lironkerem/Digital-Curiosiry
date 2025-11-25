@@ -23,7 +23,6 @@ export default class SelfAnalysisLauncher {
         doc.write(`
           <!doctype html>
           <html>
-// inside doc.write(...) — head section
 <head>
   <meta charset="utf-8">
   <base href="/js/apps/selfanalysis/">
