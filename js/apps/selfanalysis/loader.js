@@ -4,6 +4,7 @@ export default class SelfAnalysisLauncher {
 
   render() {
     const host = document.getElementById('calculator-tab');
+    if (!host) return;
 
     /* 1.  create iframe only once ******************************/
     if (!host.querySelector('iframe')) {
@@ -18,11 +19,13 @@ export default class SelfAnalysisLauncher {
       ]).then(([html, css]) => {
         const doc = iframe.contentDocument;
         doc.open();
+        // Inject base so relative paths in index.html resolve to the mini-app folder.
         doc.write(`
           <!doctype html>
           <html>
           <head>
             <meta charset="utf-8">
+            <base href="/js/apps/selfanalysis/">
             <style>${css}</style>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
           </head>
@@ -31,8 +34,8 @@ export default class SelfAnalysisLauncher {
             <script type="module">
               (async () => {
                 try {
-                  const mod = await import('/js/apps/selfanalysis/app.js');
-                  // attempt immediate boot; if DOM not ready, module will call bootSelfAnalysis via event fallback
+                  // Relative import resolves to /js/apps/selfanalysis/js/app.js because of the <base>
+                  const mod = await import('./js/app.js');
                   try { mod.bootSelfAnalysis(document.body); }
                   catch (e) {
                     window.addEventListener('DOMContentLoaded', () => mod.bootSelfAnalysis(document.body));
@@ -46,6 +49,8 @@ export default class SelfAnalysisLauncher {
           </html>
         `);
         doc.close();
+      }).catch(err => {
+        console.error('Failed to fetch Self‑Analysis HTML or CSS for iframe:', err);
       });
     }
 
