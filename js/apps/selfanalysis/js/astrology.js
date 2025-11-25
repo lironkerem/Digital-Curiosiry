@@ -2,7 +2,7 @@
 // AstrologyEngine for Free Astrology API
 // DEBUG VERSION - Add logging
 
-import { getPlanets, getHouses, getAspects, getNatalWheelChart } from './astroApi.js';
+import { getPlanets, getHouses, getAspects, getNatalWheelChart } from './astroAPI.js';
 
 export class AstrologyEngine {
   constructor() {
