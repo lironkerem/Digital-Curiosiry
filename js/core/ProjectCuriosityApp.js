@@ -1,4 +1,6 @@
-// js/core/ProjectCuriosityApp.js  (FULL PATCH 2025-11-25)
+// js/core/ProjectCuriosityApp.js  (PATCHED)
+// Cleaned up utility methods and ensured file terminates correctly.
+
 import { showToast }                     from './utils/toast.js';
 import * as modal                        from './utils/modal.js';
 import { GamificationEngine }            from '../engines/GamificationEngine.js';
@@ -342,8 +344,8 @@ export default class ProjectCuriosityApp {
   openBilling()  { modal.openBilling(this); }
 
   randomFrom(array) {
-    if (!Array.isArray(array) || !array.length) return null;
-    return array[Math.floor(Math.random() * (i + 1))];
+    if (!Array.isArray(array) || array.length === 0) return null;
+    return array[Math.floor(Math.random() * array.length)];
   }
 
   shuffle(array) {
@@ -355,4 +357,3 @@ export default class ProjectCuriosityApp {
     return arr;
   }
 }
-```
