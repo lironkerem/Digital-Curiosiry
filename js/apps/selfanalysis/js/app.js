@@ -16,7 +16,7 @@ import {
   getAstrologySummary,
   getTreeSummary
 } from './narrativeEngine.js';
-import { PDFAssembler } from './PDFAssembler.js';
+import PDFAssembler from './PDFAssembler.js'; // <- fixed: default import
 import { TarotEngine } from './TarotEngine.js';
 
 /* ----------------  2.  GLOBAL INSTANCES  ----------------- */
