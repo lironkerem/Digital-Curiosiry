@@ -29,8 +29,18 @@ export default class SelfAnalysisLauncher {
           <body>
             ${new DOMParser().parseFromString(html, 'text/html').body.innerHTML}
             <script type="module">
-              import { bootSelfAnalysis } from '/js/apps/selfanalysis/app.js';
-              window.addEventListener('DOMContentLoaded', () => bootSelfAnalysis(document.body));
+              (async () => {
+                try {
+                  const mod = await import('/js/apps/selfanalysis/app.js');
+                  // attempt immediate boot; if DOM not ready, module will call bootSelfAnalysis via event fallback
+                  try { mod.bootSelfAnalysis(document.body); }
+                  catch (e) {
+                    window.addEventListener('DOMContentLoaded', () => mod.bootSelfAnalysis(document.body));
+                  }
+                } catch (err) {
+                  console.error('Failed to load selfanalysis app module inside iframe', err);
+                }
+              })();
             <\/script>
           </body>
           </html>

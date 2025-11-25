@@ -232,13 +232,24 @@ export default class ProjectCuriosityApp {
     }
   }
 
-  loadModules() {
+loadModules() {
     this.dashboard.render();
+
     if (window.FeaturesManager) {
-      window.featuresManager = new window.FeaturesManager(this);
+      // create the features manager instance and expose a safe helper
+      try {
+        window.featuresManager = new window.FeaturesManager(this);
+        // expose an init helper specifically for the calculator feature
+        window.initCalculator = () => window.featuresManager.init('calculator');
+
+      } catch (err) {
+        console.error('Failed to initialize FeaturesManager', err);
+      }
     }
-    if (window.initCalculator) {
-      window.initCalculator();
+
+    // Backwards-compat: if some other code already provided initCalculator, call it now.
+    if (typeof window.initCalculator === 'function') {
+      try { window.initCalculator(); } catch (e) { console.warn('initCalculator failed', e); }
     }
   }
 
