@@ -1,87 +1,23 @@
-// service-worker.js - PWA Service Worker for Flip The Script
-const CACHE_NAME = 'flip-the-script-v1';
+const CACHE_NAME = 'dc-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/affirmations.js',
-  '/FlipEngine.js',
-  '/manifest.json',
-  '/favicon.ico',
-  '/icons/icon-96x96.png',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/Digital-Curiosity/',
+  '/Digital-Curiosity/Index.html',
+  '/Digital-Curiosity/Assets/CSS/champagne-gold.css',
+  '/Digital-Curiosity/Assets/CSS/dark-mode.css',
+  '/Digital-Curiosity/Core/Index.js',
+  '/Digital-Curiosity/Core/ProjectCuriosityApp.js',
+  '/Digital-Curiosity/Icons/icon-192x192.png',
+  '/Digital-Curiosity/Icons/icon-512x512.png'
 ];
 
-// Install event - cache files
-self.addEventListener('install', event => {
-  console.log('Service Worker: Installing...');
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Service Worker: Caching files');
-        return cache.addAll(urlsToCache);
-      })
-      .catch(err => console.error('Service Worker: Cache failed', err))
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
-  self.skipWaiting();
 });
 
-// Activate event - clean old caches
-self.addEventListener('activate', event => {
-  console.log('Service Worker: Activating...');
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cache => {
-          if (cache !== CACHE_NAME) {
-            console.log('Service Worker: Clearing old cache');
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
-  );
-  return self.clients.claim();
-});
-
-// Fetch event - cache first, then network
-self.addEventListener('fetch', event => {
-  // Skip external resources and fonts
-  if (event.request.url.includes('googleapis.com') || 
-      event.request.url.includes('gstatic.com')) {
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Return cached version if available
-        if (response) {
-          return response;
-        }
-        
-        // Otherwise fetch from network
-        return fetch(event.request)
-          .then(response => {
-            // Clone response for cache
-            const responseClone = response.clone();
-            
-            // Update cache with new version
-            if (event.request.method === 'GET') {
-              caches.open(CACHE_NAME).then(cache => {
-                cache.put(event.request, responseClone);
-              });
-            }
-            
-            return response;
-          })
-          .catch(() => {
-            // Network failed, return offline page if HTML request
-            if (event.request.headers.get('accept').includes('text/html')) {
-              return caches.match('/index.html');
-            }
-          });
-      })
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(res => res || fetch(e.request))
   );
 });
