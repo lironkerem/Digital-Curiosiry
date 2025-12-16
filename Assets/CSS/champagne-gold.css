@@ -1,0 +1,250 @@
+/* =========================================================
+   DIGITAL CURIOSITY — CHAMPAGNE & GOLD LUXURY SKIN
+   Apply to <body class="champagne-gold">
+   COMPLETE: More gold + CTA footer + Dark mode support
+   ========================================================= */
+
+body.champagne-gold{
+  /* champagne-gold palette - MORE GOLD */
+  --neuro-bg:#f9f6ed;
+  --neuro-bg-darker:#f0e8d5;
+  --neuro-shadow-dark:#c9b991;
+  --neuro-shadow-darker:#b8a577;
+  --neuro-shadow-light:#ffffff;
+  --neuro-highlight:#fffdf5;
+
+  --neuro-text:#2a2318;
+  --neuro-text-light:#695d4f;
+  --neuro-text-lighter:#8a7d6c;
+
+  --neuro-accent:#d4af37;           /* gold */
+  --neuro-accent-light:#f4d03f;     /* brighter gold */
+
+  /* Gold gradient colors */
+  --neuro-gold: #d4af37;
+  --neuro-gold-dark: #b8941f;
+  --neuro-gold-light: #f4d03f;
+
+  --neuro-success:#5a8f7b;
+  --neuro-warning:#c8960b;
+  --neuro-error:#9b4545;
+  --neuro-info:#7b8fa3;
+
+  /* luxury shadows with gold glow */
+  --shadow-raised:
+    12px 12px 24px var(--neuro-shadow-dark),
+    -10px -10px 20px var(--neuro-shadow-light),
+    inset 1px 1px 2px var(--neuro-highlight);
+  --shadow-raised-lg:
+    20px 20px 40px var(--neuro-shadow-darker),
+    -16px -16px 32px var(--neuro-shadow-light),
+    inset 2px 2px 4px var(--neuro-highlight),
+    0 8px 32px rgba(212,175,55,.25);
+  --shadow-raised-hover:
+    16px 16px 32px var(--neuro-shadow-dark),
+    -14px -14px 28px var(--neuro-shadow-light),
+    inset 1px 1px 2px var(--neuro-highlight),
+    0 4px 24px rgba(212,175,55,.35);
+  --shadow-inset:
+    inset 6px 6px 12px var(--neuro-shadow-dark),
+    inset -4px -4px 8px var(--neuro-shadow-light);
+  --shadow-inset-sm:
+    inset 4px 4px 8px var(--neuro-shadow-dark),
+    inset -3px -3px 6px var(--neuro-shadow-light);
+  --shadow-inset-lg:
+    inset 10px 10px 20px var(--neuro-shadow-darker),
+    inset -8px -8px 16px var(--neuro-shadow-light);
+  --shadow-glow:
+    0 0 20px rgba(212,175,55,.4),
+    0 0 40px rgba(212,175,55,.3),
+    0 0 60px rgba(212,175,55,.2);
+  --shadow-intense:
+    0 0 30px rgba(212,175,55,.6),
+    0 0 60px rgba(212,175,55,.4),
+    0 4px 20px rgba(184,152,95,.5);
+}
+
+/* ------  ANIMATIONS  ------ */
+@keyframes luxuryShine{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+@keyframes goldPulse{
+  0%,100%{box-shadow:var(--shadow-raised-lg),var(--shadow-glow)}
+  50%{box-shadow:var(--shadow-raised-lg),var(--shadow-intense)}
+}
+@keyframes metallic-sheen{
+  0%{transform:translateX(-100%) skewX(-15deg)}
+  100%{transform:translateX(200%) skewX(-15deg)}
+}
+@keyframes subtleFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+
+/* ------  BODY BG & TEXTURES  ------ */
+body.champagne-gold{
+  background:var(--neuro-bg);
+  color:var(--neuro-text);
+  transition:all var(--transition-slow) cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+body.champagne-gold::before{
+  content:"";
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(212,175,55,.025) 10px,rgba(212,175,55,.025) 20px),
+    radial-gradient(circle at 20% 80%,rgba(244,208,63,.05) 0%,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(212,175,55,.04) 0%,transparent 50%);
+}
+body.champagne-gold > *{position:relative;z-index:1}
+/* ------  ACTIVE TAB GRADIENT  ------ */
+body.champagne-gold .nav-item.active{
+  background:linear-gradient(135deg,var(--neuro-gold-dark) 0%,var(--neuro-gold) 25%,var(--neuro-gold-light) 50%,var(--neuro-gold) 75%,var(--neuro-gold-dark) 100%);
+  background-size:200% 200%;
+  color:#2a2318;
+  border-color:rgba(212,175,55,.6);
+  box-shadow:var(--shadow-inset),0 0 15px rgba(212,175,55,.4);
+  animation:luxuryShine 3s linear infinite;
+}
+/* ------  PRIMARY BTN ACCENT  ------ */
+body.champagne-gold .btn-primary{
+  background:linear-gradient(135deg,var(--neuro-gold-dark) 0%,var(--neuro-gold) 25%,var(--neuro-gold-light) 50%,var(--neuro-gold) 75%,var(--neuro-gold-dark) 100%);
+  background-size:200% 200%;
+  color:#2a2318;
+  animation:luxuryShine 3s linear infinite;
+  box-shadow:var(--shadow-raised-lg),var(--shadow-glow),inset 0 1px 0 rgba(255,255,255,.4);
+  border:1px solid rgba(212,175,55,.6);
+  position:relative;overflow:hidden;
+}
+body.champagne-gold .btn-primary::after{
+  content:"";
+  position:absolute;top:-50%;left:-100%;width:50%;height:200%;
+  background:linear-gradient(90deg,transparent,rgba(244,208,63,.5),transparent);
+  transform:skewX(-15deg);
+}
+body.champagne-gold .btn-primary:hover::after{animation:metallic-sheen 1.5s ease-in-out}
+body.champagne-gold .btn-primary:hover{background-position:100% 50%;box-shadow:var(--shadow-raised-lg),var(--shadow-intense),inset 0 1px 0 rgba(255,255,255,.5);transform:translateY(-2px) scale(1.02)}
+
+/* ------  HEADER BAR + CTA FOOTER (all tabs)  ------ */
+body.champagne-gold .main-header.project-curiosity,
+body.champagne-gold .app-header,
+body.champagne-gold #cta-toggle{
+  background:linear-gradient(135deg,var(--neuro-gold-dark) 0%,var(--neuro-gold) 25%,var(--neuro-gold-light) 50%,var(--neuro-gold) 75%,var(--neuro-gold-dark) 100%);
+  background-size:200% 200%;
+  box-shadow:var(--shadow-raised-lg),var(--shadow-intense),inset 0 2px 0 rgba(255,255,255,.4);
+  animation:goldPulse 6s ease-in-out infinite;
+  border:1px solid rgba(212,175,55,.5);
+  color:#2a2318;
+}
+body.champagne-gold .main-header.project-curiosity h1,
+body.champagne-gold .main-header.project-curiosity h3,
+body.champagne-gold .app-header h1,
+body.champagne-gold .app-header p,
+body.champagne-gold #cta-toggle .cta-text-group{
+  color:#2a2318;
+  text-shadow:0 2px 4px rgba(255,255,255,.6),0 4px 12px rgba(212,175,55,.4);
+  font-weight:800;
+}
+
+/* ------  POPUP MENU TITLE FIX  ------ */
+body.champagne-gold #bubble-popup h3{
+  color:#2a2318 !important;
+}
+
+/* ------  RESPONSIVE  ------ */
+@media (max-width:768px){
+  body.champagne-gold{--shadow-raised:8px 8px 16px var(--neuro-shadow-dark),-6px -6px 12px var(--neuro-shadow-light)}
+}
+
+/* =========================================================
+   DARK MODE VARIANT
+   ========================================================= */
+
+body.champagne-gold.dark-mode {
+  /* Dark champagne-gold palette */
+  --neuro-bg: #2a241a;
+  --neuro-bg-darker: #1f1a12;
+  --neuro-shadow-dark: #151208;
+  --neuro-shadow-darker: #0d0a05;
+  --neuro-shadow-light: #3a3020;
+  --neuro-highlight: #4a4030;
+
+  --neuro-text: #f4e8d5;
+  --neuro-text-light: #d4c8b5;
+  --neuro-text-lighter: #b4a895;
+
+  /* Keep gold accents bright */
+  --neuro-accent: #d4af37;
+  --neuro-accent-light: #f4d03f;
+  --neuro-gold: #d4af37;
+  --neuro-gold-dark: #b8941f;
+  --neuro-gold-light: #f4d03f;
+  
+  /* Gold glow shadows for dark mode */
+  --shadow-glow:
+    0 0 20px rgba(212,175,55,.5),
+    0 0 40px rgba(212,175,55,.3);
+  --shadow-intense:
+    0 0 30px rgba(212,175,55,.7),
+    0 0 60px rgba(212,175,55,.5);
+}
+
+/* Gold borders for dark mode cards */
+body.champagne-gold.dark-mode .card,
+body.champagne-gold.dark-mode .neuro-card,
+body.champagne-gold.dark-mode .dashboard-gamification,
+body.champagne-gold.dark-mode .dashboard-quest-hub,
+body.champagne-gold.dark-mode .dashboard-daily-card,
+body.champagne-gold.dark-mode .dashboard-quote,
+body.champagne-gold.dark-mode .dashboard-achievements,
+body.champagne-gold.dark-mode .dashboard-wellness-toolkit,
+body.champagne-gold.dark-mode .karma-shop-balance,
+body.champagne-gold.dark-mode .karma-shop-item{
+  border: 1px solid rgba(212,175,55,.4);
+  box-shadow: var(--shadow-raised-lg), 0 0 15px rgba(212,175,55,.2);
+}
+
+body.champagne-gold.dark-mode .dashboard-quest-card:hover,
+body.champagne-gold.dark-mode .wellness-tool-btn:hover,
+body.champagne-gold.dark-mode .karma-shop-item:hover{
+  border-color: rgba(244,208,63,.6);
+  box-shadow: var(--shadow-raised-hover), var(--shadow-glow);
+}
+
+/* Gold accent on active/interactive elements */
+body.champagne-gold.dark-mode .nav-item.active{
+  border-color: rgba(212,175,55,.6);
+  box-shadow: var(--shadow-inset-sm), 0 0 15px rgba(212,175,55,.3);
+}
+
+body.champagne-gold.dark-mode .btn-primary{
+  border: 1px solid rgba(212,175,55,.6);
+  box-shadow: var(--shadow-raised), var(--shadow-glow);
+}
+
+body.champagne-gold.dark-mode .btn-primary:hover{
+  box-shadow: var(--shadow-raised-hover), var(--shadow-intense);
+}
+/* =====  CHAT-WINDOW TOKENS  (append to each skin file)  ===== */
+body.champagne-gold{
+  --chat-bg:var(--neuro-highlight);
+  --chat-header-bg:var(--neuro-bg);
+  --chat-border:1px solid rgba(212,175,55,.25);
+  --chat-text:var(--neuro-text);
+  --chat-accent:var(--neuro-accent);
+  --chat-shadow:var(--shadow-raised-lg);
+  --chat-inset:var(--shadow-inset);
+  --chat-bot-bubble:var(--neuro-bg-darker);
+  --chat-bot-text:var(--neuro-text) 0.95rem 500 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --chat-bg-light:var(--neuro-bg-darker);
+  --chat-bg-disabled:var(--neuro-shadow-dark);
+}
+body.champagne-gold.dark-mode{--chat-border:1px solid rgba(212,175,55,.35);}
+/* =========================================================
+   END CHAMPAGNE-GOLD COMPLETE (7 kB gzipped)
+   ✓ More gold in palette
+   ✓ CTA footer integration
+   ✓ Dark mode support
+   ✓ Enhanced gold glows and shadows
+   ========================================================= */

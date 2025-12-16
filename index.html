@@ -1,209 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover,
-               user-scalable=no">
-    <meta name="description" content="Aanandoham's Digital Curiosity - Your complete spiritual growth companion">
-    <title>Digital Curiosity - Aanandoham</title>
-    
-    <!-- External Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" 
-            crossorigin="anonymous" 
-            referrerpolicy="no-referrer"></script>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes">
+  <meta name=description content="The Curiosity Path - Step into your next level">
+  <title>The Curiosity Path - by Aanandoham</title>
 
-    <!-- Neumorphic Theme Styles -->
-    <link rel="stylesheet" href="css/neumorphic-theme.css">
+  <!-- ===== External Libraries ===== -->
+  <script src=https://cdn.tailwindcss.com></script>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js></script>
 
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            300: '#c4b5fd',
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
-                        }
-                    }
-                }
-            }
+  <!-- ===== PWA ===== -->
+  <link rel=manifest href=/manifest.json>
+  <meta name=theme-color content=#3F7652>
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-status-bar-style content=black-translucent>
+  <meta name=apple-mobile-web-app-title content="The Curiosity Path">
+  <link rel=apple-touch-icon href=/apple-touch-icon.png>
+  <link rel=icon href=/favicon.ico>
+
+  <!-- ===== Theme ===== -->
+  <link rel=stylesheet href=/Assets/CSS/neumorphic-theme.css>
+  <link rel=stylesheet href=/Assets/CSS/dark-mode.css id=dark-mode-css>
+
+  <!-- ===== Tailwind Config ===== -->
+  <script>
+  tailwind.config={
+    darkMode:'class',
+    theme:{
+      extend:{
+        colors:{
+          primary:{
+            50:'#f5f3ff',100:'#ede9fe',200:'#ddd6fe',300:'#c4b5fd',
+            400:'#a78bfa',500:'#8b5cf6',600:'#7c3aed',700:'#6d28d9',
+            800:'#5b21b6',900:'#4c1d95'
+          }
         }
-    </script>
+      }
+    }
+  }
+  </script>
 </head>
 
 <body>
-    
-    <!-- Authentication Screen -->
-    <div id="auth-screen">
-        <!-- Managed by AuthManager -->
+  <!-- ===== Auth Gate ===== -->
+  <div id=auth-screen></div>
+
+  <!-- ===== App Shell ===== -->
+  <div id=app-container>
+    <div id=main-app class=hidden>
+      <main id=main-content>
+        <div id=dashboard-tab class="tab-content active"></div>          <!-- DashboardManager -->
+        <div id=calculator-tab class="tab-content hidden" aria-live=polite></div> <!-- loader.js -->
+        <div id=flip-script-tab class="tab-content hidden"></div>       <!-- FlipScriptEngine -->
+        <div id=meditations-tab class="tab-content hidden"></div>       <!-- MeditationsEngine -->
+        <div id=tarot-tab class="tab-content hidden"></div>             <!-- TarotEngine -->
+        <div id=energy-tab class="tab-content hidden"></div>            <!-- EnergyEngine -->
+        <div id=happiness-tab class="tab-content hidden"></div>         <!-- HappinessEngine -->
+        <div id=gratitude-tab class="tab-content hidden"></div>         <!-- GratitudeEngine -->
+        <div id=journal-tab class="tab-content hidden"></div>           <!-- JournalEngine -->
+        <div id=karma-shop-tab class="tab-content hidden"></div>        <!-- KarmaShopEngine -->
+        <div id=shadow-alchemy-tab class="tab-content hidden"></div>    <!-- ShadowAlchemyEngine -->
+      </main>
+
+      <div id=modal-container></div>   <!-- global overlays -->
+      <div id=audio-player class=hidden></div> <!-- MeditationsEngine -->
     </div>
+  </div>
 
-    <!-- Main Application Container -->
-    <div id="app-container">
-        <div id="main-app" class="hidden">
-            
-            <!-- Navigation gets inserted here by NavigationManager -->
-
-            <!-- Main Content Area -->
-            <main id="main-content">
-                
-                <!-- Dashboard Tab -->
-                <div id="dashboard-tab" class="tab-content active">
-                    <!-- Managed by DashboardManager -->
-                </div>
-
-                <!-- Self Analysis Pro Tab -->
-              <div id="calculator-tab" class="tab-content hidden" aria-live="polite">
-               <!-- Managed by loader.js -->
-              </div>
-
-                <!-- Flip The Script Tab -->
-                <div id="flip-script-tab" class="tab-content hidden">
-                    <!-- Managed by FlipScriptEngine -->
-                </div>
-
-                <!-- Meditations Tab -->
-                <div id="meditations-tab" class="tab-content hidden">
-                    <!-- Managed by MeditationsEngine -->
-                </div>
-
-                <!-- Tarot Tab -->
-                <div id="tarot-tab" class="tab-content hidden">
-                    <!-- Managed by TarotEngine -->
-                </div>
-
-                <!-- Energy Tracking Tab -->
-                <div id="energy-tab" class="tab-content hidden">
-                    <!-- Managed by EnergyEngine -->
-                </div>
-
-                <!-- Happiness Boosters Tab -->
-                <div id="happiness-tab" class="tab-content hidden">
-                    <!-- Managed by HappinessEngine -->
-                </div>
-
-                <!-- Gratitude Journal Tab -->
-                <div id="gratitude-tab" class="tab-content hidden">
-                    <!-- Managed by GratitudeEngine -->
-                </div>
-
-                <!-- Journal Tab -->
-                <div id="journal-tab" class="tab-content hidden">
-                    <!-- Managed by JournalEngine -->
-                </div>
-
-                <!-- Karma Shop Tab -->
-                <div id="karma-shop-tab" class="tab-content hidden">
-                    <!-- Managed by KarmaShopEngine -->
-                </div>
-
-                <!-- Shadow Alchemy Tab -->
-                <div id="shadow-alchemy-tab" class="tab-content hidden">
-                    <!-- Managed by ShadowAlchemyEngine -->
-                </div>
-
-            </main>
-
-            <!-- Global Modals/Overlays -->
-            <div id="modal-container">
-                <!-- For popups, confirmations, etc. -->
-            </div>
-
-            <!-- Audio Player (Fixed Bottom) -->
-            <div id="audio-player" class="hidden">
-                <!-- Managed by MeditationsEngine -->
-            </div>
-
-        </div>
+  <!-- ===== Global UI ===== -->
+  <div id=loading-spinner class=hidden>
+    <div class=loading-spinner-inner>
+      <div class=spinner></div>
+      <p class=mt-4>Loading...
     </div>
+  </div>
+  <div id=toast-container></div>
 
-    <!-- Loading Indicator -->
-    <div id="loading-spinner" class="hidden">
-        <div class="loading-spinner-inner">
-            <div class="spinner"></div>
-            <p class="mt-4">Loading...</p>
-        </div>
-    </div>
+  <!-- ===== ChatBot Floater (outside scaled container) ===== -->
+  <script type=module>
+  import{ChatBotAI}from'./Features/ChatBotAI.js';
+  ChatBotAI.float({apiUrl:'/API/chat'});
+  </script>
 
-    <!-- Toast Container -->
-    <div id="toast-container"></div>
+  <!-- ===== Dark-mode ASAP ===== -->
+  <script>document.body.classList.toggle('dark-mode',localStorage.darkMode==='true')</script>
 
-<!-- ============================================ -->
-<!-- CONSOLIDATED JAVASCRIPT - ALL ES6 MODULES -->
-<!-- ============================================ -->
+  <!-- ===== Core & Features ===== -->
+  <script type=module src=/Core/Utils.js></script>
+  <script defer src=/Features/TarotVisionAI.js></script>
+  <script type=module src=/Features/TarotEngine.js></script>
+  <script type=module src=/Features/GamificationEngine.js></script>
+  <script type=module src=/Features/KarmaShopEngine.js></script>
+  <script type=module src=/Features/EnergyTracker.js></script>
+  <script type=module src=/Core/Features.js></script>
+  <script src=/Features/WellnessKit.js></script>
 
-<!-- Core Utilities -->
-<script type="module" src="js/core/utils.js"></script>
+  <!-- ===== Bootstrap ===== -->
+  <script type=module>
+  async function init(){
+    console.log('🚀 Digital Curiosity - Aanandoham\'s Spiritual Platform Online');
+    try{
+      const [aff,{QUOTES,getRandomQuote,getQuoteOfTheDay}]=await Promise.all([
+        import('./Features/Data/AffirmationsList.js'),
+        import('./Features/Data/QuotesList.js')
+      ]);
+      window.affirmations=aff.default;
+      window.QuotesData={QUOTES,getRandomQuote,getQuoteOfTheDay};
 
-<!-- Tarot Engine -->
-<script type="module" src="js/engines/TarotEngine.js"></script>
+      const Core=await import('./Core/Index.js');
+      const {default:UserTab}=await import('./Core/User-Tab.js');
 
-<!-- Gamification Engine -->
-<script type="module" src="js/engines/GamificationEngine.js"></script>
-
-<!-- Karma Shop Engine -->
-<script type="module" src="js/engines/KarmaShopEngine.js"></script>
-
-<!-- Features Module -->
-<script type="module" src="js/engines/energy-engine-enhanced.js"></script>
-<script type="module" src="js/core/features.js"></script>
-
-<!-- ============================================ -->
-<!-- INITIALIZATION SCRIPT WITH PROPER DATA LOADING -->
-<!-- ============================================ -->
-<script type="module">
-    // Load data FIRST, then initialize app
-    async function initializeApp() {
-        console.log('🚀 Project Curiosity - Digital Spiritual Platform');
-        
-        try {
-            // 1. Load affirmations data
-            const affirmationsModule = await import('./js/data/affirmations.js');
-            window.affirmations = affirmationsModule.default;
-            console.log('✅ Affirmations loaded:', Object.keys(window.affirmations).length, 'categories');
-            
-            // 2. Load quotes data
-            const { QUOTES, getRandomQuote, getQuoteOfTheDay } = await import('./js/data/quotes-data.js');
-            window.QuotesData = { QUOTES, getRandomQuote, getQuoteOfTheDay };
-            console.log('✅ Quotes loaded');
-            
-            // 3. Load Core modules
-            const Core = await import('./js/core/index.js');
-            
-            // 4. Initialize the app
-            window.app = new Core.ProjectCuriosityApp({
-                AppState:           Core.AppState,
-                AuthManager:        Core.AuthManager,
-                NavigationManager:  Core.NavigationManager,
-                DashboardManager:   Core.DashboardManager
-            });
-            
-            window.app.init();
-            
-        } catch (err) {
-            console.error('Failed to initialize app:', err);
-        }
-    }
-    
-    // Wait for DOM, then load data and init app
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeApp);
-    } else {
-        initializeApp();
-    }
-</script>
-
+      window.app=new Core.ProjectCuriosityApp({
+        AppState:          Core.AppState,
+        AuthManager:       Core.AuthManager,
+        NavigationManager: Core.NavigationManager,
+        DashboardManager:  Core.DashboardManager,
+        UserTab
+      });
+      window.app.init();
+    }catch(e){console.error('Bootstrap failed:',e)}
+  }
+  document.readyState==='loading'
+    ? document.addEventListener('DOMContentLoaded',init)
+    : init();
+  </script>
 </body>
 </html>
