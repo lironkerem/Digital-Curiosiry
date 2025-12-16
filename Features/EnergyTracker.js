@@ -109,7 +109,7 @@ class EnergyEngineEnhanced {
 
     tab.innerHTML = `
       <div class="min-h-screen p-6" style="background:var(--neuro-bg);">
-        <div class="max-w-7xl mx-auto">
+        <div class=""universal-content"">
   <!--  NEW UNIFIED HEADER  -->
       <header class="main-header project-curiosity">
         <h1>Energy Tracker</h1>
