@@ -3132,8 +3132,8 @@ box-shadow: none;
 }
 
 /* =========================================================
-   RESPONSIVE SCALING - LESS AGGRESSIVE VERSION
-   Replace the existing zoom section in neumorphic-theme.css
+   RESPONSIVE SCALING
+   Uses ZOOM instead of transform for proper width handling
    ========================================================= */
 
 /* Desktop: No scaling (1920px+ base) */
@@ -3141,6 +3141,165 @@ box-shadow: none;
   width: 100%;
   min-height: 100vh;
   zoom: 1;
+}
+
+/* ===== FORCE DESKTOP LAYOUT AT ALL SIZES ===== */
+/* Nuclear option: Override ALL Tailwind responsive breakpoints */
+
+/* Force all grids inside dashboard to maintain desktop layout */
+@media (max-width: 1024px) {
+  /* Daily Cards - force 3 columns */
+  #dashboard-tab .grid.grid-cols-1.md\:grid-cols-3,
+  #dashboard-tab .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Quest Cards & Achievements - force 3 columns */
+  #dashboard-tab .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3,
+  #dashboard-tab .grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Gamification Stats - force 6 columns */
+  #dashboard-tab .grid.grid-cols-3.md\:grid-cols-6,
+  #dashboard-tab .grid-cols-3.md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+
+  /* TAROT TAB - Spread Selection Cards - force 3 columns, 2 rows */
+  #tarot-tab > div > div > div.grid.grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* GRATITUDE TAB - Force single column (remove 3-column split) */
+  #gratitude-tab .grid.grid-cols-1.lg\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  #gratitude-tab .lg\:col-span-2 {
+    grid-column: auto !important;
+  }
+
+  /* MEDITATIONS TAB - Guided Meditations - force 3 columns, 3 rows */
+  #meditations-tab .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* SELF ANALYSIS PRO - Force horizontal step indicator (no stacking) */
+  #calculator-tab .step-indicator {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  #calculator-tab .step-item {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: auto !important;
+  }
+
+  #calculator-tab .step-label {
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  #calculator-tab .step-connector {
+    display: block !important;
+  }
+}
+
+/* Mobile breakpoint override */
+@media (max-width: 768px) {
+  /* Daily Cards - force 3 columns */
+  #dashboard-tab .grid.grid-cols-1.md\:grid-cols-3,
+  #dashboard-tab .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Quest Cards & Achievements - force 3 columns */
+  #dashboard-tab .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3,
+  #dashboard-tab .grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Gamification Stats - force 6 columns */
+  #dashboard-tab .grid.grid-cols-3.md\:grid-cols-6,
+  #dashboard-tab .grid-cols-3.md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+
+  /* TAROT TAB - Spread Selection Cards - force 3 columns, 2 rows */
+  #tarot-tab > div > div > div.grid.grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* GRATITUDE TAB - Force single column */
+  #gratitude-tab .grid.grid-cols-1.lg\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  #gratitude-tab .lg\:col-span-2 {
+    grid-column: auto !important;
+  }
+
+  /* MEDITATIONS TAB - Guided Meditations - force 3 columns, 3 rows */
+  #meditations-tab .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* SELF ANALYSIS PRO - Mobile specific adjustments */
+  
+  /* Keep step indicator horizontal (no stacking) */
+  #calculator-tab .step-indicator {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  #calculator-tab .step-item {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: auto !important;
+  }
+
+  #calculator-tab .step-label {
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-size: 0.75rem !important;
+  }
+
+  #calculator-tab .step-connector {
+    display: block !important;
+  }
+
+  /* Hide summary card on mobile */
+  #calculator-tab .summary-card {
+    display: none !important;
+  }
+
+  /* Make form card full width when summary is hidden */
+  #calculator-tab .form-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 !important;
+  }
+
+  /* Ensure top-row doesn't force column layout */
+  #calculator-tab .top-row {
+    flex-direction: row !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Universal Tarot spread grid override - catch all variations */
+#tarot-tab .grid-cols-1.md\:grid-cols-3:first-of-type {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* Wellness toolkit - force 4 columns at all sizes */
+.wellness-buttons-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 
 /* Laptop: Slight scale down (1366px - 1919px) */
@@ -3160,35 +3319,79 @@ box-shadow: none;
 /* Tablet Landscape: Moderate scaling (768px - 1024px) */
 @media (max-width: 1024px) and (min-width: 769px) {
   #app-container {
-    zoom: 0.80;  /* Was 0.75, now less aggressive */
+    zoom: 0.75;
+  }
 }
 
-/* Tablet Portrait: Reduced scaling (600px - 768px) */
+/* Tablet Portrait: Significant scaling (600px - 768px) */
 @media (max-width: 768px) and (min-width: 601px) {
   #app-container {
-    zoom: 0.75;  /* Was 0.65, now less aggressive */
+    zoom: 0.65;
   }
 }
 
-/* Large Phone: Gentler scaling (480px - 600px) */
+/* Large Phone: Heavy scaling (480px - 600px) */
 @media (max-width: 600px) and (min-width: 481px) {
   #app-container {
-    zoom: 0.70;  /* Was 0.55, now less aggressive */
+    zoom: 0.55;
   }
 }
 
-/* Small Phone: Moderate scaling (320px - 480px) */
+/* Small Phone: Maximum scaling (320px - 480px) */
 @media (max-width: 480px) {
   #app-container {
-    zoom: 0.65;  /* Was 0.45, now less aggressive */
+    zoom: 0.45;
   }
 }
 
-/* Very Small Phone: Minimum scaling (< 320px) */
+/* Very Small Phone: Extreme scaling (< 320px) */
 @media (max-width: 320px) {
   #app-container {
-    zoom: 0.60;  /* Was 0.40, now less aggressive */
+    zoom: 0.40;
   }
+}
+
+/* ===== BODY ADJUSTMENTS FOR SCALED CONTENT ===== */
+/* Prevent horizontal scroll from scaled content */
+body {
+  overflow-x: hidden;
+}
+
+/* Center the scaled content */
+#app-container {
+  width: 100%;
+  display: inline-block;
+}
+
+/* ===== OPTIONAL: ADJUST SCROLLBAR FOR SCALED VIEW ===== */
+@media (max-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* ===== ENSURE USER MENU STAYS FIXED ===== */
+.user-menu {
+  position: fixed !important;
+  /* Scale adjusts with parent, stays in corner */
+}
+
+/* ===== LOADING SPINNER ADJUSTMENT ===== */
+#loading-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Not affected by scaling */
 }
 
 /* ===== TOAST CONTAINER ADJUSTMENT ===== */
