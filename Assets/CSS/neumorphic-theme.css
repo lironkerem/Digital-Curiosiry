@@ -4416,5 +4416,41 @@ position: relative;
    END OF BUBBLE NAVIGATION CSS
    ========================================================= */
 /* =========================================================
+   FONT SIZE COMPENSATION FOR ZOOM SCALING
+   Makes text readable on mobile despite aggressive zoom
+   ========================================================= */
+
+/* Increase base sizes so zoom doesn't crush them */
+@media (max-width: 768px) {
+  
+  /* Body text - compensate for 0.65 zoom on small phones */
+  body, p, .card p, .neuro-card p {
+    font-size: 24px !important;  /* 24px × 0.65 = 15.6px readable */
+    line-height: 1.5 !important;
+  }
+
+  /* Headings */
+  h1 { font-size: 36px !important; }  /* 36 × 0.65 = 23.4px */
+  h2 { font-size: 30px !important; }  /* 30 × 0.65 = 19.5px */
+  h3 { font-size: 26px !important; }  /* 26 × 0.65 = 16.9px */
+
+  /* Small text */
+  .text-sm, .text-xs, small {
+    font-size: 20px !important;  /* 20 × 0.65 = 13px */
+  }
+
+  /* Buttons */
+  .btn, button {
+    font-size: 24px !important;
+    padding: 16px 24px !important;
+  }
+
+  /* Form inputs */
+  input, textarea, select {
+    font-size: 24px !important;
+  }
+}
+
+/* =========================================================
    END OF FILE – production-ready, unified, dead-code-free
    ========================================================= */
