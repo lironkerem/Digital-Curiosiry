@@ -1,13 +1,13 @@
 const CACHE_NAME = 'dc-v1';
 const urlsToCache = [
-  '/Digital-Curiosiry/',
-  '/Digital-Curiosiry/Index.html',
-  '/Digital-Curiosiry/Assets/CSS/champagne-gold.css',
-  '/Digital-Curiosiry/Assets/CSS/dark-mode.css',
-  '/Digital-Curiosiry/Core/Index.js',
-  '/Digital-Curiosiry/Core/ProjectCuriosityApp.js',
-  '/Digital-Curiosiry/Icons/icon-192x192.png',
-  '/Digital-Curiosiry/Icons/icon-512x512.png'
+  './',
+  './Index.html',
+  './Assets/CSS/champagne-gold.css',
+  './Assets/CSS/dark-mode.css',
+  './Core/Index.js',
+  './Core/ProjectCuriosityApp.js',
+  './Icons/icon-192x192.png',
+  './Icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', e => {
