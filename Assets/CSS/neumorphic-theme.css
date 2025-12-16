@@ -48,9 +48,14 @@
   --shadow-inset-sm: inset 2px 2px 4px var(--neuro-shadow-dark), inset -2px -2px 4px var(--neuro-shadow-light);
   --shadow-inset-lg: inset 6px 6px 12px var(--neuro-shadow-dark), inset -6px -6px 12px var(--neuro-shadow-light);
 }
-/* Universal centered container for all tabs */
+/* Container creates the "floating" card effect */
 .dashboard-container,
-.karma-shop-container,
+.karma-shop-container {
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
+/* Content centers and constrains width */
 .dashboard-content,
 .karma-shop-content,
 .universal-content {

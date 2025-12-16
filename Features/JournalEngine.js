@@ -10,51 +10,53 @@ class JournalEngine {
 
   render() {
     const tab = document.getElementById('journal-tab');
-    tab.innerHTML = `
-      <div class="min-h-screen p-6" style="background: var(--neuro-bg);">
-        <div class="max-w-7xl mx-auto">
-  <!--  NEW UNIFIED HEADER  -->
+tab.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
+
+<!--  NEW UNIFIED HEADER  -->
       <header class="main-header project-curiosity">
         <h1>My Personal Journal</h1>
         <h3>Your safe, private, secret space, to open up, vent and write down your emotions and thoughts</h3>
       </header>
-          
-          <div class="card">
-            <h3 style="color: var(--neuro-text); font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">📝 My Personal, Private Journal</h3>
-            
-            <div class="space-y-4">
-              <div>
-                <label class="form-label">What happened today?</label>
-                <textarea 
-                  id="flip-journal-situation" 
-                  class="form-input w-full min-h-[100px]"
-                  placeholder="Describe the situation..."
-                ></textarea>
-              </div>
-
-              <div>
-                <label class="form-label">How did it make you feel?</label>
-                <textarea 
-                  id="flip-journal-feelings" 
-                  class="form-input w-full min-h-[100px]"
-                  placeholder="Express your emotions..."
-                ></textarea>
-              </div>
-
-              <button id="flip-journal-btn" class="btn btn-primary w-full">
-                Save This Journal Entry
-              </button>
-            </div>
-
-            <!-- Journal Entries List -->
-            <div class="mt-8">
-              <h3 class="text-xl font-bold mb-4" style="color: var(--neuro-text);">My Saved Entries</h3>
-              <ul id="flip-journal-list" class="space-y-3"></ul>
-            </div>
+      
+      <div class="card">
+        <h3 style="color: var(--neuro-text); font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">📝 My Personal, Private Journal</h3>
+        
+        <div class="space-y-4">
+          <div>
+            <label class="form-label">What happened today?</label>
+            <textarea 
+              id="flip-journal-situation" 
+              class="form-input w-full min-h-[100px]"
+              placeholder="Describe the situation..."
+            ></textarea>
           </div>
+
+          <div>
+            <label class="form-label">How did it make you feel?</label>
+            <textarea 
+              id="flip-journal-feelings" 
+              class="form-input w-full min-h-[100px]"
+              placeholder="Express your emotions..."
+            ></textarea>
+          </div>
+
+          <button id="flip-journal-btn" class="btn btn-primary w-full">
+            Save This Journal Entry
+          </button>
+        </div>
+
+        <!-- Journal Entries List -->
+        <div class="mt-8">
+          <h3 class="text-xl font-bold mb-4" style="color: var(--neuro-text);">My Saved Entries</h3>
+          <ul id="flip-journal-list" class="space-y-3"></ul>
         </div>
       </div>
-    `;
+
+    </div>
+  </div>
+`;
 
     this.attachEventListeners();
     this.loadJournalEntries();

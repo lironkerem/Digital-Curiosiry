@@ -33,129 +33,131 @@ export default class GratitudeEngine {
     const allEntries = this.getAllEntries();
     const todayTotal = this.getTodayTotal();
 
-    tab.innerHTML = `
-      <div class="min-h-screen p-6">
-        <div class=""universal-content"">
-          <!--  NEW UNIFIED HEADER  -->
-          <header class="main-header project-curiosity">
-            <h1>Gratitude Practice</h1>
-            <h3>Log in your gratitudes, as much as possible, to open-up for abundance</h3>
-          </header>
+tab.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
 
-          <!-- Single column layout -->
-          <div class="space-y-6">
-            <!-- Today card -->
-            <div class="card">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="text-2xl font-bold" style="color: var(--neuro-text);">My Gratitudes for Today</h3>
-                <span class="badge ${todayTotal >= this.maxEntries ? 'badge-success' : 'badge-primary'}">${todayTotal} / ${this.maxEntries} (Quest)</span>
-              </div>
+      <!--  NEW UNIFIED HEADER  -->
+      <header class="main-header project-curiosity">
+        <h1>Gratitude Practice</h1>
+        <h3>Log in your gratitudes, as much as possible, to open-up for abundance</h3>
+      </header>
 
-              ${todayTotal >= this.maxEntries ? `
-                <div class="mb-6 p-4 rounded-lg" style="background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25);">
-                  <p class="text-center" style="color: #22c55e;">🎉 Daily quest complete! Keep going if you'd like!</p>
-                </div>
-              ` : ''}
+      <!-- Single column layout -->
+      <div class="space-y-6">
+        <!-- Today card -->
+        <div class="card">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold" style="color: var(--neuro-text);">My Gratitudes for Today</h3>
+            <span class="badge ${todayTotal >= this.maxEntries ? 'badge-success' : 'badge-primary'}">${todayTotal} / ${this.maxEntries} (Quest)</span>
+          </div>
 
-              <form onsubmit="window.featuresManager.engines.gratitude.addEntry(event)" class="mb-6">
-                <div class="flex space-x-3">
-                  <input type="text" id="gratitude-input" class="form-input flex-1"
-                         placeholder="Today, I am Grateful for..." required />
-                  <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-              </form>
-
-              <!-- Need Inspiration -->
-              <div class="card mb-6" style="background: rgba(102,126,234,0.05);">
-                <h4 class="text-lg font-bold mb-4" style="color: var(--neuro-text);">💭 Need Inspiration?</h4>
-                <div class="gratitude-inspiration-grid">
-                  ${[
-                    'A person who made you smile',
-                    'A comfortable place you enjoy',
-                    'Something in nature',
-                    'A skill or talent you have',
-                    'A recent act of kindness',
-                    'A small win you had today'
-                  ].map(prompt => `
-                    <div class="text-sm p-3 rounded cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700"
-                         style="color: var(--neuro-text-light); background: rgba(255,255,255,0.5); text-align: center;"
-                         onclick="document.getElementById('gratitude-input').value='${prompt}'; document.getElementById('gratitude-input').focus();">
-                      ${prompt}
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-
-              <div class="space-y-3">
-                ${this.currentEntries.map((entry, index) => `
-                  <div class="flex items-start gap-3 p-4 rounded-lg" style="background: rgba(0,0,0,.05);">
-                    <span class="text-green-400 text-xl flex-shrink-0">💚</span>
-                    <p class="flex-1" data-index="${index}" style="color: var(--neuro-text);">${entry}</p>
-                    <div class="flex gap-2" style="color: var(--neuro-text-light);">
-                      <button onclick="window.featuresManager.engines.gratitude.editEntry(${index})" title="Edit" class="hover:text-white">✏️</button>
-                      <button onclick="window.featuresManager.engines.gratitude.removeEntry(${index})" title="Delete" class="hover:text-red-400">🗑️</button>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-
-              ${this.currentEntries.length > 0 ? `
-                <button onclick="window.featuresManager.engines.gratitude.save()" class="btn btn-primary w-full mt-6">💾 Save Journal Entry</button>
-              ` : ''}
+          ${todayTotal >= this.maxEntries ? `
+            <div class="mb-6 p-4 rounded-lg" style="background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25);">
+              <p class="text-center" style="color: #22c55e;">🎉 Daily quest complete! Keep going if you'd like!</p>
             </div>
+          ` : ''}
 
-            <!-- History card -->
-            <div class="card">
-              <h3 class="text-2xl font-bold mb-6" style="color: var(--neuro-text);">📖 My Gratitude Lists</h3>
-              ${allEntries.length === 0 ? `
-                <div class="text-center py-12" style="color: var(--neuro-text-light);">
-                  <p class="text-4xl mb-4">📖</p>
-                  <p>Your gratitude list will appear here</p>
+          <form onsubmit="window.featuresManager.engines.gratitude.addEntry(event)" class="mb-6">
+            <div class="flex space-x-3">
+              <input type="text" id="gratitude-input" class="form-input flex-1"
+                     placeholder="Today, I am Grateful for..." required />
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+
+          <!-- Need Inspiration -->
+          <div class="card mb-6" style="background: rgba(102,126,234,0.05);">
+            <h4 class="text-lg font-bold mb-4" style="color: var(--neuro-text);">💭 Need Inspiration?</h4>
+            <div class="gratitude-inspiration-grid">
+              ${[
+                'A person who made you smile',
+                'A comfortable place you enjoy',
+                'Something in nature',
+                'A skill or talent you have',
+                'A recent act of kindness',
+                'A small win you had today'
+              ].map(prompt => `
+                <div class="text-sm p-3 rounded cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700"
+                     style="color: var(--neuro-text-light); background: rgba(255,255,255,0.5); text-align: center;"
+                     onclick="document.getElementById('gratitude-input').value='${prompt}'; document.getElementById('gratitude-input').focus();">
+                  ${prompt}
                 </div>
-              ` : `
-                <div class="space-y-6">
-                  ${allEntries.slice(0, 30).map(entry => {
-                    const date = new Date(entry.timestamp);
-                    const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                    return `
-                      <div class="journal-entry" style="background: rgba(102,126,234,0.05); border-radius: 12px; padding: 20px; border-left: 4px solid var(--neuro-success);">
-                        <div class="text-sm mb-3" style="color: var(--neuro-text-light);">${dateStr}</div>
-                        <div class="space-y-2">
-                          ${entry.entries.map((item, idx) => `
-                            <div class="flex items-start gap-2">
-                              <span class="text-green-400" style="min-width: 20px;">${idx + 1}.</span>
-                              <p class="flex-1" style="color: var(--neuro-text);">${item}</p>
-                              <div class="flex gap-2" style="color: var(--neuro-text-light);">
-                                <button onclick="window.featuresManager.engines.gratitude.editHistoryEntry('${entry.timestamp}', ${idx})" title="Edit" class="hover:text-white">✏️</button>
-                                <button onclick="window.featuresManager.engines.gratitude.deleteHistoryEntry('${entry.timestamp}', ${idx})" title="Delete" class="hover:text-red-400">🗑️</button>
-                              </div>
-                            </div>
-                          `).join('')}
-                        </div>
-                      </div>
-                    `;
-                  }).join('')}
-                </div>
-                ${allEntries.length > 30 ? `
-                  <div class="text-center mt-6">
-                    <p class="text-sm" style="color: var(--neuro-text-light);">Showing 30 most recent entries</p>
-                  </div>
-                ` : ''}
-              `}
+              `).join('')}
             </div>
           </div>
+
+          <div class="space-y-3">
+            ${this.currentEntries.map((entry, index) => `
+              <div class="flex items-start gap-3 p-4 rounded-lg" style="background: rgba(0,0,0,.05);">
+                <span class="text-green-400 text-xl flex-shrink-0">💚</span>
+                <p class="flex-1" data-index="${index}" style="color: var(--neuro-text);">${entry}</p>
+                <div class="flex gap-2" style="color: var(--neuro-text-light);">
+                  <button onclick="window.featuresManager.engines.gratitude.editEntry(${index})" title="Edit" class="hover:text-white">✏️</button>
+                  <button onclick="window.featuresManager.engines.gratitude.removeEntry(${index})" title="Delete" class="hover:text-red-400">🗑️</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          ${this.currentEntries.length > 0 ? `
+            <button onclick="window.featuresManager.engines.gratitude.save()" class="btn btn-primary w-full mt-6">💾 Save Journal Entry</button>
+          ` : ''}
+        </div>
+
+        <!-- History card -->
+        <div class="card">
+          <h3 class="text-2xl font-bold mb-6" style="color: var(--neuro-text);">📖 My Gratitude Lists</h3>
+          ${allEntries.length === 0 ? `
+            <div class="text-center py-12" style="color: var(--neuro-text-light);">
+              <p class="text-4xl mb-4">📖</p>
+              <p>Your gratitude list will appear here</p>
+            </div>
+          ` : `
+            <div class="space-y-6">
+              ${allEntries.slice(0, 30).map(entry => {
+                const date = new Date(entry.timestamp);
+                const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                return `
+                  <div class="journal-entry" style="background: rgba(102,126,234,0.05); border-radius: 12px; padding: 20px; border-left: 4px solid var(--neuro-success);">
+                    <div class="text-sm mb-3" style="color: var(--neuro-text-light);">${dateStr}</div>
+                    <div class="space-y-2">
+                      ${entry.entries.map((item, idx) => `
+                        <div class="flex items-start gap-2">
+                          <span class="text-green-400" style="min-width: 20px;">${idx + 1}.</span>
+                          <p class="flex-1" style="color: var(--neuro-text);">${item}</p>
+                          <div class="flex gap-2" style="color: var(--neuro-text-light);">
+                            <button onclick="window.featuresManager.engines.gratitude.editHistoryEntry('${entry.timestamp}', ${idx})" title="Edit" class="hover:text-white">✏️</button>
+                            <button onclick="window.featuresManager.engines.gratitude.deleteHistoryEntry('${entry.timestamp}', ${idx})" title="Delete" class="hover:text-red-400">🗑️</button>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+            ${allEntries.length > 30 ? `
+              <div class="text-center mt-6">
+                <p class="text-sm" style="color: var(--neuro-text-light);">Showing 30 most recent entries</p>
+              </div>
+            ` : ''}
+          `}
         </div>
       </div>
 
-      <style>
-        /* 2x3 grid for inspiration prompts */
-        .gratitude-inspiration-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.75rem;
-        }
-      </style>
-    `;
+    </div>
+  </div>
+
+  <style>
+    /* 2x3 grid for inspiration prompts */
+    .gratitude-inspiration-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+  </style>
+`;
 
     this.attachHandlers();
   }

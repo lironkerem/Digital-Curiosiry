@@ -179,94 +179,96 @@ class HappinessEngine {
     const viewCount = this.getTodayViewCount();
     const viewsRemaining = Math.max(0, 5 - viewCount);
 
-    tab.innerHTML = `
-      <div class="min-h-screen p-6" style="background: var(--neuro-bg);">
-        <div class="max-w-7xl mx-auto">
-          <header class="text-center mb-10">
-            <div class="main-header project-curiosity">
-              <h1>Happiness and Motivation</h1>
-              <h3>Your daily dose of Inspirational Quotes with Happiness Boosters and Positive-Affirmations.</h3>
-            </div>
-            ${viewCount > 0 ? `
-              <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full" style="background: rgba(102, 126, 234, 0.1);">
-                <span style="color: var(--neuro-accent); font-weight: bold;">${viewCount}/5 views today</span>
-                ${viewCount >= 5 ? `
-                  <span style="color: var(--neuro-success);">✓ Quest Complete!</span>
-                ` : `
-                  <span style="color: var(--neuro-text-light);">(${viewsRemaining} more to complete quest)</span>
-                `}
-              </div>
-            ` : ''}
-          </header>
+tab.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
 
-          <main class="space-y-6">
-            <!--  Booster Card  -->
-            <div class="neuro-card flip-card" id="booster-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <div class="flex items-center mb-4">
-                    <span class="text-3xl mr-4">${this.currentBooster.emoji}</span>
-                    <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">A Quick Happiness Booster</h2>
-                  </div>
-                  <div class="text-center">
-                    <h3 class="text-2xl font-bold" style="color: var(--neuro-accent);">${this.currentBooster.title}</h3>
-                    <p class="mt-2 text-lg">${this.currentBooster.description}</p>
-                    <div class="mt-4 text-sm" style="color: var(--neuro-text-light);">
-                      <span>${this.currentBooster.duration}</span> • <span>${this.currentBooster.category}</span>
-                    </div>
-                  </div>
-                  <div class="mt-6 flex justify-end">
-                    <button onclick="window.featuresManager.engines.happiness.refreshBooster()" class="btn btn-secondary">🔄 Refresh Booster</button>
-                  </div>
-                </div>
-                <div class="flip-card-back"></div>
-              </div>
-            </div>
-
-            <!--  Quote Card  -->
-            <div class="neuro-card flip-card" id="quote-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <div class="flex items-center mb-4">
-                    <span class="text-3xl mr-4">📜</span>
-                    <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
-                  </div>
-                  <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent);">
-                    “${this.currentQuote.text}”
-                  </p>
-                  <p class="mt-3 text-center text-lg" style="color: var(--neuro-text);">
-                    - ${this.currentQuote.author}
-                  </p>
-                  <div class="mt-6 flex justify-end">
-                    <button onclick="window.featuresManager.engines.happiness.refreshQuote()" class="btn btn-secondary">🔄 Refresh Quote</button>
-                  </div>
-                </div>
-                <div class="flip-card-back"></div>
-              </div>
-            </div>
-
-            <!--  Affirmation Card  -->
-            <div class="neuro-card flip-card" id="affirm-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <div class="flex items-center mb-4">
-                    <span class="text-3xl mr-4">✨</span>
-                    <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Positive Affirmation</h2>
-                  </div>
-                  <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent);">
-                    "${this.currentAffirmation}"
-                  </p>
-                  <div class="mt-6 flex justify-end">
-                    <button onclick="window.featuresManager.engines.happiness.refreshAffirmation()" class="btn btn-secondary">🔄 Refresh Affirmation</button>
-                  </div>
-                </div>
-                <div class="flip-card-back"></div>
-              </div>
-            </div>
-          </main>
+      <header class="text-center mb-10">
+        <div class="main-header project-curiosity">
+          <h1>Happiness and Motivation</h1>
+          <h3>Your daily dose of Inspirational Quotes with Happiness Boosters and Positive-Affirmations.</h3>
         </div>
-      </div>
-    `;
+        ${viewCount > 0 ? `
+          <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full" style="background: rgba(102, 126, 234, 0.1);">
+            <span style="color: var(--neuro-accent); font-weight: bold;">${viewCount}/5 views today</span>
+            ${viewCount >= 5 ? `
+              <span style="color: var(--neuro-success);">✓ Quest Complete!</span>
+            ` : `
+              <span style="color: var(--neuro-text-light);">(${viewsRemaining} more to complete quest)</span>
+            `}
+          </div>
+        ` : ''}
+      </header>
+
+      <main class="space-y-6">
+        <!--  Booster Card  -->
+        <div class="neuro-card flip-card" id="booster-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flex items-center mb-4">
+                <span class="text-3xl mr-4">${this.currentBooster.emoji}</span>
+                <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">A Quick Happiness Booster</h2>
+              </div>
+              <div class="text-center">
+                <h3 class="text-2xl font-bold" style="color: var(--neuro-accent);">${this.currentBooster.title}</h3>
+                <p class="mt-2 text-lg">${this.currentBooster.description}</p>
+                <div class="mt-4 text-sm" style="color: var(--neuro-text-light);">
+                  <span>${this.currentBooster.duration}</span> • <span>${this.currentBooster.category}</span>
+                </div>
+              </div>
+              <div class="mt-6 flex justify-end">
+                <button onclick="window.featuresManager.engines.happiness.refreshBooster()" class="btn btn-secondary">🔄 Refresh Booster</button>
+              </div>
+            </div>
+            <div class="flip-card-back"></div>
+          </div>
+        </div>
+
+        <!--  Quote Card  -->
+        <div class="neuro-card flip-card" id="quote-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flex items-center mb-4">
+                <span class="text-3xl mr-4">📜</span>
+                <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
+              </div>
+              <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent);">
+                “${this.currentQuote.text}”
+              </p>
+              <p class="mt-3 text-center text-lg" style="color: var(--neuro-text);">
+                - ${this.currentQuote.author}
+              </p>
+              <div class="mt-6 flex justify-end">
+                <button onclick="window.featuresManager.engines.happiness.refreshQuote()" class="btn btn-secondary">🔄 Refresh Quote</button>
+              </div>
+            </div>
+            <div class="flip-card-back"></div>
+          </div>
+        </div>
+
+        <!--  Affirmation Card  -->
+        <div class="neuro-card flip-card" id="affirm-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="flex items-center mb-4">
+                <span class="text-3xl mr-4">✨</span>
+                <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Positive Affirmation</h2>
+              </div>
+              <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent);">
+                "${this.currentAffirmation}"
+              </p>
+              <div class="mt-6 flex justify-end">
+                <button onclick="window.featuresManager.engines.happiness.refreshAffirmation()" class="btn btn-secondary">🔄 Refresh Affirmation</button>
+              </div>
+            </div>
+            <div class="flip-card-back"></div>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+`;
   }
 }
 

@@ -107,129 +107,131 @@ class EnergyEngineEnhanced {
     const hour = new Date().getHours(), timeOfDay = (hour >= 5 && hour < 17) ? 'day' : 'night';
     const checkinStatus = timeOfDay === 'day' ? this.currentCheckin.dayCheckin : this.currentCheckin.nightCheckin;
 
-    tab.innerHTML = `
-      <div class="min-h-screen p-6" style="background:var(--neuro-bg);">
-        <div class=""universal-content"">
-  <!--  NEW UNIFIED HEADER  -->
+tab.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
+
+<!--  NEW UNIFIED HEADER  -->
       <header class="main-header project-curiosity">
         <h1>Energy Tracker</h1>
         <h3>Check, review, track and learn your energy patterns - Overall and Chakras</h3>
       </header>
-          <!--  check-in card  -->
-          <div class="card mb-6">
-            <div class="flex items-center justify-between mb-6">
-              <div>
-                <h3 class="text-2xl font-bold" style="color:var(--neuro-text);">Good ${this.getTimeOfDay()}</h3>
-                <p class="text-sm" style="color:var(--neuro-text-light);">Log in your Overall Energy and your Specific Chakras</p>
-                ${checkinStatus ? `<p class="text-sm mt-1" style="color:var(--neuro-success);">✓ ${timeOfDay === 'day' ? 'Day' : 'Night'} check-in completed</p>` : ''}
-              </div>
-              <div class="text-right">
-                <p class="text-sm" style="color:var(--neuro-text-light);">${new Date().toLocaleDateString()}</p>
-                <p class="text-sm" style="color:var(--neuro-text-light);">Streak: ${stats.currentStreak} day(s)</p>
-                <div class="flex gap-2 mt-2 justify-end text-xs">
-                  <span class="${this.currentCheckin.dayCheckin ? 'badge badge-success' : 'badge'}" style="padding:4px 8px;">☀️ Day ${this.currentCheckin.dayCheckin ? '✓' : ''}</span>
-                  <span class="${this.currentCheckin.nightCheckin ? 'badge badge-success' : 'badge'}" style="padding:4px 8px;">🌙 Night ${this.currentCheckin.nightCheckin ? '✓' : ''}</span>
-                </div>
-              </div>
-            </div>
 
-            <!--  energy slider  -->
-            <div class="mb-6">
-              <label class="form-label">Overall Energy Level</label>
-              <div class="flex items-center gap-4">
-                <input type="range" id="energy-overall-slider" min="0" max="10" step="0.5" value="${this.currentCheckin.overallEnergy}" class="flex-1"/>
-                <span id="energy-overall-value" class="text-3xl font-bold" style="color:var(--neuro-accent);min-width:3rem;text-align:center;">${this.currentCheckin.overallEnergy}</span>
-              </div>
-              <div class="flex justify-between mt-2"><span class="text-sm" style="color:var(--neuro-text-light);">Low</span><span class="text-sm" style="color:var(--neuro-text-light);">High</span></div>
-            </div>
-
-            <!--  mood chips  -->
-            <div class="mb-6">
-              <label class="form-label">Current Mood</label>
-              <div id="mood-chips" class="flex flex-wrap gap-2">${this.MOODS.map(mood => `<button class="chip ${this.currentCheckin.moodTags.includes(mood) ? 'active' : ''}" data-mood="${mood}" style="padding:8px 16px;border-radius:999px;cursor:pointer;font-size:0.9rem;transition:all .2s;">${this.getMoodEmoji(mood)} ${this.capitalize(mood)}</button>`).join('')}</div>
-            </div>
-
-            <!--  chakra quick check  -->
-            <div class="mb-6">
-              <label class="form-label">Chakra Check-in</label>
-              <div id="chakra-row" class="chakra-row">${this.renderChakraRow()}</div>
-            </div>
-
-            <!--  notes  -->
-            <div class="mb-6">
-              <label for="energy-notes" class="form-label">Notes, Thoughts, Emotions, Mood</label>
-              <textarea id="energy-notes" class="form-input" placeholder="Any reflections, situations, or notable events regarding your energies...">${this.currentCheckin.notes || ''}</textarea>
-            </div>
-
-            <!--  buttons  -->
-            <div class="flex gap-3 flex-wrap">
-              <button id="btn-save-checkin" class="btn btn-primary">💾 Save ${timeOfDay === 'day' ? 'Day' : 'Night'} Check-in</button>
-              <button id="btn-reset-today" class="btn btn-secondary">🔄 Reset Form</button>
+      <!--  check-in card  -->
+      <div class="card mb-6">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="text-2xl font-bold" style="color:var(--neuro-text);">Good ${this.getTimeOfDay()}</h3>
+            <p class="text-sm" style="color:var(--neuro-text-light);">Log in your Overall Energy and your Specific Chakras</p>
+            ${checkinStatus ? `<p class="text-sm mt-1" style="color:var(--neuro-success);">✓ ${timeOfDay === 'day' ? 'Day' : 'Night'} check-in completed</p>` : ''}
+          </div>
+          <div class="text-right">
+            <p class="text-sm" style="color:var(--neuro-text-light);">${new Date().toLocaleDateString()}</p>
+            <p class="text-sm" style="color:var(--neuro-text-light);">Streak: ${stats.currentStreak} day(s)</p>
+            <div class="flex gap-2 mt-2 justify-end text-xs">
+              <span class="${this.currentCheckin.dayCheckin ? 'badge badge-success' : 'badge'}" style="padding:4px 8px;">☀️ Day ${this.currentCheckin.dayCheckin ? '✓' : ''}</span>
+              <span class="${this.currentCheckin.nightCheckin ? 'badge badge-success' : 'badge'}" style="padding:4px 8px;">🌙 Night ${this.currentCheckin.nightCheckin ? '✓' : ''}</span>
             </div>
           </div>
+        </div>
 
-          <!--  mini analytics  -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <!--  WEEKLY TREND – square box – Fit-the-Box  -->
-            <div class="card p-4 card-flex">
-              <h3 class="text-lg font-bold mb-3" style="color:var(--neuro-text);">Weekly Trend</h3>
-              <div class="card-body w-full">
-                <div class="weekly-chart-box">
-                  ${this.renderWeeklyChart(weeklyData, 280, 0)}
-                </div>
-              </div>
-            </div>
-
-            <!--  chakra balance  -->
-            <div class="card p-4">
-              <h3 class="text-lg font-bold mb-3" style="color:var(--neuro-text);">Chakra Balance</h3>
-              <div class="flex justify-center">${this.renderRadarChart(chakraAvg, 200)}</div>
-              <div class="grid grid-cols-4 gap-2 mt-3 text-xs text-center">${this.CHAKRAS.map(c => `<div><div class="font-bold" style="color:${c.color};">${chakraAvg[c.key]}</div><div class="text-gray-500">${c.name}</div></div>`).join('')}</div>
-            </div>
+        <!--  energy slider  -->
+        <div class="mb-6">
+          <label class="form-label">Overall Energy Level</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="energy-overall-slider" min="0" max="10" step="0.5" value="${this.currentCheckin.overallEnergy}" class="flex-1"/>
+            <span id="energy-overall-value" class="text-3xl font-bold" style="color:var(--neuro-accent);min-width:3rem;text-align:center;">${this.currentCheckin.overallEnergy}</span>
           </div>
+          <div class="flex justify-between mt-2"><span class="text-sm" style="color:var(--neuro-text-light);">Low</span><span class="text-sm" style="color:var(--neuro-text-light);">High</span></div>
+        </div>
 
-          <!--  journal  -->
-          <div class="card calc-expandable-card" id="journal-collapsible-card">
-            <div class="calc-expandable-header" id="journal-collapsible-header"><span class="chevron">›</span><h3 class="text-2xl font-bold mb-6" style="color:var(--neuro-text);">📖 My Energy Trackings Log</h3></div>
-            <div class="calc-expandable-content">
-              <div class="mb-6"><input type="text" id="journal-search" class="form-input" placeholder="Search notes or moods..." value="${this.searchQuery}"/></div>
-              <div class="space-y-4">
-                ${filteredJournal.length === 0 ? `<div class="card text-center" style="padding:4rem;"><div class="text-7xl mb-4">📝</div><p style="color:var(--neuro-text-light);">${this.searchQuery ? 'No entries found matching your search' : 'No journal entries yet. Your check-ins will appear here.'}</p></div>` : filteredJournal.slice(0, 30).map(e => this.renderJournalEntry(e)).join('')}
-                ${filteredJournal.length > 30 ? '<div class="text-center mt-6"><p class="text-sm" style="color:var(--neuro-text-light);">Showing 30 most recent entries</p></div>' : ''}
-              </div>
-            </div>
-          </div>
+        <!--  mood chips  -->
+        <div class="mb-6">
+          <label class="form-label">Current Mood</label>
+          <div id="mood-chips" class="flex flex-wrap gap-2">${this.MOODS.map(mood => `<button class="chip ${this.currentCheckin.moodTags.includes(mood) ? 'active' : ''}" data-mood="${mood}" style="padding:8px 16px;border-radius:999px;cursor:pointer;font-size:0.9rem;transition:all .2s;">${this.getMoodEmoji(mood)} ${this.capitalize(mood)}</button>`).join('')}</div>
+        </div>
 
+        <!--  chakra quick check  -->
+        <div class="mb-6">
+          <label class="form-label">Chakra Check-in</label>
+          <div id="chakra-row" class="chakra-row">${this.renderChakraRow()}</div>
+        </div>
+
+        <!--  notes  -->
+        <div class="mb-6">
+          <label for="energy-notes" class="form-label">Notes, Thoughts, Emotions, Mood</label>
+          <textarea id="energy-notes" class="form-input" placeholder="Any reflections, situations, or notable events regarding your energies...">${this.currentCheckin.notes || ''}</textarea>
+        </div>
+
+        <!--  buttons  -->
+        <div class="flex gap-3 flex-wrap">
+          <button id="btn-save-checkin" class="btn btn-primary">💾 Save ${timeOfDay === 'day' ? 'Day' : 'Night'} Check-in</button>
+          <button id="btn-reset-today" class="btn btn-secondary">🔄 Reset Form</button>
         </div>
       </div>
 
-      <!--  extra styles  (injected by JS) -->
-      <style>
-        .card-flex{display:flex;flex-direction:column}
-        .card-body{flex:1 1 0;min-height:0;width:100%}
-        /*  NEW – square chart container that shrinks to fit  */
-        .weekly-chart-box{
-          aspect-ratio:7/10;
-          max-width:100%;
-          max-height:100%;
-          margin:auto;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-        }
-        .chakra-row{display:flex;gap:12px;padding:8px 2px}
-        .chakra-mini-card{flex:1 1 0;min-width:112px;background:var(--neuro-bg);border-radius:12px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;box-shadow:8px 8px 18px var(--neuro-shadow-dark),-8px -8px 18px var(--neuro-shadow-light)}
-        .chakra-icon{width:36px;height:36px;border-radius:50%;color:white;display:grid;place-items:center;font-weight:700;font-size:0.9rem;box-shadow:inset 4px 4px 8px rgba(0,0,0,.1),inset -4px -4px 8px rgba(255,255,255,.2)}
-        .chakra-pulse{position:absolute;inset:-6px;border-radius:16px;pointer-events:none;transition:all 260ms ease}
-        .chip{background:rgba(31,45,61,0.04);border:1px solid rgba(0,0,0,0.02)}
-        .chip.active{background:linear-gradient(90deg,rgba(246,194,74,0.16),rgba(110,231,183,0.12));box-shadow:inset 4px 4px 8px rgba(0,0,0,.04),inset -4px -4px 8px rgba(255,255,255,.7)}
-        .calc-expandable-header{padding:24px;cursor:pointer;display:flex;align-items:center;gap:12px}
-        .calc-expandable-header h3{margin:0;font-size:1.1rem;color:var(--neuro-text)}
-        .chevron{font-size:1.5rem;transition:transform var(--transition-normal);color:var(--neuro-accent)}
-        .calc-expandable-card.expanded .chevron{transform:rotate(90deg)}
-        .calc-expandable-content{max-height:0;overflow:hidden;transition:max-height var(--transition-slow)}
-        .calc-expandable-card.expanded .calc-expandable-content{max-height:5000px;padding:0 24px 24px}
-      </style>
+      <!--  mini analytics  -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <!--  WEEKLY TREND – square box – Fit-the-Box  -->
+        <div class="card p-4 card-flex">
+          <h3 class="text-lg font-bold mb-3" style="color:var(--neuro-text);">Weekly Trend</h3>
+          <div class="card-body w-full">
+            <div class="weekly-chart-box">
+              ${this.renderWeeklyChart(weeklyData, 280, 0)}
+            </div>
+          </div>
+        </div>
+
+        <!--  chakra balance  -->
+        <div class="card p-4">
+          <h3 class="text-lg font-bold mb-3" style="color:var(--neuro-text);">Chakra Balance</h3>
+          <div class="flex justify-center">${this.renderRadarChart(chakraAvg, 200)}</div>
+          <div class="grid grid-cols-4 gap-2 mt-3 text-xs text-center">${this.CHAKRAS.map(c => `<div><div class="font-bold" style="color:${c.color};">${chakraAvg[c.key]}</div><div class="text-gray-500">${c.name}</div></div>`).join('')}</div>
+        </div>
+      </div>
+
+      <!--  journal  -->
+      <div class="card calc-expandable-card" id="journal-collapsible-card">
+        <div class="calc-expandable-header" id="journal-collapsible-header"><span class="chevron">›</span><h3 class="text-2xl font-bold mb-6" style="color:var(--neuro-text);">📖 My Energy Trackings Log</h3></div>
+        <div class="calc-expandable-content">
+          <div class="mb-6"><input type="text" id="journal-search" class="form-input" placeholder="Search notes or moods..." value="${this.searchQuery}"/></div>
+          <div class="space-y-4">
+            ${filteredJournal.length === 0 ? `<div class="card text-center" style="padding:4rem;"><div class="text-7xl mb-4">📝</div><p style="color:var(--neuro-text-light);">${this.searchQuery ? 'No entries found matching your search' : 'No journal entries yet. Your check-ins will appear here.'}</p></div>` : filteredJournal.slice(0, 30).map(e => this.renderJournalEntry(e)).join('')}
+            ${filteredJournal.length > 30 ? '<div class="text-center mt-6"><p class="text-sm" style="color:var(--neuro-text-light);">Showing 30 most recent entries</p></div>' : ''}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--  extra styles  (injected by JS) -->
+  <style>
+    .card-flex{display:flex;flex-direction:column}
+    .card-body{flex:1 1 0;min-height:0;width:100%}
+    /*  NEW – square chart container that shrinks to fit  */
+    .weekly-chart-box{
+      aspect-ratio:7/10;
+      max-width:100%;
+      max-height:100%;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .chakra-row{display:flex;gap:12px;padding:8px 2px}
+    .chakra-mini-card{flex:1 1 0;min-width:112px;background:var(--neuro-bg);border-radius:12px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;box-shadow:8px 8px 18px var(--neuro-shadow-dark),-8px -8px 18px var(--neuro-shadow-light)}
+    .chakra-icon{width:36px;height:36px;border-radius:50%;color:white;display:grid;place-items:center;font-weight:700;font-size:0.9rem;box-shadow:inset 4px 4px 8px rgba(0,0,0,.1),inset -4px -4px 8px rgba(255,255,255,.2)}
+    .chakra-pulse{position:absolute;inset:-6px;border-radius:16px;pointer-events:none;transition:all 260ms ease}
+    .chip{background:rgba(31,45,61,0.04);border:1px solid rgba(0,0,0,0.02)}
+    .chip.active{background:linear-gradient(90deg,rgba(246,194,74,0.16),rgba(110,231,183,0.12));box-shadow:inset 4px 4px 8px rgba(0,0,0,.04),inset -4px -4px 8px rgba(255,255,255,.7)}
+    .calc-expandable-header{padding:24px;cursor:pointer;display:flex;align-items:center;gap:12px}
+    .calc-expandable-header h3{margin:0;font-size:1.1rem;color:var(--neuro-text)}
+    .chevron{font-size:1.5rem;transition:transform var(--transition-normal);color:var(--neuro-accent)}
+    .calc-expandable-card.expanded .chevron{transform:rotate(90deg)}
+    .calc-expandable-content{max-height:0;overflow:hidden;transition:max-height var(--transition-slow)}
+    .calc-expandable-card.expanded .calc-expandable-content{max-height:5000px;padding:0 24px 24px}
+  </style>
     `;
     this.attachEventListeners();
   }

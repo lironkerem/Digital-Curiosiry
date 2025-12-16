@@ -228,7 +228,7 @@ export default class ProjectCuriosityApp {
           const host = document.getElementById('calculator-tab');
           if (!host) return;
           host.innerHTML = '<div class="loading-spinner-inner"><div class="spinner"></div><p>Loading Self-Analysis Pro…</p></div>';
-          const { default: SelfAnalysisLauncher } = await import('./Mini-Apps/SelfAnalysisPro/loader.js');
+          const { default: SelfAnalysisLauncher } = await import('/Mini-Apps/SelfAnalysisPro/loader.js');
           new SelfAnalysisLauncher(window.app).render();
           window.calculatorChunk = 'loaded';
         })();
