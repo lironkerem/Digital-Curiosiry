@@ -36,24 +36,24 @@ export default class SelfAnalysisLauncher {
         }
 
         // Build layout with Big-App header
-        host.innerHTML = `
-          <div class="min-h-screen p-6" style="background:var(--neuro-bg);">
-            <div class="max-w-7xl mx-auto">
-              
-              <!-- Big-App Unified Header -->
-              <header class="main-header project-curiosity">
-                <h1>Self-Analysis Pro</h1>
-                <h3>Analyse your 'Self', using Numerology, Astrology, Tree of Life and Tarot</h3>
-              </header>
+host.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
 
-              <!-- Mini-App Content -->
-              <div class="card selfanalysis-scope">
-                ${appPage.innerHTML}
-              </div>
-            </div>
-          </div>
-        `;
+      <!-- Big-App Unified Header -->
+      <header class="main-header project-curiosity">
+        <h1>Self-Analysis Pro</h1>
+        <h3>Analyse your 'Self', using Numerology, Astrology, Tree of Life and Tarot</h3>
+      </header>
 
+      <!-- Mini-App Content -->
+      <div class="card selfanalysis-scope">
+        ${appPage.innerHTML}
+      </div>
+
+    </div>
+  </div>
+`;
         // Boot the mini-app
         return import('/Mini-Apps/SelfAnalysisPro/js/app.js');
       })

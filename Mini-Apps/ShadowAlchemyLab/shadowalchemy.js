@@ -13,47 +13,49 @@ async render() {
 
   if (isLocked) {
     // Show locked state
-    tab.innerHTML = `
-      <div class="min-h-screen p-6" style="background:var(--neuro-bg);">
-        <div class="max-w-7xl mx-auto">
-          <header class="main-header project-curiosity">
-            <h1>Shadow Alchemy Lab</h1>
-            <h3>Transform your Shadows into Golden wisdom</h3>
-          </header>
+tab.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
 
-          <div class="card relative" style="padding:3rem; text-align:center; opacity: 0.75;">
-            <div style="font-size: 5rem; margin-bottom: 1rem; opacity: 0.3;">🔒</div>
-            <h2 style="color: var(--neuro-text); font-size: 2rem; margin-bottom: 1rem;">Premium Feature Locked</h2>
-            <p style="color: var(--neuro-text-light); font-size: 1.2rem; margin-bottom: 2rem;">
-              Unlock the Shadow Alchemy Lab in the Karma Shop to access this powerful transformation tool.
-            </p>
-            <button onclick="window.app.nav.switchTab('karma-shop')" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
-              🛒 Visit Karma Shop
-            </button>
-          </div>
-        </div>
+      <header class="main-header project-curiosity">
+        <h1>Shadow Alchemy Lab</h1>
+        <h3>Transform your Shadows into Golden wisdom</h3>
+      </header>
+
+      <div class="card relative" style="padding:3rem; text-align:center; opacity: 0.75;">
+        <div style="font-size: 5rem; margin-bottom: 1rem; opacity: 0.3;">🔒</div>
+        <h2 style="color: var(--neuro-text); font-size: 2rem; margin-bottom: 1rem;">Premium Feature Locked</h2>
+        <p style="color: var(--neuro-text-light); font-size: 1.2rem; margin-bottom: 2rem;">
+          Unlock the Shadow Alchemy Lab in the Karma Shop to access this powerful transformation tool.
+        </p>
+        <button onclick="window.app.nav.switchTab('karma-shop')" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+          🛒 Visit Karma Shop
+        </button>
       </div>
-    `;
+
+    </div>
+  </div>
+`;
     return;
   }
 
   // Original unlocked render code
-  tab.innerHTML = `
-    <div class="min-h-screen p-6" style="background:var(--neuro-bg);">
-      <div class="max-w-7xl mx-auto">
+tab.innerHTML = `
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
 
-        <header class="main-header project-curiosity">
-          <h1>Shadow Alchemy Lab</h1>
-          <h3>Transform your Shadows into Golden wisdom</h3>
-        </header>
+      <header class="main-header project-curiosity">
+        <h1>Shadow Alchemy Lab</h1>
+        <h3>Transform your Shadows into Golden wisdom</h3>
+      </header>
 
-        <div class="card" style="padding:2rem">
-          <main id="shadow-alchemy-main-content"></main>
-        </div>
-
+      <div class="card" style="padding:2rem">
+        <main id="shadow-alchemy-main-content"></main>
       </div>
+
     </div>
-  `;
+  </div>
+`;
 
   // initialise once
   if (!this.initialized) {

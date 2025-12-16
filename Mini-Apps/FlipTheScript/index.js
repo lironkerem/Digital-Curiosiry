@@ -55,118 +55,121 @@ export default class FlipTheScriptApp {
     /* 5.  build the responsive shell (1280 px desktop / 100 % - 3 rem mobile) */
     const tab = document.getElementById('flip-script-tab');
 tab.innerHTML = `
-  <div class="min-h-screen p-6" style="background:var(--neuro-bg);">
-    <div class="max-w-7xl mx-auto">
+  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+    <div class="universal-content">
 
       <!--  NEW UNIFIED HEADER  -->
       <header class="main-header project-curiosity">
         <h1>Flip the Script</h1>
-        <h3>Flip your Negatice thoughts, into Positive affirmations</h3>
+        <h3>Flip your Negative thoughts, into Positive affirmations</h3>
       </header>
 
-          <!--  main card  -->
-          <div class="card mb-6" style="padding:2rem">
-            <section class="input-section" id="input-section">
-              <div class="input-layout">
-                <div class="input-main">
-                  <div class="textarea-wrapper">
-                    <textarea id="negative-input" placeholder="Type or say your negative thought or belief here.." maxlength="500"></textarea>
-                    <button id="voice-input-btn" class="voice-input-btn" title="Speak your thought">🎤</button>
-                    <div class="char-counter"><span id="char-count">0</span>/500 characters</div>
-                  </div>
-                </div>
-                <div class="flip-suggestions">
-                  <p class="suggestion-label">💭 Try being more specific:</p>
-                  <div class="suggestion-buttons-grid">
-                    <button class="suggestion-btn" data-text="I feel ">I feel...</button>
-                    <button class="suggestion-btn" data-text="I can't ">I can't...</button>
-                    <button class="suggestion-btn" data-text="I'm worried about ">I'm worried about...</button>
-                    <button class="suggestion-btn" data-text="I hate ">I hate...</button>
-                    <button class="suggestion-btn" data-text="I'm afraid that ">I'm afraid that...</button>
-                    <button class="suggestion-btn" data-text="I always ">I always...</button>
-                  </div>
-                </div>
+      <!--  main card  -->
+      <div class="card mb-6" style="padding:2rem">
+        <section class="input-section" id="input-section">
+          <div class="input-layout">
+            <div class="input-main">
+              <div class="textarea-wrapper">
+                <textarea id="negative-input" placeholder="Type or say your negative thought or belief here.." maxlength="500"></textarea>
+                <button id="voice-input-btn" class="voice-input-btn" title="Speak your thought">🎤</button>
+                <div class="char-counter"><span id="char-count">0</span>/500 characters</div>
               </div>
-
-              <!--  buttons with roomy gap  -->
-              <div class="btn-group-vertical" style="gap:1.25rem;">
-                <button id="flip-btn" class="btn primary flip-main-btn">✨ Flip It Now ✨</button>
-                <button id="clear-btn" class="btn secondary clear-small-btn">Clear</button>
+            </div>
+            <div class="flip-suggestions">
+              <p class="suggestion-label">💭 Try being more specific:</p>
+              <div class="suggestion-buttons-grid">
+                <button class="suggestion-btn" data-text="I feel ">I feel...</button>
+                <button class="suggestion-btn" data-text="I can't ">I can't...</button>
+                <button class="suggestion-btn" data-text="I'm worried about ">I'm worried about...</button>
+                <button class="suggestion-btn" data-text="I hate ">I hate...</button>
+                <button class="suggestion-btn" data-text="I'm afraid that ">I'm afraid that...</button>
+                <button class="suggestion-btn" data-text="I always ">I always...</button>
               </div>
-
-              <div class="progress-wrapper hidden" id="progress-wrapper">
-                <div class="progress-bar">
-                  <div class="progress-inner" id="progress-inner">0%</div>
-                </div>
-              </div>
-            </section>
-
-            <section id="output-section" class="output-main-event hidden">
-              <div class="output-card">
-                <div class="output-header">
-                  <h2>✨ Your Flipped Script</h2>
-                </div>
-                <div class="output-content">
-                  <p id="extended-flip" class="flipped-text">Your Flipped Script will appear here...</p>
-                </div>
-                <button id="flip-another-btn" class="btn flip-another-inside">🔄 Flip Another Thought</button>
-                <div class="action-icons">
-                  <button id="save-extended" class="icon-btn" title="Save">💾</button>
-                  <button id="audio-extended" class="icon-btn" title="Listen">🔊</button>
-                </div>
-              </div>
-            </section>
+            </div>
           </div>
 
-<!--  Saved Flips  -->
-<div class="card mb-6" style="padding:2rem">
-  <div class="collapsible-card" id="saved-section">
-    <button class="collapse-toggle" aria-expanded="false">
-      <span class="collapse-icon">▶</span>
-      <h2>💾 Your Saved Flips</h2>
-    </button>
-    <div class="collapse-content collapsed">
-      <!--  full-width content  -->
-      <div class="saved-controls mb-4">
-        <input type="text" id="search-saved" class="search-input w-full" placeholder="🔍 Search saved flips...">
+          <!--  buttons with roomy gap  -->
+          <div class="btn-group-vertical" style="gap:1.25rem;">
+            <button id="flip-btn" class="btn primary flip-main-btn">✨ Flip It Now ✨</button>
+            <button id="clear-btn" class="btn secondary clear-small-btn">Clear</button>
+          </div>
+
+          <div class="progress-wrapper hidden" id="progress-wrapper">
+            <div class="progress-bar">
+              <div class="progress-inner" id="progress-inner">0%</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="output-section" class="output-main-event hidden">
+          <div class="output-card">
+            <div class="output-header">
+              <h2>✨ Your Flipped Script</h2>
+            </div>
+            <div class="output-content">
+              <p id="extended-flip" class="flipped-text">Your Flipped Script will appear here...</p>
+            </div>
+            <button id="flip-another-btn" class="btn flip-another-inside">🔄 Flip Another Thought</button>
+            <div class="action-icons">
+              <button id="save-extended" class="icon-btn" title="Save">💾</button>
+              <button id="audio-extended" class="icon-btn" title="Listen">🔊</button>
+            </div>
+          </div>
+        </section>
       </div>
-      <ul id="saved-list" class="mb-4"></ul>
-      <div class="backup-restore flex gap-3">
-        <button id="backup-id" class="btn flex-1">📥 Backup</button>
-        <button id="restore-id" class="btn flex-1">📤 Restore</button>
+
+      <!--  Saved Flips  -->
+      <div class="card mb-6" style="padding:2rem">
+        <div class="collapsible-card" id="saved-section">
+          <button class="collapse-toggle" aria-expanded="false">
+            <span class="collapse-icon">▶</span>
+            <h2>💾 Your Saved Flips</h2>
+          </button>
+          <div class="collapse-content collapsed">
+            <!--  full-width content  -->
+            <div class="saved-controls mb-4">
+              <input type="text" id="search-saved" class="search-input w-full" placeholder="🔍 Search saved flips...">
+            </div>
+            <ul id="saved-list" class="mb-4"></ul>
+            <div class="backup-restore flex gap-3">
+              <button id="backup-id" class="btn flex-1">📥 Backup</button>
+              <button id="restore-id" class="btn flex-1">📤 Restore</button>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
-</div>
 
-      <!--  responsive width helper  -->
-<style>
-  .fts-wrapper{
-    width:100%;
-    max-width:80rem;          /* 1280 px  */
-    margin:0 auto;
-  }
-  @media (max-width:80rem){
-    .fts-wrapper{ max-width:calc(100% - 3rem); } /* 100 % - 24 px  */
-  }
-  /*  purple gradient title card  */
-  #flip-script-tab .text-center{
-    background:linear-gradient(135deg,#8e44ad,#667eea);
-    color:#fff;
-    border-radius:var(--radius-2xl);
-    padding:1.25rem 1.5rem;
-    box-shadow:var(--shadow-raised-lg);
-  }
-  #flip-script-tab .text-center h2,
-  #flip-script-tab .text-center p{ color:#fff; margin:0; }
+  <!--  responsive width helper  -->
+  <style>
+    .fts-wrapper{
+      width:100%;
+      max-width:80rem;          /* 1280 px  */
+      margin:0 auto;
+    }
+    @media (max-width:80rem){
+      .fts-wrapper{ max-width:calc(100% - 3rem); } /* 100 % - 24 px  */
+    }
+    /*  purple gradient title card  */
+    #flip-script-tab .text-center{
+      background:linear-gradient(135deg,#8e44ad,#667eea);
+      color:#fff;
+      border-radius:var(--radius-2xl);
+      padding:1.25rem 1.5rem;
+      box-shadow:var(--shadow-raised-lg);
+    }
+    #flip-script-tab .text-center h2,
+    #flip-script-tab .text-center p{ color:#fff; margin:0; }
 
-  /*  utilities for saved-card content  */
-  .w-full{width:100%;}
-  .flex{display:flex;}
-  .flex-1{flex:1 1 0%;}
-  .gap-3{gap:0.75rem;}
-</style>
-    `;
+    /*  utilities for saved-card content  */
+    .w-full{width:100%;}
+    .flex{display:flex;}
+    .flex-1{flex:1 1 0%;}
+    .gap-3{gap:0.75rem;}
+  </style>
+`;
 
     /* 6.  mount behaviour */
     import('./ui.js').then(m => m.mountUI(this.app));
