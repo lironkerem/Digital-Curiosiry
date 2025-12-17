@@ -4568,7 +4568,7 @@ position: relative;
 
 /* ===== TAROT CARD (front - after flip) ===== */
 .daily-card-front .dashboard-card-image {
-  max-height: 300px !important;
+  max-height: 400px !important;
   width: 100% !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
