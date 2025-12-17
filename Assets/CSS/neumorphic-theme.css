@@ -4416,7 +4416,7 @@ position: relative;
    END OF BUBBLE NAVIGATION CSS
    ========================================================= */
 /* =========================================================
-   FONT SIZE COMPENSATION FOR ZOOM SCALING - INCREASED
+   FONT SIZE COMPENSATION FOR ZOOM SCALING - COMPLETE
    Makes text readable on mobile despite aggressive zoom
    ========================================================= */
 
@@ -4433,6 +4433,7 @@ position: relative;
   h1 { font-size: 42px !important; }  /* 42 × 0.65 = 27.3px */
   h2 { font-size: 36px !important; }  /* 36 × 0.65 = 23.4px */
   h3 { font-size: 30px !important; }  /* 30 × 0.65 = 19.5px */
+  h4 { font-size: 28px !important; }  /* 28 × 0.65 = 18.2px */
 
   /* Small text */
   .text-sm, .text-xs, small {
@@ -4447,6 +4448,50 @@ position: relative;
 
   /* Form inputs */
   input, textarea, select {
+    font-size: 28px !important;
+  }
+
+  /* ===== DASHBOARD STATS (8 mini-cards) ===== */
+  .dashboard-stat-value {
+    font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
+  }
+  .dashboard-stat-label {
+    font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
+  }
+
+  /* ===== WELLNESS TOOLKIT ===== */
+  .wellness-tool-name {
+    font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
+  }
+  .wellness-tool-description {
+    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+  }
+  .wellness-stat-xp,
+  .wellness-stat-karma {
+    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+  }
+
+  /* ===== QUEST HUB ===== */
+  .dashboard-quest-name {
+    font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
+  }
+  .dashboard-quest-inspirational {
+    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+  }
+  .dashboard-quest-progress-header,
+  .dashboard-quest-xp,
+  .dashboard-quest-karma,
+  .dashboard-quest-hint {
+    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+  }
+  
+  /* Quest footer items */
+  .dashboard-quest-footer {
+    font-size: 26px !important;
+  }
+  
+  /* Quest complete message */
+  .dashboard-quest-complete-msg {
     font-size: 28px !important;
   }
 }
