@@ -4495,7 +4495,22 @@ position: relative;
     font-size: 28px !important;
   }
 }
+/* Dashboard stat emoji - separate line */
+.dashboard-stat-emoji {
+  font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
+  line-height: 1 !important;
+  margin: 2px 0 !important;
+}
 
+/* Ensure vertical stacking */
+.dashboard-stat-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  text-align: center !important;
+}
 /* =========================================================
    END OF FILE – production-ready, unified, dead-code-free
    ========================================================= */
