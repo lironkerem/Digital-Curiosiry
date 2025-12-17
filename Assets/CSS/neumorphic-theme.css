@@ -4516,95 +4516,135 @@ position: relative;
     font-size: 28px !important;
   }
   
-  /* ===== DAILY CARDS - COMPLETE FIX ===== */
-  
-  /* Card wrapper - fixed height */
-  .daily-card-wrapper {
-    height: 500px !important;
-    min-height: 500px !important;
-  }
-  
-  /* Card inner - match wrapper */
-  .daily-card-inner {
-    height: 100% !important;
-  }
-  
-  /* Both sides - fixed height */
-  .daily-card-front,
-  .daily-card-back {
-    height: 100% !important;
-    overflow: hidden !important;
-  }
-  
-  /* Card content container */
-  .card-content {
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 16px !important;
-  }
-  
-  /* ===== TAROT CARD ===== */
-  .daily-card-front .dashboard-card-image {
-    max-height: 180px !important;
-    object-fit: contain !important;
-    flex-shrink: 0 !important;
-    margin-bottom: 12px !important;
-  }
-  
-  .dashboard-card-title-front {
-    font-size: 26px !important;
-    margin: 8px 0 !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* THIS IS THE SCROLLABLE PART */
-  .dashboard-card-meaning {
-    flex: 1 1 auto !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    font-size: 24px !important;
-    line-height: 1.4 !important;
-    padding: 8px !important;
-    margin: 8px 0 !important;
-    max-height: 200px !important;
-  }
-  
-  .daily-card-front .dashboard-card-subtitle {
-    font-size: 20px !important;
-    margin-top: auto !important;
-    flex-shrink: 0 !important;
-  }
-  
-  /* ===== AFFIRMATION & BOOSTER BOXES ===== */
-  .dashboard-affirmation-box,
-  .dashboard-booster-box {
-    height: 100% !important;
-    aspect-ratio: unset !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 20px !important;
-  }
-  
-  .dashboard-affirmation-text {
-    font-size: 26px !important;
-    line-height: 1.5 !important;
-  }
-  
-  .dashboard-booster-title {
-    font-size: 28px !important;
-  }
-  
-  .dashboard-booster-description {
-    font-size: 24px !important;
-    line-height: 1.4 !important;
-  }
-  
-  .dashboard-booster-meta {
-    font-size: 22px !important;
-  }
+/* ===== DAILY CARDS - COMPLETE FIX ===== */
 
+/* Card wrapper - taller fixed height */
+.daily-card-wrapper {
+  height: 600px !important;
+  min-height: 600px !important;
+}
+
+/* Card inner - match wrapper */
+.daily-card-inner {
+  height: 100% !important;
+}
+
+/* Both sides - fixed height */
+.daily-card-front,
+.daily-card-back {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Card content container */
+.card-content {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 20px !important;
+  justify-content: space-between !important;
+}
+
+/* ===== BACK CARD (before flip) ===== */
+.daily-card-back .dashboard-card-image {
+  max-height: 400px !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  margin-bottom: 16px !important;
+}
+
+.daily-card-back .dashboard-card-title {
+  font-size: 30px !important;
+  margin: 12px 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.daily-card-back .dashboard-card-subtitle {
+  font-size: 24px !important;
+  margin-top: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===== TAROT CARD (front - after flip) ===== */
+.daily-card-front .dashboard-card-image {
+  max-height: 300px !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  margin-bottom: 16px !important;
+}
+
+.dashboard-card-title-front {
+  font-size: 28px !important;
+  margin: 12px 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* THIS IS THE SCROLLABLE PART */
+.dashboard-card-meaning {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  font-size: 24px !important;
+  line-height: 1.4 !important;
+  padding: 8px !important;
+  margin: 8px 0 !important;
+  max-height: 180px !important;
+}
+
+.daily-card-front .dashboard-card-subtitle {
+  font-size: 22px !important;
+  margin-top: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===== AFFIRMATION & BOOSTER BOXES ===== */
+.dashboard-affirmation-box,
+.dashboard-booster-box {
+  flex: 1 1 auto !important;
+  min-height: 400px !important;
+  aspect-ratio: unset !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  overflow-y: auto !important;
+}
+
+.dashboard-booster-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.dashboard-affirmation-text {
+  font-size: 28px !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+
+.dashboard-booster-emoji {
+  font-size: 48px !important;
+  margin-bottom: 8px !important;
+}
+
+.dashboard-booster-title {
+  font-size: 30px !important;
+  margin-bottom: 8px !important;
+}
+
+.dashboard-booster-description {
+  font-size: 26px !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
+
+.dashboard-booster-meta {
+  font-size: 24px !important;
+  margin-top: 8px !important;
 }
 
 /* =========================================================
