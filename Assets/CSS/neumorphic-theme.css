@@ -4419,7 +4419,6 @@ position: relative;
    FONT SIZE COMPENSATION FOR ZOOM SCALING - COMPLETE
    Makes text readable on mobile despite aggressive zoom
    ========================================================= */
-
 /* Increase base sizes so zoom doesn't crush them */
 @media (max-width: 768px) {
   
@@ -4428,56 +4427,78 @@ position: relative;
     font-size: 28px !important;  /* 28px × 0.65 = 18.2px readable */
     line-height: 1.5 !important;
   }
-
+  
   /* Headings */
   h1 { font-size: 42px !important; }  /* 42 × 0.65 = 27.3px */
   h2 { font-size: 36px !important; }  /* 36 × 0.65 = 23.4px */
   h3 { font-size: 30px !important; }  /* 30 × 0.65 = 19.5px */
   h4 { font-size: 28px !important; }  /* 28 × 0.65 = 18.2px */
-
+  
   /* Small text */
   .text-sm, .text-xs, small {
     font-size: 24px !important;  /* 24 × 0.65 = 15.6px */
   }
-
+  
   /* Buttons */
   .btn, button {
     font-size: 28px !important;
     padding: 18px 28px !important;
   }
-
+  
   /* Form inputs */
   input, textarea, select {
     font-size: 28px !important;
   }
-
+  
   /* ===== DASHBOARD STATS (8 mini-cards) ===== */
   .dashboard-stat-value {
     font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
   }
+  
   .dashboard-stat-label {
     font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
   }
-
+  
+  /* Dashboard stat emoji - separate line */
+  .dashboard-stat-emoji {
+    font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
+    line-height: 1 !important;
+    margin: 2px 0 !important;
+  }
+  
+  /* Ensure vertical stacking */
+  .dashboard-stat-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    text-align: center !important;
+  }
+  
   /* ===== WELLNESS TOOLKIT ===== */
   .wellness-tool-name {
     font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
   }
+  
   .wellness-tool-description {
     font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
   }
+  
   .wellness-stat-xp,
   .wellness-stat-karma {
     font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
   }
-
+  
   /* ===== QUEST HUB ===== */
   .dashboard-quest-name {
     font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
   }
+  
   .dashboard-quest-inspirational {
     font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
   }
+  
   .dashboard-quest-progress-header,
   .dashboard-quest-xp,
   .dashboard-quest-karma,
@@ -4494,40 +4515,98 @@ position: relative;
   .dashboard-quest-complete-msg {
     font-size: 28px !important;
   }
-}
-/* Dashboard stat emoji - separate line */
-.dashboard-stat-emoji {
-  font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
-  line-height: 1 !important;
-  margin: 2px 0 !important;
+  
+  /* ===== DAILY CARDS - COMPLETE FIX ===== */
+  
+  /* Card wrapper - fixed height */
+  .daily-card-wrapper {
+    height: 500px !important;
+    min-height: 500px !important;
+  }
+  
+  /* Card inner - match wrapper */
+  .daily-card-inner {
+    height: 100% !important;
+  }
+  
+  /* Both sides - fixed height */
+  .daily-card-front,
+  .daily-card-back {
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  /* Card content container */
+  .card-content {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+  }
+  
+  /* ===== TAROT CARD ===== */
+  .daily-card-front .dashboard-card-image {
+    max-height: 180px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .dashboard-card-title-front {
+    font-size: 26px !important;
+    margin: 8px 0 !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* THIS IS THE SCROLLABLE PART */
+  .dashboard-card-meaning {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    font-size: 24px !important;
+    line-height: 1.4 !important;
+    padding: 8px !important;
+    margin: 8px 0 !important;
+    max-height: 200px !important;
+  }
+  
+  .daily-card-front .dashboard-card-subtitle {
+    font-size: 20px !important;
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* ===== AFFIRMATION & BOOSTER BOXES ===== */
+  .dashboard-affirmation-box,
+  .dashboard-booster-box {
+    height: 100% !important;
+    aspect-ratio: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+  }
+  
+  .dashboard-affirmation-text {
+    font-size: 26px !important;
+    line-height: 1.5 !important;
+  }
+  
+  .dashboard-booster-title {
+    font-size: 28px !important;
+  }
+  
+  .dashboard-booster-description {
+    font-size: 24px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .dashboard-booster-meta {
+    font-size: 22px !important;
+  }
+
 }
 
-/* Ensure vertical stacking */
-.dashboard-stat-card {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  text-align: center !important;
-}
-
-/* Dashboard stat emoji - separate line */
-.dashboard-stat-emoji {
-  font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
-  line-height: 1 !important;
-  margin: 2px 0 !important;
-}
-
-/* Ensure vertical stacking */
-.dashboard-stat-card {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  text-align: center !important;
-}
 /* =========================================================
    END OF FILE – production-ready, unified, dead-code-free
    ========================================================= */
