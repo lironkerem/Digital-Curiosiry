@@ -45,7 +45,7 @@ export function openTriggerReleaseModal(entry = null) {
         </div>
 
         <label class="form-label">Describe your trigger</label>
-        <textarea id="trigger-textarea" class="form-input" style="min-height:150px;resize:none" placeholder="What happened and how did it make you feel?">${isEditing ? entry.text : ''}</textarea>
+        <textarea id="trigger-textarea" class="form-input" style="min-height:150px;resize:none;margin-bottom:1.5rem" placeholder="What happened and how did it make you feel?">${isEditing ? entry.text : ''}</textarea>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md)">
           <div>

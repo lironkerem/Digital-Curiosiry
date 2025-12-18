@@ -38,7 +38,7 @@ export class ChatBotAI {
     this.target.innerHTML = `
 <div class="chatbot-ai-core">
   <div class="chatbot-ai-header">${this.title}</div>
-  <div class="chatbot-ai-body"></div>
+  <div class="chatbot-ai-body" style="margin-bottom: 0.5rem;"></div>
   <form class="chatbot-ai-footer">
     <textarea class="chatbot-ai-input" placeholder="${this.placeholder}" rows="1"></textarea>
     <button class="chatbot-ai-send" aria-label="Send">${this._sendSVG()}</button>
@@ -72,7 +72,7 @@ export class ChatBotAI {
     <span>${this.title}</span>
     <button id="chatbot-float-close">&times;</button>
   </div>
-  <div id="chatbot-float-body"></div>
+  <div id="chatbot-float-body" style="margin-bottom: 0.5rem;"></div>
 </div>`;
     document.body.appendChild(root);
 
@@ -162,7 +162,7 @@ export class ChatBotAI {
   /* ----------  SVG helpers (no colour)  ---------- */
   _sendSVG() {
     // removed fill colour – CSS will paint it
-    return `<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
+    return `<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2z"/></svg>`;
   }
   _bubbleSVG() {
     return `<span style="font-size:28px;filter:drop-shadow(1px 1px 2px rgba(0,0,0,.2))">💬</span>`;
@@ -354,6 +354,7 @@ export class ChatBotAI {
 #chatbot-float-panel{position:fixed;bottom:100px;left:16px;right:auto;width:calc(100vw - 32px);max-width:320px;height:400px;max-height:60vh;border-radius:16px;border:var(--chat-border, 1px solid #374151);transform:translateY(calc(100% + 20px)) scale(0.95);transform-origin:bottom left}
 #chatbot-float-panel.open{transform:translateY(0) scale(1)}
 #chatbot-float-header{border-radius:16px 16px 0 0}
+#chatbot-float-body{border-radius:0 0 16px 16px}
 }
 
 /* Tiny screens */

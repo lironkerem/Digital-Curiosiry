@@ -100,7 +100,7 @@ class HappinessEngine {
     this.currentBooster = this.getRandomBooster();
     const viewCount = this.trackView();
     const html = `
-      <div class="flex items-center mb-4">
+      <div class="flex items-center" style="margin-bottom: 1rem;">
         <span class="text-3xl mr-4">${this.currentBooster.emoji}</span>
         <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">A Quick Happiness Booster</h2>
       </div>
@@ -126,7 +126,7 @@ class HappinessEngine {
     this.currentQuote = window.QuotesData ? window.QuotesData.getRandomQuote() : { text: 'Stay positive!', author: 'Unknown' };
     const viewCount = this.trackView();
     const html = `
-      <div class="flex items-center mb-4">
+      <div class="flex items-center" style="margin-bottom: 1rem;">
         <span class="text-3xl mr-4">📜</span>
         <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
       </div>
@@ -151,7 +151,7 @@ class HappinessEngine {
     this.currentAffirmation = this.getRandomAffirmation();
     const viewCount = this.trackView();
     const html = `
-      <div class="flex items-center mb-4">
+      <div class="flex items-center" style="margin-bottom: 1rem;">
         <span class="text-3xl mr-4">✨</span>
         <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Positive Affirmation</h2>
       </div>
@@ -183,7 +183,7 @@ tab.innerHTML = `
   <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
-      <header class="text-center mb-10">
+      <header class="text-center" style="margin-bottom: 2.5rem;">
         <div class="main-header project-curiosity">
           <h1>Happiness and Motivation</h1>
           <h3>Your daily dose of Inspirational Quotes with Happiness Boosters and Positive-Affirmations.</h3>
@@ -205,7 +205,7 @@ tab.innerHTML = `
         <div class="neuro-card flip-card" id="booster-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="flex items-center mb-4">
+              <div class="flex items-center" style="margin-bottom: 1rem;">
                 <span class="text-3xl mr-4">${this.currentBooster.emoji}</span>
                 <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">A Quick Happiness Booster</h2>
               </div>
@@ -228,7 +228,7 @@ tab.innerHTML = `
         <div class="neuro-card flip-card" id="quote-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="flex items-center mb-4">
+              <div class="flex items-center" style="margin-bottom: 1rem;">
                 <span class="text-3xl mr-4">📜</span>
                 <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
               </div>
@@ -250,7 +250,7 @@ tab.innerHTML = `
         <div class="neuro-card flip-card" id="affirm-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="flex items-center mb-4">
+              <div class="flex items-center" style="margin-bottom: 1rem;">
                 <span class="text-3xl mr-4">✨</span>
                 <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Positive Affirmation</h2>
               </div>

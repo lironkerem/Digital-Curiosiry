@@ -155,18 +155,18 @@ cardMarkup(index, label) {
 if (spreadKey === 'options') {
   return `
     <div class="flex flex-col items-center">
-      <h3 class="text-2xl font-bold mb-4" style="margin-top: 2rem;">Option 1</h3>
-      <div class="grid grid-cols-3 place-items-center mb-6" style="gap: 2rem;">
+      <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;margin-top: 2rem;">Option 1</h3>
+      <div class="grid grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
         ${positions.slice(0, 3).map((p, i) => this.cardMarkup(i, p)).join('')}
       </div>
       
-      <h3 class="text-2xl font-bold mb-4">Option 2</h3>
-      <div class="grid grid-cols-3 place-items-center mb-6" style="gap: 2rem;">
+      <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;">Option 2</h3>
+      <div class="grid grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
         ${positions.slice(3, 6).map((p, i) => this.cardMarkup(i + 3, p)).join('')}
       </div>
       
-      <h3 class="text-2xl font-bold mb-4">Option 3</h3>
-      <div class="grid grid-cols-3 place-items-center" style="gap: 2rem;">
+      <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;">Option 3</h3>
+      <div class="grid grid-cols-3 place-items-center">
         ${positions.slice(6, 9).map((p, i) => this.cardMarkup(i + 6, p)).join('')}
       </div>
     </div>`;
@@ -217,7 +217,7 @@ tab.innerHTML = `
       </header>
 
       <!-- Spread Selection Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="margin-bottom: 3rem;">
         ${Object.entries(this.spreads).map(([key, sp]) => {
           const isPremium = ['options', 'pyramid', 'cross'].includes(key);
           const isLocked = isPremium && !this.app.gamification?.state?.unlockedFeatures?.includes('advance_tarot_spreads');
@@ -228,14 +228,14 @@ tab.innerHTML = `
                title="${isLocked ? '🔒 Purchase Advanced Tarot Spreads in Karma Shop to unlock' : ''}">
             ${isPremium ? '<span class="premium-badge-tr">PREMIUM</span>' : ''}
             ${isLocked ? '<div style="position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); font-size: 3rem; opacity: 0.3;">🔒</div>' : ''}
-            <h4 class="text-xl font-bold mb-2" style="color: var(--neuro-text);">${sp.name}</h4>
+            <h4 class="text-xl font-bold" style="color: var(--neuro-text);margin-bottom: 0.5rem;">${sp.name}</h4>
             <p style="color: var(--neuro-text-light);" class="text-sm">${sp.desc}</p>
           </div>`;
         }).join('')}
       </div>
 
       <!-- Tarot Vision AI -->
-      <div class="flex justify-center mb-12 px-6">
+      <div class="flex justify-center" style="margin-bottom: 3rem;padding:0 1.5rem;">
         ${(function(){
           const has = window.app?.gamification?.state?.unlockedFeatures?.includes('tarot_vision_ai');
           const locked = !has;
@@ -250,7 +250,7 @@ tab.innerHTML = `
       </div>
 
       <div class="card" style="padding: 2rem;">
-        <div class="flex items-center justify-between mb-20">
+        <div class="flex items-center justify-between" style="margin-bottom: 5rem;">
           <h3 class="text-2xl font-bold" style="color: var(--neuro-text);">${this.spreads[this.selectedSpread].name}</h3>
           <p style="color: var(--neuro-text-light);">Click the cards to reveal their meaning</p>
         </div>

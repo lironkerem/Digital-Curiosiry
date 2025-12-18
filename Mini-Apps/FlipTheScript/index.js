@@ -65,7 +65,7 @@ tab.innerHTML = `
       </header>
 
       <!--  main card  -->
-      <div class="card mb-6" style="padding:2rem">
+      <div class="card" style="padding:2rem;margin-bottom: 2rem;">
         <section class="input-section" id="input-section">
           <div class="input-layout">
             <div class="input-main">
@@ -119,7 +119,7 @@ tab.innerHTML = `
       </div>
 
       <!--  Saved Flips  -->
-      <div class="card mb-6" style="padding:2rem">
+      <div class="card" style="padding:2rem;margin-bottom: 2rem;">
         <div class="collapsible-card" id="saved-section">
           <button class="collapse-toggle" aria-expanded="false">
             <span class="collapse-icon">▶</span>
@@ -127,10 +127,10 @@ tab.innerHTML = `
           </button>
           <div class="collapse-content collapsed">
             <!--  full-width content  -->
-            <div class="saved-controls mb-4">
+            <div class="saved-controls" style="margin-bottom: 1rem;">
               <input type="text" id="search-saved" class="search-input w-full" placeholder="🔍 Search saved flips...">
             </div>
-            <ul id="saved-list" class="mb-4"></ul>
+            <ul id="saved-list" style="margin-bottom: 1rem;"></ul>
             <div class="backup-restore flex gap-3">
               <button id="backup-id" class="btn flex-1">📥 Backup</button>
               <button id="restore-id" class="btn flex-1">📤 Restore</button>

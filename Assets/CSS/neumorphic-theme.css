@@ -4418,235 +4418,322 @@ position: relative;
 /* =========================================================
    FONT SIZE COMPENSATION FOR ZOOM SCALING - COMPLETE
    Makes text readable on mobile despite aggressive zoom
+   All sizes are PRE-ZOOM. They get multiplied by:
+   - 0.75 on tablets (768px)
+   - 0.70 on large phones (600px)
+   - 0.65 on small phones (480px)
+   - 0.60 on very small phones (320px)
    ========================================================= */
+
 /* Increase base sizes so zoom doesn't crush them */
 @media (max-width: 768px) {
   
-  /* Body text - compensate for 0.65 zoom on small phones */
+  /* ===== GLOBAL TEXT ELEMENTS ===== */
+  
+  /* Body text - main paragraph text across the app */
   body, p, .card p, .neuro-card p {
-    font-size: 28px !important;  /* 28px × 0.65 = 18.2px readable */
-    line-height: 1.5 !important;
+    font-size: 28px !important;  /* After 0.65 zoom: 28 × 0.65 = 18.2px readable */
+    line-height: 1.5 !important; /* Line spacing for readability */
   }
   
-  /* Headings */
-  h1 { font-size: 42px !important; }  /* 42 × 0.65 = 27.3px */
-  h2 { font-size: 36px !important; }  /* 36 × 0.65 = 23.4px */
-  h3 { font-size: 30px !important; }  /* 30 × 0.65 = 19.5px */
-  h4 { font-size: 28px !important; }  /* 28 × 0.65 = 18.2px */
+  /* ===== HEADINGS ===== */
   
-  /* Small text */
+  /* H1 - Main page titles */
+  h1 { 
+    font-size: 42px !important;  /* After 0.65 zoom: 42 × 0.65 = 27.3px */
+  }
+  
+  /* H2 - Section headers */
+  h2 { 
+    font-size: 36px !important;  /* After 0.65 zoom: 36 × 0.65 = 23.4px */
+  }
+  
+  /* H3 - Subsection headers */
+  h3 { 
+    font-size: 30px !important;  /* After 0.65 zoom: 30 × 0.65 = 19.5px */
+  }
+  
+  /* H4 - Minor headers */
+  h4 { 
+    font-size: 28px !important;  /* After 0.65 zoom: 28 × 0.65 = 18.2px */
+  }
+  
+  /* ===== SMALL TEXT ===== */
+  
+  /* Small text - labels, captions, metadata */
   .text-sm, .text-xs, small {
-    font-size: 24px !important;  /* 24 × 0.65 = 15.6px */
+    font-size: 24px !important;  /* After 0.65 zoom: 24 × 0.65 = 15.6px */
   }
   
-  /* Buttons */
+  /* ===== INTERACTIVE ELEMENTS ===== */
+  
+  /* Buttons - all button text */
   .btn, button {
-    font-size: 28px !important;
-    padding: 18px 28px !important;
+    font-size: 28px !important;       /* After 0.65 zoom: 28 × 0.65 = 18.2px */
+    padding: 18px 28px !important;    /* Button padding for better tap targets */
   }
   
-  /* Form inputs */
+  /* Form inputs - text fields, textareas, dropdowns */
   input, textarea, select {
-    font-size: 28px !important;
+    font-size: 28px !important;  /* After 0.65 zoom: 28 × 0.65 = 18.2px */
+    /* NOTE: 16px+ prevents iOS auto-zoom on focus */
   }
   
   /* ===== DASHBOARD STATS (8 mini-cards) ===== */
+  
+  /* Stat value - the big number (e.g., "42") */
   .dashboard-stat-value {
-    font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
+    font-size: 32px !important;  /* After 0.65 zoom: 32 × 0.65 = 20.8px */
   }
   
+  /* Stat label - the text below emoji (e.g., "Karma") */
   .dashboard-stat-label {
-    font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
+    font-size: 28px !important;  /* After 0.65 zoom: 28 × 0.65 = 18.2px */
   }
   
-  /* Dashboard stat emoji - separate line */
+  /* Stat emoji - the icon (e.g., 💎) */
   .dashboard-stat-emoji {
-    font-size: 28px !important;  /* 28 × 0.65 = 18.2px */
-    line-height: 1 !important;
-    margin: 2px 0 !important;
+    font-size: 28px !important;  /* After 0.65 zoom: 28 × 0.65 = 18.2px */
+    line-height: 1 !important;   /* Tight line height for emoji */
+    margin: 2px 0 !important;    /* Small vertical spacing */
   }
   
-  /* Ensure vertical stacking */
+  /* Stat card layout - forces vertical stacking: Value → Emoji → Label */
   .dashboard-stat-card {
     display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 4px !important;
-    text-align: center !important;
+    flex-direction: column !important;  /* Vertical stack */
+    align-items: center !important;     /* Center horizontally */
+    justify-content: center !important; /* Center vertically */
+    gap: 4px !important;                /* Space between elements */
+    text-align: center !important;      /* Center text */
   }
   
   /* ===== WELLNESS TOOLKIT ===== */
+  
+  /* Tool name - title of each wellness button (e.g., "Self Reset") */
   .wellness-tool-name {
-    font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
+    font-size: 32px !important;  /* After 0.65 zoom: 32 × 0.65 = 20.8px */
   }
   
+  /* Tool description - subtitle text (e.g., "Short Breathing practice") */
   .wellness-tool-description {
-    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+    font-size: 26px !important;  /* After 0.65 zoom: 26 × 0.65 = 16.9px */
   }
   
+  /* XP and Karma labels - reward text (e.g., "✨ +10 XP") */
   .wellness-stat-xp,
   .wellness-stat-karma {
-    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+    font-size: 26px !important;  /* After 0.65 zoom: 26 × 0.65 = 16.9px */
   }
   
   /* ===== QUEST HUB ===== */
+  
+  /* Quest name - main quest title (e.g., "Morning Meditation") */
   .dashboard-quest-name {
-    font-size: 32px !important;  /* 32 × 0.65 = 20.8px */
+    font-size: 32px !important;  /* After 0.65 zoom: 32 × 0.65 = 20.8px */
   }
   
+  /* Quest inspirational text - motivational subtitle */
   .dashboard-quest-inspirational {
-    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+    font-size: 26px !important;  /* After 0.65 zoom: 26 × 0.65 = 16.9px */
   }
   
+  /* Quest progress, rewards, and hint text */
   .dashboard-quest-progress-header,
   .dashboard-quest-xp,
   .dashboard-quest-karma,
   .dashboard-quest-hint {
-    font-size: 26px !important;  /* 26 × 0.65 = 16.9px */
+    font-size: 26px !important;  /* After 0.65 zoom: 26 × 0.65 = 16.9px */
   }
   
-  /* Quest footer items */
+  /* Quest footer - contains XP and Karma rewards */
   .dashboard-quest-footer {
-    font-size: 26px !important;
+    font-size: 26px !important;  /* After 0.65 zoom: 26 × 0.65 = 16.9px */
   }
   
-  /* Quest complete message */
+  /* Quest completion message - "Quest Complete! 🎉" */
   .dashboard-quest-complete-msg {
-    font-size: 28px !important;
+    font-size: 28px !important;  /* After 0.65 zoom: 28 × 0.65 = 18.2px */
   }
   
-/* ===== DAILY CARDS - COMPLETE FIX ===== */
+  /* ===== DAILY CARDS - COMPLETE FIX ===== */
+  
+  /* Card wrapper - controls overall card height (MAIN SIZE CONTROL) */
+  .daily-card-wrapper {
+    height: 600px !important;           /* Total card height - increase if cards feel cramped */
+    min-height: 600px !important;       /* Minimum height fallback */
+  }
+  
+  /* Card inner - matches wrapper height for proper flip animation */
+  .daily-card-inner {
+    height: 100% !important;            /* Inherits 600px from wrapper */
+  }
+  
+  /* Both sides - ensures front and back are same size */
+  .daily-card-front,
+  .daily-card-back {
+    height: 100% !important;            /* Both sides = 600px */
+    overflow: hidden !important;        /* Prevents content spilling outside card */
+  }
+  
+  /* Card content container - holds all elements inside card */
+  .card-content {
+    height: 100% !important;            /* Uses full 600px */
+    display: flex !important;           /* Enables flexbox stacking */
+    flex-direction: column !important;  /* Stacks elements vertically */
+    padding: 20px !important;           /* Inner spacing - adjust for tighter/looser layout */
+    justify-content: space-between !important; /* Spreads elements evenly top-to-bottom */
+  }
+  
+  /* ===== BACK CARD (before flip) ===== */
+  
+  /* Back card image - the card back image shown before flip */
+  .daily-card-back .dashboard-card-image {
+    max-height: 400px !important;       /* Image height - increase for bigger back card image */
+    width: 100% !important;             /* Full width of container */
+    object-fit: contain !important;     /* Keeps image proportions, no stretching */
+    flex-shrink: 0 !important;          /* Prevents image from shrinking if space is tight */
+    margin-bottom: 16px !important;     /* Space below image */
+  }
+  
+  /* Back card title - "Daily Tarot Card" / "Daily Affirmation" / "Happiness Booster" */
+  .daily-card-back .dashboard-card-title {
+    font-size: 30px !important;         /* Title text size - after zoom: 30 × 0.65 = 19.5px */
+    margin: 12px 0 !important;          /* Space above and below title */
+    flex-shrink: 0 !important;          /* Keeps title size fixed */
+  }
+  
+  /* Back card subtitle - "Click to Reveal" text */
+  .daily-card-back .dashboard-card-subtitle {
+    font-size: 24px !important;         /* Subtitle size - after zoom: 24 × 0.65 = 15.6px */
+    margin-top: 12px !important;        /* Space above subtitle */
+    flex-shrink: 0 !important;          /* Prevents subtitle from shrinking */
+  }
+  
+  /* ===== TAROT CARD (front - after flip) ===== */
+  
+  /* Tarot card image - the actual tarot card image after flip */
+  .daily-card-front .dashboard-card-image {
+    max-height: 300px !important;       /* Tarot image height - increase to make tarot image bigger */
+    width: 100% !important;             /* Full width */
+    object-fit: contain !important;     /* Maintains aspect ratio */
+    flex-shrink: 0 !important;          /* Keeps size fixed */
+    margin-bottom: 16px !important;     /* Space below tarot image */
+  }
+  
+  /* Tarot card title - the name of the card (e.g. "The Fool") */
+  .dashboard-card-title-front {
+    font-size: 28px !important;         /* Card name size - after zoom: 28 × 0.65 = 18.2px */
+    margin: 12px 0 !important;          /* Space above/below card name */
+    flex-shrink: 0 !important;          /* Keeps title size */
+  }
+  
+  /* THIS IS THE SCROLLABLE PART - tarot card meaning text */
+  .dashboard-card-meaning {
+    flex: 1 1 auto !important;          /* Takes remaining space, can grow/shrink */
+    overflow-y: auto !important;        /* Enables vertical scrolling if text is long */
+    overflow-x: hidden !important;      /* No horizontal scroll */
+    font-size: 24px !important;         /* Meaning text size - after zoom: 24 × 0.65 = 15.6px */
+    line-height: 1.4 !important;        /* Line spacing for readability */
+    padding: 8px !important;            /* Inner padding around text */
+    margin: 8px 0 !important;           /* Space above/below meaning box */
+    max-height: 180px !important;       /* Maximum height before scrolling kicks in - increase for more visible text */
+  }
+  
+  /* Tarot front subtitle - bottom text after flip */
+  .daily-card-front .dashboard-card-subtitle {
+    font-size: 22px !important;         /* Bottom subtitle size - after zoom: 22 × 0.65 = 14.3px */
+    margin-top: 12px !important;        /* Space above subtitle */
+    flex-shrink: 0 !important;          /* Keeps subtitle fixed */
+  }
+  
+  /* ===== AFFIRMATION & BOOSTER BOXES ===== */
+  
+  /* Colored gradient boxes that hold affirmation/booster content */
+  .dashboard-affirmation-box,
+  .dashboard-booster-box {
+    flex: 1 1 auto !important;          /* Takes available space */
+    min-height: 400px !important;       /* Minimum box height - increase if text gets cut */
+    aspect-ratio: unset !important;     /* Removes fixed aspect ratio */
+    display: flex !important;           /* Flexbox for centering */
+    flex-direction: column !important;  /* Stacks content vertically */
+    align-items: center !important;     /* Centers horizontally */
+    justify-content: center !important; /* Centers vertically */
+    padding: 24px !important;           /* Inner padding - increase for more breathing room */
+    overflow-y: auto !important;        /* Scrolls if content is too tall */
+  }
+  
+  /* Booster content wrapper - holds emoji, title, description */
+  .dashboard-booster-content {
+    display: flex !important;           /* Flexbox */
+    flex-direction: column !important;  /* Vertical stack */
+    align-items: center !important;     /* Center items */
+    gap: 12px !important;               /* Space between emoji/title/description */
+  }
+  
+  /* Affirmation text - the quote text */
+  .dashboard-affirmation-text {
+    font-size: 28px !important;         /* Quote size - after zoom: 28 × 0.65 = 18.2px */
+    line-height: 1.5 !important;        /* Line spacing */
+    text-align: center !important;      /* Center text */
+  }
+  
+  /* Booster emoji - the big emoji icon */
+  .dashboard-booster-emoji {
+    font-size: 48px !important;         /* Emoji size - after zoom: 48 × 0.65 = 31.2px */
+    margin-bottom: 8px !important;      /* Space below emoji */
+  }
+  
+  /* Booster title - the activity name */
+  .dashboard-booster-title {
+    font-size: 30px !important;         /* Title size - after zoom: 30 × 0.65 = 19.5px */
+    margin-bottom: 8px !important;      /* Space below title */
+  }
+  
+  /* Booster description - what the activity does */
+  .dashboard-booster-description {
+    font-size: 26px !important;         /* Description size - after zoom: 26 × 0.65 = 16.9px */
+    line-height: 1.4 !important;        /* Line spacing */
+    text-align: center !important;      /* Center text */
+  }
+  
+  /* Booster meta - duration and category */
+  .dashboard-booster-meta {
+    font-size: 24px !important;         /* Meta info size - after zoom: 24 × 0.65 = 15.6px */
+    margin-top: 8px !important;         /* Space above meta */
+  }
 
-/* Card wrapper - taller fixed height */
-.daily-card-wrapper {
-  height: 600px !important;
-  min-height: 600px !important;
-}
+} /* ===== END OF MOBILE COMPENSATION BLOCK ===== */
+```
 
-/* Card inner - match wrapper */
-.daily-card-inner {
-  height: 100% !important;
-}
+---
 
-/* Both sides - fixed height */
-.daily-card-front,
-.daily-card-back {
-  height: 100% !important;
-  overflow: hidden !important;
-}
+**Quick Reference Card - Most Common Adjustments:**
+```
+OVERALL SIZES:
+├─ Card height: .daily-card-wrapper { height: 600px }
+├─ Body text: body, p { font-size: 28px }
+└─ Buttons: .btn { font-size: 28px }
 
-/* Card content container */
-.card-content {
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  padding: 20px !important;
-  justify-content: space-between !important;
-}
+DASHBOARD STATS:
+├─ Value: .dashboard-stat-value { font-size: 32px }
+├─ Emoji: .dashboard-stat-emoji { font-size: 28px }
+└─ Label: .dashboard-stat-label { font-size: 28px }
 
-/* ===== BACK CARD (before flip) ===== */
-.daily-card-back .dashboard-card-image {
-  max-height: 400px !important;
-  width: 100% !important;
-  object-fit: contain !important;
-  flex-shrink: 0 !important;
-  margin-bottom: 16px !important;
-}
+DAILY CARDS:
+├─ Back image: .daily-card-back .dashboard-card-image { max-height: 400px }
+├─ Front tarot image: .daily-card-front .dashboard-card-image { max-height: 300px }
+├─ Meaning scroll area: .dashboard-card-meaning { max-height: 180px }
+└─ Affirmation/Booster box: min-height: 400px
 
-.daily-card-back .dashboard-card-title {
-  font-size: 30px !important;
-  margin: 12px 0 !important;
-  flex-shrink: 0 !important;
-}
+QUEST HUB:
+├─ Quest name: .dashboard-quest-name { font-size: 32px }
+├─ Inspirational: .dashboard-quest-inspirational { font-size: 26px }
+└─ Rewards: .dashboard-quest-xp { font-size: 26px }
 
-.daily-card-back .dashboard-card-subtitle {
-  font-size: 24px !important;
-  margin-top: 12px !important;
-  flex-shrink: 0 !important;
-}
-
-/* ===== TAROT CARD (front - after flip) ===== */
-.daily-card-front .dashboard-card-image {
-  max-height: 400px !important;
-  width: 100% !important;
-  object-fit: contain !important;
-  flex-shrink: 0 !important;
-  margin-bottom: 16px !important;
-}
-
-.dashboard-card-title-front {
-  font-size: 28px !important;
-  margin: 12px 0 !important;
-  flex-shrink: 0 !important;
-}
-
-/* THIS IS THE SCROLLABLE PART */
-.dashboard-card-meaning {
-  flex: 1 1 auto !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  font-size: 24px !important;
-  line-height: 1.4 !important;
-  padding: 8px !important;
-  margin: 8px 0 !important;
-  max-height: 180px !important;
-}
-
-.daily-card-front .dashboard-card-subtitle {
-  font-size: 22px !important;
-  margin-top: 12px !important;
-  flex-shrink: 0 !important;
-}
-
-/* ===== AFFIRMATION & BOOSTER BOXES ===== */
-.dashboard-affirmation-box,
-.dashboard-booster-box {
-  flex: 1 1 auto !important;
-  min-height: 400px !important;
-  aspect-ratio: unset !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 24px !important;
-  overflow-y: auto !important;
-}
-
-.dashboard-booster-content {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-.dashboard-affirmation-text {
-  font-size: 28px !important;
-  line-height: 1.5 !important;
-  text-align: center !important;
-}
-
-.dashboard-booster-emoji {
-  font-size: 48px !important;
-  margin-bottom: 8px !important;
-}
-
-.dashboard-booster-title {
-  font-size: 30px !important;
-  margin-bottom: 8px !important;
-}
-
-.dashboard-booster-description {
-  font-size: 26px !important;
-  line-height: 1.4 !important;
-  text-align: center !important;
-}
-
-.dashboard-booster-meta {
-  font-size: 24px !important;
-  margin-top: 8px !important;
-}
-
+WELLNESS TOOLKIT:
+├─ Tool name: .wellness-tool-name { font-size: 32px }
+└─ Description: .wellness-tool-description { font-size: 26px }
 /* =========================================================
    END OF FILE – production-ready, unified, dead-code-free
    ========================================================= */

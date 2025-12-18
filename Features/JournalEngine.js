@@ -48,8 +48,8 @@ tab.innerHTML = `
         </div>
 
         <!-- Journal Entries List -->
-        <div class="mt-8">
-          <h3 class="text-xl font-bold mb-4" style="color: var(--neuro-text);">My Saved Entries</h3>
+        <div style="margin-top: 2rem;">
+          <h3 class="text-xl font-bold" style="color: var(--neuro-text);margin-bottom: 1rem;">My Saved Entries</h3>
           <ul id="flip-journal-list" class="space-y-3"></ul>
         </div>
       </div>
@@ -130,7 +130,7 @@ if (window.app?.gamification) window.app.gamification.incrementJournalEntries();
     if (entries.length === 0) {
       listContainer.innerHTML = `
         <li class="text-center py-8" style="color: var(--neuro-text-light);">
-          <p class="text-4xl mb-2">📓</p>
+          <p class="text-4xl" style="margin-bottom: 0.5rem;">📓</p>
           <p>No journal entries yet. Start writing, sharing, venting, saving...</p>
         </li>
       `;
@@ -147,7 +147,7 @@ if (window.app?.gamification) window.app.gamification.incrementJournalEntries();
       const originalIndex = entries.indexOf(entry);
       return `
         <li class="card p-4" style="background: rgba(102, 126, 234, 0.05); border-left: 4px solid var(--neuro-accent);">
-          <div class="flex justify-between items-start mb-2">
+          <div class="flex justify-between items-start" style="margin-bottom: 0.5rem;">
             <span class="text-sm font-semibold" style="color: var(--neuro-accent);">
               ${entry.date || new Date(entry.timestamp).toLocaleDateString()}
             </span>
@@ -165,14 +165,14 @@ if (window.app?.gamification) window.app.gamification.incrementJournalEntries();
             </div>
           </div>
           ${entry.situation ? `
-            <div class="mb-2">
-              <p class="text-xs font-semibold mb-1" style="color: var(--neuro-text-light);">Situation:</p>
+            <div style="margin-bottom: 0.5rem;">
+              <p class="text-xs font-semibold" style="color: var(--neuro-text-light);margin-bottom: 0.25rem;">Situation:</p>
               <p style="color: var(--neuro-text);">${this.escapeHtml(entry.situation)}</p>
             </div>
           ` : ''}
           ${entry.feelings ? `
             <div>
-              <p class="text-xs font-semibold mb-1" style="color: var(--neuro-text-light);">Feelings:</p>
+              <p class="text-xs font-semibold" style="color: var(--neuro-text-light);margin-bottom: 0.25rem;">Feelings:</p>
               <p style="color: var(--neuro-text);">${this.escapeHtml(entry.feelings)}</p>
             </div>
           ` : ''}

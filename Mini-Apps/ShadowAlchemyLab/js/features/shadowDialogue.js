@@ -24,7 +24,7 @@ export function openShadowDialogueModal(entry = null) {
         ${SHADOW_DIALOGUE_TARGETS.map(t =>
           `<option value="${t}" ${isEditing && entry.target === t ? 'selected' : ''}>${t}</option>`).join('')}
       </select>
-      <textarea id="shadow-dialogue-textarea" class="form-input" style="min-height:250px;resize:none">${isEditing ? entry.text : ''}</textarea>`,
+      <textarea id="shadow-dialogue-textarea" class="form-input" style="min-height:250px;resize:none;margin-bottom:1rem">${isEditing ? entry.text : ''}</textarea>`,
     actions: `
       ${isEditing ? '<button id="deleteShadowDialogueEntry" class="btn">Delete</button>' : ''}
       <button id="closeShadowDialogueModal" class="btn">Close</button>

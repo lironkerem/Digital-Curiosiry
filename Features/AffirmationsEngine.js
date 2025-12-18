@@ -28,15 +28,15 @@ class AffirmationsEngine {
       tab.innerHTML = `
         <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
           <div class="universal-content">
-            <h2 class="text-4xl font-bold text-white mb-4">Positive Affirmations</h2>
-            <p class="text-gray-400 mb-8">Powerful statements to reprogram your mindset</p>
+            <h2 class="text-4xl font-bold text-white" style="margin-bottom: 1.5rem;">Positive Affirmations</h2>
+            <p class="text-gray-400" style="margin-bottom: 2rem;">Powerful statements to reprogram your mindset</p>
 
-            <div class="text-center mb-12">
-              <div class="flip-card inline-block w-80 h-48 mb-6" onclick="this.classList.toggle('flipped')">
+            <div class="text-center" style="margin-bottom: 3rem;">
+              <div class="flip-card inline-block w-80 h-48" style="margin-bottom: 2rem;" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                   <div class="flip-card-front bg-gradient-to-br from-pink-600 to-purple-600 p-8 flex items-center justify-center">
                     <div class="text-center">
-                      <p class="text-white text-2xl font-bold mb-4">Daily Affirmation</p>
+                      <p class="text-white text-2xl font-bold" style="margin-bottom: 1rem;">Daily Affirmation</p>
                       <p class="text-pink-100">Tap to reveal ✨</p>
                     </div>
                   </div>
@@ -61,10 +61,10 @@ class AffirmationsEngine {
         <div class="min-h-screen bg-gray-900 p-6">
           <div class="max-w-4xl mx-auto flex items-center justify-center min-h-[80vh]">
             <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-3xl p-12 text-center w-full max-w-2xl">
-              <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-8">
+              <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto" style="margin-bottom: 2rem;">
                 <span class="text-5xl">✨</span>
               </div>
-              <p class="text-white text-4xl font-bold mb-12">
+              <p class="text-white text-4xl font-bold" style="margin-bottom: 3rem;">
                 "${this.currentAffirmation}"
               </p>
               <div class="flex justify-center space-x-4">

@@ -55,8 +55,8 @@ export default class SelfAnalysisLauncher {
   </div>
 `;
         
-        // Initialize custom pickers BEFORE booting the app
-        return this.initializeCustomPickers().then(() => {
+        // Initialize ALL components BEFORE booting the app
+        return this.initializeComponents().then(() => {
           // Boot the mini-app
           return import('/Mini-Apps/SelfAnalysisPro/js/app.js');
         });
@@ -82,10 +82,10 @@ export default class SelfAnalysisLauncher {
       });
   }
 
-  /* ---- Initialize Custom Date/Time Pickers ---- */
-  async initializeCustomPickers() {
+  /* ---- Initialize ALL Components (Pickers + Location Autocomplete) ---- */
+  async initializeComponents() {
     try {
-      console.log('🎯 Initializing custom pickers...');
+      console.log('🎯 Initializing components...');
       
       // Import picker classes
       const [
@@ -121,10 +121,120 @@ export default class SelfAnalysisLauncher {
         console.log('✅ StepIndicator initialized');
       }
       
+      // Initialize location autocomplete
+      this.initializeLocationAutocomplete();
+      
     } catch (err) {
-      console.error('❌ Failed to initialize custom pickers:', err);
+      console.error('❌ Failed to initialize components:', err);
       throw err;
     }
+  }
+
+  /* ---- Location Autocomplete ---- */
+  initializeLocationAutocomplete() {
+    const locationInput = document.getElementById('location-birth');
+    const dropdown = document.getElementById('location-dropdown');
+    
+    if (!locationInput || !dropdown) {
+      console.warn('⚠️ Location elements not found');
+      return;
+    }
+    
+    const GEOCODE_API = '/api/geocode';
+    let debounceTimer;
+    const cache = new Map();
+    
+    locationInput.addEventListener('input', () => {
+      const q = locationInput.value.trim();
+      clearTimeout(debounceTimer);
+      
+      if (q.length < 3) {
+        dropdown.classList.remove('active');
+        dropdown.innerHTML = '';
+        return;
+      }
+      
+      const key = q.toLowerCase();
+      if (cache.has(key)) {
+        displayResults(cache.get(key));
+        return;
+      }
+      
+      debounceTimer = setTimeout(() => fetchLocations(q), 400);
+    });
+    
+    async function fetchLocations(q) {
+      console.log('🔍 Fetching locations for:', q);
+      try {
+        const res = await fetch(`${GEOCODE_API}?q=${encodeURIComponent(q)}`);
+        
+        console.log('📥 Geocode response status:', res.status);
+        
+        if (!res.ok) {
+          const errorText = await res.text();
+          console.error('❌ Geocode error:', errorText);
+          throw new Error('geo err');
+        }
+        
+        const data = await res.json();
+        console.log('✅ Geocode data received:', data.length, 'results');
+        
+        cache.set(q.toLowerCase(), data);
+        if (cache.size > 50) cache.delete(cache.keys().next().value);
+        
+        displayResults(data);
+      } catch (e) {
+        console.warn('❌ Location fetch error:', e.message);
+        dropdown.innerHTML = '<div style="padding:10px;color:#d32f2f;background:#ffebee;">Unable to load suggestions. Try typing your city name.</div>';
+        dropdown.classList.add('active');
+        setTimeout(() => dropdown.classList.remove('active'), 3000);
+      }
+    }
+    
+    function displayResults(list) {
+      if (!list || !list.length) {
+        dropdown.innerHTML = '<div style="padding:10px;color:#888;">No locations found</div>';
+        dropdown.classList.add('active');
+        setTimeout(() => dropdown.classList.remove('active'), 2000);
+        return;
+      }
+      
+      dropdown.innerHTML = list.map(it => `
+        <div class="location-option" data-lat="${it.lat}" data-lon="${it.lon}" data-name="${it.display_name}">
+          ${it.display_name}
+        </div>`).join('');
+      
+      dropdown.classList.add('active');
+      
+      dropdown.querySelectorAll('.location-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const name = opt.dataset.name;
+          const lat = opt.dataset.lat;
+          const lon = opt.dataset.lon;
+          
+          locationInput.value = name;
+          locationInput.dataset.lat = lat;
+          locationInput.dataset.lon = lon;
+          
+          dropdown.classList.remove('active');
+          dropdown.innerHTML = '';
+          
+          console.log('✅ Location selected:', { name, lat, lon });
+          console.log('✅ Dataset:', locationInput.dataset);
+          
+          locationInput.style.borderColor = '#4caf50';
+          setTimeout(() => locationInput.style.borderColor = '', 1000);
+        });
+      });
+    }
+    
+    document.addEventListener('click', e => {
+      if (e.target !== locationInput && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
+      }
+    });
+    
+    console.log('✅ Location autocomplete initialized');
   }
 
   /* ---- Re-validate form when tab is re-entered ---- */

@@ -47,18 +47,18 @@ tab.innerHTML = `
       <div class="space-y-6">
         <!-- Today card -->
         <div class="card">
-          <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center justify-between" style="margin-bottom: 2rem;">
             <h3 class="text-2xl font-bold" style="color: var(--neuro-text);">My Gratitudes for Today</h3>
             <span class="badge ${todayTotal >= this.maxEntries ? 'badge-success' : 'badge-primary'}">${todayTotal} / ${this.maxEntries} (Quest)</span>
           </div>
 
           ${todayTotal >= this.maxEntries ? `
-            <div class="mb-6 p-4 rounded-lg" style="background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25);">
+            <div style="margin-bottom: 2rem;padding:1rem;border-radius:0.5rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);">
               <p class="text-center" style="color: #22c55e;">🎉 Daily quest complete! Keep going if you'd like!</p>
             </div>
           ` : ''}
 
-          <form onsubmit="window.featuresManager.engines.gratitude.addEntry(event)" class="mb-6">
+          <form onsubmit="window.featuresManager.engines.gratitude.addEntry(event)" style="margin-bottom: 2rem;">
             <div class="flex space-x-3">
               <input type="text" id="gratitude-input" class="form-input flex-1"
                      placeholder="Today, I am Grateful for..." required />
@@ -67,23 +67,19 @@ tab.innerHTML = `
           </form>
 
           <!-- Need Inspiration -->
-          <div class="card mb-6" style="background: rgba(102,126,234,0.05);">
-            <h4 class="text-lg font-bold mb-4" style="color: var(--neuro-text);">💭 Need Inspiration?</h4>
+          <div class="card" style="background: rgba(102,126,234,0.05);margin-bottom: 2rem;">
+            <h4 class="text-lg font-bold" style="color: var(--neuro-text);margin-bottom: 1rem;">💭 Need Inspiration?</h4>
             <div class="gratitude-inspiration-grid">
-              ${[
-                'A person who made you smile',
-                'A comfortable place you enjoy',
-                'Something in nature',
-                'A skill or talent you have',
-                'A recent act of kindness',
-                'A small win you had today'
-              ].map(prompt => `
+              ${
+                'A person who made you smile,A comfortable place you enjoy,Something in nature,A skill or talent you have,A recent act of kindness,A small win you had today'
+                  .split(',').map(prompt => `
                 <div class="text-sm p-3 rounded cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700"
                      style="color: var(--neuro-text-light); background: rgba(255,255,255,0.5); text-align: center;"
                      onclick="document.getElementById('gratitude-input').value='${prompt}'; document.getElementById('gratitude-input').focus();">
                   ${prompt}
                 </div>
-              `).join('')}
+              `).join('')
+              }
             </div>
           </div>
 
@@ -101,16 +97,16 @@ tab.innerHTML = `
           </div>
 
           ${this.currentEntries.length > 0 ? `
-            <button onclick="window.featuresManager.engines.gratitude.save()" class="btn btn-primary w-full mt-6">💾 Save Journal Entry</button>
+            <button onclick="window.featuresManager.engines.gratitude.save()" class="btn btn-primary w-full" style="margin-top: 1.5rem;">💾 Save Journal Entry</button>
           ` : ''}
         </div>
 
         <!-- History card -->
         <div class="card">
-          <h3 class="text-2xl font-bold mb-6" style="color: var(--neuro-text);">📖 My Gratitude Lists</h3>
+          <h3 class="text-2xl font-bold" style="color: var(--neuro-text);margin-bottom: 1.5rem;">📖 My Gratitude Lists</h3>
           ${allEntries.length === 0 ? `
             <div class="text-center py-12" style="color: var(--neuro-text-light);">
-              <p class="text-4xl mb-4">📖</p>
+              <p class="text-4xl" style="margin-bottom: 1rem;">📖</p>
               <p>Your gratitude list will appear here</p>
             </div>
           ` : `
@@ -120,7 +116,7 @@ tab.innerHTML = `
                 const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
                 return `
                   <div class="journal-entry" style="background: rgba(102,126,234,0.05); border-radius: 12px; padding: 20px; border-left: 4px solid var(--neuro-success);">
-                    <div class="text-sm mb-3" style="color: var(--neuro-text-light);">${dateStr}</div>
+                    <div class="text-sm" style="color: var(--neuro-text-light);margin-bottom: 0.75rem;">${dateStr}</div>
                     <div class="space-y-2">
                       ${entry.entries.map((item, idx) => `
                         <div class="flex items-start gap-2">
@@ -138,7 +134,7 @@ tab.innerHTML = `
               }).join('')}
             </div>
             ${allEntries.length > 30 ? `
-              <div class="text-center mt-6">
+              <div class="text-center" style="margin-top: 1.5rem;">
                 <p class="text-sm" style="color: var(--neuro-text-light);">Showing 30 most recent entries</p>
               </div>
             ` : ''}

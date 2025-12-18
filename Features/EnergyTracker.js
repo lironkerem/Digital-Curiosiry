@@ -118,8 +118,8 @@ tab.innerHTML = `
       </header>
 
       <!--  check-in card  -->
-      <div class="card mb-6">
-        <div class="flex items-center justify-between mb-6">
+      <div class="card" style="margin-bottom: 2rem;">
+        <div class="flex items-center justify-between" style="margin-bottom: 2rem;">
           <div>
             <h3 class="text-2xl font-bold" style="color:var(--neuro-text);">Good ${this.getTimeOfDay()}</h3>
             <p class="text-sm" style="color:var(--neuro-text-light);">Log in your Overall Energy and your Specific Chakras</p>
@@ -136,7 +136,7 @@ tab.innerHTML = `
         </div>
 
         <!--  energy slider  -->
-        <div class="mb-6">
+        <div style="margin-bottom: 2rem;">
           <label class="form-label">Overall Energy Level</label>
           <div class="flex items-center gap-4">
             <input type="range" id="energy-overall-slider" min="0" max="10" step="0.5" value="${this.currentCheckin.overallEnergy}" class="flex-1"/>
@@ -146,19 +146,19 @@ tab.innerHTML = `
         </div>
 
         <!--  mood chips  -->
-        <div class="mb-6">
+        <div style="margin-bottom: 2rem;">
           <label class="form-label">Current Mood</label>
           <div id="mood-chips" class="flex flex-wrap gap-2">${this.MOODS.map(mood => `<button class="chip ${this.currentCheckin.moodTags.includes(mood) ? 'active' : ''}" data-mood="${mood}" style="padding:8px 16px;border-radius:999px;cursor:pointer;font-size:0.9rem;transition:all .2s;">${this.getMoodEmoji(mood)} ${this.capitalize(mood)}</button>`).join('')}</div>
         </div>
 
         <!--  chakra quick check  -->
-        <div class="mb-6">
+        <div style="margin-bottom: 2rem;">
           <label class="form-label">Chakra Check-in</label>
           <div id="chakra-row" class="chakra-row">${this.renderChakraRow()}</div>
         </div>
 
         <!--  notes  -->
-        <div class="mb-6">
+        <div style="margin-bottom: 2rem;">
           <label for="energy-notes" class="form-label">Notes, Thoughts, Emotions, Mood</label>
           <textarea id="energy-notes" class="form-input" placeholder="Any reflections, situations, or notable events regarding your energies...">${this.currentCheckin.notes || ''}</textarea>
         </div>
@@ -171,10 +171,10 @@ tab.innerHTML = `
       </div>
 
       <!--  mini analytics  -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" style="margin-bottom: 2rem;">
         <!--  WEEKLY TREND – square box – Fit-the-Box  -->
         <div class="card p-4 card-flex">
-          <h3 class="text-lg font-bold mb-3" style="color:var(--neuro-text);">Weekly Trend</h3>
+          <h3 class="text-lg font-bold" style="color:var(--neuro-text);margin-bottom: 1rem;">Weekly Trend</h3>
           <div class="card-body w-full">
             <div class="weekly-chart-box">
               ${this.renderWeeklyChart(weeklyData, 280, 0)}
@@ -184,7 +184,7 @@ tab.innerHTML = `
 
         <!--  chakra balance  -->
         <div class="card p-4">
-          <h3 class="text-lg font-bold mb-3" style="color:var(--neuro-text);">Chakra Balance</h3>
+          <h3 class="text-lg font-bold" style="color:var(--neuro-text);margin-bottom: 1rem;">Chakra Balance</h3>
           <div class="flex justify-center">${this.renderRadarChart(chakraAvg, 200)}</div>
           <div class="grid grid-cols-4 gap-2 mt-3 text-xs text-center">${this.CHAKRAS.map(c => `<div><div class="font-bold" style="color:${c.color};">${chakraAvg[c.key]}</div><div class="text-gray-500">${c.name}</div></div>`).join('')}</div>
         </div>
@@ -192,11 +192,11 @@ tab.innerHTML = `
 
       <!--  journal  -->
       <div class="card calc-expandable-card" id="journal-collapsible-card">
-        <div class="calc-expandable-header" id="journal-collapsible-header"><span class="chevron">›</span><h3 class="text-2xl font-bold mb-6" style="color:var(--neuro-text);">📖 My Energy Trackings Log</h3></div>
+        <div class="calc-expandable-header" id="journal-collapsible-header"><span class="chevron">›</span><h3 class="text-2xl font-bold" style="color:var(--neuro-text);margin-bottom: 1.5rem;">📖 My Energy Trackings Log</h3></div>
         <div class="calc-expandable-content">
-          <div class="mb-6"><input type="text" id="journal-search" class="form-input" placeholder="Search notes or moods..." value="${this.searchQuery}"/></div>
+          <div style="margin-bottom: 2rem;"><input type="text" id="journal-search" class="form-input" placeholder="Search notes or moods..." value="${this.searchQuery}"/></div>
           <div class="space-y-4">
-            ${filteredJournal.length === 0 ? `<div class="card text-center" style="padding:4rem;"><div class="text-7xl mb-4">📝</div><p style="color:var(--neuro-text-light);">${this.searchQuery ? 'No entries found matching your search' : 'No journal entries yet. Your check-ins will appear here.'}</p></div>` : filteredJournal.slice(0, 30).map(e => this.renderJournalEntry(e)).join('')}
+            ${filteredJournal.length === 0 ? `<div class="card text-center" style="padding:4rem;"><div class="text-7xl" style="margin-bottom: 1rem;">📝</div><p style="color:var(--neuro-text-light);">${this.searchQuery ? 'No entries found matching your search' : 'No journal entries yet. Your check-ins will appear here.'}</p></div>` : filteredJournal.slice(0, 30).map(e => this.renderJournalEntry(e)).join('')}
             ${filteredJournal.length > 30 ? '<div class="text-center mt-6"><p class="text-sm" style="color:var(--neuro-text-light);">Showing 30 most recent entries</p></div>' : ''}
           </div>
         </div>
@@ -286,7 +286,7 @@ tab.innerHTML = `
     const badges = []; if (entry.dayCheckin) badges.push('<span class="badge badge-success" style="font-size:0.75rem">☀️ Day</span>'); if (entry.nightCheckin) badges.push('<span class="badge badge-success" style="font-size:0.75rem">🌙 Night</span>');
     return `
       <div class="card" style="border-left:4px solid var(--neuro-accent)">
-        <div class="flex justify-between items-start mb-4">
+        <div class="flex justify-between items-start" style="margin-bottom: 1rem;">
           <div>
             <div class="font-bold text-lg" style="color:var(--neuro-text)">${dateStr}</div>
             <div class="text-sm" style="color:var(--neuro-text-light)">${date.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}</div>
@@ -294,12 +294,12 @@ tab.innerHTML = `
           </div>
           <div class="text-right"><div class="text-3xl font-bold" style="color:var(--neuro-accent)">${entry.energy}</div><div class="text-sm" style="color:var(--neuro-text-light)">Energy</div></div>
         </div>
-        ${(entry.moodTags || []).length ? `<div class="flex flex-wrap gap-2 mb-4">${entry.moodTags.map(m => `<span class="badge" style="font-size:0.85rem">${this.getMoodEmoji(m)} ${this.capitalize(m)}</span>`).join('')}</div>` : ''}
+        ${(entry.moodTags || []).length ? `<div class="flex flex-wrap gap-2" style="margin-bottom: 1rem;">${entry.moodTags.map(m => `<span class="badge" style="font-size:0.85rem">${this.getMoodEmoji(m)} ${this.capitalize(m)}</span>`).join('')}</div>` : ''}
         ${entry.notes ? `<div style="color:var(--neuro-text);line-height:1.6;white-space:pre-wrap">${entry.notes}</div>` : ''}
         ${entry.chakras ? `
           <div class="mt-4 pt-4" style="border-top:1px solid rgba(0,0,0,.05)">
-            <div class="text-sm font-bold mb-2" style="color:var(--neuro-text-light)">Chakras:</div>
-            <div class="grid grid-cols-4 md:grid-cols-7 gap-2">${this.CHAKRAS.map(c => `<div class="text-center"><div class="text-xs mb-1" style="color:var(--neuro-text-light)">${c.name}</div><div class="text-sm font-bold" style="color:${c.color}">${entry.chakras[c.key] || 5}</div></div>`).join('')}</div>
+            <div class="text-sm font-bold" style="color:var(--neuro-text-light);margin-bottom: 0.5rem;">Chakras:</div>
+            <div class="grid grid-cols-4 md:grid-cols-7 gap-2">${this.CHAKRAS.map(c => `<div class="text-center"><div class="text-xs" style="color:var(--neuro-text-light);margin-bottom: 0.25rem;">${c.name}</div><div class="text-sm font-bold" style="color:${c.color}">${entry.chakras[c.key] || 5}</div></div>`).join('')}</div>
           </div>` : ''}
       </div>`;
   }

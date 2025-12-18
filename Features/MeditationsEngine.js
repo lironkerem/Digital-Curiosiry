@@ -139,7 +139,7 @@ class MeditationsEngine {
           </header>
 
           <!--  PDF BUTTON  -->
-          <div class="text-center mb-8">
+          <div class="text-center" style="margin-bottom: 2rem;">
             <button onclick="window.featuresManager.engines.meditations.openPDFGuide()" 
                     class="btn btn-primary" 
                     style="padding: 12px 32px; display: inline-flex; align-items: center; gap: 8px;">
@@ -148,7 +148,7 @@ class MeditationsEngine {
           </div>
 
           <!--  WELLNESS TOOLKIT  -->
-          <div class="card dashboard-wellness-toolkit mb-8">
+          <div class="card dashboard-wellness-toolkit" style="margin-bottom: 2rem;">
             <div class="dashboard-wellness-header">
               <h3 class="dashboard-wellness-title">🌟 Wellness Toolkit</h3>
               <p class="dashboard-wellness-subtitle">Quick access to your daily reset practices</p>
@@ -202,7 +202,7 @@ class MeditationsEngine {
           </div>
 
           <!--  GUIDED MEDITATIONS WRAPPER CARD  -->
-          <div class="card mb-8">
+          <div class="card" style="margin-bottom: 2rem;">
             <div class="dashboard-wellness-header" style="margin-bottom:1.5rem;">
               <h3 class="dashboard-wellness-title">🎧 Guided Meditations (Audio & Video)</h3>
               <p class="dashboard-wellness-subtitle">Aanandoham's curated, unique collection</p>
@@ -218,13 +218,13 @@ class MeditationsEngine {
                   ${med.category === 'Premium' ? '<span class="premium-badge-tr">PREMIUM</span>' : ''}
                   ${isLocked ? '<div style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:0.3;z-index:1;">🔒</div>' : ''}
                   
-                  <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center justify-between" style="margin-bottom: 0.75rem;">
                     <span class="text-3xl">${med.emoji}</span>
                     <span class="text-sm" style="color:var(--neuro-text-light);">${med.duration}</span>
                   </div>
                   
-                  <h4 class="text-xl font-bold mb-2" style="color:var(--neuro-text);">${med.title}</h4>
-                  <p style="color:var(--neuro-text-light);" class="text-sm mb-3">${med.description}</p>
+                  <h4 class="text-xl font-bold" style="color:var(--neuro-text);margin-bottom: 0.5rem;">${med.title}</h4>
+                  <p style="color:var(--neuro-text-light);" class="text-sm" style="margin-bottom: 0.75rem;">${med.description}</p>
                   <span class="badge badge-primary">${med.category}</span>
 
                   <div class="mt-4 flex gap-2">
