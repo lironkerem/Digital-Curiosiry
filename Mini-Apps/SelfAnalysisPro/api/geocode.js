@@ -6,6 +6,7 @@ const cache = new Map();
 const ALLOWED_ORIGINS = [
   'http://localhost:3000',
   'https://self-analysis-pro.vercel.app',
+  'https://Digital-Curiosiry.vercel.app',
   'https://lironkerem.wixsite.com'
 ];
 
