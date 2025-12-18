@@ -1,4 +1,5 @@
 // js/customTimePicker.js - Mobile-friendly time picker for birth time
+// NO AUTO-INITIALIZATION - loader.js handles it
 
 export class CustomTimePicker {
   constructor(inputId) {
@@ -14,33 +15,22 @@ export class CustomTimePicker {
     // Create custom picker container
     this.createPickerUI();
 
-    // Hide native time input on mobile
-    if (this.isMobile()) {
-      this.input.type = 'text';
-      this.input.readOnly = true;
-      this.input.placeholder = 'Select time...';
-    }
+    // ALWAYS hide native time input and use custom picker
+    this.input.type = 'text';
+    this.input.readOnly = true;
+    this.input.placeholder = 'Select time...';
 
     // Show custom picker on click
     this.input.addEventListener('click', (e) => {
-      if (this.isMobile()) {
-        e.preventDefault();
-        this.show();
-      }
+      e.preventDefault();
+      this.show();
     });
 
     this.input.addEventListener('focus', (e) => {
-      if (this.isMobile()) {
-        e.preventDefault();
-        this.input.blur();
-        this.show();
-      }
+      e.preventDefault();
+      this.input.blur();
+      this.show();
     });
-  }
-
-  isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-           || window.innerWidth <= 768;
   }
 
   createPickerUI() {
@@ -300,11 +290,6 @@ export class CustomTimePicker {
       option.textContent = minute.toString().padStart(2, '0');
       select.appendChild(option);
     }
-    // Add option for exact minutes
-    const exactOption = document.createElement('option');
-    exactOption.value = 'exact';
-    exactOption.textContent = '--';
-    select.appendChild(exactOption);
   }
 
   setTimeFromPreset(time24) {
@@ -390,9 +375,4 @@ export class CustomTimePicker {
   }
 }
 
-// Auto-initialize on DOM load
-if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', () => {
-    window.customTimePicker = new CustomTimePicker('time-of-birth');
-  });
-}
+// NO AUTO-INITIALIZATION - loader.js handles it

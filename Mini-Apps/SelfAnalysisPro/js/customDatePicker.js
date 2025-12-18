@@ -1,4 +1,5 @@
 // js/customDatePicker.js - Mobile-friendly date picker with dropdowns
+// NO AUTO-INITIALIZATION - loader.js handles it
 
 export class CustomDatePicker {
   constructor(inputId) {
@@ -14,33 +15,22 @@ export class CustomDatePicker {
     // Create custom picker container
     this.createPickerUI();
 
-    // Hide native date input on mobile
-    if (this.isMobile()) {
-      this.input.type = 'text';
-      this.input.readOnly = true;
-      this.input.placeholder = 'Select date...';
-    }
+    // ALWAYS hide native date input and use custom picker
+    this.input.type = 'text';
+    this.input.readOnly = true;
+    this.input.placeholder = 'Select date...';
 
     // Show custom picker on click
     this.input.addEventListener('click', (e) => {
-      if (this.isMobile()) {
-        e.preventDefault();
-        this.show();
-      }
+      e.preventDefault();
+      this.show();
     });
 
     this.input.addEventListener('focus', (e) => {
-      if (this.isMobile()) {
-        e.preventDefault();
-        this.input.blur();
-        this.show();
-      }
+      e.preventDefault();
+      this.input.blur();
+      this.show();
     });
-  }
-
-  isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-           || window.innerWidth <= 768;
   }
 
   createPickerUI() {
@@ -87,101 +77,50 @@ export class CustomDatePicker {
         ">&times;</button>
       </div>
 
-      <!-- Tab Selection -->
-      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-        <button class="tab-btn active" data-tab="dropdown" style="
-          flex: 1;
-          padding: 10px;
-          font-size: 16px;
-          font-weight: 600;
-          font-family: 'Amatic SC', cursive;
-          background: #3F7652;
-          color: white;
-          border: 2px solid #3F7652;
-          border-radius: 10px;
-          cursor: pointer;
-        ">Dropdowns</button>
-        <button class="tab-btn" data-tab="manual" style="
-          flex: 1;
-          padding: 10px;
-          font-size: 16px;
-          font-weight: 600;
-          font-family: 'Amatic SC', cursive;
-          background: white;
-          color: #3F7652;
-          border: 2px solid #3F7652;
-          border-radius: 10px;
-          cursor: pointer;
-        ">Type Date</button>
-      </div>
-
-      <!-- Dropdown Tab -->
-      <div id="dropdown-tab" class="tab-content" style="display: block;">
-        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-          <div style="flex: 2;">
-            <label style="display: block; margin-bottom: 5px; color: #3F7652; font-weight: 600; font-size: 16px;">Month</label>
-            <select id="custom-month" style="
-              width: 100%;
-              padding: 12px;
-              font-size: 16px;
-              border: 2px solid #3F7652;
-              border-radius: 10px;
-              font-family: 'Amatic SC', cursive;
-              background: white;
-            ">
-              <option value="">Month</option>
-            </select>
-          </div>
-
-          <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px; color: #3F7652; font-weight: 600; font-size: 16px;">Day</label>
-            <select id="custom-day" style="
-              width: 100%;
-              padding: 12px;
-              font-size: 16px;
-              border: 2px solid #3F7652;
-              border-radius: 10px;
-              font-family: 'Amatic SC', cursive;
-              background: white;
-            ">
-              <option value="">Day</option>
-            </select>
-          </div>
-
-          <div style="flex: 1.5;">
-            <label style="display: block; margin-bottom: 5px; color: #3F7652; font-weight: 600; font-size: 16px;">Year</label>
-            <select id="custom-year" style="
-              width: 100%;
-              padding: 12px;
-              font-size: 16px;
-              border: 2px solid #3F7652;
-              border-radius: 10px;
-              font-family: 'Amatic SC', cursive;
-              background: white;
-            ">
-              <option value="">Year</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Manual Input Tab -->
-      <div id="manual-tab" class="tab-content" style="display: none;">
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; margin-bottom: 8px; color: #3F7652; font-weight: 600; font-size: 16px;">
-            Enter date (MM/DD/YYYY or YYYY-MM-DD)
-          </label>
-          <input type="text" id="manual-date-input" placeholder="e.g., 05/15/1990 or 1990-05-15" style="
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <div style="flex: 2;">
+          <label style="display: block; margin-bottom: 5px; color: #3F7652; font-weight: 600; font-size: 16px;">Month</label>
+          <select id="custom-month" style="
             width: 100%;
             padding: 12px;
             font-size: 16px;
             border: 2px solid #3F7652;
             border-radius: 10px;
             font-family: 'Amatic SC', cursive;
+            background: white;
           ">
-          <div style="margin-top: 8px; font-size: 14px; color: #666;">
-            Examples: 03/21/1985 or 1985-03-21
-          </div>
+            <option value="">Month</option>
+          </select>
+        </div>
+
+        <div style="flex: 1;">
+          <label style="display: block; margin-bottom: 5px; color: #3F7652; font-weight: 600; font-size: 16px;">Day</label>
+          <select id="custom-day" style="
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #3F7652;
+            border-radius: 10px;
+            font-family: 'Amatic SC', cursive;
+            background: white;
+          ">
+            <option value="">Day</option>
+          </select>
+        </div>
+
+        <div style="flex: 1.5;">
+          <label style="display: block; margin-bottom: 5px; color: #3F7652; font-weight: 600; font-size: 16px;">Year</label>
+          <select id="custom-year" style="
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #3F7652;
+            border-radius: 10px;
+            font-family: 'Amatic SC', cursive;
+            background: white;
+          ">
+            <option value="">Year</option>
+          </select>
         </div>
       </div>
 
@@ -350,9 +289,4 @@ export class CustomDatePicker {
   }
 }
 
-// Auto-initialize on DOM load
-if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', () => {
-    window.customDatePicker = new CustomDatePicker('date-of-birth');
-  });
-}
+// NO AUTO-INITIALIZATION - loader.js handles it

@@ -1,4 +1,4 @@
-/*  /js/apps/selfanalysis/js/app.js  — Big-App Integration Ready  */
+/*  /js/apps/selfanalysis/js/app.js  – Big-App Integration Ready  */
 
 import Utils from './utils.js';
 import { UIManager } from './ui.js';
@@ -29,9 +29,6 @@ class SelfAnalysisApp {
 
     console.log('🚀 Initializing Self-Analysis Pro...');
     
-    // Initialize UI components FIRST
-    await this.initializeUIComponents();
-    
     this.ui.init();
     this.ui.onAnalyze = (formData) => this.handleAnalyze(formData);
     this.ui.onClear = () => this.clearAll();
@@ -40,40 +37,6 @@ class SelfAnalysisApp {
     this.loadSavedProgress();
     this.initialized = true;
     console.log('✅ Self-Analysis Pro ready');
-  }
-
-  /* ----------  Initialize UI Components  ---------- */
-  async initializeUIComponents() {
-    try {
-      // Load and initialize custom pickers and step indicator
-      const { CustomDatePicker } = await import('./customDatePicker.js');
-      const { CustomTimePicker } = await import('./customTimePicker.js');
-      const { StepIndicator } = await import('./stepindicator.js');
-      
-      // Initialize if not already done
-      if (!window.customDatePicker) {
-        window.customDatePicker = new CustomDatePicker('date-of-birth');
-        console.log('✅ CustomDatePicker initialized');
-      }
-      
-      if (!window.customTimePicker) {
-        window.customTimePicker = new CustomTimePicker('time-of-birth');
-        console.log('✅ CustomTimePicker initialized');
-      }
-      
-      if (!window.stepIndicator) {
-        window.stepIndicator = new StepIndicator();
-        window.resetStepIndicator = () => {
-          if (window.stepIndicator) {
-            window.stepIndicator.reset();
-          }
-        };
-        console.log('✅ StepIndicator initialized');
-      }
-      
-    } catch (err) {
-      console.error('❌ Failed to initialize UI components:', err);
-    }
   }
 
   /* ----------  Form Data  ---------- */

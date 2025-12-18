@@ -1,4 +1,4 @@
-/*  /js/apps/selfanalysis/loader.js  — Clean Big-App Integration  */
+/*  /js/apps/selfanalysis/loader.js  – Clean Big-App Integration  */
 
 export default class SelfAnalysisLauncher {
   constructor(bigApp) {
@@ -36,7 +36,7 @@ export default class SelfAnalysisLauncher {
         }
 
         // Build layout with Big-App header
-host.innerHTML = `
+        host.innerHTML = `
   <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
@@ -54,8 +54,12 @@ host.innerHTML = `
     </div>
   </div>
 `;
-        // Boot the mini-app
-        return import('/Mini-Apps/SelfAnalysisPro/js/app.js');
+        
+        // Initialize custom pickers BEFORE booting the app
+        return this.initializeCustomPickers().then(() => {
+          // Boot the mini-app
+          return import('/Mini-Apps/SelfAnalysisPro/js/app.js');
+        });
       })
       .then(module => {
         if (typeof module.bootSelfAnalysis === 'function') {
@@ -76,6 +80,51 @@ host.innerHTML = `
           </div>
         `;
       });
+  }
+
+  /* ---- Initialize Custom Date/Time Pickers ---- */
+  async initializeCustomPickers() {
+    try {
+      console.log('🎯 Initializing custom pickers...');
+      
+      // Import picker classes
+      const [
+        { CustomDatePicker },
+        { CustomTimePicker },
+        { StepIndicator }
+      ] = await Promise.all([
+        import('/Mini-Apps/SelfAnalysisPro/js/customDatePicker.js'),
+        import('/Mini-Apps/SelfAnalysisPro/js/customTimePicker.js'),
+        import('/Mini-Apps/SelfAnalysisPro/js/stepindicator.js')
+      ]);
+      
+      // Initialize date picker
+      if (document.getElementById('date-of-birth')) {
+        window.customDatePicker = new CustomDatePicker('date-of-birth');
+        console.log('✅ CustomDatePicker initialized');
+      }
+      
+      // Initialize time picker
+      if (document.getElementById('time-of-birth')) {
+        window.customTimePicker = new CustomTimePicker('time-of-birth');
+        console.log('✅ CustomTimePicker initialized');
+      }
+      
+      // Initialize step indicator
+      if (document.getElementById('step-indicator')) {
+        window.stepIndicator = new StepIndicator();
+        window.resetStepIndicator = () => {
+          if (window.stepIndicator) {
+            window.stepIndicator.reset();
+          }
+        };
+        console.log('✅ StepIndicator initialized');
+      }
+      
+    } catch (err) {
+      console.error('❌ Failed to initialize custom pickers:', err);
+      throw err;
+    }
   }
 
   /* ---- Re-validate form when tab is re-entered ---- */

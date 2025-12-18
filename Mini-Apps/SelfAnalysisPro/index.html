@@ -202,19 +202,6 @@ Run analysis to see your own unique, private analysis narrative, from all the in
 <script type="module" src="/Mini-Apps/SelfAnalysisPro/js/meanings.js"></script>
 <script type="module" src="/Mini-Apps/SelfAnalysisPro/js/customDatePicker.js"></script>
 <script type="module" src="/Mini-Apps/SelfAnalysisPro/js/customTimePicker.js"></script>
-<script type="module">
-  import { StepIndicator } from '/Mini-Apps/SelfAnalysisPro/js/stepindicator.js';
-  window.addEventListener('DOMContentLoaded', () => {
-    console.log('🎯 Manually initializing StepIndicator...');
-    window.stepIndicator = new StepIndicator();
-    window.resetStepIndicator = () => {
-      if (window.stepIndicator) {
-        window.stepIndicator.reset();
-      }
-    };
-    console.log('✅ StepIndicator initialized:', window.stepIndicator);
-  });
-</script>
 <script type="module" src="/Mini-Apps/SelfAnalysisPro/js/ui.js"></script>
 <script type="module" src="/Mini-Apps/SelfAnalysisPro/js/astroAPI.js"></script>
 <script type="module" src="/Mini-Apps/SelfAnalysisPro/js/app.js"></script>
