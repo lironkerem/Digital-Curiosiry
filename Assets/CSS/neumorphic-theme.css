@@ -3123,17 +3123,24 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
 }
 .progress-bar.loading{ width:100%; }
 
-/* Bubble Bar */
+/* Bubble Bar - MOBILE ONLY */
 #bubble-bar{
   position:fixed;
   bottom: var(--spacing-3);
   left:0; right:0;
-  display:flex;
+  display:none; /* Hidden by default on desktop */
   justify-content:space-around;
   padding:40px var(--spacing-2) 80px;
   pointer-events:none;
   z-index:1000;
   contain: layout style paint;
+}
+
+/* Show ONLY on mobile */
+@media (max-width: 767px) {
+  #bubble-bar {
+    display: flex !important;
+  }
 }
 
 .bubble-wrapper{
