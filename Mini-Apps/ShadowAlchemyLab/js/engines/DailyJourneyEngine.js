@@ -37,7 +37,7 @@
 
   const QUESTIONS_PURPOSE = [
     'Describe the quiet (or loud) question you\'re hearing about your direction in life right now.',
-    'What internal narrative links your worth to “making it count” or “getting it right”?',
+    'What internal narrative links your worth to "making it count" or "getting it right"?',
     'Beneath that narrative, what emotion waits—restlessness, dread, longing, something else? Locate it physically.',
     'Which deeper need is asking for acknowledgment—meaning, contribution, freedom, or simply permission to not know yet?',
     'If the part of you that fears wasted time could hand you a single sentence of kindness, what would it say?'
@@ -45,7 +45,7 @@
 
   const QUESTIONS_PLAY = [
     'When you picture pure, light-hearted play, what moment—or absence—shows up first?',
-    'What story do you carry about whether you\'ve “earned” joy or if it\'s a distraction from “real work”?',
+    'What story do you carry about whether you\'ve "earned" joy or if it\'s a distraction from "real work"?',
     'Drop into the body: what emotion lives under that story—guilt, fear of slack, wistful hunger? Name and locate it.',
     'Which need is quietly asking—rest, creative mischief, sensory delight, or simply the right to exist without output?',
     'If your playful shadow could leap forward and gift you one playful permission slip, what exuberant words would it write?'
@@ -184,7 +184,7 @@
     `).join('');
     root.innerHTML = `
       <h3>Choose an area of life to journal about today</h3>
-      <div class="case-selection-grid">${caseGrid}</div>
+      <div class="case-selection-grid" style="margin-bottom: 1.5rem">${caseGrid}</div>
     `;
     root.querySelector('.case-selection-grid').addEventListener('click', e => {
       const btn = e.target.closest('.case-btn');
