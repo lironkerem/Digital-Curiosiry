@@ -3629,7 +3629,7 @@ body.royal-indigo{
   .dashboard-daily-card {
     padding: 0.75rem;
     margin-bottom: 0;
-    min-height: 320px;
+    min-height: 340px;
     display: flex;
     flex-direction: column;
   }
@@ -3657,10 +3657,11 @@ body.royal-indigo{
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0.5rem;
   }
   
-  /* Card image container with proper spacing */
+  /* Card image - no extra container needed, direct styling */
   .dashboard-card-image {
     max-height: 180px;
     width: 100%;
@@ -3669,16 +3670,45 @@ body.royal-indigo{
     flex-shrink: 0;
   }
   
+  /* Fix affirmation/booster/placeholder boxes to show all text */
   .dashboard-affirmation-box,
   .dashboard-booster-box {
-    aspect-ratio: 1/1;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    max-height: none;
+    aspect-ratio: auto;
     padding: 0.75rem;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+  
+  .dashboard-affirmation-text {
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.4;
+  }
+  
+  .dashboard-booster-content {
+    width: 100%;
+    overflow: visible;
   }
   
   .dashboard-booster-emoji {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+  }
+  
+  .dashboard-booster-title,
+  .dashboard-booster-description,
+  .dashboard-booster-meta {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   
   .dashboard-card-title,
@@ -3728,6 +3758,11 @@ body.royal-indigo{
     max-width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+  }
+  
+  /* Make all quest cards look inset like weekly/monthly */
+  .dashboard-quest-card:not(.dashboard-quest-completed) {
+    box-shadow: var(--shadow-inset) !important;
   }
   
   .dashboard-quest-header {
