@@ -4045,14 +4045,14 @@ body.royal-indigo{
   }
   
   #energy-tab .card.p-4 {
-    padding: 1rem 0.5rem !important;
+    padding: 1rem 0 0 0 !important;
   }
   
-  /* Weekly chart - custom settings per user request */
+  /* Weekly chart - 60% scale, no side/bottom padding */
   #energy-tab .card-flex {
     min-height: 500px;
     overflow: hidden;
-    padding: 0.75rem 0.5rem !important;
+    padding: 0.75rem 0 0 0 !important;
   }
   
   #energy-tab .card-flex h3 {
@@ -4067,7 +4067,7 @@ body.royal-indigo{
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 0.5rem;
+    padding: 0;
     margin: 0;
   }
   
@@ -4090,7 +4090,7 @@ body.royal-indigo{
     max-width: 100%;
     max-height: 100%;
     display: block;
-    transform: scale(0.80);
+    transform: scale(0.60);
     transform-origin: center center;
     padding: 0;
     margin: 0;
