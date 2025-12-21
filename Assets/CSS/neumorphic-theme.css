@@ -3654,7 +3654,7 @@ body.royal-indigo{
     display:flex;
     align-items:center;
     justify-content:space-around;
-    z-index:98;                         /* lower than CTA footer (99/100) */
+    z-index:99;                         /* lower than CTA footer (99/100) */
     padding-bottom:env(safe-area-inset-bottom,0);
   }
   .mobile-tab{
