@@ -3642,79 +3642,139 @@ body.royal-indigo{
   
 }
 @media (max-width: 767px) {
-  /* 3-button bar – always UNDER CTA footer */
-  .mobile-bottom-bar{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:72px;                        /* 72 + footer height */
-    background:var(--neuro-bg);
-    box-shadow:0 -4px 12px rgba(0,0,0,.15);
-    display:flex !important;
-    align-items:center;
-    justify-content:space-around;
-    z-index:99;                         /* lower than CTA footer (99/100) */
-    padding-bottom:env(safe-area-inset-bottom,0);
-  }
-  .mobile-tab{
-    flex:1 1 33%;
-    height:100%;
-    border:none;
-    background:transparent;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    color:var(--neuro-text-light);
-    font-size:11px;
-    transition:background .2s;
-    -webkit-tap-highlight-color:transparent;
-  }
-  .mobile-tab img{
-    width:28px;
-    height:28px;
-    object-fit:contain;
-  }
-  .mobile-tab.active{
-    color:var(--neuro-accent);
-    font-weight:600;
-  }
-  .mobile-tab:active{
-    background:rgba(0,0,0,.05);
+  /* 3-button tab bar – sits at the very bottom */
+  .mobile-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px; /* or whatever height you want */
+    background: var(--neuro-bg);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, .15);
+    display: flex !important;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 98;
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
-  /* sheets (re-use same visuals you had for bubble pop-ups) */
-  .mobile-sheet{
-    position:fixed;
-    bottom:0;
-    left:0; right:0;
-    max-height:75vh;
-    background:var(--neuro-bg);
-    border-radius:24px 24px 0 0;
-    box-shadow:0 -8px 32px rgba(0,0,0,.25);
-    z-index:97; /* still under CTA footer */
-    transform:translateY(110%);
-    transition:transform .3s cubic-bezier(.4,0,.2,1);
-    display:flex;
-    flex-direction:column;
+  .mobile-tab {
+    flex: 1 1 33%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--neuro-text-light);
+    font-size: 11px;
+    transition: background .2s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .mobile-sheet[aria-hidden="false"]{ transform:translateY(0); }
 
-  .sheet-grip{ width:40px; height:4px; background:var(--neuro-shadow-dark); border-radius:2px; margin:12px auto 6px; }
-  .sheet-header{ padding:12px 24px 8px; font-size:18px; font-weight:600; text-align:center; color:var(--neuro-text); }
-  .sheet-scroller{ flex:1; overflow-y:auto; padding:0 16px 24px; -webkit-overflow-scrolling:touch; }
+  .mobile-tab img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
 
-  .sheet-row{ display:flex; align-items:center; gap:14px; padding:12px 16px; margin-bottom:10px; border-radius:14px; background:var(--neuro-bg); box-shadow:var(--shadow-raised); cursor:pointer; }
-  .sheet-row:active{ transform:scale(.97); box-shadow:var(--shadow-inset); }
-  .sheet-row img{ width:32px; height:32px; object-fit:contain; }
-  .sheet-row span{ font-size:16px; font-weight:500; color:var(--neuro-text); }
+  .mobile-tab.active {
+    color: var(--neuro-accent);
+    font-weight: 600;
+  }
 
-  /* scrim */
-  .sheet-scrim{ position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); opacity:0; pointer-events:none; transition:opacity .3s; z-index:96; }
-  .sheet-scrim.visible{ opacity:1; pointer-events:auto; }
+  .mobile-tab:active {
+    background: rgba(0, 0, 0, .05);
+  }
+
+  /* CTA footer – sits just above the tab bar */
+  .lux-footer {
+    position: fixed;
+    bottom: 72px; /* height of tab bar */
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
+  /* Optional: sheet scrim stays under both */
+  .sheet-scrim {
+    z-index: 97;
+  }
+
+  /* sheets (same as before) */
+  .mobile-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    max-height: 75vh;
+    background: var(--neuro-bg);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, .25);
+    z-index: 96;
+    transform: translateY(110%);
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-sheet[aria-hidden="false"] {
+    transform: translateY(0);
+  }
+
+  .sheet-grip {
+    width: 40px;
+    height: 4px;
+    background: var(--neuro-shadow-dark);
+    border-radius: 2px;
+    margin: 12px auto 6px;
+  }
+
+  .sheet-header {
+    padding: 12px 24px 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--neuro-text);
+  }
+
+  .sheet-scroller {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 16px 24px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sheet-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    background: var(--neuro-bg);
+    box-shadow: var(--shadow-raised);
+    cursor: pointer;
+  }
+
+  .sheet-row:active {
+    transform: scale(.97);
+    box-shadow: var(--shadow-inset);
+  }
+
+  .sheet-row img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .sheet-row span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--neuro-text);
+  }
 }
 /* =========================================================
    END OF FILE – production-ready, unified, mobile-first
