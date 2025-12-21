@@ -3651,7 +3651,7 @@ body.royal-indigo{
     height:72px;                        /* 72 + footer height */
     background:var(--neuro-bg);
     box-shadow:0 -4px 12px rgba(0,0,0,.15);
-    display:flex;
+    display:flex !important;
     align-items:center;
     justify-content:space-around;
     z-index:99;                         /* lower than CTA footer (99/100) */
