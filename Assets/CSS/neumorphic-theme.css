@@ -3629,24 +3629,51 @@ body.royal-indigo{
   .dashboard-daily-card {
     padding: 0.75rem;
     margin-bottom: 0;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
   }
   
   /* Shrink cards to fit 2x2 grid */
   .daily-card-wrapper {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
-  /* Reduce card image for smaller cards */
+  .daily-card-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .daily-card-back,
+  .daily-card-front {
+    height: 100%;
+  }
+  
+  .card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Card image container with proper spacing */
   .dashboard-card-image {
-    max-height: 160px;
+    max-height: 180px;
     width: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
   }
   
   .dashboard-affirmation-box,
   .dashboard-booster-box {
-    aspect-ratio: 1/1.1;
+    aspect-ratio: 1/1;
     padding: 0.75rem;
+    flex-shrink: 0;
   }
   
   .dashboard-booster-emoji {
@@ -3658,10 +3685,22 @@ body.royal-indigo{
   .dashboard-card-title-front {
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
+    flex-shrink: 0;
+  }
+  
+  .dashboard-card-subtitle,
+  .dashboard-card-meaning {
+    flex-shrink: 0;
   }
   
   
   /* ===== 5. QUEST HUB - 2x3 GRID ===== */
+  
+  /* Fix quest hub container overflow */
+  .dashboard-quest-hub {
+    padding: 1.25rem;
+    overflow: hidden;
+  }
   
   /* Fix quest grid container */
   .quest-tab-content {
@@ -3669,18 +3708,26 @@ body.royal-indigo{
     overflow: hidden;
   }
   
-  .quest-tab-content > div.grid {
+  /* Force all quest grids to fit properly */
+  .quest-tab-content > div.grid,
+  #quest-content-daily > div.grid,
+  #quest-content-weekly > div.grid,
+  #quest-content-monthly > div.grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem !important;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   .dashboard-quest-card {
     padding: 0.875rem;
     min-height: auto;
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
   }
   
   .dashboard-quest-header {
@@ -3689,16 +3736,27 @@ body.royal-indigo{
   
   .dashboard-quest-icon {
     font-size: clamp(2rem, 6vw, 2.5rem);
+    flex-shrink: 0;
+  }
+  
+  .dashboard-quest-info {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
   }
   
   .dashboard-quest-name {
     font-size: clamp(0.9rem, 3.5vw, 1rem);
     line-height: 1.2;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   
   .dashboard-quest-inspirational {
     font-size: clamp(0.65rem, 2.5vw, 0.7rem);
     line-height: 1.3;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   
   /* Countdown timer - single line */
@@ -3723,6 +3781,11 @@ body.royal-indigo{
   /* Make countdown inline with quest count */
   .quest-count {
     display: inline;
+  }
+  
+  .dashboard-quest-footer {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
   }
   
   
