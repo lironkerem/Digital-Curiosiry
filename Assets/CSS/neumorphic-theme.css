@@ -5994,5 +5994,3268 @@ body.royal-indigo{
    END OF GUIDED MEDITATIONS MOBILE OPTIMIZATION
    ========================================================= */
 /* =========================================================
+   FLIP THE SCRIPT MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Main header */
+  #flip-script-tab .main-header.project-curiosity h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  #flip-script-tab .main-header.project-curiosity h3 {
+    font-size: clamp(0.875rem, 3vw, 1.375rem);
+  }
+  
+  /* Textarea */
+  #flip-script-tab textarea#negative-input {
+    font-size: clamp(0.95rem, 3.5vw, 1.125rem) !important;
+    line-height: 1.6;
+  }
+  
+  /* Character counter */
+  #flip-script-tab .char-counter {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Suggestion label */
+  #flip-script-tab .suggestion-label {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Suggestion buttons */
+  #flip-script-tab .suggestion-btn {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Main flip button */
+  #flip-script-tab .flip-main-btn {
+    font-size: clamp(1.25rem, 4vw, 1.75rem) !important;
+  }
+  
+  /* Clear button */
+  #flip-script-tab .clear-small-btn {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Output text */
+  #flip-script-tab .flipped-text {
+    font-size: clamp(1.1rem, 3.5vw, 1.375rem) !important;
+    line-height: 1.6;
+  }
+  
+  /* Output header */
+  #flip-script-tab .output-header h2 {
+    font-size: clamp(1.5rem, 4.5vw, 2rem) !important;
+  }
+  
+  /* Flip another button */
+  #flip-script-tab .flip-another-inside {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Saved flips title */
+  #flip-script-tab .collapse-toggle h2 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Search input */
+  #flip-script-tab .search-input {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Saved items */
+  #flip-script-tab .saved-item p {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 2. STACKED LAYOUTS ===== */
+  
+  /* Main container */
+  #flip-script-tab > div[style*="padding:1.5rem"] {
+    padding: 1rem !important;
+  }
+  
+  /* Input layout - stack vertically */
+  #flip-script-tab .input-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  
+  /* Input main - full width */
+  #flip-script-tab .input-main {
+    width: 100%;
+  }
+  
+  /* Suggestions - full width */
+  #flip-script-tab .flip-suggestions {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  /* Suggestion buttons grid - 2 columns */
+  #flip-script-tab .suggestion-buttons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Button group - full width */
+  #flip-script-tab .btn-group-vertical {
+    gap: 1rem !important;
+  }
+  
+  
+  /* ===== 3. TOUCH-FRIENDLY SPACING ===== */
+  
+  /* Card padding */
+  #flip-script-tab .card[style*="padding:2rem"] {
+    padding: 1.5rem !important;
+  }
+  
+  /* Textarea wrapper */
+  #flip-script-tab .textarea-wrapper {
+    position: relative;
+  }
+  
+  /* Textarea - comfortable height */
+  #flip-script-tab textarea#negative-input {
+    min-height: 150px !important;
+    padding: 1rem 3.5rem 1rem 1rem !important;
+  }
+  
+  /* Voice input button - larger tap target */
+  #flip-script-tab .voice-input-btn {
+    width: 50px !important;
+    height: 50px !important;
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+    font-size: 1.5rem !important;
+  }
+  
+  /* Character counter spacing */
+  #flip-script-tab .char-counter {
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  /* Suggestion buttons - comfortable tap targets */
+  #flip-script-tab .suggestion-btn {
+    padding: 0.875rem 1rem !important;
+    min-height: 3rem;
+  }
+  
+  /* Main flip button - hero sizing */
+  #flip-script-tab .flip-main-btn {
+    min-height: 4rem !important;
+    padding: 1.25rem 2rem !important;
+  }
+  
+  /* Clear button */
+  #flip-script-tab .clear-small-btn {
+    min-height: 3rem !important;
+    padding: 0.875rem 1.5rem !important;
+  }
+  
+  /* Progress wrapper */
+  #flip-script-tab .progress-wrapper {
+    margin-top: 1rem !important;
+  }
+  
+  #flip-script-tab .progress-bar {
+    height: 2rem !important;
+  }
+  
+  #flip-script-tab .progress-inner {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 4. OUTPUT SECTION ===== */
+  
+  /* Output card padding */
+  #flip-script-tab .output-card {
+    padding: 2rem 1.5rem !important;
+  }
+  
+  /* Output header */
+  #flip-script-tab .output-header {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Flipped text - comfortable reading */
+  #flip-script-tab .flipped-text {
+    padding: 1rem;
+    margin: 1.5rem 0 !important;
+  }
+  
+  /* Flip another button */
+  #flip-script-tab .flip-another-inside {
+    min-height: 3.5rem !important;
+    padding: 1rem 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Action icons */
+  #flip-script-tab .action-icons {
+    gap: 1rem !important;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  
+  #flip-script-tab .icon-btn {
+    min-width: 56px !important;
+    min-height: 56px !important;
+    font-size: 1.75rem !important;
+    padding: 1rem !important;
+  }
+  
+  
+  /* ===== 5. SAVED FLIPS SECTION ===== */
+  
+  /* Collapsible card */
+  #flip-script-tab .collapsible-card {
+    width: 100%;
+  }
+  
+  /* Collapse toggle */
+  #flip-script-tab .collapse-toggle {
+    padding: 1rem 1.25rem !important;
+    gap: 0.75rem;
+  }
+  
+  #flip-script-tab .collapse-icon {
+    font-size: clamp(1rem, 3vw, 1.25rem) !important;
+  }
+  
+  /* Collapse content padding */
+  #flip-script-tab .collapse-content {
+    padding: 1.25rem !important;
+  }
+  
+  #flip-script-tab .collapse-content.collapsed {
+    padding: 0 1.25rem !important;
+  }
+  
+  /* Search input */
+  #flip-script-tab .search-input {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Saved list */
+  #flip-script-tab #saved-list {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Saved items */
+  #flip-script-tab .saved-item {
+    padding: 1rem !important;
+    margin: 0.75rem 0 !important;
+    flex-direction: column !important;
+    gap: 0.75rem;
+  }
+  
+  #flip-script-tab .saved-item > div:first-child {
+    width: 100%;
+  }
+  
+  /* Action icons in saved items */
+  #flip-script-tab .saved-item .action-icons {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+  
+  #flip-script-tab .small-btn {
+    padding: 0.5rem 1rem !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    min-height: 2.5rem;
+  }
+  
+  /* Backup/restore buttons */
+  #flip-script-tab .backup-restore {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  #flip-script-tab .backup-restore .btn {
+    width: 100% !important;
+    min-height: 3rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 6. ANIMATIONS & EFFECTS ===== */
+  
+  /* Flip particles - smaller on mobile */
+  #flip-script-tab .flip-particle {
+    font-size: 2rem !important;
+  }
+  
+  /* Halo rings - scaled down */
+  #flip-script-tab .halo-ring {
+    border-width: 2px !important;
+  }
+  
+  
+  /* ===== 7. VOICE INPUT STATES ===== */
+  
+  #flip-script-tab .voice-input-btn.listening {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  
+  /* ===== 8. SECTION VISIBILITY ===== */
+  
+  /* Input section minimized state */
+  #flip-script-tab .input-section.minimized {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Output section animations */
+  #flip-script-tab .output-main-event {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  #flip-script-tab .output-main-event.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  
+  
+  /* ===== 9. TEXT FORMATTING ===== */
+  
+  /* Ensure text wraps properly */
+  #flip-script-tab .flipped-text,
+  #flip-script-tab .saved-item p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  
+  /* Edit input in saved items */
+  #flip-script-tab .edit-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    border-radius: var(--radius-md);
+  }
+  
+  
+  /* ===== 10. GENERAL IMPROVEMENTS ===== */
+  
+  /* Universal content wrapper */
+  #flip-script-tab .universal-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Header spacing */
+  #flip-script-tab header {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Card margins */
+  #flip-script-tab .card[style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Button hover states - visual feedback */
+  #flip-script-tab .btn:active:not(:disabled),
+  #flip-script-tab .icon-btn:active {
+    transform: scale(0.98);
+  }
+  
+  /* Suggestion buttons - active state */
+  #flip-script-tab .suggestion-btn:active {
+    transform: scale(0.96);
+  }
+  
+  /* Better border radius */
+  #flip-script-tab .card {
+    border-radius: var(--radius-xl) !important;
+  }
+  
+  /* Focus states */
+  #flip-script-tab textarea:focus,
+  #flip-script-tab input:focus {
+    outline: none;
+    box-shadow: var(--shadow-inset), 0 0 0 2px var(--neuro-accent) !important;
+  }
+  
+  /* Loading state */
+  #flip-script-tab .flip-main-btn:disabled {
+    opacity: 0.7;
+  }
+  
+  /* Character counter warnings */
+  #flip-script-tab .char-counter.warning {
+    color: var(--neuro-warning);
+  }
+  
+  #flip-script-tab .char-counter.danger {
+    color: var(--neuro-error);
+    font-weight: 700;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - ULTRA COMPACT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Tighter container padding */
+  #flip-script-tab > div[style*="padding:1.5rem"] {
+    padding: 0.75rem !important;
+  }
+  
+  /* Smaller card padding */
+  #flip-script-tab .card[style*="padding:2rem"] {
+    padding: 1rem !important;
+  }
+  
+  /* Single column suggestions */
+  #flip-script-tab .suggestion-buttons-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Smaller buttons */
+  #flip-script-tab .flip-main-btn {
+    min-height: 3.5rem !important;
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Compact output */
+  #flip-script-tab .output-card {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  /* Smaller action icons */
+  #flip-script-tab .icon-btn {
+    min-width: 50px !important;
+    min-height: 50px !important;
+    font-size: 1.5rem !important;
+  }
+  
+  /* Compact saved items */
+  #flip-script-tab .saved-item {
+    padding: 0.875rem !important;
+  }
+  
+}
+
+/* =========================================================
+   END OF FLIP THE SCRIPT MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   SELF-ANALYSIS PRO MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Step indicator labels */
+  #calculator-tab .step-label,
+  .step-label {
+    font-size: clamp(0.7rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Main headings */
+  #calculator-tab h2,
+  #app-page h2 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Section headings */
+  #calculator-tab h3,
+  #app-page h3 {
+    font-size: clamp(1.1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Form labels */
+  #calculator-tab .form-group label,
+  #app-page .form-group label {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Form inputs */
+  #calculator-tab .form-input,
+  #app-page .form-input {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Expandable headers */
+  #calculator-tab .expandable-header,
+  #app-page .expandable-header {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Data labels and values */
+  #calculator-tab .data-label,
+  #calculator-tab .data-value,
+  #app-page .data-label,
+  #app-page .data-value {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Explanation text */
+  #calculator-tab .explanation-text,
+  #app-page .explanation-text {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    line-height: 1.6;
+  }
+  
+  /* Placeholder text */
+  #calculator-tab .placeholder-text,
+  #app-page .placeholder-text {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* CTA text */
+  #calculator-tab .cta-welcome-title,
+  #app-page .cta-welcome-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  #calculator-tab .cta-welcome-text,
+  #app-page .cta-welcome-text {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #calculator-tab .cta-welcome-link,
+  #app-page .cta-welcome-link {
+    font-size: clamp(0.95rem, 3.5vw, 1.125rem) !important;
+  }
+  
+  
+  /* ===== 2. CRITICAL: HIDE SUMMARY CARD, FULL-WIDTH FORM ===== */
+  
+  /* HIDE Quick Summary on mobile */
+  #calculator-tab .summary-card,
+  #app-page .summary-card {
+    display: none !important;
+  }
+  
+  /* Top row - single column (form only) */
+  #calculator-tab .top-row,
+  #app-page .top-row {
+    display: block !important;
+    gap: 0 !important;
+  }
+  
+  /* Form card - full width */
+  #calculator-tab .form-card,
+  #app-page .form-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+  
+  /* Details card - full width */
+  #calculator-tab .details-card,
+  #app-page .details-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  
+  /* ===== 3. STEP INDICATOR - MOBILE OPTIMIZED ===== */
+  
+  #calculator-tab .step-indicator,
+  .step-indicator {
+    padding: 0.75rem 0.5rem !important;
+    margin-bottom: 1rem !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  #calculator-tab .step-item,
+  .step-item {
+    flex: 0 0 auto;
+    min-width: 80px;
+    padding: 0 0.25rem;
+  }
+  
+  #calculator-tab .step-label,
+  .step-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  #calculator-tab .step-dot,
+  .step-dot {
+    width: 12px;
+    height: 12px;
+  }
+  
+  #calculator-tab .step-connector,
+  .step-connector {
+    top: 6px;
+  }
+  
+  
+  /* ===== 4. FORM LAYOUT - STACKED ===== */
+  
+  /* Form groups - full width */
+  #calculator-tab .form-group,
+  #app-page .form-group {
+    margin-bottom: 1.25rem !important;
+  }
+  
+  /* Input wrapper */
+  #calculator-tab .input-wrapper,
+  #app-page .input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Form inputs - comfortable height */
+  #calculator-tab .form-input,
+  #app-page .form-input {
+    padding: 1rem !important;
+    min-height: 3rem;
+  }
+  
+  /* Validation icons */
+  #calculator-tab .validation-icon,
+  #app-page .validation-icon {
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Error messages */
+  #calculator-tab .error-message,
+  #app-page .error-message {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    margin-top: 0.5rem;
+  }
+  
+  /* Checkbox labels */
+  #calculator-tab .form-group label:has(input[type="checkbox"]),
+  #app-page .form-group label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  
+  /* ===== 5. TOUCH-FRIENDLY SPACING ===== */
+  
+  /* Main container */
+  #calculator-tab .page,
+  #app-page {
+    padding: 1rem !important;
+  }
+  
+  /* Cards */
+  #calculator-tab .card,
+  #app-page .card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Controls section */
+  #calculator-tab .controls,
+  #app-page .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Buttons - full width, larger */
+  #calculator-tab .btn,
+  #app-page .btn {
+    width: 100% !important;
+    min-height: 3.5rem !important;
+    padding: 1rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #calculator-tab #btn-analyze,
+  #app-page #btn-analyze {
+    min-height: 4rem !important;
+    font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
+    font-weight: 700;
+  }
+  
+  
+  /* ===== 6. EXPANDABLE CARDS - OPTIMIZED ===== */
+  
+  #calculator-tab .expandable-card,
+  #app-page .expandable-card {
+    margin-bottom: 1rem !important;
+    padding: 0 !important;
+  }
+  
+  /* Expandable headers - better tap targets */
+  #calculator-tab .expandable-header,
+  #app-page .expandable-header {
+    padding: 1rem 1.25rem !important;
+    gap: 0.75rem;
+    cursor: pointer;
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  #calculator-tab .expandable-header:active,
+  #app-page .expandable-header:active {
+    transform: scale(0.98);
+  }
+  
+  /* Chevron */
+  #calculator-tab .chevron,
+  #app-page .chevron {
+    font-size: clamp(1rem, 3vw, 1.25rem) !important;
+    flex-shrink: 0;
+  }
+  
+  /* Expandable content */
+  #calculator-tab .expandable-content,
+  #app-page .expandable-content {
+    padding: 1.25rem !important;
+  }
+  
+  
+  /* ===== 7. LOCATION DROPDOWN - MOBILE FRIENDLY ===== */
+  
+  #calculator-tab .location-dropdown,
+  #app-page .location-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 200;
+    margin-top: 0.5rem;
+  }
+  
+  #calculator-tab .location-item,
+  #calculator-tab .location-option,
+  #app-page .location-item,
+  #app-page .location-option {
+    padding: 1rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 8. TOOLTIPS - MOBILE OPTIMIZED ===== */
+  
+  #calculator-tab .tooltip,
+  #app-page .tooltip {
+    width: 24px;
+    height: 24px;
+    font-size: 0.875rem;
+  }
+  
+  #calculator-tab .tooltip-text,
+  #app-page .tooltip-text {
+    max-width: 90vw !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 120%;
+  }
+  
+  /* Show tooltip on tap/click instead of hover */
+  #calculator-tab .tooltip.active .tooltip-text,
+  #app-page .tooltip.active .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
+  /* ===== 9. PROGRESS BAR ===== */
+  
+  #calculator-tab .progress-wrapper,
+  #app-page .progress-wrapper {
+    margin-top: 1.5rem !important;
+  }
+  
+  #calculator-tab .progress-bar,
+  #app-page .progress-bar {
+    height: 1.5rem !important;
+  }
+  
+  #calculator-tab .progress-inner,
+  #app-page .progress-inner {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  #calculator-tab .progress-text,
+  #app-page .progress-text {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    margin-top: 0.5rem;
+  }
+  
+  
+  /* ===== 10. WATERMARKS - SCALED DOWN ===== */
+  
+  #calculator-tab .story-watermark::before,
+  #calculator-tab .numerology-watermark::before,
+  #calculator-tab .astrology-watermark::before,
+  #calculator-tab .tree-watermark::before,
+  #calculator-tab .cta-logo-watermark::before,
+  #app-page .story-watermark::before,
+  #app-page .numerology-watermark::before,
+  #app-page .astrology-watermark::before,
+  #app-page .tree-watermark::before,
+  #app-page .cta-logo-watermark::before {
+    width: clamp(40px, 10vw, 60px) !important;
+    height: clamp(40px, 10vw, 60px) !important;
+    right: 1rem !important;
+  }
+  
+  #calculator-tab .expanded::before,
+  #app-page .expanded::before {
+    width: clamp(80px, 18vw, 120px) !important;
+    height: clamp(80px, 18vw, 120px) !important;
+  }
+  
+  
+  /* ===== 11. TABLES - RESPONSIVE ===== */
+  
+  #calculator-tab .natal-table,
+  #app-page .natal-table {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    overflow-x: auto;
+    display: block;
+  }
+  
+  #calculator-tab .natal-table th,
+  #calculator-tab .natal-table td,
+  #app-page .natal-table th,
+  #app-page .natal-table td {
+    padding: 0.75rem 0.5rem !important;
+  }
+  
+  
+  /* ===== 12. TAROT/IMAGE CARDS - SCALED ===== */
+  
+  #calculator-tab .tarot-card,
+  #calculator-tab .cta-image-card,
+  #app-page .tarot-card,
+  #app-page .cta-image-card {
+    max-width: 100%;
+  }
+  
+  #calculator-tab .tarot-card-inner,
+  #calculator-tab .cta-image-inner,
+  #app-page .tarot-card-inner,
+  #app-page .cta-image-inner {
+    padding: 0.75rem;
+  }
+  
+  
+  /* ===== 13. CTA SECTION - MOBILE FRIENDLY ===== */
+  
+  #calculator-tab .cta-welcome-text,
+  #app-page .cta-welcome-text {
+    text-align: center;
+    line-height: 1.6;
+    padding: 0 0.5rem;
+  }
+  
+  #calculator-tab .cta-welcome-link,
+  #app-page .cta-welcome-link {
+    display: inline-block;
+    margin-top: 1rem;
+    word-break: break-word;
+  }
+  
+  
+  /* ===== 14. DATA ROWS - STACKED ===== */
+  
+  #calculator-tab .data-row,
+  #app-page .data-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.25rem;
+  }
+  
+  
+  /* ===== 15. CALCULATION TRACES - READABLE ===== */
+  
+  #calculator-tab .calculation-trace,
+  #app-page .calculation-trace {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  
+  /* ===== 16. SECTION SPACING ===== */
+  
+  #calculator-tab .top-row,
+  #app-page .top-row {
+    margin-bottom: 1.5rem !important;
+    gap: 0 !important;
+  }
+  
+  #calculator-tab #step-3-section,
+  #app-page #step-3-section {
+    margin-top: 1.5rem !important;
+  }
+  
+  #calculator-tab #step-4-section,
+  #app-page #step-4-section {
+    margin-top: 1.5rem !important;
+  }
+  
+  
+  /* ===== 17. TEXT FORMATTING ===== */
+  
+  /* Preserve whitespace in narratives */
+  #calculator-tab .preserve-whitespace,
+  #app-page .preserve-whitespace {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Heading spacing */
+  #calculator-tab .explanation-heading,
+  #app-page .explanation-heading {
+    margin-top: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    font-size: clamp(0.95rem, 3vw, 1.125rem) !important;
+  }
+  
+  
+  /* ===== 18. GENERAL IMPROVEMENTS ===== */
+  
+  /* Reduce excessive margins */
+  #calculator-tab [style*="margin-bottom: 2rem"],
+  #app-page [style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Better border radius */
+  #calculator-tab .card,
+  #app-page .card {
+    border-radius: var(--radius-xl) !important;
+  }
+  
+  /* Focus states */
+  #calculator-tab .form-input:focus,
+  #app-page .form-input:focus {
+    outline: none;
+    box-shadow: var(--shadow-inset), 0 0 0 2px var(--neuro-accent) !important;
+  }
+  
+  /* Touch feedback */
+  #calculator-tab .btn:active:not(:disabled),
+  #app-page .btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  
+  /* Disabled button state */
+  #calculator-tab .btn:disabled,
+  #app-page .btn:disabled {
+    opacity: 0.5;
+  }
+  
+  /* Hidden elements */
+  #calculator-tab .hidden,
+  #app-page .hidden {
+    display: none !important;
+  }
+  
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - ULTRA COMPACT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Tighter padding */
+  #calculator-tab .page,
+  #app-page {
+    padding: 0.75rem !important;
+  }
+  
+  #calculator-tab .card,
+  #app-page .card {
+    padding: 1rem !important;
+  }
+  
+  /* Smaller step indicator */
+  #calculator-tab .step-indicator,
+  .step-indicator {
+    padding: 0.5rem 0.25rem !important;
+  }
+  
+  #calculator-tab .step-item,
+  .step-item {
+    min-width: 70px;
+  }
+  
+  /* Compact form spacing */
+  #calculator-tab .form-group,
+  #app-page .form-group {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Smaller buttons */
+  #calculator-tab .btn,
+  #app-page .btn {
+    min-height: 3rem !important;
+    padding: 0.875rem 1.25rem !important;
+  }
+  
+  #calculator-tab #btn-analyze,
+  #app-page #btn-analyze {
+    min-height: 3.5rem !important;
+  }
+  
+  /* Compact expandable headers */
+  #calculator-tab .expandable-header,
+  #app-page .expandable-header {
+    padding: 0.875rem 1rem !important;
+    min-height: 3rem;
+  }
+  
+  /* Compact content */
+  #calculator-tab .expandable-content,
+  #app-page .expandable-content {
+    padding: 1rem !important;
+  }
+  
+}
+
+/* =========================================================
+   END OF SELF-ANALYSIS PRO MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   SHADOW ALCHEMY LAB MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Stats bar labels and values */
+  #shadow-alchemy-tab .stat-label {
+    font-size: clamp(0.7rem, 2.5vw, 0.85rem) !important;
+  }
+  
+  #shadow-alchemy-tab .stat-value {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Card headings */
+  #shadow-alchemy-tab .card h3 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Card descriptions */
+  #shadow-alchemy-tab .card p {
+    font-size: clamp(0.85rem, 3vw, 0.95rem) !important;
+    line-height: 1.5;
+  }
+  
+  /* Main action buttons text */
+  #shadow-alchemy-tab .btn span {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Button emojis */
+  #shadow-alchemy-tab .btn span[style*="font-size:2rem"] {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+  
+  /* Archetype cards */
+  #shadow-alchemy-tab .archetype-card {
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem) !important;
+  }
+  
+  #shadow-alchemy-tab .archetype-card div[style*="font-size:1.5rem"] {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Journal entries */
+  #shadow-alchemy-tab .journal-entry strong {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #shadow-alchemy-tab .journal-entry .muted {
+    font-size: clamp(0.75rem, 2.5vw, 0.85rem) !important;
+  }
+  
+  /* Sub-shadows metrics */
+  #shadow-alchemy-tab div[style*="font-size:1.5rem;margin-bottom"] {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  #shadow-alchemy-tab div[style*="font-weight:600;font-size:0.9rem"] {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+  }
+  
+  
+  /* ===== 2. STATS BAR - MOBILE GRID ===== */
+  
+  #shadow-alchemy-tab .stats-bar {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  #shadow-alchemy-tab .neuro-stat {
+    padding: 0.875rem !important;
+    text-align: center;
+  }
+  
+  /* Companion visual - center it */
+  #shadow-alchemy-tab .neuro-stat:first-child {
+    grid-column: 1 / -1;
+  }
+  
+  
+  /* ===== 3. DASHBOARD LAYOUT - SINGLE COLUMN ===== */
+  
+  #shadow-alchemy-tab .dashboard {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  
+  #shadow-alchemy-tab #shadow-alchemy-main-content {
+    padding: 1rem !important;
+  }
+  
+  
+  /* ===== 4. SHADOW LAB CARD - STACKED BUTTONS ===== */
+  
+  /* Main action buttons grid - single column */
+  #shadow-alchemy-tab .card > div[style*="grid-template-columns"] {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-top: 1.25rem !important;
+  }
+  
+  /* Shadow lab buttons - optimized height */
+  #shadow-alchemy-tab #startNewJourney,
+  #shadow-alchemy-tab #openFreeJournal,
+  #shadow-alchemy-tab #openTriggerLog {
+    min-height: 100px !important;
+    padding: 1.25rem !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+  }
+  
+  
+  /* ===== 5. ARCHETYPE GRID - 2 COLUMNS ===== */
+  
+  #shadow-alchemy-tab .archetype-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  #shadow-alchemy-tab .archetype-card {
+    padding: 1rem !important;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  #shadow-alchemy-tab .archetype-card:active {
+    transform: scale(0.98);
+  }
+  
+  
+  /* ===== 6. SUB-SHADOWS METRICS - SINGLE COLUMN ===== */
+  
+  #shadow-alchemy-tab .card > div[style*="grid-template-columns:repeat(3,1fr)"] {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    margin: 1rem 0 !important;
+  }
+  
+  #shadow-alchemy-tab .card > div[style*="grid-template-columns:repeat(3,1fr)"] > div {
+    padding: 1rem !important;
+  }
+  
+  
+  /* ===== 7. SAVED WORK SECTION ===== */
+  
+  /* Header layout - stack on small screens */
+  #shadow-alchemy-tab #saved-work-header {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+  
+  #shadow-alchemy-tab #toggle-saved-work {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+  
+  /* Journal entries - stack content and actions */
+  #shadow-alchemy-tab .journal-entry {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+  }
+  
+  #shadow-alchemy-tab .entry-content {
+    width: 100%;
+  }
+  
+  #shadow-alchemy-tab .entry-actions {
+    width: 100%;
+    justify-content: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* Entry action buttons */
+  #shadow-alchemy-tab .entry-view-btn,
+  #shadow-alchemy-tab .entry-edit-btn,
+  #shadow-alchemy-tab .entry-delete-btn {
+    flex: 1;
+    min-height: 2.5rem;
+    padding: 0.625rem 1rem !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  
+  /* ===== 8. ACTIVE JOURNEY BANNER ===== */
+  
+  #shadow-alchemy-tab .card > div[style*="background:var(--neuro-bg)"][style*="padding:var(--spacing-md)"] {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  #shadow-alchemy-tab #continue-last-session {
+    min-height: 3rem !important;
+    padding: 0.875rem 1.25rem !important;
+    margin-top: 0.75rem !important;
+  }
+  
+  
+  /* ===== 9. BUTTONS - TOUCH OPTIMIZED ===== */
+  
+  #shadow-alchemy-tab .btn {
+    min-height: 3rem !important;
+    padding: 0.875rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #shadow-alchemy-tab .btn-primary {
+    min-height: 3.5rem !important;
+    font-weight: 700;
+  }
+  
+  #shadow-alchemy-tab .btn-small {
+    min-height: 2.5rem !important;
+    padding: 0.625rem 1rem !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Large CTA buttons */
+  #shadow-alchemy-tab #open-sub-shadows-lab {
+    min-height: 3.5rem !important;
+    padding: 1.25rem !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+  }
+  
+  
+  /* ===== 10. CARD STYLING ===== */
+  
+  #shadow-alchemy-tab .card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: var(--radius-xl) !important;
+  }
+  
+  /* Card headers - centered */
+  #shadow-alchemy-tab .card > div[style*="text-align:center"] {
+    margin-bottom: 1rem !important;
+  }
+  
+  #shadow-alchemy-tab .card > div[style*="text-align:center"] > div[style*="font-size:3rem"] {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #shadow-alchemy-tab .card > div[style*="text-align:center"] h3 {
+    margin: 0 0 0.5rem 0 !important;
+  }
+  
+  #shadow-alchemy-tab .card > div[style*="text-align:center"] p {
+    max-width: 100% !important;
+    padding: 0 0.5rem;
+  }
+  
+  
+  /* ===== 11. TEXT FORMATTING ===== */
+  
+  /* Ensure text wraps properly */
+  #shadow-alchemy-tab .journal-entry div {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Entry date - prevent wrap */
+  #shadow-alchemy-tab .journal-entry > div > div:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Muted text - ellipsis on overflow */
+  #shadow-alchemy-tab .muted {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  
+  /* ===== 12. SPACING & LAYOUT ===== */
+  
+  /* Reduce excessive margins */
+  #shadow-alchemy-tab [style*="margin-top:var(--spacing-xl)"] {
+    margin-top: 1.25rem !important;
+  }
+  
+  #shadow-alchemy-tab [style*="margin-bottom:var(--spacing-lg)"] {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Gap adjustments */
+  #shadow-alchemy-tab [style*="gap:var(--spacing-lg)"] {
+    gap: 1rem !important;
+  }
+  
+  #shadow-alchemy-tab [style*="gap:var(--spacing-md)"] {
+    gap: 0.75rem !important;
+  }
+  
+  
+  /* ===== 13. TOUCH FEEDBACK ===== */
+  
+  #shadow-alchemy-tab .btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  
+  #shadow-alchemy-tab .journal-entry:active {
+    transform: scale(0.99);
+  }
+  
+  #shadow-alchemy-tab .archetype-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  
+  /* ===== 14. GENERAL IMPROVEMENTS ===== */
+  
+  /* Better focus states */
+  #shadow-alchemy-tab .btn:focus-visible {
+    outline: 3px solid var(--neuro-accent);
+    outline-offset: 3px;
+  }
+  
+  /* Disabled states */
+  #shadow-alchemy-tab .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Saved work content */
+  #shadow-alchemy-tab #saved-work-content {
+    margin-top: 1rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  /* Arrow icon sizing */
+  #shadow-alchemy-tab #saved-work-arrow {
+    font-size: 1.25rem;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - ULTRA COMPACT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Even tighter padding */
+  #shadow-alchemy-tab #shadow-alchemy-main-content {
+    padding: 0.75rem !important;
+  }
+  
+  #shadow-alchemy-tab .card {
+    padding: 1rem !important;
+  }
+  
+  /* Stats bar - tighter */
+  #shadow-alchemy-tab .stats-bar {
+    gap: 0.5rem !important;
+  }
+  
+  #shadow-alchemy-tab .neuro-stat {
+    padding: 0.75rem !important;
+  }
+  
+  /* Single column archetype grid on tiny screens */
+  #shadow-alchemy-tab .archetype-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Smaller buttons */
+  #shadow-alchemy-tab .btn {
+    min-height: 2.75rem !important;
+    padding: 0.75rem 1.25rem !important;
+  }
+  
+  #shadow-alchemy-tab .btn-primary {
+    min-height: 3.25rem !important;
+  }
+  
+  /* Compact shadow lab buttons */
+  #shadow-alchemy-tab #startNewJourney,
+  #shadow-alchemy-tab #openFreeJournal,
+  #shadow-alchemy-tab #openTriggerLog {
+    min-height: 90px !important;
+    padding: 1rem !important;
+  }
+  
+  /* Compact journal entries */
+  #shadow-alchemy-tab .journal-entry {
+    padding: 0.875rem !important;
+  }
+  
+  /* Entry actions - smaller buttons */
+  #shadow-alchemy-tab .entry-view-btn,
+  #shadow-alchemy-tab .entry-edit-btn,
+  #shadow-alchemy-tab .entry-delete-btn {
+    min-height: 2.25rem !important;
+    padding: 0.5rem 0.875rem !important;
+  }
+  
+}
+
+/* =========================================================
+   END OF SHADOW ALCHEMY LAB MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   KARMA SHOP MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Main header */
+  #karma-shop-tab .main-header.project-curiosity h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  #karma-shop-tab .main-header.project-curiosity h3 {
+    font-size: clamp(0.875rem, 3vw, 1.375rem);
+  }
+  
+  /* Balance card */
+  #karma-shop-tab .karma-shop-balance-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-balance-amount {
+    font-size: clamp(3rem, 8vw, 4.5rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-balance-subtitle {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Category titles */
+  #karma-shop-tab .karma-shop-category-title {
+    font-size: clamp(1.5rem, 4.5vw, 2rem) !important;
+  }
+  
+  /* Item cards */
+  #karma-shop-tab .karma-shop-item-icon {
+    font-size: clamp(2.5rem, 7vw, 3rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item-name {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item-description {
+    font-size: clamp(0.85rem, 3vw, 0.95rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item-rarity {
+    font-size: clamp(0.65rem, 2vw, 0.75rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item-cost {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Boost items */
+  #karma-shop-tab .karma-shop-boosts-title {
+    font-size: clamp(1.1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-boost-name {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-boost-time {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Purchase history */
+  #karma-shop-tab .karma-shop-history-title {
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-history-item-name {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-history-item-meta {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Master popup */
+  #karma-shop-tab .karma-shop-master-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-master-message,
+  #karma-shop-tab .karma-shop-master-instructions {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 2. CONTAINER & LAYOUT ===== */
+  
+  #karma-shop-tab .karma-shop-container {
+    padding: 1rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Grid - single column */
+  #karma-shop-tab .grid.md\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+  
+  
+  /* ===== 3. BALANCE CARD - OPTIMIZED ===== */
+  
+  #karma-shop-tab .karma-shop-balance {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center;
+  }
+  
+  #karma-shop-tab .karma-shop-balance-title {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-balance-amount {
+    margin-bottom: 1rem !important;
+    font-weight: 700;
+  }
+  
+  #karma-shop-tab .karma-shop-balance-subtitle {
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+  
+  
+  /* ===== 4. ACTIVE BOOSTS - MOBILE FRIENDLY ===== */
+  
+  #karma-shop-tab .karma-shop-boosts {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-boosts-title {
+    margin-bottom: 1rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-boosts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  #karma-shop-tab .karma-shop-boost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem !important;
+    border-radius: var(--radius-md);
+    background: rgba(34, 197, 94, 0.1);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  #karma-shop-tab .karma-shop-boost-name {
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  #karma-shop-tab .karma-shop-boost-time {
+    white-space: nowrap;
+  }
+  
+  
+  /* ===== 5. CATEGORY SECTIONS ===== */
+  
+  #karma-shop-tab .karma-shop-category {
+    margin-bottom: 2rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-category-title {
+    margin-bottom: 1.25rem !important;
+  }
+  
+  
+  /* ===== 6. SHOP ITEMS - FULL WIDTH CARDS ===== */
+  
+  #karma-shop-tab .karma-shop-item {
+    padding: 1.5rem !important;
+    min-height: auto !important;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  /* Owned/Active badge */
+  #karma-shop-tab .karma-shop-item-owned-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.375rem 0.75rem !important;
+    font-size: clamp(0.65rem, 2vw, 0.75rem) !important;
+  }
+  
+  /* Item content */
+  #karma-shop-tab .karma-shop-item-content {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  
+  #karma-shop-tab .karma-shop-item-icon {
+    margin-bottom: 0.75rem;
+  }
+  
+  #karma-shop-tab .karma-shop-item-name {
+    margin-bottom: 0.75rem !important;
+    line-height: 1.3;
+  }
+  
+  #karma-shop-tab .karma-shop-item-description {
+    line-height: 1.5;
+    margin-bottom: 1rem !important;
+    padding: 0 0.5rem;
+  }
+  
+  /* Item footer */
+  #karma-shop-tab .karma-shop-item-footer {
+    margin-top: auto;
+  }
+  
+  #karma-shop-tab .karma-shop-item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  #karma-shop-tab .karma-shop-item-rarity {
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 0.375rem;
+  }
+  
+  /* Purchase button - full width */
+  #karma-shop-tab .karma-shop-item-btn {
+    width: 100% !important;
+    min-height: 3.5rem !important;
+    padding: 1rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    font-weight: 700;
+  }
+  
+  
+  /* ===== 7. PURCHASE HISTORY ===== */
+  
+  #karma-shop-tab .karma-shop-history {
+    padding: 1.5rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-history-title {
+    margin-bottom: 1.25rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  #karma-shop-tab .karma-shop-history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem !important;
+    border-radius: var(--radius-md);
+    background: rgba(102, 126, 234, 0.05);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  #karma-shop-tab .karma-shop-history-item-name {
+    flex: 1;
+    min-width: 150px;
+    word-break: break-word;
+  }
+  
+  #karma-shop-tab .karma-shop-history-item-meta {
+    white-space: nowrap;
+  }
+  
+  
+  /* ===== 8. MASTER POPUP - MOBILE OPTIMIZED ===== */
+  
+  #karma-shop-tab .karma-shop-master-overlay {
+    padding: 1rem;
+  }
+  
+  #karma-shop-tab .karma-shop-master-card {
+    width: 95% !important;
+    max-width: 500px;
+    padding: 2rem 1.5rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-master-icon {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem;
+  }
+  
+  #karma-shop-tab .karma-shop-master-title {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-master-message {
+    margin-bottom: 1.25rem !important;
+    line-height: 1.6;
+  }
+  
+  #karma-shop-tab .karma-shop-master-instructions {
+    margin-bottom: 1.25rem !important;
+    line-height: 1.5;
+  }
+  
+  #karma-shop-tab .karma-shop-master-btn-wa,
+  #karma-shop-tab .karma-shop-master-btn-close {
+    width: 100% !important;
+    min-height: 3.5rem !important;
+    padding: 1rem 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #karma-shop-tab .karma-shop-master-btn-wa {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-master-btn-close {
+    margin-bottom: 0 !important;
+  }
+  
+  
+  /* ===== 9. RARITY COLORS - MAINTAIN VIBRANCY ===== */
+  
+  #karma-shop-tab .karma-shop-item[data-rarity="common"] {
+    border-left: 4px solid #9ca3af !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item[data-rarity="uncommon"] {
+    border-left: 4px solid #00e084 !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item[data-rarity="rare"] {
+    border-left: 4px solid #00a8ff !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item[data-rarity="epic"] {
+    border-left: 4px solid #b800e6 !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item[data-rarity="legendary"] {
+    border-left: 4px solid #ffc300 !important;
+  }
+  
+  
+  /* ===== 10. TOUCH FEEDBACK ===== */
+  
+  #karma-shop-tab .karma-shop-item-btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  
+  #karma-shop-tab .karma-shop-item:not(:has(.karma-shop-item-owned-badge)):active {
+    transform: scale(0.99);
+  }
+  
+  #karma-shop-tab .karma-shop-history-item:active {
+    background: rgba(102, 126, 234, 0.1);
+  }
+  
+  
+  /* ===== 11. TEXT FORMATTING ===== */
+  
+  /* Ensure text wraps properly */
+  #karma-shop-tab .karma-shop-item-name,
+  #karma-shop-tab .karma-shop-item-description,
+  #karma-shop-tab .karma-shop-boost-name,
+  #karma-shop-tab .karma-shop-history-item-name {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Button text */
+  #karma-shop-tab .karma-shop-item-btn {
+    white-space: normal;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  
+  /* ===== 12. GENERAL IMPROVEMENTS ===== */
+  
+  /* Header spacing */
+  #karma-shop-tab header {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Card spacing */
+  #karma-shop-tab .card {
+    border-radius: var(--radius-xl) !important;
+  }
+  
+  /* Reduce excessive margins */
+  #karma-shop-tab [style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Focus states */
+  #karma-shop-tab .btn:focus-visible {
+    outline: 3px solid var(--neuro-accent);
+    outline-offset: 3px;
+  }
+  
+  /* Disabled button state */
+  #karma-shop-tab .btn:disabled {
+    opacity: 0.6;
+  }
+  
+  /* Better spacing for categories */
+  #karma-shop-tab .gap-6 {
+    gap: 1.25rem !important;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - ULTRA COMPACT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Tighter container */
+  #karma-shop-tab .karma-shop-container {
+    padding: 0.75rem !important;
+  }
+  
+  /* Smaller balance */
+  #karma-shop-tab .karma-shop-balance {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-balance-amount {
+    font-size: clamp(2.5rem, 8vw, 3.5rem) !important;
+  }
+  
+  /* Compact item cards */
+  #karma-shop-tab .karma-shop-item {
+    padding: 1.25rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-item-icon {
+    font-size: clamp(2rem, 6vw, 2.5rem) !important;
+  }
+  
+  /* Smaller buttons */
+  #karma-shop-tab .karma-shop-item-btn {
+    min-height: 3.25rem !important;
+    padding: 0.875rem 1.25rem !important;
+  }
+  
+  /* Compact boosts */
+  #karma-shop-tab .karma-shop-boost-item {
+    padding: 0.875rem !important;
+  }
+  
+  /* Compact history */
+  #karma-shop-tab .karma-shop-history-item {
+    padding: 0.875rem !important;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  #karma-shop-tab .karma-shop-history-item-meta {
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Compact master popup */
+  #karma-shop-tab .karma-shop-master-card {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-master-btn-wa,
+  #karma-shop-tab .karma-shop-master-btn-close {
+    min-height: 3.25rem !important;
+  }
+  
+}
+
+/* =========================================================
+   END OF KARMA SHOP MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   CTA FOOTER MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Toggle button text */
+  .lux-footer .lux-line1 {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  .lux-footer .lux-line2 {
+    font-size: clamp(0.65rem, 2vw, 0.7rem) !important;
+  }
+  
+  /* Header title */
+  .lux-footer .lux-title {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+  
+  /* Header intro */
+  .lux-footer .lux-intro {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Section headers */
+  .lux-footer .lux-section-header h3 {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Social chip labels */
+  .lux-footer .lux-social-chip span {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 2. FOOTER POSITIONING - ABOVE BOTTOM NAV ===== */
+  
+  .lux-footer {
+    bottom: 72px !important; /* Position above bottom navigation */
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  /* When panel is open, ensure it doesn't block navigation */
+  body.sheet-open .lux-footer {
+    z-index: 95;
+  }
+  
+  
+  /* ===== 3. TOGGLE BUTTON - MOBILE OPTIMIZED ===== */
+  
+  .lux-footer .lux-toggle {
+    padding: 0.75rem 1rem !important;
+    gap: 0.75rem;
+    min-height: 60px;
+  }
+  
+  .lux-footer .lux-logo {
+    height: 2.5rem !important;
+    width: auto;
+  }
+  
+  .lux-footer .lux-text-group {
+    flex: 1;
+    gap: 0.25rem;
+    text-align: left;
+  }
+  
+  .lux-footer .lux-chevron {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex-shrink: 0;
+  }
+  
+  
+  /* ===== 4. PANEL - MOBILE LAYOUT ===== */
+  
+  .lux-footer .lux-panel {
+    max-height: 70vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+  
+  .lux-footer .lux-panel.open {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .lux-footer .lux-scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .lux-footer .lux-inner {
+    padding: 1.5rem 1rem !important;
+    gap: 1.25rem;
+  }
+  
+  
+  /* ===== 5. HEADER SECTION ===== */
+  
+  .lux-footer .lux-header {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  
+  .lux-footer .lux-title {
+    margin-bottom: 0.75rem;
+  }
+  
+  .lux-footer .lux-intro {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .lux-footer .lux-intro a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    word-break: break-word;
+  }
+  
+  
+  /* ===== 6. SOCIAL CHIPS - MOBILE GRID ===== */
+  
+  .lux-footer .lux-social-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.75rem !important;
+    justify-content: center;
+    margin-top: 1rem !important;
+  }
+  
+  .lux-footer .lux-social-chip {
+    padding: 0.75rem 0.75rem !important;
+    gap: 0.5rem !important;
+    border-radius: var(--radius-lg) !important;
+    transition: all 0.2s;
+  }
+  
+  .lux-footer .lux-social-chip:active {
+    transform: scale(0.96);
+    box-shadow: var(--shadow-inset);
+  }
+  
+  .lux-footer .lux-social-chip svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .lux-footer .lux-social-chip span {
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  
+  /* ===== 7. SECTION HEADERS - TOUCH OPTIMIZED ===== */
+  
+  .lux-footer .lux-section {
+    margin-bottom: 1rem;
+  }
+  
+  .lux-footer .lux-section-header {
+    padding: 1rem 1.25rem !important;
+    min-height: 3.5rem;
+    gap: 0.75rem;
+    border-radius: var(--radius-lg);
+  }
+  
+  .lux-footer .lux-section-header:active {
+    transform: scale(0.99);
+  }
+  
+  .lux-footer .lux-section-header h3 {
+    flex: 1;
+    text-align: left;
+    line-height: 1.4;
+    margin: 0;
+  }
+  
+  .lux-footer .lux-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  
+  .lux-footer .lux-section-header[aria-expanded="true"] .lux-chevron {
+    transform: rotate(90deg);
+  }
+  
+  
+  /* ===== 8. SECTION BODY - MOBILE GRID ===== */
+  
+  .lux-footer .lux-section-body {
+    padding: 1rem !important;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  
+  .lux-footer .lux-section-body.open {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 1rem !important;
+  }
+  
+  .lux-footer .lux-section-body.open:not(.open) {
+    padding: 0 1rem !important;
+  }
+  
+  
+  /* ===== 9. IMAGE GRID - 2 COLUMNS ON MOBILE ===== */
+  
+  .lux-footer .lux-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  
+  .lux-footer .lux-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  
+  .lux-footer .lux-card:active {
+    transform: scale(0.98);
+  }
+  
+  .lux-footer .lux-img-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  
+  .lux-footer .lux-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  
+  
+  /* ===== 10. SCROLLBAR STYLING ===== */
+  
+  .lux-footer .lux-scroll::-webkit-scrollbar,
+  .lux-footer .lux-section-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .lux-footer .lux-scroll::-webkit-scrollbar-track,
+  .lux-footer .lux-section-body::-webkit-scrollbar-track {
+    background: var(--neuro-bg);
+  }
+  
+  .lux-footer .lux-scroll::-webkit-scrollbar-thumb,
+  .lux-footer .lux-section-body::-webkit-scrollbar-thumb {
+    background: var(--neuro-shadow-dark);
+    border-radius: 2px;
+  }
+  
+  
+  /* ===== 11. ANIMATION IMPROVEMENTS ===== */
+  
+  .lux-footer .lux-toggle {
+    transition: all 0.2s ease;
+  }
+  
+  .lux-footer .lux-toggle.open {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  }
+  
+  .lux-footer .lux-panel {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .lux-footer .lux-card {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s ease forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Stagger animation for cards */
+  .lux-footer .lux-section-body.open .lux-card:nth-child(1) { animation-delay: 0.05s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(2) { animation-delay: 0.1s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(3) { animation-delay: 0.15s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(4) { animation-delay: 0.2s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(5) { animation-delay: 0.25s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(6) { animation-delay: 0.3s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(7) { animation-delay: 0.35s; }
+  .lux-footer .lux-section-body.open .lux-card:nth-child(8) { animation-delay: 0.4s; }
+  
+  
+  /* ===== 12. ACCESSIBILITY ===== */
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  .lux-footer .lux-toggle:focus-visible,
+  .lux-footer .lux-section-header:focus-visible,
+  .lux-footer .lux-social-chip:focus-visible,
+  .lux-footer .lux-card:focus-visible {
+    outline: 3px solid var(--neuro-accent);
+    outline-offset: 3px;
+  }
+  
+  
+  /* ===== 13. TEXT FORMATTING ===== */
+  
+  .lux-footer .lux-title em {
+    font-style: normal;
+    color: var(--neuro-accent);
+  }
+  
+  .lux-footer .lux-intro a {
+    color: var(--neuro-accent);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  
+  .lux-footer .lux-intro a:active {
+    opacity: 0.8;
+  }
+  
+  
+  /* ===== 14. GENERAL IMPROVEMENTS ===== */
+  
+  /* Ensure panel doesn't overflow viewport */
+  .lux-footer .lux-panel {
+    max-height: 70vh !important;
+  }
+  
+  /* Smooth scroll behavior */
+  .lux-footer .lux-scroll,
+  .lux-footer .lux-section-body {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent text selection during animations */
+  .lux-footer .lux-toggle,
+  .lux-footer .lux-section-header {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Better spacing */
+  .lux-footer .lux-section:last-child {
+    margin-bottom: 0;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - ULTRA COMPACT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Smaller toggle button */
+  .lux-footer .lux-toggle {
+    padding: 0.625rem 0.875rem !important;
+    min-height: 56px;
+  }
+  
+  .lux-footer .lux-logo {
+    height: 2.25rem !important;
+  }
+  
+  /* Social chips - smaller on tiny screens */
+  .lux-footer .lux-social-row {
+    gap: 0.5rem !important;
+  }
+  
+  .lux-footer .lux-social-chip {
+    padding: 0.625rem 0.5rem !important;
+  }
+  
+  .lux-footer .lux-social-chip svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .lux-footer .lux-social-chip span {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Compact section headers */
+  .lux-footer .lux-section-header {
+    padding: 0.875rem 1rem !important;
+    min-height: 3.25rem;
+  }
+  
+  /* Single column grid on tiny screens */
+  .lux-footer .lux-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Compact inner padding */
+  .lux-footer .lux-inner {
+    padding: 1.25rem 0.875rem !important;
+  }
+  
+  /* Smaller section body padding */
+  .lux-footer .lux-section-body.open {
+    padding: 0.875rem !important;
+  }
+  
+}
+/* =========================================================
+   END OF CTA FOOTER MOBILE OPTIMIZATION
+   ========================================================= */
+
+
+/* =========================================================
+   USER TAB MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* User menu button */
+  .user-menu-btn {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Dropdown items */
+  .dropdown-item {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Accordion panel text */
+  .accordion-panel,
+  .accordion-inner {
+    font-size: clamp(0.8rem, 2.5vw, 0.85rem) !important;
+  }
+  
+  .accordion-inner p,
+  .accordion-inner strong {
+    font-size: clamp(0.8rem, 2.5vw, 0.85rem) !important;
+  }
+  
+  /* Toggle labels */
+  .toggle-switch-label {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+  }
+  
+  /* Automation labels */
+  .automation-label {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+  }
+  
+  .automation-controls {
+    font-size: clamp(0.75rem, 2vw, 0.85rem) !important;
+  }
+  
+  /* Button links */
+  .btn-link {
+    font-size: clamp(0.75rem, 2.5vw, 0.8rem) !important;
+  }
+  
+  
+  /* ===== 2. USER MENU BUTTON - REPOSITIONED ===== */
+  
+  .user-menu {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1001; /* Above bottom nav and CTA */
+  }
+  
+  .user-menu-btn {
+    padding: 8px 12px !important;
+    gap: 8px;
+    border-radius: 12px;
+    min-height: 48px;
+  }
+  
+  /* Avatar - responsive sizing */
+  .user-avatar {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.25rem !important;
+  }
+  
+  /* UserTab icon - responsive sizing */
+  .user-tab-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  /* Chevron */
+  .user-chevron {
+    font-size: 0.65rem !important;
+    margin-left: 0 !important;
+  }
+  
+  
+  /* ===== 3. DROPDOWN - MOBILE OPTIMIZED ===== */
+  
+  .user-dropdown {
+    width: min(280px, calc(100vw - 32px)) !important;
+    max-height: 70vh !important;
+    right: 0;
+    top: calc(100% + 8px);
+    border-radius: var(--radius-xl);
+    padding: 12px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Scrollbar styling */
+  .user-dropdown::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .user-dropdown::-webkit-scrollbar-track {
+    background: var(--neuro-bg);
+  }
+  
+  .user-dropdown::-webkit-scrollbar-thumb {
+    background: var(--neuro-shadow-dark);
+    border-radius: 2px;
+  }
+  
+  
+  /* ===== 4. DROPDOWN ITEMS - TOUCH OPTIMIZED ===== */
+  
+  .dropdown-item {
+    width: calc(100% - 24px) !important;
+    margin: 0 auto 10px auto !important;
+    padding: 12px 12px !important;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+  }
+  
+  .dropdown-item:active {
+    transform: scale(0.98);
+  }
+  
+  .dropdown-divider {
+    margin: 10px 12px !important;
+  }
+  
+  
+  /* ===== 5. ACCORDION PANELS - RESPONSIVE ===== */
+  
+  .accordion-panel {
+    padding: 12px 16px !important;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  .accordion-panel::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .accordion-panel::-webkit-scrollbar-thumb {
+    background: var(--neuro-shadow-dark);
+    border-radius: 2px;
+  }
+  
+  .accordion-inner {
+    padding: 8px 0;
+  }
+  
+  .accordion-inner p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  
+  /* ===== 6. PROFILE SECTION - MOBILE LAYOUT ===== */
+  
+  .profile-avatar-container {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto;
+  }
+  
+  .profile-avatar-emoji {
+    font-size: 2.25rem !important;
+  }
+  
+  /* Form inputs - full width with better spacing */
+  .accordion-inner input[type="text"],
+  .accordion-inner input[type="email"],
+  .accordion-inner input[type="tel"],
+  .accordion-inner input[type="date"],
+  .accordion-inner select {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    min-height: 44px;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Avatar emoji selector */
+  #profile-emoji {
+    padding: 8px 12px !important;
+    text-align: center;
+  }
+  
+  
+  /* ===== 7. TOGGLE SWITCHES - MOBILE OPTIMIZED ===== */
+  
+  .toggle-switch-container {
+    padding: 10px 0 !important;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .toggle-switch-label {
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .toggle-switch {
+    width: 48px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  
+  .toggle-slider:before {
+    height: 18px;
+    width: 18px;
+  }
+  
+  .toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+  }
+  
+  
+  /* ===== 8. AUTOMATION GROUPS - MOBILE LAYOUT ===== */
+  
+  .automation-group {
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+    border-radius: 10px;
+  }
+  
+  .automation-header {
+    margin-bottom: 8px !important;
+  }
+  
+  .automation-label {
+    gap: 10px !important;
+    padding: 4px 0;
+  }
+  
+  .automation-label input[type="checkbox"] {
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  .automation-controls {
+    padding-left: 30px !important;
+    padding-top: 8px;
+  }
+  
+  .automation-controls input[type="number"] {
+    width: 70px !important;
+    padding: 8px 10px !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    min-height: 40px;
+  }
+  
+  
+  /* ===== 9. SETTINGS SECTION - MOBILE LAYOUT ===== */
+  
+  /* Theme section headers */
+  .accordion-inner > div[style*="font-weight:600"] {
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Horizontal rules */
+  .accordion-inner hr {
+    margin: 14px 0 !important;
+  }
+  
+  /* Help text */
+  .accordion-inner small {
+    font-size: clamp(0.7rem, 2vw, 0.75rem) !important;
+    line-height: 1.4;
+    display: block;
+    margin-top: 8px;
+  }
+  
+  
+  /* ===== 10. RULES SECTION - SCROLLABLE ===== */
+  
+  .accordion-inner[style*="max-height: 260px"] {
+    max-height: 300px !important;
+    padding-right: 8px !important;
+  }
+  
+  
+  /* ===== 11. CONTACT SECTION - LINKS ===== */
+  
+  .accordion-inner a {
+    display: inline-block;
+    margin: 8px 0;
+    padding: 4px 0;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+  
+  .accordion-inner a:active {
+    opacity: 0.7;
+  }
+  
+  
+  /* ===== 12. BUTTON LINKS - TOUCH FRIENDLY ===== */
+  
+  .btn-link {
+    padding: 10px 12px !important;
+    margin-top: 8px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  
+  .btn-link:active {
+    transform: scale(0.98);
+  }
+  
+  
+  /* ===== 13. DISABLED STATES ===== */
+  
+  .toggle-switch-container.disabled {
+    opacity: 0.5;
+  }
+  
+  .automation-controls.disabled {
+    opacity: 0.4;
+  }
+  
+  
+  /* ===== 14. LOGOUT MODAL - MOBILE ===== */
+  
+  .modal-overlay {
+    padding: 1rem;
+  }
+  
+  .neuro-modal.modal-small {
+    width: 95% !important;
+    max-width: 400px;
+    padding: 2rem 1.5rem !important;
+  }
+  
+  .modal-icon {
+    font-size: 2.5rem !important;
+  }
+  
+  .modal-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  .modal-message {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    line-height: 1.5;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .modal-actions .btn {
+    width: 100% !important;
+    min-height: 3rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 15. ADMIN PANEL - MOBILE ===== */
+  
+  #admin-panel-container,
+  #admin-tab-mount {
+    max-width: 100%;
+  }
+  
+  #admin-panel-container > div,
+  #admin-tab-mount > div {
+    font-size: clamp(0.8rem, 2.5vw, 0.85rem) !important;
+  }
+  
+  
+  /* ===== 16. THEME CHECKBOXES - MOBILE LAYOUT ===== */
+  
+  .theme-checkbox-group {
+    gap: 10px !important;
+  }
+  
+  .theme-checkbox-label {
+    gap: 10px !important;
+    padding: 6px 0 !important;
+    min-height: 40px;
+  }
+  
+  .theme-checkbox-label input[type="checkbox"] {
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  
+  /* ===== 17. TEXT FORMATTING ===== */
+  
+  /* Ensure text wraps properly */
+  .dropdown-item,
+  .toggle-switch-label,
+  .automation-label span,
+  .accordion-inner p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Prevent text overflow */
+  .user-dropdown {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  
+  /* ===== 18. TOUCH FEEDBACK ===== */
+  
+  .dropdown-item:active {
+    transform: scale(0.98);
+  }
+  
+  .toggle-switch:active .toggle-slider {
+    transform: scale(0.98);
+  }
+  
+  .automation-label:active {
+    opacity: 0.8;
+  }
+  
+  
+  /* ===== 19. ACCESSIBILITY ===== */
+  
+  .user-menu-btn:focus-visible,
+  .dropdown-item:focus-visible,
+  .toggle-switch:focus-visible,
+  .btn-link:focus-visible {
+    outline: 3px solid var(--neuro-accent);
+    outline-offset: 3px;
+  }
+  
+  
+  /* ===== 20. GENERAL IMPROVEMENTS ===== */
+  
+  /* Smooth scrolling */
+  .user-dropdown,
+  .accordion-panel {
+    scroll-behavior: smooth;
+  }
+  
+  /* Better spacing */
+  .accordion-inner > * + * {
+    margin-top: 8px;
+  }
+  
+  /* Profile section spacing */
+  .accordion-inner > div[style*="display:flex"] {
+    gap: 12px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  /* Prevent selection during animations */
+  .user-menu-btn,
+  .dropdown-item {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - ULTRA COMPACT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Smaller user button */
+  .user-menu-btn {
+    padding: 6px 10px !important;
+    gap: 6px;
+    min-height: 44px;
+  }
+  
+  .user-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.1rem !important;
+  }
+  
+  .user-tab-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  /* Narrower dropdown */
+  .user-dropdown {
+    width: calc(100vw - 24px) !important;
+  }
+  
+  .dropdown-item {
+    padding: 10px 10px !important;
+    min-height: 44px;
+  }
+  
+  /* Compact profile */
+  .profile-avatar-container {
+    width: 70px !important;
+    height: 70px !important;
+  }
+  
+  .profile-avatar-emoji {
+    font-size: 2rem !important;
+  }
+  
+  /* Smaller inputs */
+  .accordion-inner input,
+  .accordion-inner select {
+    padding: 8px 10px !important;
+    min-height: 40px;
+  }
+  
+  /* Compact toggle switches */
+  .toggle-switch {
+    width: 44px;
+  }
+  
+  .toggle-slider:before {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+  }
+  
+  /* Compact automation groups */
+  .automation-group {
+    padding: 10px !important;
+  }
+  
+  .automation-controls {
+    padding-left: 24px !important;
+  }
+  
+  .automation-controls input[type="number"] {
+    width: 60px !important;
+    padding: 6px 8px !important;
+  }
+  
+  /* Smaller modal */
+  .neuro-modal.modal-small {
+    padding: 1.5rem 1rem !important;
+  }
+  
+}
+
+/* =========================================================
+   END OF USER TAB MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   TOAST NOTIFICATIONS MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. TOAST CONTAINER - REPOSITIONED ===== */
+  
+  #toast-container {
+    position: fixed;
+    bottom: 90px !important; /* Above bottom nav (72px) + spacing */
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: calc(100% - 24px);
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+  
+  /* When CTA footer is open, move toasts higher */
+  body.cta-open #toast-container {
+    bottom: 50vh !important;
+  }
+  
+  
+  /* ===== 2. TOAST STYLING - MOBILE OPTIMIZED ===== */
+  
+  #toast-container .toast {
+    width: 100%;
+    max-width: 400px;
+    min-height: 56px;
+    padding: 14px 18px !important;
+    border-radius: 16px !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 
+                var(--shadow-raised-lg) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1.5;
+    word-break: break-word;
+  }
+  
+  #toast-container .toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  
+  /* ===== 3. TOAST TYPES - VIBRANT COLORS ===== */
+  
+  #toast-container .toast.info {
+    background: linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.95) 0%, 
+      rgba(37, 99, 235, 0.95) 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  #toast-container .toast.success {
+    background: linear-gradient(135deg, 
+      rgba(34, 197, 94, 0.95) 0%, 
+      rgba(22, 163, 74, 0.95) 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  #toast-container .toast.warning {
+    background: linear-gradient(135deg, 
+      rgba(245, 158, 11, 0.95) 0%, 
+      rgba(217, 119, 6, 0.95) 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  #toast-container .toast.error {
+    background: linear-gradient(135deg, 
+      rgba(239, 68, 68, 0.95) 0%, 
+      rgba(220, 38, 38, 0.95) 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  
+  /* ===== 4. TOUCH INTERACTION ===== */
+  
+  #toast-container .toast:active {
+    transform: scale(0.98);
+  }
+  
+  /* Allow dismissing by tapping */
+  #toast-container .toast {
+    cursor: pointer;
+  }
+  
+  
+  /* ===== 5. ANIMATION IMPROVEMENTS ===== */
+  
+  /* Stagger multiple toasts */
+  #toast-container .toast:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  #toast-container .toast:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  
+  /* Slide in animation */
+  @keyframes slideInToast {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Slide out animation */
+  @keyframes slideOutToast {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+  }
+  
+  #toast-container .toast.show {
+    animation: slideInToast 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  #toast-container .toast:not(.show) {
+    animation: slideOutToast 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  
+  /* ===== 6. ICON SUPPORT (if needed) ===== */
+  
+  /* Add icon spacing if toasts include icons */
+  #toast-container .toast::before {
+    margin-right: 8px;
+    font-size: 1.25rem;
+    vertical-align: middle;
+  }
+  
+  
+  /* ===== 7. MULTI-LINE SUPPORT ===== */
+  
+  #toast-container .toast {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    max-width: 400px;
+  }
+  
+  
+  /* ===== 8. SAFE AREAS FOR NOTCH DEVICES ===== */
+  
+  #toast-container {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  
+  /* ===== 9. LANDSCAPE MODE ADJUSTMENTS ===== */
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    #toast-container {
+      bottom: 16px !important;
+      max-width: 300px;
+    }
+    
+    #toast-container .toast {
+      min-height: 48px;
+      padding: 10px 14px !important;
+      font-size: 0.875rem !important;
+    }
+  }
+  
+  
+  /* ===== 10. ACCESSIBILITY ===== */
+  
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    #toast-container .toast {
+      border-width: 2px !important;
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    #toast-container .toast {
+      animation: none !important;
+      transition: opacity 0.2s ease !important;
+    }
+    
+    #toast-container .toast.show {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  
+  /* ===== 11. Z-INDEX MANAGEMENT ===== */
+  
+  /* Ensure toasts appear above everything except modals */
+  #toast-container {
+    z-index: 9999;
+  }
+  
+  /* When modal is open, toasts should still be visible */
+  .modal-overlay ~ #toast-container {
+    z-index: 10002;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - COMPACT TOASTS
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  #toast-container {
+    width: calc(100% - 16px);
+    max-width: 100%;
+  }
+  
+  #toast-container .toast {
+    min-height: 52px;
+    padding: 12px 16px !important;
+    font-size: clamp(0.8rem, 3vw, 0.875rem) !important;
+    border-radius: 14px !important;
+  }
+  
+  /* Tighter spacing in landscape */
+  @media (orientation: landscape) {
+    #toast-container {
+      bottom: 12px !important;
+    }
+    
+    #toast-container .toast {
+      min-height: 44px;
+      padding: 8px 12px !important;
+      font-size: 0.8rem !important;
+    }
+  }
+  
+}
+
+/* =========================================================
+   TABLET MODE (768px - 1024px) - CENTERED TOASTS
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  #toast-container {
+    bottom: 24px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: 500px;
+  }
+  
+  #toast-container .toast {
+    max-width: 500px;
+    padding: 16px 24px;
+    font-size: 1rem;
+  }
+  
+}
+
+/* =========================================================
+   END OF TOAST NOTIFICATIONS MOBILE OPTIMIZATION
+   =========================================================*/
+
+/* =========================================================
    END OF FILE — production-ready, unified, mobile-first
    ========================================================= */
