@@ -4045,51 +4045,58 @@ body.royal-indigo{
   }
   
   #energy-tab .card.p-4 {
-    padding: 1rem !important;
+    padding: 1.5rem 1rem !important;
   }
   
-  /* Weekly chart - ensure full visibility with padding */
+  /* Weekly chart - scale down to fit perfectly */
   #energy-tab .card-flex {
-    min-height: 450px;
-    padding: 1.5rem !important;
+    min-height: 380px;
+    overflow: visible;
   }
   
   #energy-tab .card-flex h3 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1rem !important;
   }
   
   #energy-tab .card-body {
-    min-height: 350px;
+    min-height: 300px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    overflow: visible;
   }
   
   #energy-tab .weekly-chart-box {
-    width: 100%;
-    height: 100%;
-    min-height: 320px;
+    width: 90%;
+    height: 90%;
+    min-height: 280px;
+    max-width: 280px;
+    max-height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
+    margin: 0 auto;
   }
   
   #energy-tab .weekly-chart-box svg {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     max-width: 100%;
+    max-height: 100%;
     display: block;
+    transform: scale(0.85);
+    transform-origin: center center;
   }
   
   /* Radar chart - smaller on mobile */
   #energy-tab .flex.justify-center {
     width: 100%;
+    padding: 1rem 0;
   }
   
   #energy-tab .flex.justify-center svg {
-    max-width: 200px !important;
+    max-width: 180px !important;
     height: auto;
   }
   
