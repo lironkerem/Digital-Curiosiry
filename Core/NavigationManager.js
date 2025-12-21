@@ -188,7 +188,7 @@ export default class NavigationManager {
       sheet.setAttribute('aria-hidden','false');
       scrim.classList.add('visible');
       this.sheetOpen = true;
-      document.body.classList.add('sheet-open'); // footer behind
+      document.body.classList.add('sheet-open'); // lock body scroll
       sheet.querySelector('.sheet-row').focus();
       if(navigator.vibrate) navigator.vibrate(10);
     };
@@ -242,21 +242,27 @@ export default class NavigationManager {
       }, {passive:true});
     });
 
-    // left/right swipe to change tab (restored)
+    // left/right swipe to change tab – de-sensitised
     const swipeOrder = [
       'flip-script','calculator','shadow-alchemy','chatbot','karma-shop',
       'dashboard',
       'energy','happiness','gratitude','journal','tarot','meditations'
     ];
-    let startX = 0;
-    window.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+    let startX = 0, startT = 0;
+    const SWIPE_THRESHOLD = 120;   // px
+    const SWIPE_TIME = 300;        // ms
+    window.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startT = Date.now();
+    }, {passive:true});
     window.addEventListener('touchend', e => {
       const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-      if (Math.abs(diff) < 50) return;
+      const deltaX = startX - endX;
+      const deltaT = Date.now() - startT;
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD || deltaT > SWIPE_TIME) return;
       const active = localStorage.getItem('pc_active_tab') || 'dashboard';
       const idx = swipeOrder.indexOf(active);
-      const next = diff > 0 ? idx + 1 : idx - 1;
+      const next = deltaX > 0 ? idx + 1 : idx - 1;
       if (next < 0 || next >= swipeOrder.length) return;
       const navItem = document.querySelector(`[data-tab="${swipeOrder[next]}"]`);
       if (navItem) this.switchTab(swipeOrder[next], navItem.dataset.label);

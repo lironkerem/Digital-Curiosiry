@@ -3665,7 +3665,13 @@ body.royal-indigo{
    BUTTOM-TAB NAVIGATION MOBILE - UNDER 768px ONLY
    ========================================================= */
 @media (max-width: 767px) {
-  /* 3-button tab bar – sits at the very bottom */
+  /* 1. lock body scroll while sheet is open */
+  body.sheet-open {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* 2. 3-button tab bar – sits at the very bottom */
   .mobile-bottom-bar {
     position: fixed;
     bottom: 0;
@@ -3713,7 +3719,7 @@ body.royal-indigo{
     background: rgba(0, 0, 0, .05);
   }
 
-  /* 1. tighter footer gap */
+  /* 3. tighter footer gap */
   .lux-footer {
     position: fixed;
     bottom: 64px; /* was 72px – 8 px tighter */
@@ -3722,12 +3728,12 @@ body.royal-indigo{
     z-index: 99;
   }
 
-  /* 2. footer behind sheets when open */
+  /* 4. footer behind sheets when open */
   body.sheet-open .lux-footer {
     z-index: 95;
   }
 
-  /* 3. scrollable sheets – stop scroll propagation */
+  /* 5. scrollable sheets – stop scroll propagation */
   .mobile-sheet {
     position: fixed;
     bottom: 0;
@@ -3741,8 +3747,8 @@ body.royal-indigo{
     transition: transform .3s cubic-bezier(.4, 0, .2, 1);
     display: flex;
     flex-direction: column;
-    overscroll-behavior: contain; /* ← NEW */
-    touch-action: pan-y;           /* ← NEW */
+    overscroll-behavior: contain;
+    touch-action: pan-y;
   }
 
   .mobile-sheet[aria-hidden="false"] {
@@ -3770,8 +3776,8 @@ body.royal-indigo{
     overflow-y: auto;
     padding: 0 16px 24px;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain; /* ← NEW */
-    touch-action: pan-y;           /* ← NEW */
+    overscroll-behavior: contain;
+    touch-action: pan-y;
   }
 
   .sheet-row {
@@ -3791,7 +3797,7 @@ body.royal-indigo{
     box-shadow: var(--shadow-inset);
   }
 
-  /* 4. bigger images inside sheets */
+  /* 6. bigger images inside sheets */
   .sheet-row img {
     width: 40px;
     height: 40px;
@@ -3804,7 +3810,7 @@ body.royal-indigo{
     color: var(--neuro-text);
   }
 
-  /* 5. final z-index stack */
+  /* 7. final z-index stack */
   .sheet-scrim       { z-index: 97; }
   .mobile-bottom-bar { z-index: 98; }
   .lux-footer        { z-index: 99; }
