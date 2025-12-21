@@ -83,7 +83,12 @@
   pointer-events: none;
   z-index: 2;
 }
-
+/* DESKTOP – hide mobile bar completely */
+.mobile-bottom-bar,
+.mobile-sheet,
+.sheet-scrim {
+  display: none !important;
+}
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -4454,10 +4459,328 @@ body.royal-indigo{
 /* =========================================================
    END OF HAPPINESS FEATURE MOBILE OPTIMIZATION
    ========================================================= */
+/* =========================================================
+   GRATITUDE PRACTICE MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Main header */
+  #gratitude-tab .main-header.project-curiosity h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  #gratitude-tab .main-header.project-curiosity h3 {
+    font-size: clamp(0.875rem, 3vw, 1.375rem);
+  }
+  
+  /* Card titles */
+  #gratitude-tab .text-2xl {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Section titles */
+  #gratitude-tab .text-lg {
+    font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
+  }
+  
+  /* Quest badge */
+  #gratitude-tab .badge {
+    font-size: clamp(0.7rem, 2.5vw, 0.75rem) !important;
+    padding: 0.375rem 0.75rem !important;
+  }
+  
+  /* Entry text */
+  #gratitude-tab p {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Small text (dates, metadata) */
+  #gratitude-tab .text-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Icons */
+  #gratitude-tab .text-xl {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  #gratitude-tab .text-4xl {
+    font-size: clamp(2.5rem, 7vw, 3rem) !important;
+  }
+  
+  
+  /* ===== 2. STACKED LAYOUTS ===== */
+  
+  /* Header - stack title and badge vertically */
+  #gratitude-tab .flex.items-center.justify-between {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.75rem;
+  }
+  
+  #gratitude-tab .flex.items-center.justify-between h3 {
+    width: 100%;
+    text-align: center !important;
+  }
+  
+  /* Input form - stack input and button vertically */
+  #gratitude-tab form .flex.space-x-3 {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  #gratitude-tab form .flex.space-x-3 input {
+    width: 100% !important;
+  }
+  
+  #gratitude-tab form .flex.space-x-3 button {
+    width: 100% !important;
+    min-height: 3rem !important;
+  }
+  
+  /* Entry items - better mobile layout */
+  #gratitude-tab .flex.items-start.gap-3 {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+  
+  #gratitude-tab .flex.items-start.gap-3 .flex-1 {
+    flex: 1;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Action buttons - stack vertically on very small screens */
+  @media (max-width: 380px) {
+    #gratitude-tab .flex.gap-2 {
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+    }
+    
+    #gratitude-tab .flex.gap-2 button {
+      width: 100%;
+      padding: 0.5rem;
+    }
+  }
+  
+  
+  /* ===== 3. TOUCH-FRIENDLY SPACING ===== */
+  
+  /* Increase card padding */
+  #gratitude-tab .card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Form spacing */
+  #gratitude-tab form {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Input fields - larger touch targets */
+  #gratitude-tab .form-input {
+    padding: 1rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    min-height: 3rem !important;
+  }
+  
+  /* Buttons - larger touch targets */
+  #gratitude-tab .btn {
+    min-height: 3rem !important;
+    padding: 1rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Entry items padding */
+  #gratitude-tab .flex.items-start.gap-3.p-4 {
+    padding: 1rem !important;
+  }
+  
+  /* Journal entries padding */
+  #gratitude-tab .journal-entry {
+    padding: 1.25rem !important;
+  }
+  
+  /* Icon buttons - larger tap targets */
+  #gratitude-tab button[title] {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+  
+  
+  /* ===== 4. GRID ADJUSTMENTS ===== */
+  
+  /* Inspiration grid - 2 columns on mobile */
+  #gratitude-tab .gratitude-inspiration-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Inspiration items - better mobile styling */
+  #gratitude-tab .gratitude-inspiration-grid > div {
+    padding: 0.875rem !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  #gratitude-tab .gratitude-inspiration-grid > div:active {
+    transform: scale(0.98);
+  }
+  
+  /* Main container */
+  #gratitude-tab > div[style*="padding:1.5rem"] {
+    padding: 1rem !important;
+  }
+  
+  /* Space between sections */
+  #gratitude-tab .space-y-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem !important;
+  }
+  
+  #gratitude-tab .space-y-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem !important;
+  }
+  
+  #gratitude-tab .space-y-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+  
+  
+  /* ===== 5. QUEST COMPLETE BANNER ===== */
+  
+  #gratitude-tab div[style*="rgba(34,197,94,.08)"] {
+    padding: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 0.75rem !important;
+  }
+  
+  #gratitude-tab div[style*="rgba(34,197,94,.08)"] p {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    line-height: 1.5;
+  }
+  
+  
+  /* ===== 6. INSPIRATION SECTION ===== */
+  
+  /* Inspiration card styling */
+  #gratitude-tab .card[style*="rgba(102,126,234,0.05)"] {
+    padding: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  #gratitude-tab .card[style*="rgba(102,126,234,0.05)"] h4 {
+    margin-bottom: 0.75rem !important;
+    font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
+  }
+  
+  
+  /* ===== 7. HISTORY ENTRIES ===== */
+  
+  /* History section spacing */
+  #gratitude-tab .journal-entry {
+    border-radius: 0.75rem !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Date display */
+  #gratitude-tab .journal-entry .text-sm {
+    margin-bottom: 0.75rem !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Individual entry items in history */
+  #gratitude-tab .journal-entry .flex.items-start.gap-2 {
+    padding: 0.5rem 0;
+    gap: 0.75rem !important;
+  }
+  
+  /* Entry numbers */
+  #gratitude-tab .journal-entry .flex.items-start.gap-2 span[style*="min-width: 20px"] {
+    min-width: 24px !important;
+    font-weight: 600;
+  }
+  
+  
+  /* ===== 8. EMPTY STATE ===== */
+  
+  #gratitude-tab .text-center.py-12 {
+    padding: 3rem 1rem !important;
+  }
+  
+  #gratitude-tab .text-center.py-12 .text-4xl {
+    margin-bottom: 1rem !important;
+  }
+  
+  
+  /* ===== 9. SAVE BUTTON ===== */
+  
+  #gratitude-tab .btn.w-full {
+    margin-top: 1.5rem !important;
+    min-height: 3.5rem !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.125rem) !important;
+    font-weight: 700 !important;
+  }
+  
+  
+  /* ===== 10. GENERAL IMPROVEMENTS ===== */
+  
+  /* Container padding */
+  #gratitude-tab .universal-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Reduce excessive margins */
+  #gratitude-tab [style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Better border radius */
+  #gratitude-tab .rounded-lg {
+    border-radius: 0.75rem !important;
+  }
+  
+  /* Icon alignment */
+  #gratitude-tab .flex-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  
+  /* Text wrapping */
+  #gratitude-tab p.flex-1 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+  }
+  
+  /* History limit message */
+  #gratitude-tab .text-center[style*="margin-top: 1.5rem"] {
+    margin-top: 1rem !important;
+    padding: 0.75rem;
+  }
+  
+}
 
 /* =========================================================
-   END OF FILE — production-ready, unified, mobile-first
+   END OF GRATITUDE PRACTICE MOBILE OPTIMIZATION
    ========================================================= */
 /* =========================================================
-   END OF FILE – production-ready, unified, mobile-first
+   END OF FILE — production-ready, unified, mobile-first
    ========================================================= */
