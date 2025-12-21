@@ -5147,7 +5147,8 @@ body.royal-indigo{
    END OF PERSONAL JOURNAL MOBILE OPTIMIZATION
    ========================================================= */
 /* =========================================================
-   TAROT SPREADS MOBILE OPTIMIZATION - UNDER 768px ONLY
+   TAROT SPREADS MOBILE OPTIMIZATION - FIXED LAYOUTS
+   UNDER 768px ONLY
    ========================================================= */
 
 @media (max-width: 767px) {
@@ -5180,13 +5181,13 @@ body.royal-indigo{
   
   /* Card position labels */
   #tarot-tab .text-lg {
-    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
   }
   
   /* Card meanings */
   #tarot-tab .text-sm.leading-relaxed {
-    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
-    line-height: 1.6;
+    font-size: clamp(0.7rem, 2vw, 0.75rem) !important;
+    line-height: 1.5;
   }
   
   /* Tarot Vision AI button */
@@ -5196,14 +5197,14 @@ body.royal-indigo{
   
   /* Option section titles */
   #tarot-tab h3.text-2xl.font-bold {
-    font-size: clamp(1.1rem, 3.5vw, 1.5rem) !important;
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
   }
   
   
   /* ===== 2. STACKED LAYOUTS ===== */
   
   /* Spread selection - single column on mobile */
-  #tarot-tab .grid.md\:grid-cols-3 {
+  #tarot-tab .grid.md\:grid-cols-3:not(.place-items-center) {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
   }
@@ -5254,38 +5255,82 @@ body.royal-indigo{
   
   /* Card details section */
   #tarot-tab [id^="tarot-card-details-"] {
-    margin-top: 0.75rem !important;
+    margin-top: 0.5rem !important;
     padding: 0.5rem;
   }
   
   
-  /* ===== 4. CARD SIZE & GRID ADJUSTMENTS ===== */
+  /* ===== 4. CRITICAL: CARD SIZE FOR 3-CARDS-PER-ROW ===== */
   
-  /* Single card spread - centered, larger */
+  /* SMALLER cards to fit 3 per row */
+  #tarot-tab .tarot-card-flip-container {
+    width: clamp(90px, 28vw, 140px) !important;
+    max-width: 140px;
+  }
+  
+  /* Card wrapper - allow shrinking */
+  #tarot-tab .flex.flex-col.items-center.mx-auto {
+    width: auto !important;
+    max-width: 100%;
+    flex-shrink: 1;
+  }
+  
+  /* Position label - smaller, less height */
+  #tarot-tab .flex.flex-col.items-center.mx-auto h4 {
+    margin-bottom: 0.5rem !important;
+    font-size: clamp(0.7rem, 2.5vw, 0.875rem) !important;
+    min-height: auto !important;
+    height: auto !important;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0 0.25rem;
+  }
+  
+  /* Card details - smaller height */
+  #tarot-tab [id^="tarot-card-details-"] {
+    height: clamp(50px, 10vw, 80px) !important;
+    min-height: 50px;
+    max-height: 80px;
+    overflow-y: auto;
+    font-size: 0.65rem;
+  }
+  
+  
+  /* ===== 5. GRID LAYOUTS - PRESERVE 3 PER ROW ===== */
+  
+  /* Single card spread - centered */
   #tarot-tab .grid.md\:grid-cols-1 {
     grid-template-columns: 1fr !important;
     place-items: center;
-    gap: 2rem !important;
-  }
-  
-  /* 3-card spread - stack vertically */
-  #tarot-tab .grid.md\:grid-cols-3:not(.place-items-center) {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-  
-  /* 6-card spread - 2 columns */
-  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3 {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-    row-gap: 1.5rem !important;
-  }
-  
-  /* Options spread - single column sections */
-  #tarot-tab .grid.grid-cols-3.place-items-center {
-    grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
+  
+  /* 3-card spread - KEEP 3 COLUMNS */
+  #tarot-tab .grid.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+    column-gap: 0.75rem !important;
+    row-gap: 1rem !important;
+  }
+  
+  /* 6-card spread - KEEP 3 COLUMNS, 2 ROWS */
+  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+    column-gap: 0.75rem !important;
+    row-gap: 1rem !important;
+  }
+  
+  /* Options spread - KEEP 3 COLUMNS PER SECTION */
+  #tarot-tab .grid.grid-cols-3.place-items-center {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+    column-gap: 0.75rem !important;
+    row-gap: 0.5rem !important;
+  }
+  
+  
+  /* ===== 6. OPTIONS SPREAD SECTIONS ===== */
   
   /* Options section titles */
   #tarot-tab h3[style*="margin-bottom: 1rem"] {
@@ -5303,93 +5348,46 @@ body.royal-indigo{
   }
   
   
-  /* ===== 5. CARD FLIP CONTAINER - OPTIMIZED SIZE ===== */
-  
-  /* Responsive card sizing */
-  #tarot-tab .tarot-card-flip-container {
-    width: min(85vw, 280px) !important;
-    max-width: 280px;
-  }
-  
-  /* Card wrapper - centered */
-  #tarot-tab .flex.flex-col.items-center.mx-auto {
-    width: 100% !important;
-    max-width: 100%;
-  }
-  
-  /* Position label - better spacing */
-  #tarot-tab .flex.flex-col.items-center.mx-auto h4 {
-    margin-bottom: 0.75rem !important;
-    font-size: clamp(0.875rem, 3vw, 1rem) !important;
-    min-height: auto !important;
-    text-align: center;
-  }
-  
-  /* Card details height */
-  #tarot-tab [id^="tarot-card-details-"] {
-    height: auto !important;
-    min-height: 80px;
-    max-height: 150px;
-    overflow-y: auto;
-  }
-  
-  
-  /* ===== 6. PYRAMID SPREAD - MOBILE LAYOUT ===== */
+  /* ===== 7. PYRAMID SPREAD - MOBILE LAYOUT ===== */
   
   #tarot-tab .pyramid-triangle {
-    row-gap: 1rem !important;
+    row-gap: 0.5rem !important;
+    transform: scale(0.85);
+    transform-origin: top center;
   }
   
-  /* Pyramid rows - reduce gaps for mobile */
+  /* Pyramid rows - tighter gaps for mobile */
   #tarot-tab .pyr-apex {
     gap: 1rem !important;
   }
   
   #tarot-tab .pyr-upper {
-    gap: 3rem !important;
+    gap: 4rem !important;
   }
   
   #tarot-tab .pyr-lower {
-    gap: 5rem !important;
+    gap: 7rem !important;
   }
   
   #tarot-tab .pyr-base {
-    gap: 1rem !important;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  /* Alternative: Stack pyramid vertically on very small screens */
-  @media (max-width: 380px) {
-    #tarot-tab .pyramid-triangle .pyr-row {
-      flex-direction: column !important;
-      gap: 1rem !important;
-      align-items: center;
-    }
+    gap: 1.5rem !important;
   }
   
   
-  /* ===== 7. CROSS SPREAD - MOBILE LAYOUT ===== */
+  /* ===== 8. CROSS SPREAD - MOBILE LAYOUT ===== */
   
   #tarot-tab .cross-shape {
-    row-gap: 1rem !important;
+    row-gap: 0.5rem !important;
+    transform: scale(0.85);
+    transform-origin: top center;
   }
   
   #tarot-tab .cross-mid {
-    gap: 1rem !important;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  /* Stack cross vertically on very small screens */
-  @media (max-width: 380px) {
-    #tarot-tab .cross-mid {
-      flex-direction: column !important;
-    }
+    gap: 2rem !important;
   }
   
   
-  /* ===== 8. PREMIUM BADGES & LOCKS ===== */
+  /* ===== 9. PREMIUM BADGES & LOCKS ===== */
   
   /* Premium badge - mobile sizing */
   #tarot-tab .premium-badge,
@@ -5411,7 +5409,7 @@ body.royal-indigo{
   }
   
   
-  /* ===== 9. SECTION SPACING ===== */
+  /* ===== 10. SECTION SPACING ===== */
   
   /* Main sections */
   #tarot-tab .universal-content {
@@ -5435,7 +5433,7 @@ body.royal-indigo{
   }
   
   
-  /* ===== 10. CARD INTERACTION ===== */
+  /* ===== 11. CARD INTERACTION ===== */
   
   /* Card flip - ensure smooth on mobile */
   #tarot-tab .tarot-card-flip-inner {
@@ -5447,16 +5445,16 @@ body.royal-indigo{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
   }
   
   /* Card error state */
   #tarot-tab .tarot-card-error {
-    font-size: 3rem !important;
+    font-size: 2rem !important;
   }
   
   
-  /* ===== 11. SPREAD SELECTION CARDS ===== */
+  /* ===== 12. SPREAD SELECTION CARDS ===== */
   
   /* Selection cards - better mobile styling */
   #tarot-tab .card.cursor-pointer {
@@ -5479,13 +5477,20 @@ body.royal-indigo{
   }
   
   
-  /* ===== 12. TEXT FORMATTING ===== */
+  /* ===== 13. TEXT FORMATTING ===== */
   
   /* Card meanings - proper wrapping */
   #tarot-tab [id^="tarot-card-details-"] p {
     word-break: break-word;
     overflow-wrap: break-word;
-    line-height: 1.6;
+    line-height: 1.4;
+  }
+  
+  /* Card name headings */
+  #tarot-tab [id^="tarot-card-details-"] h4 {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
   }
   
   /* Spread descriptions */
@@ -5494,7 +5499,7 @@ body.royal-indigo{
   }
   
   
-  /* ===== 13. GENERAL IMPROVEMENTS ===== */
+  /* ===== 14. GENERAL IMPROVEMENTS ===== */
   
   /* Reduce excessive gaps */
   #tarot-tab .gap-6 {
@@ -5513,7 +5518,7 @@ body.royal-indigo{
   
   /* Scrollable card details */
   #tarot-tab [id^="tarot-card-details-"]::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
   }
   
   #tarot-tab [id^="tarot-card-details-"]::-webkit-scrollbar-thumb {
@@ -5521,14 +5526,49 @@ body.royal-indigo{
     border-radius: 2px;
   }
   
-  /* Center all card content */
-  #tarot-tab .flex.flex-col.items-center {
-    align-items: center !important;
-  }
-  
   /* Touch feedback */
   #tarot-tab .tarot-card-flip-container:active {
     transform: scale(0.98);
+  }
+  
+  /* Ensure grids don't overflow */
+  #tarot-tab .grid {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - FALLBACK
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Even smaller cards for tiny screens */
+  #tarot-tab .tarot-card-flip-container {
+    width: clamp(80px, 26vw, 110px) !important;
+  }
+  
+  /* Tighter gaps */
+  #tarot-tab .grid.md\:grid-cols-3,
+  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3,
+  #tarot-tab .grid.grid-cols-3.place-items-center {
+    gap: 0.25rem !important;
+    column-gap: 0.5rem !important;
+  }
+  
+  /* Position labels - even smaller */
+  #tarot-tab .flex.flex-col.items-center.mx-auto h4 {
+    font-size: clamp(0.65rem, 2vw, 0.75rem) !important;
+  }
+  
+  /* Card details - minimal height */
+  #tarot-tab [id^="tarot-card-details-"] {
+    height: clamp(40px, 8vw, 60px) !important;
+    min-height: 40px;
+    font-size: 0.6rem;
   }
   
 }
