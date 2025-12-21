@@ -89,6 +89,10 @@
 .sheet-scrim {
   display: none !important;
 }
+.mobile-only { display: none !important; }
+@media (max-width: 767px) {
+  .mobile-only { display: block !important; }
+}
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -4780,6 +4784,367 @@ body.royal-indigo{
 
 /* =========================================================
    END OF GRATITUDE PRACTICE MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   PERSONAL JOURNAL MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Main header */
+  #journal-tab .main-header.project-curiosity h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  #journal-tab .main-header.project-curiosity h3 {
+    font-size: clamp(0.875rem, 3vw, 1.375rem);
+  }
+  
+  /* Card title */
+  #journal-tab h3[style*="font-size: 1.5rem"] {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Section titles */
+  #journal-tab .text-xl {
+    font-size: clamp(1.1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Form labels */
+  #journal-tab .form-label {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Text in entries */
+  #journal-tab p {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    line-height: 1.6;
+  }
+  
+  /* Small text (dates, metadata) */
+  #journal-tab .text-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  #journal-tab .text-xs {
+    font-size: clamp(0.7rem, 2vw, 0.75rem) !important;
+  }
+  
+  /* Empty state icon */
+  #journal-tab .text-4xl {
+    font-size: clamp(2.5rem, 7vw, 3rem) !important;
+  }
+  
+  
+  /* ===== 2. STACKED LAYOUTS ===== */
+  
+  /* Form fields - full width */
+  #journal-tab .space-y-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem !important;
+  }
+  
+  /* Entry header - stack date and actions vertically on very small screens */
+  @media (max-width: 380px) {
+    #journal-tab .flex.justify-between.items-start {
+      flex-direction: column !important;
+      gap: 0.75rem;
+    }
+    
+    #journal-tab .flex.justify-between.items-start .flex.gap-2 {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+  
+  /* Action buttons in entries */
+  #journal-tab .flex.gap-2 {
+    gap: 0.75rem !important;
+  }
+  
+  #journal-tab .flex.gap-2 button {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+  
+  
+  /* ===== 3. TOUCH-FRIENDLY SPACING ===== */
+  
+  /* Main card padding */
+  #journal-tab .card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Textareas - larger and more comfortable */
+  #journal-tab textarea.form-input {
+    min-height: 120px !important;
+    padding: 1rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    line-height: 1.6;
+  }
+  
+  /* Save button - larger touch target */
+  #journal-tab .btn.w-full {
+    min-height: 3.5rem !important;
+    padding: 1rem 1.5rem !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.125rem) !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Entry cards padding */
+  #journal-tab .card.p-4 {
+    padding: 1.25rem !important;
+  }
+  
+  /* Section spacing */
+  #journal-tab div[style*="margin-top: 2rem"] {
+    margin-top: 1.5rem !important;
+  }
+  
+  #journal-tab div[style*="margin-bottom: 1rem"] {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #journal-tab div[style*="margin-bottom: 1.5rem"] {
+    margin-bottom: 1.25rem !important;
+  }
+  
+  /* Space between form fields */
+  #journal-tab .space-y-4 > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  
+  /* ===== 4. GRID ADJUSTMENTS ===== */
+  
+  /* Main container */
+  #journal-tab > div[style*="padding:1.5rem"] {
+    padding: 1rem !important;
+  }
+  
+  /* Universal content wrapper */
+  #journal-tab .universal-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Entry list spacing */
+  #journal-tab .space-y-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem !important;
+  }
+  
+  /* Entry items - better mobile structure */
+  #journal-tab ul#flip-journal-list li {
+    margin-bottom: 1rem;
+  }
+  
+  
+  /* ===== 5. ENTRY CARDS ===== */
+  
+  /* Entry card styling */
+  #journal-tab .card[style*="rgba(102, 126, 234, 0.05)"] {
+    padding: 1.25rem !important;
+    border-radius: 0.75rem !important;
+    border-left-width: 4px !important;
+  }
+  
+  /* Entry header spacing */
+  #journal-tab .flex.justify-between.items-start[style*="margin-bottom: 0.5rem"] {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Date badge */
+  #journal-tab .text-sm.font-semibold {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Section labels inside entries */
+  #journal-tab .text-xs.font-semibold {
+    font-size: clamp(0.7rem, 2vw, 0.75rem) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Entry content sections */
+  #journal-tab div[style*="margin-bottom: 0.5rem"] {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  
+  /* ===== 6. EMPTY STATE ===== */
+  
+  #journal-tab .text-center.py-8,
+  #journal-tab .text-center.py-4 {
+    padding: 2rem 1rem !important;
+  }
+  
+  #journal-tab .text-center.py-8 .text-4xl {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #journal-tab .text-center.py-8 p,
+  #journal-tab .text-center.py-4 p {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 7. EDIT MODAL ===== */
+  
+  /* Modal styling for edit form */
+  #journal-tab .neuro-modal {
+    width: 95% !important;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  
+  #journal-tab .modal-input-wrapper {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  
+  #journal-tab .modal-input-wrapper textarea {
+    min-height: 100px !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #journal-tab .modal-input-wrapper label {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Modal actions */
+  #journal-tab .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+  
+  #journal-tab .modal-actions .btn {
+    width: 100% !important;
+    min-height: 3rem !important;
+  }
+  
+  
+  /* ===== 8. BUTTONS ===== */
+  
+  /* All buttons - consistent touch targets */
+  #journal-tab .btn {
+    min-height: 3rem !important;
+    padding: 0.875rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #journal-tab .btn-primary {
+    font-weight: 700;
+  }
+  
+  /* Icon buttons in entries */
+  #journal-tab button[title] {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  #journal-tab button[title]:active {
+    transform: scale(0.95);
+  }
+  
+  
+  /* ===== 9. TEXT FORMATTING ===== */
+  
+  /* Ensure text wraps properly */
+  #journal-tab p[style*="color: var(--neuro-text)"] {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  
+  /* Label styling */
+  #journal-tab .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--neuro-text);
+  }
+  
+  
+  /* ===== 10. SCROLL OPTIMIZATION ===== */
+  
+  /* Smooth scrolling for long entries */
+  #journal-tab textarea {
+    resize: vertical;
+    max-height: 300px;
+  }
+  
+  /* Entry list container */
+  #journal-tab ul#flip-journal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+  /* ===== 11. ENTRY COUNT MESSAGE ===== */
+  
+  #journal-tab .text-center.py-4 .text-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    color: var(--neuro-text-light);
+  }
+  
+  
+  /* ===== 12. GENERAL IMPROVEMENTS ===== */
+  
+  /* Reduce excessive margins */
+  #journal-tab [style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Better border radius */
+  #journal-tab .card {
+    border-radius: var(--radius-xl) !important;
+  }
+  
+  /* Input focus states - more visible on mobile */
+  #journal-tab textarea.form-input:focus {
+    outline: none;
+    box-shadow: var(--shadow-inset), 0 0 0 2px var(--neuro-accent) !important;
+  }
+  
+  /* Header spacing */
+  #journal-tab header {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Content sections */
+  #journal-tab .w-full {
+    width: 100% !important;
+  }
+  
+  /* Entry content readability */
+  #journal-tab li.card p {
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+}
+
+/* =========================================================
+   END OF PERSONAL JOURNAL MOBILE OPTIMIZATION
    ========================================================= */
 /* =========================================================
    END OF FILE — production-ready, unified, mobile-first

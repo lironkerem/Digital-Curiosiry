@@ -402,12 +402,33 @@ renderPlaceholderCard() {
   const today = new Date().toDateString();
   const wasFlipped = localStorage.getItem(`daily_card_flipped_placeholder`) === today;
   const flippedClass = wasFlipped ? 'flipped' : '';
+
+  /* Mobile ≤ 767 px – full-feature mystery card */
   return `
-    <div class="card dashboard-daily-card">
-      <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('placeholder')">
+    <div class="mobile-only mystery-card-wrapper">
+      <div class="dashboard-daily-card mystery-card" onclick="window.app.dashboard.flipDailyCard('placeholder')">
         <div class="daily-card-inner ${flippedClass}" id="placeholder-flip">
-          <div class="daily-card-back"><div class="card-content"><img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">Mystery Card</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
-          <div class="daily-card-front"><div class="card-content"><div class="dashboard-booster-box"><div class="dashboard-booster-content"><div class="dashboard-booster-emoji">✨</div><h4 class="dashboard-booster-title">Coming Soon</h4><p class="dashboard-booster-description">More spiritual content on the way!</p><p class="dashboard-booster-meta">Stay tuned • Updates</p></div></div><h3 class="dashboard-card-title-front">Mystery Revealed</h3><p class="dashboard-card-subtitle">New features arriving soon</p></div></div>
+          <div class="daily-card-back">
+            <div class="card-content">
+              <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
+              <h3 class="dashboard-card-title">Mystery Card</h3>
+              <p class="dashboard-card-subtitle">Click to Reveal</p>
+            </div>
+          </div>
+          <div class="daily-card-front">
+            <div class="card-content">
+              <div class="dashboard-booster-box">
+                <div class="dashboard-booster-content">
+                  <div class="dashboard-booster-emoji">✨</div>
+                  <h4 class="dashboard-booster-title">Coming Soon</h4>
+                  <p class="dashboard-booster-description">More spiritual content on the way!</p>
+                  <p class="dashboard-booster-meta">Stay tuned • Updates</p>
+                </div>
+              </div>
+              <h3 class="dashboard-card-title-front">Mystery Revealed</h3>
+              <p class="dashboard-card-subtitle">New features arriving soon</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>`;
