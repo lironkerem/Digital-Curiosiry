@@ -3817,5 +3817,290 @@ body.royal-indigo{
   body.sheet-open .lux-footer { z-index: 95; }
 }
 /* =========================================================
+   ENERGY TRACKER MOBILE OPTIMIZATION - UNDER 768px ONLY
+   Add this to the end of neumorphic-theme.css
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Check-in header */
+  #energy-tab .text-2xl {
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem) !important;
+  }
+  
+  #energy-tab .text-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  #energy-tab .text-xs {
+    font-size: clamp(0.7rem, 2vw, 0.75rem) !important;
+  }
+  
+  /* Energy slider value */
+  #energy-tab #energy-overall-value {
+    font-size: clamp(2rem, 6vw, 2.5rem) !important;
+  }
+  
+  /* Form labels */
+  #energy-tab .form-label {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Mood chips */
+  #energy-tab .chip {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+    padding: 6px 12px !important;
+  }
+  
+  /* Chakra cards */
+  #energy-tab .chakra-mini-card {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Card titles */
+  #energy-tab .text-lg {
+    font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
+  }
+  
+  /* Journal entry dates */
+  #energy-tab .font-bold.text-lg {
+    font-size: clamp(0.95rem, 3.5vw, 1.125rem) !important;
+  }
+  
+  /* Badge text */
+  #energy-tab .badge {
+    font-size: clamp(0.7rem, 2.5vw, 0.75rem) !important;
+  }
+  
+  
+  /* ===== 2. CHECK-IN CARD - STACK LAYOUTS ===== */
+  
+  /* Header - stack date/streak below greeting */
+  #energy-tab .card > .flex.items-center.justify-between {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+  
+  #energy-tab .card > .flex.items-center.justify-between > .text-right {
+    text-align: left !important;
+    width: 100%;
+  }
+  
+  #energy-tab .card > .flex.items-center.justify-between .flex.gap-2 {
+    justify-content: flex-start !important;
+  }
+  
+  /* Energy slider - tighter spacing */
+  #energy-tab .flex.items-center.gap-4 {
+    gap: 1rem !important;
+  }
+  
+  /* Mood chips - wrap better on mobile */
+  #energy-tab #mood-chips {
+    gap: 0.5rem !important;
+  }
+  
+  
+  /* ===== 3. CHAKRA ROW - SCROLLABLE HORIZONTAL ===== */
+  
+  #energy-tab .chakra-row {
+    display: flex;
+    gap: 10px;
+    padding: 8px 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  #energy-tab .chakra-row::-webkit-scrollbar {
+    display: none;
+  }
+  
+  #energy-tab .chakra-mini-card {
+    flex: 0 0 100px;
+    min-width: 100px;
+    scroll-snap-align: start;
+    padding: 8px;
+  }
+  
+  #energy-tab .chakra-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  #energy-tab .chakra-mini-card > div:nth-child(3) {
+    font-size: 11px !important;
+  }
+  
+  #energy-tab .chakra-mini-card > div:last-child {
+    font-size: 11px !important;
+  }
+  
+  
+  /* ===== 4. FORM INPUTS - MOBILE OPTIMIZED ===== */
+  
+  #energy-tab .form-input,
+  #energy-tab textarea {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    padding: 0.75rem !important;
+  }
+  
+  #energy-tab textarea {
+    min-height: 100px !important;
+  }
+  
+  
+  /* ===== 5. BUTTONS - STACK ON MOBILE ===== */
+  
+  #energy-tab .flex.gap-3.flex-wrap {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  #energy-tab .btn {
+    width: 100% !important;
+    min-height: 3rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 6. ANALYTICS - STACK TO SINGLE COLUMN ===== */
+  
+  #energy-tab .grid.grid-cols-1.md\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  #energy-tab .card.p-4 {
+    padding: 1rem !important;
+  }
+  
+  /* Weekly chart - fit mobile width */
+  #energy-tab .weekly-chart-box {
+    aspect-ratio: 7/8 !important;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* Radar chart - smaller on mobile */
+  #energy-tab .flex.justify-center {
+    width: 100%;
+  }
+  
+  #energy-tab .flex.justify-center svg {
+    max-width: 200px !important;
+    height: auto;
+  }
+  
+  /* Chakra balance grid - 4 columns, smaller text */
+  #energy-tab .grid.grid-cols-4 {
+    gap: 0.5rem !important;
+  }
+  
+  #energy-tab .grid.grid-cols-4.gap-2.mt-3 {
+    font-size: clamp(0.65rem, 2vw, 0.7rem) !important;
+  }
+  
+  
+  /* ===== 7. JOURNAL - OPTIMIZED FOR MOBILE ===== */
+  
+  /* Collapsible header */
+  #energy-tab .calc-expandable-header {
+    padding: 1rem !important;
+  }
+  
+  #energy-tab .calc-expandable-header h3 {
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+  }
+  
+  #energy-tab .chevron {
+    font-size: clamp(1.2rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Expanded content padding */
+  #energy-tab .calc-expandable-card.expanded .calc-expandable-content {
+    padding: 0 1rem 1rem !important;
+  }
+  
+  /* Search input */
+  #energy-tab #journal-search {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  /* Journal entries */
+  #energy-tab .space-y-4 > .card {
+    padding: 1rem !important;
+  }
+  
+  /* Journal entry header - stack on mobile */
+  #energy-tab .space-y-4 .flex.justify-between.items-start {
+    flex-direction: column !important;
+    gap: 0.75rem;
+  }
+  
+  #energy-tab .space-y-4 .flex.justify-between.items-start > .text-right {
+    text-align: left !important;
+    width: 100%;
+  }
+  
+  /* Chakra grid in journal entries - 4 columns on mobile */
+  #energy-tab .grid.grid-cols-4.md\:grid-cols-7 {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  
+  
+  /* ===== 8. GENERAL MOBILE ADJUSTMENTS ===== */
+  
+  /* Main container padding */
+  #energy-tab > div {
+    padding: 1rem !important;
+  }
+  
+  /* Card spacing */
+  #energy-tab .card {
+    margin-bottom: 1rem !important;
+    padding: 1.25rem !important;
+  }
+  
+  /* Reduce all gap utilities */
+  #energy-tab .gap-4 {
+    gap: 1rem !important;
+  }
+  
+  #energy-tab .gap-3 {
+    gap: 0.75rem !important;
+  }
+  
+  #energy-tab .gap-2 {
+    gap: 0.5rem !important;
+  }
+  
+  /* Margin utilities */
+  #energy-tab [style*="margin-bottom: 2rem"] {
+    margin-bottom: 1rem !important;
+  }
+  
+  #energy-tab [style*="margin-bottom: 1.5rem"] {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Badge sizing */
+  #energy-tab .badge {
+    padding: 4px 10px !important;
+  }
+  
+  #energy-tab .badge-success {
+    padding: 4px 10px !important;
+  }
+  
+}
+/* =========================================================
    END OF FILE – production-ready, unified, mobile-first
    ========================================================= */
