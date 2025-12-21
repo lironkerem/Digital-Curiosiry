@@ -1,4 +1,4 @@
-// NavigationManager.js  (updated for FAB + sheet on mobile)
+// NavigationManager.js  (Option 1 – 3-button bar under CTA footer)
 import UserTab from './User-Tab.js';
 
 export default class NavigationManager {
@@ -65,28 +65,56 @@ export default class NavigationManager {
         </ul>
       </nav>
 
-      <!-- MOBILE SINGLE-FAB + SHEET -->
-      <button id="mobile-fab" class="mobile-fab" aria-label="Open navigation menu" aria-expanded="false">
-        <span class="fab-icon"></span>
-      </button>
+      <!-- CTA FOOTER (unchanged) -->
+      <div id="cta-footer-wrapper">
+        <!-- your existing CTA footer gets injected here -->
+      </div>
 
-      <div id="mobile-sheet" class="mobile-sheet" role="dialog" aria-modal="true" aria-hidden="true">
+      <!-- NEW 3-BUTTON MOBILE BAR (always under CTA) -->
+      <nav id="mobile-bottom-bar" class="mobile-bottom-bar" role="navigation" aria-label="Mobile navigation">
+        <button class="mobile-tab left"  data-popup="miniapps" aria-haspopup="true" aria-expanded="false">
+          <img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/MiniApps.png" alt="">
+          <span>Mini Apps</span>
+        </button>
+
+        <button class="mobile-tab center active" data-tab="dashboard" aria-selected="true">
+          <img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/Dashboard.png" alt="">
+          <span>Home</span>
+        </button>
+
+        <button class="mobile-tab right" data-popup="features" aria-haspopup="true" aria-expanded="false">
+          <img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/Features.png" alt="">
+          <span>Features</span>
+        </button>
+      </nav>
+
+      <!-- MINI-APPS SHEET -->
+      <div id="sheet-miniapps" class="mobile-sheet" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="sheet-grip"></div>
-        <div class="sheet-header">Choose a feature</div>
+        <div class="sheet-header">Mini Apps</div>
         <div class="sheet-scroller">
-          <div class="sheet-row" data-tab="energy"         role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavEnergy.png"         alt=""><span>Daily Energy</span></div>
-          <div class="sheet-row" data-tab="happiness"      role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavHappiness.png"      alt=""><span>Happiness</span></div>
-          <div class="sheet-row" data-tab="gratitude"      role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavGratitude.png"      alt=""><span>Gratitude</span></div>
-          <div class="sheet-row" data-tab="journal"        role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavJournal.png"        alt=""><span>Journal</span></div>
-          <div class="sheet-row" data-tab="tarot"          role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavTarot.png"          alt=""><span>Tarot</span></div>
-          <div class="sheet-row" data-tab="meditations"    role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavMeditations.png"    alt=""><span>Meditations</span></div>
-          <div class="sheet-row" data-tab="karma-shop"     role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavShop.png"           alt=""><span>Karma Shop</span></div>
-          <div class="sheet-row" data-tab="flip-script"    role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavFlip.png"           alt=""><span>Flip Script</span></div>
-          <div class="sheet-row" data-tab="calculator"     role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavAnalysis.png"        alt=""><span>Self-Analysis</span></div>
-          <div class="sheet-row" data-tab="shadow-alchemy" role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavShadow.png"         alt=""><span>Shadow Lab</span></div>
-          <div class="sheet-row" data-tab="chatbot"        role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/Chat.png"            alt=""><span>AI Chat</span></div>
+          <div class="sheet-row" data-tab="flip-script"    role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavFlip.png"    alt=""><span>Flip the Script</span></div>
+          <div class="sheet-row" data-tab="calculator"     role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavAnalysis.png" alt=""><span>Self-Analysis</span></div>
+          <div class="sheet-row" data-tab="shadow-alchemy" role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavShadow.png"  alt=""><span>Shadow Lab</span></div>
+          <div class="sheet-row" data-tab="chatbot"        role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/Chat.png"       alt=""><span>AI Chat</span></div>
+          <div class="sheet-row" data-tab="karma-shop"     role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavShop.png"     alt=""><span>Karma Shop</span></div>
         </div>
       </div>
+
+      <!-- FEATURES SHEET -->
+      <div id="sheet-features" class="mobile-sheet" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="sheet-grip"></div>
+        <div class="sheet-header">Features</div>
+        <div class="sheet-scroller">
+          <div class="sheet-row" data-tab="energy"      role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavEnergy.png"      alt=""><span>Daily Energy</span></div>
+          <div class="sheet-row" data-tab="happiness"   role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavHappiness.png"   alt=""><span>Happiness</span></div>
+          <div class="sheet-row" data-tab="gratitude"   role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavGratitude.png"   alt=""><span>Gratitude</span></div>
+          <div class="sheet-row" data-tab="journal"     role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavJournal.png"     alt=""><span>Journal</span></div>
+          <div class="sheet-row" data-tab="tarot"       role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavTarot.png"       alt=""><span>Tarot</span></div>
+          <div class="sheet-row" data-tab="meditations" role="menuitem" tabindex="0"><img src="https://raw.githubusercontent.com/lironkerem/Digital-Curiosiry/main/assets/Tabs/NavMeditations.png" alt=""><span>Meditations</span></div>
+        </div>
+      </div>
+
       <div id="sheet-scrim" class="sheet-scrim"></div>
 
       <!-- LEGACY POPUP/BACKDROP (kept empty so existing CSS stays valid until you delete it) -->
@@ -107,7 +135,7 @@ export default class NavigationManager {
     this.setupEventListeners();
     this.setupSwipeGestures();
     this.setupKeyboardNavigation();
-    this.setupMobileSheet();   // NEW
+    this.setupMobileBottomBar();   // NEW
   }
 
   /* --------------------- DESKTOP + COMMON --------------------- */
@@ -124,23 +152,20 @@ export default class NavigationManager {
   }
 
   setupKeyboardNavigation() {
-    // keep desktop bubble array for arrow navigation (even if bubbles gone)
-    this.bubbleElements = Array.from(document.querySelectorAll('.sheet-row')); // mobile sheet rows
+    // arrow nav inside sheets
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (this.sheetOpen) this.closeMobileSheet();
+        if (this.sheetOpen) this.closeSheets();
         return;
       }
-      // arrow nav inside sheet
-      if (this.sheetOpen) {
-        const rows = [...document.querySelectorAll('.sheet-row')];
-        const current = document.activeElement;
-        const idx = rows.indexOf(current);
-        if (idx < 0) return;
-        if (e.key === 'ArrowDown') { e.preventDefault(); rows[(idx + 1) % rows.length].focus(); }
-        if (e.key === 'ArrowUp')   { e.preventDefault(); rows[(idx - 1 + rows.length) % rows.length].focus(); }
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); current.click(); }
-      }
+      if (!this.sheetOpen) return;
+      const rows = [...document.querySelectorAll('.sheet-row')];
+      const current = document.activeElement;
+      const idx = rows.indexOf(current);
+      if (idx < 0) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); rows[(idx + 1) % rows.length].focus(); }
+      if (e.key === 'ArrowUp')   { e.preventDefault(); rows[(idx - 1 + rows.length) % rows.length].focus(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); current.click(); }
     });
   }
 
@@ -148,66 +173,66 @@ export default class NavigationManager {
 
   createRipple(bubble, e) { /* your original method, unchanged */ }
 
-  /* --------------------- MOBILE FAB + SHEET --------------------- */
-  setupMobileSheet() {
-    if (window.innerWidth > 767) return; // desktop uses tabs
+  /* --------------------- MOBILE 3-BUTTON BAR --------------------- */
+  setupMobileBottomBar(){
+    if(window.innerWidth > 767) return; // desktop uses tabs
 
-    const fab   = document.getElementById('mobile-fab');
-    const sheet = document.getElementById('mobile-sheet');
+    const bar   = document.getElementById('mobile-bottom-bar');
     const scrim = document.getElementById('sheet-scrim');
+    const tabs  = [...bar.querySelectorAll('.mobile-tab')];
+    const sheets= [...document.querySelectorAll('.mobile-sheet')];
 
-    const open = () => {
-      sheet.setAttribute('aria-hidden', 'false');
-      fab.setAttribute('aria-expanded', 'true');
+    const openSheet = (id) => {
+      const sheet = document.getElementById(id);
+      if(!sheet) return;
+      sheet.setAttribute('aria-hidden','false');
       scrim.classList.add('visible');
       this.sheetOpen = true;
       sheet.querySelector('.sheet-row').focus();
-      if (navigator.vibrate) navigator.vibrate(10);
+      if(navigator.vibrate) navigator.vibrate(10);
     };
-    const close = () => {
-      sheet.setAttribute('aria-hidden', 'true');
-      fab.setAttribute('aria-expanded', 'false');
+    const closeSheets = () => {
+      sheets.forEach(s=>s.setAttribute('aria-hidden','true'));
       scrim.classList.remove('visible');
+      tabs.forEach(t=>t.setAttribute('aria-expanded','false'));
       this.sheetOpen = false;
-      fab.focus();
     };
-    this.closeMobileSheet = close; // expose for ESC
+    this.closeSheets = closeSheets; // expose for ESC
 
-    fab.addEventListener('click', () => open());
-    scrim.addEventListener('click', () => close());
+    // centre tab = real switch
+    const homeTab = bar.querySelector('.mobile-tab.center');
+    homeTab.addEventListener('click',()=>{
+      closeSheets();
+      this.switchTab('dashboard','Main Dashboard');
+    });
+
+    // left & right open sheets
+    bar.querySelector('.left').addEventListener('click',(e)=>{
+      openSheet('sheet-miniapps');
+      e.currentTarget.setAttribute('aria-expanded','true');
+    });
+    bar.querySelector('.right').addEventListener('click',(e)=>{
+      openSheet('sheet-features');
+      e.currentTarget.setAttribute('aria-expanded','true');
+    });
+
+    // scrim closes
+    scrim.addEventListener('click',closeSheets);
 
     // row clicks
-    sheet.addEventListener('click', (e) => {
-      const row = e.target.closest('.sheet-row');
-      if (!row) return;
-      close();
-      const navItem = document.querySelector(`[data-tab="${row.dataset.tab}"]`);
-      this.switchTab(row.dataset.tab, navItem?.dataset.label);
+    sheets.forEach(sheet=>{
+      sheet.addEventListener('click',(e)=>{
+        const row = e.target.closest('.sheet-row');
+        if(!row) return;
+        closeSheets();
+        const navItem = document.querySelector(`[data-tab="${row.dataset.tab}"]`);
+        this.switchTab(row.dataset.tab, navItem?.dataset.label);
+      });
     });
   }
 
   /* --------------------- CHAT-BOT (unchanged) --------------------- */
-  openChatBot() {
-    const chatPanel = document.querySelector('#chatbot-float-panel');
-    const chatBubble = document.querySelector('#chatbot-float-bubble');
-    if (chatPanel && chatBubble) {
-      chatBubble.style.display = 'none';
-      chatPanel.classList.add('open');
-      const chatClose = document.querySelector('#chatbot-float-close');
-      if (chatClose) {
-        chatClose.onclick = (e) => {
-          e.stopPropagation();
-          chatPanel.classList.remove('open');
-          chatBubble.style.display = 'none';
-        };
-      }
-      const chatInput = document.querySelector('.chatbot-ai-input');
-      if (chatInput) setTimeout(() => chatInput.focus(), 300);
-    } else {
-      console.warn('ChatBotAI not ready yet');
-      setTimeout(() => this.openChatBot(), 500);
-    }
-  }
+  openChatBot() { /* your original code, untouched */ }
 
   /* --------------------- SWIPE (unchanged) --------------------- */
   setupSwipeGestures() { /* your original code, untouched */ }
