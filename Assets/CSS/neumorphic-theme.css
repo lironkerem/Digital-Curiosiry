@@ -3648,7 +3648,7 @@ body.royal-indigo{
     bottom: 0;
     left: 0;
     right: 0;
-    height: 72px; /* or whatever height you want */
+    height: 72px;
     background: var(--neuro-bg);
     box-shadow: 0 -4px 12px rgba(0, 0, 0, .15);
     display: flex !important;
@@ -3690,21 +3690,21 @@ body.royal-indigo{
     background: rgba(0, 0, 0, .05);
   }
 
-  /* CTA footer – sits just above the tab bar */
+  /* 1. tighter footer gap */
   .lux-footer {
     position: fixed;
-    bottom: 72px; /* height of tab bar */
+    bottom: 64px; /* was 72px – 8 px tighter */
     left: 0;
     right: 0;
     z-index: 99;
   }
 
-  /* Optional: sheet scrim stays under both */
-  .sheet-scrim {
-    z-index: 97;
+  /* 2. footer behind sheets when open */
+  body.sheet-open .lux-footer {
+    z-index: 95;
   }
 
-  /* sheets (same as before) */
+  /* 3. scrollable sheets (already exists) */
   .mobile-sheet {
     position: fixed;
     bottom: 0;
@@ -3764,9 +3764,10 @@ body.royal-indigo{
     box-shadow: var(--shadow-inset);
   }
 
+  /* 4. bigger images inside sheets */
   .sheet-row img {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
   }
 
@@ -3775,6 +3776,12 @@ body.royal-indigo{
     font-weight: 500;
     color: var(--neuro-text);
   }
+
+  /* 5. final z-index stack */
+  .sheet-scrim       { z-index: 97; }
+  .mobile-bottom-bar { z-index: 98; }
+  .lux-footer        { z-index: 99; }
+  body.sheet-open .lux-footer { z-index: 95; }
 }
 /* =========================================================
    END OF FILE – production-ready, unified, mobile-first

@@ -1,4 +1,4 @@
-// NavigationManager.js  (Option 1 – 3-button bar under CTA footer)
+// NavigationManager.js  (mobile 3-button bar + all fixes)
 import UserTab from './User-Tab.js';
 
 export default class NavigationManager {
@@ -188,6 +188,7 @@ export default class NavigationManager {
       sheet.setAttribute('aria-hidden','false');
       scrim.classList.add('visible');
       this.sheetOpen = true;
+      document.body.classList.add('sheet-open'); // footer behind
       sheet.querySelector('.sheet-row').focus();
       if(navigator.vibrate) navigator.vibrate(10);
     };
@@ -196,6 +197,7 @@ export default class NavigationManager {
       scrim.classList.remove('visible');
       tabs.forEach(t=>t.setAttribute('aria-expanded','false'));
       this.sheetOpen = false;
+      document.body.classList.remove('sheet-open');
     };
     this.closeSheets = closeSheets; // expose for ESC
 
@@ -229,6 +231,36 @@ export default class NavigationManager {
         this.switchTab(row.dataset.tab, navItem?.dataset.label);
       });
     });
+
+    // swipe-down to close
+    sheets.forEach(sheet=>{
+      let startY = 0;
+      sheet.addEventListener('touchstart', e => startY = e.touches[0].clientY, {passive:true});
+      sheet.addEventListener('touchend', e => {
+        const endY = e.changedTouches[0].clientY;
+        if (startY - endY < -80) closeSheets(); // down 80 px
+      }, {passive:true});
+    });
+
+    // left/right swipe to change tab (restored)
+    const swipeOrder = [
+      'flip-script','calculator','shadow-alchemy','chatbot','karma-shop',
+      'dashboard',
+      'energy','happiness','gratitude','journal','tarot','meditations'
+    ];
+    let startX = 0;
+    window.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+    window.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) < 50) return;
+      const active = localStorage.getItem('pc_active_tab') || 'dashboard';
+      const idx = swipeOrder.indexOf(active);
+      const next = diff > 0 ? idx + 1 : idx - 1;
+      if (next < 0 || next >= swipeOrder.length) return;
+      const navItem = document.querySelector(`[data-tab="${swipeOrder[next]}"]`);
+      if (navItem) this.switchTab(swipeOrder[next], navItem.dataset.label);
+    }, {passive:true});
   }
 
   /* --------------------- CHAT-BOT (unchanged) --------------------- */
