@@ -3224,6 +3224,39 @@ body.royal-indigo{
    Add this to the end of neumorphic-theme.css
    ========================================================= */
 
+/* ===== DESKTOP-ONLY QUEST FIXES (APPLY EVERYWHERE) ===== */
+
+/* Make all quest cards inset on both desktop and mobile */
+.dashboard-quest-card:not(.dashboard-quest-completed) {
+  box-shadow: var(--shadow-inset) !important;
+}
+
+/* Quest header - stack emoji above text */
+.dashboard-quest-header {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.dashboard-quest-icon {
+  margin: 0;
+}
+
+.dashboard-quest-info {
+  text-align: center;
+  width: 100%;
+}
+
+/* Timer - make it smaller and fit in one line */
+.countdown-badge {
+  font-size: 0.7rem;
+  padding: 0.125rem 0.375rem;
+  white-space: nowrap;
+  display: inline-block;
+  min-width: auto;
+}
+
 @media (max-width: 767px) {
   
   /* ===== 1. SCALABLE FONT SIZES ===== */
@@ -3519,18 +3552,8 @@ body.royal-indigo{
     overflow: hidden;
   }
   
-  /* Make all quest cards look inset like weekly/monthly */
-  .dashboard-quest-card:not(.dashboard-quest-completed) {
-    box-shadow: var(--shadow-inset) !important;
-  }
-  
-  .dashboard-quest-header {
-    gap: 0.5rem;
-  }
-  
   .dashboard-quest-icon {
     font-size: clamp(2rem, 6vw, 2.5rem);
-    flex-shrink: 0;
   }
   
   .dashboard-quest-info {
@@ -3553,14 +3576,11 @@ body.royal-indigo{
     word-break: break-word;
   }
   
-  /* Countdown timer - single line */
+  /* Countdown timer - single line, smaller */
   .countdown-badge {
-    font-size: clamp(0.6rem, 2.5vw, 0.7rem);
-    padding: 0.1rem 0.3rem;
-    min-width: auto;
-    white-space: nowrap;
-    letter-spacing: 0;
-    display: inline-block;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.25rem;
+    letter-spacing: -0.02rem;
   }
   
   .quest-tab-btn {
@@ -3641,6 +3661,9 @@ body.royal-indigo{
   }
   
 }
+/* =========================================================
+   BUTTOM-TAB NAVIGATION MOBILE - UNDER 768px ONLY
+   ========================================================= */
 @media (max-width: 767px) {
   /* 3-button tab bar – sits at the very bottom */
   .mobile-bottom-bar {
