@@ -4215,5 +4215,249 @@ body.royal-indigo{
    END OF ENERGY TRACKER MOBILE OPTIMIZATION
    ========================================================= */
 /* =========================================================
+   HAPPINESS FEATURE MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Main header */
+  #happiness-tab .main-header.project-curiosity h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  #happiness-tab .main-header.project-curiosity h3 {
+    font-size: clamp(0.875rem, 3vw, 1.375rem);
+  }
+  
+  /* Quest progress tracker */
+  #happiness-tab .inline-flex.items-center.gap-2 {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Card emoji icons */
+  #happiness-tab .text-3xl {
+    font-size: clamp(2rem, 6vw, 3rem) !important;
+  }
+  
+  /* Card titles */
+  #happiness-tab .text-2xl {
+    font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+  }
+  
+  /* Card content text */
+  #happiness-tab .text-lg {
+    font-size: clamp(0.95rem, 3vw, 1.125rem) !important;
+  }
+  
+  /* Card metadata (duration, category) */
+  #happiness-tab .text-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  
+  /* ===== 2. STACKED LAYOUTS ===== */
+  
+  /* Stack header content vertically */
+  #happiness-tab header {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Stack card header (emoji + title) vertically on very small screens */
+  @media (max-width: 380px) {
+    #happiness-tab .flex.items-center[style*="margin-bottom: 1rem"] {
+      flex-direction: column !important;
+      text-align: center !important;
+      gap: 0.5rem;
+    }
+    
+    #happiness-tab .flex.items-center[style*="margin-bottom: 1rem"] .mr-4 {
+      margin-right: 0 !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Stack button to full width */
+  #happiness-tab .mt-6.flex.justify-end {
+    justify-content: center !important;
+  }
+  
+  #happiness-tab .btn {
+    width: 100% !important;
+    min-height: 3rem !important;
+    padding: 0.875rem 1.5rem !important;
+  }
+  
+  
+  /* ===== 3. TOUCH-FRIENDLY SPACING ===== */
+  
+  /* Increase card padding for better touch areas */
+  #happiness-tab .neuro-card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Add more vertical spacing in cards */
+  #happiness-tab .text-center {
+    padding: 0.5rem 0;
+  }
+  
+  #happiness-tab .mt-2 {
+    margin-top: 1rem !important;
+  }
+  
+  #happiness-tab .mt-3 {
+    margin-top: 1.25rem !important;
+  }
+  
+  #happiness-tab .mt-4 {
+    margin-top: 1.5rem !important;
+  }
+  
+  #happiness-tab .mt-6 {
+    margin-top: 2rem !important;
+  }
+  
+  /* Better spacing for quest progress */
+  #happiness-tab .mt-4.inline-flex {
+    margin-top: 1rem !important;
+    padding: 0.75rem 1.25rem !important;
+  }
+  
+  /* Increase button tap target */
+  #happiness-tab .btn-secondary {
+    padding: 1rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    border-radius: var(--radius-lg);
+  }
+  
+  
+  /* ===== 4. GRID ADJUSTMENTS ===== */
+  
+  /* Main content spacing */
+  #happiness-tab .space-y-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem !important;
+  }
+  
+  /* Container padding */
+  #happiness-tab > div[style*="padding:1.5rem"] {
+    padding: 1rem !important;
+  }
+  
+  /* Universal content wrapper */
+  #happiness-tab .universal-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  
+  /* ===== 5. FLIP CARD OPTIMIZATIONS ===== */
+  
+  /* Ensure flip cards work smoothly on mobile */
+  #happiness-tab .flip-card {
+    width: 100%;
+    perspective: 1000px;
+  }
+  
+  #happiness-tab .flip-card-inner {
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
+  }
+  
+  #happiness-tab .flip-card-front,
+  #happiness-tab .flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  
+  /* ===== 6. TEXT CENTERING & READABILITY ===== */
+  
+  /* Center all card content */
+  #happiness-tab .text-center {
+    text-align: center !important;
+  }
+  
+  /* Better line height for readability */
+  #happiness-tab p {
+    line-height: 1.6;
+  }
+  
+  /* Quote text - improve mobile readability */
+  #happiness-tab .text-2xl.font-semibold {
+    line-height: 1.5 !important;
+    padding: 0 0.5rem;
+  }
+  
+  /* Author attribution */
+  #happiness-tab .mt-3.text-center.text-lg {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+    font-style: italic;
+    opacity: 0.9;
+  }
+  
+  
+  /* ===== 7. QUEST PROGRESS INDICATOR ===== */
+  
+  /* Make quest progress more prominent */
+  #happiness-tab .inline-flex.items-center.gap-2.px-4 {
+    flex-direction: column;
+    gap: 0.5rem !important;
+    text-align: center;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  /* Stack quest elements vertically */
+  #happiness-tab .inline-flex.items-center.gap-2 span {
+    display: block;
+    width: 100%;
+  }
+  
+  
+  /* ===== 8. METADATA DISPLAY ===== */
+  
+  /* Duration and category separator */
+  #happiness-tab .mt-4.text-sm span {
+    display: inline-block;
+    padding: 0 0.25rem;
+  }
+  
+  
+  /* ===== 9. GENERAL MOBILE IMPROVEMENTS ===== */
+  
+  /* Remove excessive margins */
+  #happiness-tab [style*="margin-bottom: 2.5rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Adjust header spacing */
+  #happiness-tab header.text-center {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Better spacing for main content area */
+  #happiness-tab main.space-y-6 {
+    padding: 0;
+  }
+  
+  /* Card border radius - slightly smaller on mobile */
+  #happiness-tab .neuro-card {
+    border-radius: var(--radius-xl);
+  }
+  
+}
+
+/* =========================================================
+   END OF HAPPINESS FEATURE MOBILE OPTIMIZATION
+   ========================================================= */
+
+/* =========================================================
+   END OF FILE — production-ready, unified, mobile-first
+   ========================================================= */
+/* =========================================================
    END OF FILE – production-ready, unified, mobile-first
    ========================================================= */
