@@ -22,9 +22,6 @@ export default class NavigationManager {
              alt="Aanandoham Header">
       </div>
 
-      <!-- PROGRESS BAR -->
-      <div id="progress-bar" class="progress-bar" role="progressbar" aria-label="Loading progress"></div>
-
       <!-- DESKTOP NAV TABS (unchanged) -->
       <nav class="main-nav desktop-nav" role="navigation" aria-label="Main navigation">
         <ul class="nav-tabs" id="nav-tabs" role="tablist">
@@ -277,8 +274,6 @@ export default class NavigationManager {
 
   handleSwipe(tabOrder) { /* your original code, untouched */ }
 
-  updateBreadcrumb(label) { /* your original code, untouched */ }
-
   showProgress() { /* your original code, untouched */ }
 
   switchTab(tabName, label) {
@@ -286,7 +281,6 @@ export default class NavigationManager {
       window.calculatorChunk = 'requested';
     }
     this.showProgress();
-    this.updateBreadcrumb(label);
 
     // desktop tab ARIA
     document.querySelectorAll('.nav-item').forEach(t => {

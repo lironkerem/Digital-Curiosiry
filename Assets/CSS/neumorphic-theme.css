@@ -93,6 +93,15 @@
 @media (max-width: 767px) {
   .mobile-only { display: block !important; }
 }
+/* DESKTOP – keep top tabs */
+@media (min-width: 768px) {
+  .desktop-nav { display: block; }
+}
+
+/* MOBILE – hide top tabs completely */
+@media (max-width: 767px) {
+  .desktop-nav { display: none !important; }
+}
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -3099,39 +3108,6 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   object-fit: contain;
 }
 
-/* Breadcrumb */
-.breadcrumb{
-  display:none;
-  align-items:center;
-  gap: var(--spacing-1);
-  padding: var(--spacing-2) var(--spacing-3);
-  margin: 0 var(--spacing-2) var(--spacing-2);
-  background:rgba(255,255,255,.05);
-  border-radius: var(--spacing-2);
-  font-size:14px;
-  color:var(--neuro-text-light);
-  box-shadow:var(--shadow-inset-sm);
-  contain: layout style paint;
-}
-.breadcrumb-home{ font-size:16px; }
-.breadcrumb-separator{ margin:0 4px; opacity:.5; }
-.breadcrumb-current{ color:var(--neuro-text); font-weight:600; }
-
-/* Progress Bar */
-.progress-bar{
-  position:fixed;
-  top:0;
-  left:0;
-  height:3px;
-  width:0%;
-  background:linear-gradient(90deg, var(--neuro-accent), var(--neuro-success));
-  z-index:9999;
-  transition:width .4s cubic-bezier(0.4, 0.0, 0.2, 1);
-  box-shadow:0 2px 8px rgba(0,0,0,.3);
-  will-change:width;
-}
-.progress-bar.loading{ width:100%; }
-
 /* =========================================================
    TOAST NOTIFICATIONS
    ========================================================= */
@@ -5575,6 +5551,447 @@ body.royal-indigo{
 
 /* =========================================================
    END OF TAROT SPREADS MOBILE OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   GUIDED MEDITATIONS MOBILE OPTIMIZATION - UNDER 768px ONLY
+   ========================================================= */
+
+@media (max-width: 767px) {
+  
+  /* ===== 1. SCALABLE FONT SIZES ===== */
+  
+  /* Main header */
+  #meditations-tab .main-header.project-curiosity h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  #meditations-tab .main-header.project-curiosity h3 {
+    font-size: clamp(0.875rem, 3vw, 1.375rem);
+  }
+  
+  /* Wellness toolkit titles */
+  #meditations-tab .dashboard-wellness-title {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+  
+  #meditations-tab .dashboard-wellness-subtitle {
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  }
+  
+  /* Wellness tool names */
+  #meditations-tab .wellness-tool-name {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+  
+  #meditations-tab .wellness-tool-description {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  }
+  
+  /* Meditation card titles */
+  #meditations-tab .text-xl {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+  }
+  
+  /* Card descriptions */
+  #meditations-tab .text-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem) !important;
+  }
+  
+  /* Emoji icons */
+  #meditations-tab .text-3xl {
+    font-size: clamp(2rem, 5vw, 2.5rem) !important;
+  }
+  
+  /* PDF button text */
+  #meditations-tab .btn[onclick*="openPDFGuide"] {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 2. STACKED LAYOUTS ===== */
+  
+  /* Main container */
+  #meditations-tab .min-h-screen.p-6 {
+    padding: 1rem !important;
+  }
+  
+  /* PDF button - full width */
+  #meditations-tab .text-center[style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  #meditations-tab .btn[onclick*="openPDFGuide"] {
+    width: 100%;
+    padding: 1rem 1.5rem !important;
+    display: flex !important;
+    justify-content: center;
+  }
+  
+  /* Wellness buttons grid - 2 columns */
+  #meditations-tab .wellness-buttons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  /* Meditation cards grid - single column */
+  #meditations-tab .grid.md\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+  
+  /* Card header - stack emoji and duration */
+  #meditations-tab .flex.items-center.justify-between[style*="margin-bottom: 0.75rem"] {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  
+  /* ===== 3. TOUCH-FRIENDLY SPACING ===== */
+  
+  /* Wellness toolkit card */
+  #meditations-tab .dashboard-wellness-toolkit {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Wellness tool buttons */
+  #meditations-tab .wellness-tool-btn {
+    min-height: 160px;
+    padding: 1.25rem 1rem;
+  }
+  
+  #meditations-tab .wellness-tool-icon {
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+  }
+  
+  #meditations-tab .wellness-tool-stats {
+    font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+    gap: 0.5rem;
+  }
+  
+  /* Meditation cards */
+  #meditations-tab .card {
+    padding: 1.5rem !important;
+    margin-bottom: 1rem;
+  }
+  
+  /* Button groups in cards */
+  #meditations-tab .mt-4.flex.gap-2 {
+    gap: 0.75rem !important;
+    margin-top: 1rem !important;
+  }
+  
+  #meditations-tab .btn.flex-1 {
+    min-height: 3rem !important;
+    padding: 0.875rem 1rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  
+  /* ===== 4. FLOATING PLAYER - MOBILE OPTIMIZED ===== */
+  
+  /* Player wrapper - full width on mobile */
+  #meditations-tab .player-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    z-index: 1000;
+    padding: 0;
+  }
+  
+  /* Compact player - full width */
+  #meditations-tab .compact-player {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+    padding: 1rem !important;
+    gap: 1rem;
+  }
+  
+  /* Video mode - still full width */
+  #meditations-tab .compact-player.video-mode {
+    padding: 1rem !important;
+  }
+  
+  /* Player info */
+  #meditations-tab .player-info {
+    cursor: default !important;
+  }
+  
+  #meditations-tab .player-emoji {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  #meditations-tab .player-text h4 {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+  }
+  
+  #meditations-tab .player-text p {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  }
+  
+  /* Video pane - responsive height */
+  #meditations-tab .video-pane {
+    min-height: 200px;
+    max-height: 40vh;
+    aspect-ratio: 16/9;
+  }
+  
+  /* Player controls - better spacing */
+  #meditations-tab .player-controls {
+    justify-content: space-evenly;
+    padding: 0.5rem 0;
+  }
+  
+  #meditations-tab .player-controls .icon-btn {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.25rem;
+  }
+  
+  /* Play/pause wrapper */
+  #meditations-tab .play-pause-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  #meditations-tab .play-pause-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  /* Stop button */
+  #meditations-tab .stop-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  /* Close button */
+  #meditations-tab .player-close-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+  
+  /* HIDE resize handles on mobile */
+  #meditations-tab .resize-corner {
+    display: none !important;
+  }
+  
+  /* Disable drag on mobile */
+  #meditations-tab .player-info {
+    cursor: default;
+  }
+  
+  
+  /* ===== 5. PREMIUM BADGES & LOCKS ===== */
+  
+  #meditations-tab .premium-badge-tr {
+    font-size: 0.6rem !important;
+    padding: 4px 8px !important;
+  }
+  
+  #meditations-tab .card div[style*="font-size:3rem;opacity:0.3"] {
+    font-size: 2rem !important;
+    right: 1rem !important;
+    top: 1rem !important;
+  }
+  
+  
+  /* ===== 6. SECTION SPACING ===== */
+  
+  /* Main sections */
+  #meditations-tab .max-w-7xl {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Guided meditations wrapper card */
+  #meditations-tab .card[style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Section headers */
+  #meditations-tab .dashboard-wellness-header {
+    margin-bottom: 1.25rem !important;
+  }
+  
+  /* Grid gaps */
+  #meditations-tab .gap-6 {
+    gap: 1.25rem !important;
+  }
+  
+  
+  /* ===== 7. CARD CONTENT ===== */
+  
+  /* Badge styling */
+  #meditations-tab .badge {
+    font-size: clamp(0.7rem, 2.5vw, 0.75rem) !important;
+    padding: 0.375rem 0.75rem !important;
+  }
+  
+  /* Card sections spacing */
+  #meditations-tab .card div[style*="margin-bottom"] {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #meditations-tab .card p[style*="margin-bottom"] {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  
+  /* ===== 8. WELLNESS TOOLKIT OPTIMIZATION ===== */
+  
+  /* Wellness tool content */
+  #meditations-tab .wellness-tool-content {
+    gap: 0.5rem;
+  }
+  
+  /* Wellness stats row */
+  #meditations-tab .wellness-tool-stats {
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  
+  /* ===== 9. BUTTONS ===== */
+  
+  /* All buttons - consistent sizing */
+  #meditations-tab .btn {
+    min-height: 3rem !important;
+    padding: 0.875rem 1.5rem !important;
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
+  }
+  
+  #meditations-tab .btn-primary,
+  #meditations-tab .btn-secondary {
+    font-weight: 600;
+  }
+  
+  /* Button groups */
+  #meditations-tab .flex.gap-2 {
+    gap: 0.75rem !important;
+  }
+  
+  
+  /* ===== 10. TEXT FORMATTING ===== */
+  
+  /* Ensure text wraps properly */
+  #meditations-tab .player-text h4,
+  #meditations-tab .card h4 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  #meditations-tab .card p {
+    line-height: 1.6;
+  }
+  
+  
+  /* ===== 11. GENERAL IMPROVEMENTS ===== */
+  
+  /* Header spacing */
+  #meditations-tab header {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Card border radius */
+  #meditations-tab .card {
+    border-radius: var(--radius-xl) !important;
+  }
+  
+  /* Remove excessive margins */
+  #meditations-tab [style*="margin-bottom: 2rem"] {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Selection cards - touch feedback */
+  #meditations-tab .card:active {
+    transform: scale(0.98);
+  }
+  
+  /* Locked cards - clear visual */
+  #meditations-tab .card.opacity-75 {
+    opacity: 0.65 !important;
+  }
+  
+  /* Progress ring sizing */
+  #meditations-tab .progress-ring {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Better scrolling for long content */
+  #meditations-tab .card {
+    overflow: visible;
+  }
+  
+}
+
+/* =========================================================
+   VERY SMALL SCREENS (under 380px) - COMPACT LAYOUT
+   ========================================================= */
+
+@media (max-width: 380px) {
+  
+  /* Even tighter spacing */
+  #meditations-tab .min-h-screen.p-6 {
+    padding: 0.75rem !important;
+  }
+  
+  /* Wellness grid - stack to single column on tiny screens */
+  #meditations-tab .wellness-buttons-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Smaller wellness tools */
+  #meditations-tab .wellness-tool-btn {
+    min-height: 140px;
+    padding: 1rem 0.75rem;
+  }
+  
+  /* Compact player */
+  #meditations-tab .compact-player {
+    padding: 0.75rem !important;
+    gap: 0.75rem;
+  }
+  
+  /* Smaller player controls */
+  #meditations-tab .play-pause-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  #meditations-tab .play-pause-btn {
+    width: 42px;
+    height: 42px;
+  }
+  
+  #meditations-tab .player-controls .icon-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  
+  #meditations-tab .stop-btn {
+    width: 36px;
+    height: 36px;
+    transform: translate(-50%, -50%) translateX(28px);
+  }
+  
+}
+
+/* =========================================================
+   END OF GUIDED MEDITATIONS MOBILE OPTIMIZATION
    ========================================================= */
 /* =========================================================
    END OF FILE — production-ready, unified, mobile-first
