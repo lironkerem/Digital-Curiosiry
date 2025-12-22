@@ -7591,19 +7591,20 @@ body.royal-indigo{
   
   /* ===== 2. CONTAINER & LAYOUT ===== */
   
-/* karma-shop mobile patch: 3 equal responsive columns, tighter gaps */
-@media (max-width: 767px) {
-  #karma-shop-tab .karma-shop-container { padding: 1rem !important; }
-  #karma-shop-tab .karma-shop-content  { max-width: 100%; padding: 0; }
-
+ #karma-shop-tab .karma-shop-container {
+    padding: 1rem !important;
+  }
+  
+  #karma-shop-tab .karma-shop-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Grid - single column */
   #karma-shop-tab .grid.md\:grid-cols-3 {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 0.5rem !important;          /* snug fit on small screens */
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
   }
- #karma-shop-tab .karma-shop-item {
-    padding: 0.1rem !important;   /* was 1.5rem padding */
-  }
-}
   
   /* ===== 3. BALANCE CARD - OPTIMIZED ===== */
   
