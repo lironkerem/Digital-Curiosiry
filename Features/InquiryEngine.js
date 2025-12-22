@@ -1,7 +1,7 @@
 // InquiryEngine.js
 // Engine to manage daily inquiry selection, progression, and user adaptation
 
-import { InquiryList } from './InquiryList.js';
+import { InquiryList } from './Data/InquiryList.js';
 
 export class InquiryEngine {
   constructor(userLevel = 'beginner') {

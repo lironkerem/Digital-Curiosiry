@@ -3,17 +3,20 @@
 
 
 export const INQUIRY_DOMAINS = {
-RESPONSIBILITY: "Responsibility and Power",
-EMOTION: "Emotional Honesty",
-IDENTITY: "Identity and Roles",
-CREATIVITY: "Creativity and Expression",
-SHADOW: "Shadow and Integration",
-WISDOM: "Wisdom and Insight",
-JOY: "Joy and Fulfillment",
-PHYSICAL: "Physical Well-Being and Energy",
-RELATIONSHIP: "Relationship",
-SPIRITUALITY: "Spiritual Growth",
-ABUNDANCE: "Abundance"
+  RESPONSIBILITY: "Responsibility and Power",
+  EMOTION: "Emotional Honesty",
+  IDENTITY: "Identity and Roles",
+  CREATIVITY: "Creativity and Expression",
+  SHADOW: "Shadow and Integration",
+  WISDOM: "Wisdom and Insight",
+  JOY: "Joy and Fulfillment",
+  PHYSICAL: "Physical Well-Being and Energy",
+  RELATIONSHIP: "Relationship",
+  SPIRITUALITY: "Spiritual Growth",
+  FEAR: "Fear and Resistance",              // ← ADD THIS
+  BOUNDARIES: "Boundaries and Consent",     // ← ADD THIS
+  PURPOSE: "Purpose and Direction",         // ← ADD THIS
+  MIND: "Mind and Awareness"                // ← ADD THIS
 };
 
 
@@ -25,7 +28,7 @@ export const InquiryList = [
   // LEVEL 1 – Grounding (12)
   {
     id: "RP-001",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "Where do I still have choice today?",
     holding: "Feel this in the body.",
@@ -34,7 +37,7 @@ export const InquiryList = [
   },
   {
     id: "RP-002",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What small decision is available right now?",
     holding: "Notice simplicity.",
@@ -43,7 +46,7 @@ export const InquiryList = [
   },
   {
     id: "RP-003",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "Where do I feel capable today?",
     holding: "Acknowledge capacity.",
@@ -52,7 +55,7 @@ export const InquiryList = [
   },
   {
     id: "RP-004",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What can I influence in this moment?",
     holding: "Stay with what is reachable.",
@@ -61,7 +64,7 @@ export const InquiryList = [
   },
   {
     id: "RP-005",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What feels within my control right now?",
     holding: "Notice steadiness.",
@@ -70,7 +73,7 @@ export const InquiryList = [
   },
   {
     id: "RP-006",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What action feels possible today?",
     holding: "Sense feasibility.",
@@ -79,7 +82,7 @@ export const InquiryList = [
   },
   {
     id: "RP-007",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "Where am I already showing up?",
     holding: "Recognize presence.",
@@ -88,7 +91,7 @@ export const InquiryList = [
   },
   {
     id: "RP-008",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What responsibility feels light today?",
     holding: "Notice ease.",
@@ -97,7 +100,7 @@ export const InquiryList = [
   },
   {
     id: "RP-009",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What choice feels obvious right now?",
     holding: "Trust clarity.",
@@ -106,7 +109,7 @@ export const InquiryList = [
   },
   {
     id: "RP-010",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "Where do I feel agency in my body?",
     holding: "Sense strength.",
@@ -115,7 +118,7 @@ export const InquiryList = [
   },
   {
     id: "RP-011",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What am I already handling well?",
     holding: "Acknowledge competence.",
@@ -124,7 +127,7 @@ export const InquiryList = [
   },
   {
     id: "RP-012",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 1,
     question: "What feels manageable today?",
     holding: "Stay with what fits.",
@@ -135,7 +138,7 @@ export const InquiryList = [
   // LEVEL 2 – Clarifying (14)
   {
     id: "RP-013",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What decision am I postponing?",
     holding: "Notice hesitation.",
@@ -144,7 +147,7 @@ export const InquiryList = [
   },
   {
     id: "RP-014",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "Where am I waiting instead of choosing?",
     holding: "Observe passivity.",
@@ -153,7 +156,7 @@ export const InquiryList = [
   },
   {
     id: "RP-015",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What choice do I keep circling around?",
     holding: "Notice repetition.",
@@ -162,7 +165,7 @@ export const InquiryList = [
   },
   {
     id: "RP-016",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What am I hoping will decide itself?",
     holding: "See avoidance gently.",
@@ -171,7 +174,7 @@ export const InquiryList = [
   },
   {
     id: "RP-017",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What outcome am I quietly choosing?",
     holding: "Notice subtle commitment.",
@@ -180,7 +183,7 @@ export const InquiryList = [
   },
   {
     id: "RP-018",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "Where am I unclear about my responsibility?",
     holding: "Let clarity form slowly.",
@@ -189,7 +192,7 @@ export const InquiryList = [
   },
   {
     id: "RP-019",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What am I leaving undecided?",
     holding: "Notice suspension.",
@@ -198,7 +201,7 @@ export const InquiryList = [
   },
   {
     id: "RP-020",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What choice feels heavier than it needs to be?",
     holding: "Sense unnecessary weight.",
@@ -207,7 +210,7 @@ export const InquiryList = [
   },
   {
     id: "RP-021",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What decision do I delay by overthinking?",
     holding: "Notice mental loops.",
@@ -216,7 +219,7 @@ export const InquiryList = [
   },
   {
     id: "RP-022",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What responsibility do I partially accept?",
     holding: "Notice partial ownership.",
@@ -225,7 +228,7 @@ export const InquiryList = [
   },
   {
     id: "RP-023",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What am I hoping someone else will handle?",
     holding: "Notice delegation patterns.",
@@ -234,7 +237,7 @@ export const InquiryList = [
   },
   {
     id: "RP-024",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "Where do I feel unsure about choosing?",
     holding: "Stay with uncertainty.",
@@ -243,7 +246,7 @@ export const InquiryList = [
   },
   {
     id: "RP-025",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What decision feels inevitable?",
     holding: "Sense readiness.",
@@ -252,7 +255,7 @@ export const InquiryList = [
   },
   {
     id: "RP-026",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 2,
     question: "What choice am I waiting to feel ready for?",
     holding: "Notice readiness stories.",
@@ -263,7 +266,7 @@ export const InquiryList = [
   // LEVEL 3 – Confronting (12)
   {
     id: "RP-027",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "Where am I giving my power away?",
     holding: "Observe any urge to justify.",
@@ -272,7 +275,7 @@ export const InquiryList = [
   },
   {
     id: "RP-028",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What choice am I pretending I do not have?",
     holding: "Notice resistance.",
@@ -281,7 +284,7 @@ export const InquiryList = [
   },
   {
     id: "RP-029",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "Where am I blaming circumstances instead of deciding?",
     holding: "Stay grounded with accountability.",
@@ -290,7 +293,7 @@ export const InquiryList = [
   },
   {
     id: "RP-030",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What outcome am I creating but denying?",
     holding: "Let consequences be seen.",
@@ -299,7 +302,7 @@ export const InquiryList = [
   },
   {
     id: "RP-031",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "Where am I choosing comfort over agency?",
     holding: "Notice the trade-off.",
@@ -308,7 +311,7 @@ export const InquiryList = [
   },
   {
     id: "RP-032",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What responsibility am I avoiding owning?",
     holding: "Stay with discomfort.",
@@ -317,7 +320,7 @@ export const InquiryList = [
   },
   {
     id: "RP-033",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What decision am I outsourcing?",
     holding: "Notice dependence.",
@@ -326,7 +329,7 @@ export const InquiryList = [
   },
   {
     id: "RP-034",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "Where am I waiting to be rescued?",
     holding: "Observe expectation.",
@@ -335,7 +338,7 @@ export const InquiryList = [
   },
   {
     id: "RP-035",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What power do I deny having?",
     holding: "Notice disbelief.",
@@ -344,7 +347,7 @@ export const InquiryList = [
   },
   {
     id: "RP-036",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What choice feels risky but true?",
     holding: "Stay with the edge.",
@@ -353,7 +356,7 @@ export const InquiryList = [
   },
   {
     id: "RP-037",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "What am I tolerating instead of changing?",
     holding: "Notice tolerance limits.",
@@ -362,7 +365,7 @@ export const InquiryList = [
   },
   {
     id: "RP-038",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 3,
     question: "Where do I confuse patience with avoidance?",
     holding: "Differentiate clearly.",
@@ -373,7 +376,7 @@ export const InquiryList = [
   // LEVEL 4 – Dissolving (6)
   {
     id: "RP-039",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 4,
     question: "Who am I without blame?",
     holding: "Stay present in not knowing.",
@@ -382,7 +385,7 @@ export const InquiryList = [
   },
   {
     id: "RP-040",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 4,
     question: "Who am I when I fully own my choices?",
     holding: "Let identity soften.",
@@ -391,7 +394,7 @@ export const InquiryList = [
   },
   {
     id: "RP-041",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 4,
     question: "What collapses when I stop outsourcing responsibility?",
     holding: "Stay with the collapse.",
@@ -400,7 +403,7 @@ export const InquiryList = [
   },
   {
     id: "RP-042",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 4,
     question: "What remains when I stop resisting responsibility?",
     holding: "Sense what is left.",
@@ -409,7 +412,7 @@ export const InquiryList = [
   },
   {
     id: "RP-043",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 4,
     question: "Who am I without control or avoidance?",
     holding: "Rest in openness.",
@@ -418,7 +421,7 @@ export const InquiryList = [
   },
   {
     id: "RP-044",
-    domain: INQUIRY_DOMAINS.POWER,
+    domain: INQUIRY_DOMAINS.RESPONSIBILITY,
     intensity: 4,
     question: "What remains when responsibility is fully embraced?",
     holding: "Stay with grounded presence.",
