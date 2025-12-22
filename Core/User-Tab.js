@@ -826,41 +826,49 @@ showLogoutModal() {
     this.app.showToast('✅ Automation settings saved!', 'success');
   }
 
-  // ----------  FIXED THEME SWITCHER  ----------
-  switchTheme(themeName) {
-    // cleanup
-    document.body.classList.remove('champagne-gold', 'royal-indigo', 'earth-luxury', 'matrix-code');
-    document.querySelectorAll('link[data-premium-theme]').forEach(l => l.remove());
-    localStorage.setItem('activeTheme', themeName);
+// ----------  CLEAN THEME SWITCHER (no leftovers)  ----------
+switchTheme(themeName) {
+  /* 1.  remove every trace of previous themes */
+  document.body.classList.remove(
+    'champagne-gold','royal-indigo','earth-luxury','matrix-code'
+  );
+  document.querySelectorAll('link[data-premium-theme]').forEach(l => l.remove());
+  localStorage.setItem('activeTheme', themeName);
 
-    // default selected → re-enable default dark-mode.css
-    if (themeName === 'default') {
-      document.getElementById('dark-mode-css')?.removeAttribute('disabled');
-      // Remove matrix rain for default theme
-      if (window.app && window.app.initMatrixRain) {
-        const existing = document.querySelector('.matrix-rain-container');
-        if (existing) existing.remove();
-      }
-      return;
-    }
-
-    // premium/matrix skin selected → disable default dark-mode.css
-    document.body.classList.add(themeName);
-    document.getElementById('dark-mode-css')?.setAttribute('disabled', 'true');
-
-    const file = `./Assets/CSS/${themeName}.css`;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = file;
-    link.setAttribute('data-premium-theme', themeName);
-    document.head.appendChild(link);
-
-    // Initialize Matrix rain if matrix-code skin selected
-    if (themeName === 'matrix-code' && window.app && window.app.initMatrixRain) {
-      // Small delay to let CSS load
-      setTimeout(() => window.app.initMatrixRain(), 100);
-    }
+  /* 2.  default selected → re-enable default dark-mode.css */
+  if (themeName === 'default') {
+    document.getElementById('dark-mode-css')?.removeAttribute('disabled');
+    const rain=document.querySelector('.matrix-rain-container');
+    if(rain) rain.remove();
+    this.forceRepaint();               /* 3.  hard repaint */
+    return;
   }
+
+  /* 4.  premium/matrix → disable default sheet, inject new one */
+  document.getElementById('dark-mode-css')?.setAttribute('disabled','true');
+  document.body.classList.add(themeName);
+
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href=`./Assets/CSS/${themeName}.css`;
+  link.setAttribute('data-premium-theme',themeName);
+  document.head.appendChild(link);
+
+  /* 5.  matrix rain special case */
+  if(themeName==='matrix-code' && window.app?.initMatrixRain){
+    link.onload=()=>setTimeout(()=>window.app.initMatrixRain(),50);
+  }
+
+  /* 6.  wait for new CSS to arrive, then repaint everything */
+  link.onload=()=>this.forceRepaint();
+}
+
+/* tiny helper: invalidate layout so every element redraws */
+forceRepaint(){
+  document.body.style.display='none';
+  document.body.offsetHeight;          // force sync layout
+  document.body.style.display='';
+}
 
   loadActiveTheme() {
     const t = localStorage.getItem('activeTheme');
