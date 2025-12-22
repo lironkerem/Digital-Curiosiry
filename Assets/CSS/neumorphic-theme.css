@@ -3709,15 +3709,6 @@ body.royal-indigo{
     background: rgba(0, 0, 0, .05);
   }
 
-  /* 3. tighter footer gap */
-  .lux-footer {
-    position: fixed;
-    bottom: 64px; /* was 72px – 8 px tighter */
-    left: 0;
-    right: 0;
-    z-index: 99;
-  }
-
   /* 4. footer behind sheets when open */
   body.sheet-open .lux-footer {
     z-index: 95;
@@ -8043,8 +8034,10 @@ body.royal-indigo{
   
   /* ===== 2. FOOTER POSITIONING - ABOVE BOTTOM NAV ===== */
   
+  /* tighter footer gap */
   .lux-footer {
-    bottom: 72px !important; /* Position above bottom navigation */
+    position: fixed;
+    bottom: 64px; /* was 72px – 8 px tighter */
     left: 0;
     right: 0;
     z-index: 99;
