@@ -66,7 +66,7 @@
 }
 /* ===== BOTTOM BREATHING ROOM (keeps footer below content) ===== */
 .tab-content {
-  padding-bottom: 120px;   /* extra 120 px below every page */
+  padding-bottom: 140px;   /* extra 140 px below every page */
 }
 /* universal golden premium badge */
 .premium-badge-tr,
@@ -7591,21 +7591,16 @@ body.royal-indigo{
   
   /* ===== 2. CONTAINER & LAYOUT ===== */
   
-  #karma-shop-tab .karma-shop-container {
-    padding: 1rem !important;
-  }
-  
-  #karma-shop-tab .karma-shop-content {
-    max-width: 100%;
-    padding: 0;
-  }
-  
-  /* Grid - single column */
+/* karma-shop mobile patch: 3 equal responsive columns, tighter gaps */
+@media (max-width: 767px) {
+  #karma-shop-tab .karma-shop-container { padding: 1rem !important; }
+  #karma-shop-tab .karma-shop-content  { max-width: 100%; padding: 0; }
+
   #karma-shop-tab .grid.md\:grid-cols-3 {
-    grid-template-columns: 1fr !important;
-    gap: 1.25rem !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;          /* snug fit on small screens */
   }
-  
+}
   
   /* ===== 3. BALANCE CARD - OPTIMIZED ===== */
   

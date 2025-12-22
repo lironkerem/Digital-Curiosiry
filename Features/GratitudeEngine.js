@@ -66,22 +66,19 @@ tab.innerHTML = `
             </div>
           </form>
 
-          <!-- Need Inspiration -->
-          <div class="card" style="background: rgba(102,126,234,0.05);margin-bottom: 2rem;">
-            <h4 class="text-lg font-bold" style="color: var(--neuro-text);margin-bottom: 1rem;">💭 Need Inspiration?</h4>
-            <div class="gratitude-inspiration-grid">
-              ${
-                'A person who made you smile,A comfortable place you enjoy,Something in nature,A skill or talent you have,A recent act of kindness,A small win you had today'
-                  .split(',').map(prompt => `
-                <div class="text-sm p-3 rounded cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700"
-                     style="color: var(--neuro-text-light); background: rgba(255,255,255,0.5); text-align: center;"
-                     onclick="document.getElementById('gratitude-input').value='${prompt}'; document.getElementById('gratitude-input').focus();">
-                  ${prompt}
-                </div>
-              `).join('')
-              }
-            </div>
-          </div>
+<!-- Need Inspiration -->
+<div class="card" style="background:var(--neuro-bg);box-shadow:var(--shadow-raised);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:2rem;">
+  <p class="suggestion-label" style="margin:0 0 0.75rem 0;font-weight:600;color:var(--neuro-text);">💭 Need Inspiration?</p>
+  <div class="gratitude-inspiration-grid">
+    ${'A person who made you smile,A comfortable place you enjoy,Something in nature,A skill or talent you have,A recent act of kindness,A small win you had today'
+      .split(',').map(prompt => `
+        <button class="suggestion-btn" data-text="${prompt}"
+                onclick="document.getElementById('gratitude-input').value='${prompt}'; document.getElementById('gratitude-input').focus();">
+          ${prompt}
+        </button>
+      `).join('')}
+  </div>
+</div>
 
           <div class="space-y-3">
             ${this.currentEntries.map((entry, index) => `

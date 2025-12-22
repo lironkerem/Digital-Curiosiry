@@ -28,7 +28,7 @@ tab.innerHTML = `
             <label class="form-label">What happened today?</label>
             <textarea 
               id="flip-journal-situation" 
-              class="form-input w-full min-h-[100px]"
+              class="form-input w-full min-h-[140px]"
               placeholder="Describe the situation..."
             ></textarea>
           </div>
@@ -37,7 +37,7 @@ tab.innerHTML = `
             <label class="form-label">How did it make you feel?</label>
             <textarea 
               id="flip-journal-feelings" 
-              class="form-input w-full min-h-[100px]"
+              class="form-input w-full min-h-[140px]"
               placeholder="Express your emotions..."
             ></textarea>
           </div>
