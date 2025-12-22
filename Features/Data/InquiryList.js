@@ -5718,4 +5718,4 @@ export const InquiryList = [
     holding: "Rest in pure awareness.",
     tags: ["integration", "joy", "fulfillment"],
     beginnerSafe: false
-  },
+  }
