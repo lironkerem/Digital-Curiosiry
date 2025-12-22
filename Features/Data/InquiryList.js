@@ -5719,3 +5719,4 @@ export const InquiryList = [
     tags: ["integration", "joy", "fulfillment"],
     beginnerSafe: false
   }
+];
