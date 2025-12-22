@@ -7601,7 +7601,7 @@ body.royal-indigo{
     gap: 0.5rem !important;          /* snug fit on small screens */
   }
  #karma-shop-tab .karma-shop-item {
-    padding: 0.75rem !important;   /* was 1.5rem – half the padding */
+    padding: 0.5rem !important;   /* was 1.5rem padding */
   }
 }
   
