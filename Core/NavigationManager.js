@@ -267,8 +267,8 @@ const swipeOrder = [
       if (Math.abs(deltaX) < SWIPE_THRESHOLD || deltaT > SWIPE_TIME) return;
       const active = localStorage.getItem('pc_active_tab') || 'dashboard';
       const idx = swipeOrder.indexOf(active);
-      const next = deltaX > 0 ? idx + 1 : idx - 1;
-      if (next < 0 || next >= swipeOrder.length) return;
+      let next = deltaX > 0 ? idx + 1 : idx - 1;
+      next = (next + swipeOrder.length) % swipeOrder.length;   // circular wrap
       const navItem = document.querySelector(`[data-tab="${swipeOrder[next]}"]`);
       if (navItem) this.switchTab(swipeOrder[next], navItem.dataset.label);
     }, {passive:true});

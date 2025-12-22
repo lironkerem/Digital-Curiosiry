@@ -64,7 +64,10 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+/* ===== BOTTOM BREATHING ROOM (keeps footer below content) ===== */
+.tab-content {
+  padding-bottom: 120px;   /* extra 120 px below every page */
+}
 /* universal golden premium badge */
 .premium-badge-tr,
 .premium-badge {
