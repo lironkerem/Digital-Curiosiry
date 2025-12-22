@@ -1,9 +1,8 @@
 // ============================================
-// HAPPINESS ENGINE - UPDATED WITH SELF INQUIRY CARD
+// HAPPINESS ENGINE  (360° flip version)
 // ============================================
 
 import affirmationsData from '../Features/Data/AffirmationsList.js';
-import { InquiryEngine } from '../Features/InquiryEngine.js';
 
 class HappinessEngine {
   constructor(app) {
@@ -20,12 +19,7 @@ class HappinessEngine {
     this.currentBooster = this.getRandomBooster();
     this.currentQuote   = null;
     this.currentAffirmation = null;
-    this.currentInquiry = null; // NEW
     this.affirmations   = window.affirmations || affirmationsData;
-    
-    // Initialize Inquiry Engine
-    this.inquiryEngine = new InquiryEngine('beginner');
-    
     this.loadBoosters();
   }
 
@@ -63,19 +57,6 @@ class HappinessEngine {
     return typeof pick === 'string' ? pick : pick.text;
   }
 
-  // NEW: Get random inquiry question
-  getRandomInquiry() {
-    const domains = [
-      'Responsibility and Power', 'Emotional Honesty', 'Identity and Roles', 
-      'Creativity and Expression', 'Shadow and Integration', 'Wisdom and Insight', 
-      'Joy and Fulfillment', 'Physical Well-Being and Energy', 'Relationship', 
-      'Spiritual Growth', 'Fear and Resistance', 'Boundaries and Consent',
-      'Purpose and Direction', 'Mind and Awareness'
-    ];
-    const randomDomain = domains[Math.floor(Math.random() * domains.length)];
-    return this.inquiryEngine.getRandomQuestion(randomDomain);
-  }
-
   trackView() {
     const today = new Date().toDateString();
     let data = { date: today, count: 0 };
@@ -104,17 +85,17 @@ class HappinessEngine {
     if (!card) return;
     const inner = card.querySelector('.flip-card-inner');
     const back  = card.querySelector('.flip-card-back');
-    back.innerHTML = newHtml;
+    back.innerHTML = newHtml;                       // paint new data on back
     const currentY = parseFloat(inner.style.transform.replace(/[^\d.-]/g, '')) || 0;
-    inner.style.transform = `rotateY(${currentY + 360}deg)`;
+    inner.style.transform = `rotateY(${currentY + 360}deg)`; // add 360°
     const onEnd = () => {
       inner.removeEventListener('transitionend', onEnd);
-      card.querySelector('.flip-card-front').innerHTML = newHtml;
+      card.querySelector('.flip-card-front').innerHTML = newHtml; // copy to front
     };
     inner.addEventListener('transitionend', onEnd);
   }
 
-  /* --------------- REFRESH ACTIONS --------------- */
+  /* --------------- REFRESH ACTIONS (no render() call) --------------- */
   refreshBooster() {
     this.currentBooster = this.getRandomBooster();
     const viewCount = this.trackView();
@@ -150,7 +131,7 @@ class HappinessEngine {
         <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
       </div>
       <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent);">
-        "${this.currentQuote.text}"
+        “${this.currentQuote.text}”
       </p>
       <p class="mt-3 text-center text-lg" style="color: var(--neuro-text);">
         - ${this.currentQuote.author}
@@ -188,56 +169,15 @@ class HappinessEngine {
     }
   }
 
-  // NEW: Refresh Inquiry
-  refreshInquiry() {
-    this.currentInquiry = this.getRandomInquiry();
-    const viewCount = this.trackView();
-    const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
-    
-    const html = `
-      <div class="flex items-center" style="margin-bottom: 1rem;">
-        <span class="text-3xl mr-4">${intensityEmoji[this.currentInquiry.intensity] || '💭'}</span>
-        <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Self Inquiry</h2>
-      </div>
-      <div class="text-center">
-        <div style="margin-bottom: 1rem; padding: 0.5rem; background: var(--neuro-bg-secondary); border-radius: 8px; display: inline-block;">
-          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--neuro-accent);">
-            ${this.currentInquiry.domain}
-          </span>
-        </div>
-        <p class="text-2xl font-semibold" style="color: var(--neuro-accent); line-height: 1.4; margin-bottom: 1rem;">
-          ${this.currentInquiry.question}
-        </p>
-        <p class="mt-2 text-lg" style="font-style: italic; color: var(--neuro-text-secondary);">
-          ${this.currentInquiry.holding}
-        </p>
-        <div class="mt-4 text-sm" style="color: var(--neuro-text-light);">
-          <span>Level ${this.currentInquiry.intensity}</span> • <span>Self-Inquiry</span>
-        </div>
-      </div>
-      <div class="mt-6 flex justify-end">
-        <button onclick="window.featuresManager.engines.happiness.refreshInquiry()" class="btn btn-secondary">🔄 Refresh Inquiry</button>
-      </div>`;
-    this._flipCard('inquiry-card', html);
-    if (window.app?.gamification) window.app.gamification.incrementHappinessViews();
-    if (this.app.showToast) {
-      if (viewCount >= 5) this.app.showToast('💭 Quest complete! You\'ve viewed 5 items today!', 'success');
-      else this.app.showToast(`💭 New inquiry revealed! (${viewCount}/5)`, 'success');
-    }
-  }
-
-  /* --------------- RENDER --------------- */
+  /* --------------- RENDER (runs once) --------------- */
   render() {
     const tab = document.getElementById('happiness-tab');
     if (!tab) return;
     if (!this.currentBooster) this.currentBooster = this.getDailyBooster();
     if (!this.currentQuote)   this.currentQuote   = window.QuotesData ? window.QuotesData.getQuoteOfTheDay() : { text: 'Stay positive!', author: 'Unknown' };
     if (!this.currentAffirmation) this.currentAffirmation = this.getDailyAffirmation();
-    if (!this.currentInquiry) this.currentInquiry = this.getRandomInquiry(); // NEW
-    
     const viewCount = this.getTodayViewCount();
     const viewsRemaining = Math.max(0, 5 - viewCount);
-    const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
 
 tab.innerHTML = `
   <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
@@ -246,7 +186,7 @@ tab.innerHTML = `
       <header class="text-center" style="margin-bottom: 2.5rem;">
         <div class="main-header project-curiosity">
           <h1>Happiness and Motivation</h1>
-          <h3>Your daily dose of Inspirational Quotes with Happiness Boosters, Positive-Affirmations, and Self-Inquiry.</h3>
+          <h3>Your daily dose of Inspirational Quotes with Happiness Boosters and Positive-Affirmations.</h3>
         </div>
         ${viewCount > 0 ? `
           <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full" style="background: rgba(102, 126, 234, 0.1);">
@@ -293,7 +233,7 @@ tab.innerHTML = `
                 <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
               </div>
               <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent);">
-                "${this.currentQuote.text}"
+                “${this.currentQuote.text}”
               </p>
               <p class="mt-3 text-center text-lg" style="color: var(--neuro-text);">
                 - ${this.currentQuote.author}
@@ -319,38 +259,6 @@ tab.innerHTML = `
               </p>
               <div class="mt-6 flex justify-end">
                 <button onclick="window.featuresManager.engines.happiness.refreshAffirmation()" class="btn btn-secondary">🔄 Refresh Affirmation</button>
-              </div>
-            </div>
-            <div class="flip-card-back"></div>
-          </div>
-        </div>
-
-        <!--  NEW: Self Inquiry Card  -->
-        <div class="neuro-card flip-card" id="inquiry-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="flex items-center" style="margin-bottom: 1rem;">
-                <span class="text-3xl mr-4">${intensityEmoji[this.currentInquiry.intensity] || '💭'}</span>
-                <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Self Inquiry</h2>
-              </div>
-              <div class="text-center">
-                <div style="margin-bottom: 1rem; padding: 0.5rem; background: var(--neuro-bg-secondary); border-radius: 8px; display: inline-block;">
-                  <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--neuro-accent);">
-                    ${this.currentInquiry.domain}
-                  </span>
-                </div>
-                <p class="text-2xl font-semibold" style="color: var(--neuro-accent); line-height: 1.4; margin-bottom: 1rem;">
-                  ${this.currentInquiry.question}
-                </p>
-                <p class="mt-2 text-lg" style="font-style: italic; color: var(--neuro-text-secondary);">
-                  ${this.currentInquiry.holding}
-                </p>
-                <div class="mt-4 text-sm" style="color: var(--neuro-text-light);">
-                  <span>Level ${this.currentInquiry.intensity}</span> • <span>Self-Inquiry</span>
-                </div>
-              </div>
-              <div class="mt-6 flex justify-end">
-                <button onclick="window.featuresManager.engines.happiness.refreshInquiry()" class="btn btn-secondary">🔄 Refresh Inquiry</button>
               </div>
             </div>
             <div class="flip-card-back"></div>
