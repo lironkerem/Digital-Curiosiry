@@ -83,12 +83,7 @@
   pointer-events: none;
   z-index: 2;
 }
-/* DESKTOP – hide mobile bar completely */
-.mobile-bottom-bar,
-.mobile-sheet,
-.sheet-scrim {
-  display: none !important;
-}
+
 .mobile-only { display: none !important; }
 @media (max-width: 767px) {
   .mobile-only { display: block !important; }
@@ -3646,9 +3641,16 @@ body.royal-indigo{
   }
   
 }
+
 /* =========================================================
-   BUTTOM-TAB NAVIGATION MOBILE - UNDER 768px ONLY
+   BOTTOM-TAB NAVIGATION MOBILE - UNDER 768px ONLY
    ========================================================= */
+/* DESKTOP – hide mobile bar completely */
+.mobile-bottom-bar,
+.mobile-sheet,
+.sheet-scrim {
+  display: none !important;
+}
 @media (max-width: 767px) {
   /* 1. lock body scroll while sheet is open */
   body.sheet-open {
@@ -3722,15 +3724,16 @@ body.royal-indigo{
   .mobile-sheet {
     position: fixed;
     bottom: 0;
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     max-height: 75vh;
     background: var(--neuro-bg);
     border-radius: 24px 24px 0 0;
     box-shadow: 0 -8px 32px rgba(0, 0, 0, .25);
-    z-index: 96;
+    z-index: 100;
     transform: translateY(110%);
     transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-    display: flex;
+    display: flex !important; /* Override the display: none !important */
     flex-direction: column;
     overscroll-behavior: contain;
     touch-action: pan-y;
@@ -3795,10 +3798,28 @@ body.royal-indigo{
     color: var(--neuro-text);
   }
 
-  /* 7. final z-index stack */
-  .sheet-scrim       { z-index: 97; }
+  /* 7. SCRIM - CRITICAL FIX */
+  .sheet-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: block !important; /* Override the display: none !important */
+  }
+
+  .sheet-scrim.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* 8. final z-index stack */
+  .sheet-scrim       { z-index: 99; }
+  .mobile-sheet      { z-index: 100; }
   .mobile-bottom-bar { z-index: 98; }
-  .lux-footer        { z-index: 99; }
+  .lux-footer        { z-index: 97; }
   body.sheet-open .lux-footer { z-index: 95; }
 }
 /* =========================================================

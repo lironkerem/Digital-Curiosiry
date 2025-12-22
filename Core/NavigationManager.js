@@ -240,11 +240,19 @@ export default class NavigationManager {
     });
 
     // left/right swipe to change tab – de-sensitised
-    const swipeOrder = [
-      'flip-script','calculator','shadow-alchemy','chatbot','karma-shop',
-      'dashboard',
-      'energy','happiness','gratitude','journal','tarot','meditations'
-    ];
+const swipeOrder = [
+  'dashboard',        // 0  ← STARTING POINT
+  'energy',           // 1
+  'tarot',            // 2
+  'gratitude',        // 3
+  'happiness',        // 4
+  'journal',          // 5
+  'meditations',      // 6
+  'flip-script',      // 7
+  'calculator',       // 8  (Self Analysis Pro)
+  'shadow-alchemy',   // 9
+  'karma-shop'        // 10
+];
     let startX = 0, startT = 0;
     const SWIPE_THRESHOLD = 120;   // px
     const SWIPE_TIME = 300;        // ms
