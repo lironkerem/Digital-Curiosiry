@@ -8034,7 +8034,8 @@ body.royal-indigo{
   
   /* ===== 3. TOGGLE BUTTON - MOBILE OPTIMIZED ===== */
   
-  .lux-footer .lux-toggle {
+  .lux-footer .lux-toggle,
+  .lux-footer #cta-toggle {
     padding: 0.75rem 1rem !important;
     gap: 0.75rem;
     min-height: 60px;
@@ -8057,17 +8058,32 @@ body.royal-indigo{
     flex-shrink: 0;
   }
   
+  /* Ensure chevron rotates correctly on mobile */
+  .lux-footer .lux-toggle[aria-expanded="false"] .lux-chevron,
+  .lux-footer #cta-toggle[aria-expanded="false"] .lux-chevron {
+    transform: rotate(45deg);
+  }
+  
+  .lux-footer .lux-toggle[aria-expanded="true"] .lux-chevron,
+  .lux-footer #cta-toggle[aria-expanded="true"] .lux-chevron {
+    transform: rotate(-135deg);
+  }
+  
   
   /* ===== 4. PANEL - MOBILE LAYOUT ===== */
   
-  .lux-footer .lux-panel {
-    max-height: 70vh;
+  .lux-footer .lux-panel,
+  .lux-footer #cta-panel {
+    max-height: 0 !important;
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    overflow: hidden !important;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  .lux-footer .lux-panel.open {
-    max-height: 70vh;
-    overflow-y: auto;
+  .lux-footer .lux-panel.open,
+  .lux-footer #cta-panel.open {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
   }
   
   .lux-footer .lux-scroll {
@@ -8186,7 +8202,7 @@ body.royal-indigo{
     padding: 1rem !important;
   }
   
-  .lux-footer .lux-section-body.open:not(.open) {
+  .lux-footer .lux-section-body:not(.open) {
     padding: 0 1rem !important;
   }
   
@@ -8293,6 +8309,7 @@ body.royal-indigo{
   }
   
   .lux-footer .lux-toggle:focus-visible,
+  .lux-footer #cta-toggle:focus-visible,
   .lux-footer .lux-section-header:focus-visible,
   .lux-footer .lux-social-chip:focus-visible,
   .lux-footer .lux-card:focus-visible {
@@ -8335,6 +8352,7 @@ body.royal-indigo{
   
   /* Prevent text selection during animations */
   .lux-footer .lux-toggle,
+  .lux-footer #cta-toggle,
   .lux-footer .lux-section-header {
     user-select: none;
     -webkit-user-select: none;
@@ -8354,7 +8372,8 @@ body.royal-indigo{
 @media (max-width: 380px) {
   
   /* Smaller toggle button */
-  .lux-footer .lux-toggle {
+  .lux-footer .lux-toggle,
+  .lux-footer #cta-toggle {
     padding: 0.625rem 0.875rem !important;
     min-height: 56px;
   }
@@ -8406,7 +8425,6 @@ body.royal-indigo{
 /* =========================================================
    END OF CTA FOOTER MOBILE OPTIMIZATION
    ========================================================= */
-
 
 /* =========================================================
    USER TAB MOBILE OPTIMIZATION - UNDER 768px ONLY
