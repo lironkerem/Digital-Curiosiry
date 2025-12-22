@@ -1,5 +1,5 @@
 // ===================================================================
-// MEDITATIONS ENGINE  (centered-wrapper patch)
+// MEDITATIONS ENGINE
 // ===================================================================
 class MeditationsEngine {
   constructor(app) {
@@ -89,49 +89,48 @@ class MeditationsEngine {
         premium: false
       },
 
-      // --------------  PREMIUM --------------
-      {
-        id: 7,
-        title: 'Meeting your Higher Self',
-        duration: '29:56',
-        category: 'Premium',
-        description: 'Connect with your highest consciousness',
-        embedUrl: 'https://www.youtube.com/embed/34mla-PnpeU?enablejsapi=1&rel=0&playsinline=1',
-        emoji: '💎',
-        type: 'guided',
-        premium: true
-      },
-      {
-        id: 8,
-        title: 'Inner Temple',
-        duration: '29:46',
-        category: 'Premium',
-        description: 'Create your sacred inner sanctuary',
-        embedUrl: 'https://www.youtube.com/embed/t6o6lpftZBA?enablejsapi=1&rel=0&playsinline=1',
-        emoji: '🔮',
-        type: 'guided',
-        premium: true
-      },
-      {
-        id: 9,
-        title: 'Gratitude Practice',
-        duration: '29:56',
-        category: 'Premium',
-        description: 'Cultivate deep appreciation and abundance',
-        embedUrl: 'https://www.youtube.com/embed/JyTwWAhsiq8?enablejsapi=1&rel=0&playsinline=1',
-        emoji: '👑',
-        type: 'guided',
-        premium: true
-      }
+// --------------  PREMIUM --------------
+{
+  id: 7,
+  title: 'Meeting your Higher Self',
+  duration: '29:56',
+  category: 'Premium',
+  description: 'Connect with your highest consciousness',
+  embedUrl: 'https://www.youtube.com/embed/34mla-PnpeU?enablejsapi=1&rel=0&playsinline=1',
+  emoji: '💎',
+  type: 'guided',
+  premium: true
+},
+{
+  id: 8,
+  title: 'Inner Temple',
+  duration: '29:46',
+  category: 'Premium',
+  description: 'Create your sacred inner sanctuary',
+  embedUrl: 'https://www.youtube.com/embed/t6o6lpftZBA?enablejsapi=1&rel=0&playsinline=1',
+  emoji: '🔮',
+  type: 'guided',
+  premium: true
+},
+{
+  id: 9,
+  title: 'Gratitude Practice',
+  duration: '29:56',
+  category: 'Premium',
+  description: 'Cultivate deep appreciation and abundance',
+  embedUrl: 'https://www.youtube.com/embed/JyTwWAhsiq8?enablejsapi=1&rel=0&playsinline=1',
+  emoji: '👑',
+  type: 'guided',
+  premium: true
+}
     ];
   }
-
-  /* --------------  UI RENDER -------------- */
+/* --------------  UI RENDER -------------- */
   render() {
     const tab = document.getElementById('meditations-tab');
     tab.innerHTML = `
-      <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
-        <div class="universal-content">
+      <div class="min-h-screen p-6" style="background: var(--neuro-bg);">
+        <div class="max-w-7xl mx-auto">
 
           <!--  UNIFIED HEADER  -->
           <header class="main-header project-curiosity">
@@ -209,15 +208,13 @@ class MeditationsEngine {
               <p class="dashboard-wellness-subtitle">Aanandoham's curated, unique collection</p>
             </div>
 
-            <!--  CENTERED FLEX WRAP  -->
-            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               ${this.meditations.map(med => {
                 const isPremium = med.premium;
                 const isLocked  = isPremium && !this.app.gamification?.state?.unlockedFeatures?.includes('advanced_meditations');
                 return `
                 <div class="card relative ${isLocked ? 'opacity-75' : ''}" 
-                     title="${isLocked ? '🔒 Purchase Advanced Meditations in Karma Shop to unlock' : ''}"
-                     style="flex:0 1 320px;max-width:320px;">
+                     title="${isLocked ? '🔒 Purchase Advanced Meditations in Karma Shop to unlock' : ''}">
                   ${med.category === 'Premium' ? '<span class="premium-badge-tr">PREMIUM</span>' : ''}
                   ${isLocked ? '<div style="position:absolute;top:1rem;right:1rem;font-size:3rem;opacity:0.3;z-index:1;">🔒</div>' : ''}
                   
@@ -283,8 +280,7 @@ class MeditationsEngine {
 
         </div>
       </div>
-
-      <style>
+<style>
         /*  wrapper lets us position anywhere  */
         .player-wrapper {
           position: fixed;
@@ -397,28 +393,26 @@ class MeditationsEngine {
       </style>
     `;
   }
-
-  /* ------------- PUBLIC AUDIO / VIDEO ENTRYS ------------- */
-  playAudio(id) {
-    const med = this.meditations.find(m => m.id === id);
-    if (!med) return;
-    if (med.premium && !this.app.gamification?.state?.unlockedFeatures?.includes('advanced_meditations')) {
-      this.app.showToast('🔒 Unlock Advanced Meditations in the Karma Shop!', 'info');
-      return;
-    }
-    this._play(id, 'audio');
+/* ------------- PUBLIC AUDIO / VIDEO ENTRYS ------------- */
+playAudio(id) { 
+  const med = this.meditations.find(m => m.id === id);
+  if (!med) return;
+  if (med.premium && !this.app.gamification?.state?.unlockedFeatures?.includes('advanced_meditations')) {
+    this.app.showToast('🔒 Unlock Advanced Meditations in the Karma Shop!', 'info');
+    return;
   }
+  this._play(id, 'audio'); 
+}
 
-  playVideo(id) {
-    const med = this.meditations.find(m => m.id === id);
-    if (!med) return;
-    if (med.premium && !this.app.gamification?.state?.unlockedFeatures?.includes('advanced_meditations')) {
-      this.app.showToast('🔒 Unlock Advanced Meditations in the Karma Shop!', 'info');
-      return;
-    }
-    this._play(id, 'video');
+playVideo(id) { 
+  const med = this.meditations.find(m => m.id === id);
+  if (!med) return;
+  if (med.premium && !this.app.gamification?.state?.unlockedFeatures?.includes('advanced_meditations')) {
+    this.app.showToast('🔒 Unlock Advanced Meditations in the Karma Shop!', 'info');
+    return;
   }
-
+  this._play(id, 'video'); 
+}
   /* ------------- PRIVATE CORE ------------- */
   _play(id, mode) {
     const med = this.meditations.find(m => m.id === id);
@@ -443,9 +437,9 @@ class MeditationsEngine {
   /* ------------- YOUTUBE – VISIBLE & RESIZABLE & DRAGGABLE ------------- */
   _startYouTube(med) {
     if (!window.ytReady) {
-      this.app.showToast('🎧 Initialising player… please tap again.', 'info');
-      window.onYouTubeIframeAPIReady = () => {
-        window.ytReady = true;
+      this.app.showToast('🎧 Initialising player… please tap again.','info');
+      window.onYouTubeIframeAPIReady = ()=>{
+        window.ytReady=true;
         this._startYouTube(med);
       };
       return;
@@ -478,10 +472,10 @@ class MeditationsEngine {
       window.ytPlayer.loadVideoById(videoId);
     }
 
-    /*  4.  grey until onReady fires  */
+/*  4.  grey until onReady fires  */
     document.getElementById('play-pause-btn').disabled = true;
     this._showVideoPane();
-
+    
     // Start progress update interval
     if (this.progressInterval) clearInterval(this.progressInterval);
     this.progressInterval = setInterval(() => {
@@ -489,12 +483,12 @@ class MeditationsEngine {
     }, 1000);
   }
 
-  /* ------------- AUDIO branch (YouTube audio without video pane) ------------- */
+/* ------------- AUDIO branch (YouTube audio without video pane) ------------- */
   _startAudio(med) {
     if (!window.ytReady) {
-      this.app.showToast('🎧 Initialising player… please tap again.', 'info');
-      window.onYouTubeIframeAPIReady = () => {
-        window.ytReady = true;
+      this.app.showToast('🎧 Initialising player… please tap again.','info');
+      window.onYouTubeIframeAPIReady = ()=>{
+        window.ytReady=true;
         this._startAudio(med);
       };
       return;
@@ -531,19 +525,18 @@ class MeditationsEngine {
 
     /*  grey until ready  */
     document.getElementById('play-pause-btn').disabled = true;
-
-    /*  keep video pane HIDDEN for audio mode  */
+    
+/*  keep video pane HIDDEN for audio mode  */
     this._hideVideoPane();
-
+    
     // Start progress update interval
     if (this.progressInterval) clearInterval(this.progressInterval);
     this.progressInterval = setInterval(() => {
       if (this.isPlaying) this.updateProgress();
     }, 1000);
   }
-
-  /* ------------- VIDEO PANE HELPERS ------------- */
-  _showVideoPane() {
+/* ------------- VIDEO PANE HELPERS ------------- */
+  _showVideoPane()  {
     document.getElementById('video-pane').classList.remove('hidden');
     document.getElementById('resize-l').classList.remove('hidden');
     document.getElementById('resize-r').classList.remove('hidden');
@@ -551,7 +544,7 @@ class MeditationsEngine {
     this.initDrag();
     this.initResize();
   }
-  _hideVideoPane() {
+  _hideVideoPane()  {
     document.getElementById('video-pane').classList.add('hidden');
     document.getElementById('resize-l').classList.add('hidden');
     document.getElementById('resize-r').classList.add('hidden');
@@ -561,7 +554,7 @@ class MeditationsEngine {
   /* ------------- DRAG-TO-MOVE (header) ------------- */
   initDrag() {
     const header = document.querySelector('.player-info');
-    const wrap = document.getElementById('meditation-player-wrapper');
+    const wrap   = document.getElementById('meditation-player-wrapper');
     let px, py, dx, dy;
 
     const start = (e) => {
@@ -571,9 +564,9 @@ class MeditationsEngine {
       dx = px - rect.left;
       dy = py - rect.top;
       document.addEventListener('mousemove', move);
-      document.addEventListener('mouseup', end);
-      document.addEventListener('touchmove', move, { passive: false });
-      document.addEventListener('touchend', end);
+      document.addEventListener('mouseup',  end);
+      document.addEventListener('touchmove', move, {passive:false});
+      document.addEventListener('touchend',  end);
       e.preventDefault();
     };
 
@@ -581,20 +574,20 @@ class MeditationsEngine {
       const cx = (e.touches ? e.touches[0].clientX : e.clientX) - dx;
       const cy = (e.touches ? e.touches[0].clientY : e.clientY) - dy;
       wrap.style.left = cx + 'px';
-      wrap.style.top = cy + 'px';
+      wrap.style.top  = cy + 'px';
       wrap.style.bottom = 'auto';
-      wrap.style.right = 'auto';
+      wrap.style.right  = 'auto';
     };
 
     const end = () => {
       document.removeEventListener('mousemove', move);
-      document.removeEventListener('mouseup', end);
+      document.removeEventListener('mouseup',  end);
       document.removeEventListener('touchmove', move);
-      document.removeEventListener('touchend', end);
+      document.removeEventListener('touchend',  end);
     };
 
     header.addEventListener('mousedown', start);
-    header.addEventListener('touchstart', start, { passive: false });
+    header.addEventListener('touchstart', start, {passive:false});
   }
 
   /* ------------- DRAG-TO-RESIZE (top corners - only grows from starting size) ------------- */
@@ -602,7 +595,7 @@ class MeditationsEngine {
     const player = document.getElementById('meditation-audio-player');
     const corners = [
       { el: document.getElementById('resize-l'), dir: -1 },
-      { el: document.getElementById('resize-r'), dir: 1 }
+      { el: document.getElementById('resize-r'), dir:  1 }
     ];
 
     corners.forEach(c => {
@@ -613,37 +606,36 @@ class MeditationsEngine {
         startW = player.offsetWidth;
         startH = player.offsetHeight;
         document.addEventListener('mousemove', move);
-        document.addEventListener('mouseup', end);
-        document.addEventListener('touchmove', move, { passive: false });
-        document.addEventListener('touchend', end);
+        document.addEventListener('mouseup',  end);
+        document.addEventListener('touchmove', move, {passive:false});
+        document.addEventListener('touchend',  end);
         e.preventDefault();
       };
 
       const move = (e) => {
         const cx = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
         const cy = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
-
+        
         // Only allow growing, not shrinking (minimum is original start size)
         const newW = Math.max(startW, startW + c.dir * cx);
         const newH = Math.max(startH, startH + cy);
-
-        player.style.width = newW + 'px';
+        
+        player.style.width  = newW + 'px';
         player.style.height = newH + 'px';
       };
 
       const end = () => {
         document.removeEventListener('mousemove', move);
-        document.removeEventListener('mouseup', end);
+        document.removeEventListener('mouseup',  end);
         document.removeEventListener('touchmove', move);
-        document.removeEventListener('touchend', end);
+        document.removeEventListener('touchend',  end);
       };
 
       c.el.addEventListener('mousedown', start);
-      c.el.addEventListener('touchstart', start, { passive: false });
+      c.el.addEventListener('touchstart', start, {passive:false});
     });
   }
-
-  /* ------------- CONTROLS (work for both modes) ------------- */
+/* ------------- CONTROLS (work for both modes) ------------- */
   togglePlay() {
     if (!this.currentMeditation) return;
 
@@ -693,7 +685,7 @@ class MeditationsEngine {
       clearInterval(this.progressInterval);
       this.progressInterval = null;
     }
-
+    
     this.currentMeditation = null;
     this.sessionStartTime = null;
     document.getElementById('play-pause-btn').textContent = '▶️';
@@ -744,8 +736,7 @@ class MeditationsEngine {
     const offset = c - (current / duration) * c;
     ring.style.strokeDashoffset = isNaN(offset) ? c : offset;
   }
-
-  onMeditationComplete() {
+onMeditationComplete() {
     this.isPlaying = false;
     document.getElementById('play-pause-btn').textContent = '▶️';
     this.app.showToast('🎉 Meditation complete! Well done.', 'success');
