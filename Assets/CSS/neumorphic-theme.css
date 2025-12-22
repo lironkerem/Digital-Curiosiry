@@ -4048,53 +4048,51 @@ body.royal-indigo{
     padding: 1rem 0 0 0 !important;
   }
   
-  /* Weekly chart - 60% scale, no side/bottom padding */
-  #energy-tab .card-flex {
-    min-height: 500px;
-    overflow: hidden;
-    padding: 0.75rem 0 0 0 !important;
-  }
-  
-  #energy-tab .card-flex h3 {
-    margin-bottom: 0.5rem !important;
-    padding: 0 0.5rem;
-  }
-  
-  #energy-tab .card-body {
-    min-height: 420px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #energy-tab .weekly-chart-box {
-    width: 95%;
-    height: 95%;
-    min-height: 400px;
-    max-width: 95%;
-    max-height: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 0;
-  }
-  
-  #energy-tab .weekly-chart-box svg {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    transform: scale(0.60);
-    transform-origin: center center;
-    padding: 0;
-    margin: 0;
-  }
+/* Weekly chart - FIT CONTAINER PERFECTLY */
+#energy-tab .card-flex {
+  min-height: 450px;
+  overflow: visible;  /* ✅ Changed from hidden */
+  padding: 0.75rem 0.5rem 0 0.5rem !important;  /* ✅ Added horizontal padding */
+}
+
+#energy-tab .card-flex h3 {
+  margin-bottom: 0.75rem !important;
+  padding: 0 0.5rem;
+}
+
+#energy-tab .card-body {
+  min-height: 380px;  /* ✅ Adjusted height */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;  /* ✅ Changed from hidden */
+  padding: 0;
+  margin: 0;
+}
+
+#energy-tab .weekly-chart-box {
+  width: 100%;  /* ✅ Full width instead of 95% */
+  height: 100%;
+  min-height: 380px;  /* ✅ Adjusted height */
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 0.5rem;  /* ✅ Added horizontal padding */
+}
+
+#energy-tab .weekly-chart-box svg {
+  width: 100% !important;
+  height: auto !important;  /* ✅ Changed from 100% to auto */
+  max-width: 100%;
+  display: block;
+  transform: none;  /* ✅ REMOVED the scale(0.60) */
+  transform-origin: center center;
+  padding: 0;
+  margin: 0;
+}
   
   /* Radar chart - smaller on mobile */
   #energy-tab .flex.justify-center {
