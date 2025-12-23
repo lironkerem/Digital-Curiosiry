@@ -328,7 +328,18 @@ tab.innerHTML = `
     .cross-shape { display: flex; flex-direction: column; align-items: center; }
     .cross-top, .cross-bot { display: flex; justify-content: center; }
     .cross-mid { display: flex; justify-content: center; gap: 15rem; }
+/* Cross spread - align middle row cards vertically */
+.cross-mid > div {
+  align-self: center;
+}
 
+/* OR force equal label heights */
+.cross-shape .flex.flex-col.items-center.mx-auto h4 {
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     /* ----------  premium badge  ---------- */
     .premium-badge {
       position: static;
