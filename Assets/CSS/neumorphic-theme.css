@@ -146,13 +146,12 @@
   d:path("M80 18 L100 90 L80 162");   /* 15° each side */
 }
 
-/* gentle vertical bob (loop forever) */
 .swipe-arrow{
-  animation:bob 2.5s ease-in-out infinite;
+  animation:drift 2.5s ease-in-out infinite;
 }
-@keyframes bob{
-  0%,100%{transform:translateY(-50%) scale(2);}
-  50%{transform:translateY(-52%) scale(2);}
+@keyframes drift{
+  0%,100%{transform:translateY(-50%) scale(2) translateX(0);}
+  50%{transform:translateY(-50%) scale(2) translateX(10%);}
 }
 
 @media (min-width:768px){.swipe-arrows{display:none!important;}}
