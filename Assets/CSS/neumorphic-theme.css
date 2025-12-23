@@ -128,7 +128,9 @@
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 .swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}
 .swipe-arrow.right{right:-25px;left:auto;margin-left:auto;}
-.swipe-arrow:focus{outline:none;}
+.swipe-arrow,
+.swipe-arrow svg,
+.swipe-arrow *{outline:none;}
 
 /* 30° total (15° each side) + half-bold stroke */
 .swipe-arrow svg{
@@ -178,6 +180,7 @@
   transform:translateX(-150%);
   animation:shimmer 2.8s linear infinite;
   pointer-events:none;
+  z-index:1;
   mix-blend-mode:overlay;
 }
 @keyframes shimmer{to{transform:translateX(150%);}}
