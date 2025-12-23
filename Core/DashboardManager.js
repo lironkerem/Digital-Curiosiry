@@ -75,17 +75,30 @@ export default class DashboardManager {
     });
   }
 
-  setupQuestListeners() {
-    if (!this.app.gamification) return;
-    this.app.gamification.on('questCompleted', (quest) => {
-      this.app.showToast(`✅ Quest Complete: ${quest.name}! +${quest.xpReward} XP`, 'success');
-      if (quest.inspirational) setTimeout(() => this.app.showToast(`💫 ${quest.inspirational}`, 'info'), 1500);
-      this.render();
-    });
-    this.app.gamification.on('questProgress', () => this.render());
-    this.app.gamification.on('dailyQuestsComplete', () => this.app.showToast('🌟 All Daily Quests Complete! +50 Bonus XP 🌟', 'success'));
-    this.checkDailyReset();
-  }
+setupQuestListeners() {
+  if (!this.app.gamification) return;
+
+  /* ----- single quest toast (silent during bulk) ----- */
+  this.app.gamification.on('questCompleted', quest => {
+    if (this.app.gamification._bulkMode) return;   // ← quiet mode
+    this.app.showToast(`✅ Quest Complete: ${quest.name}! +${quest.xpReward} XP`, 'success');
+    if (quest.inspirational) setTimeout(() => this.app.showToast(`💫 ${quest.inspirational}`, 'info'), 1500);
+    this.render();
+  });
+
+  /* ----- one summary toast after bulk finish ----- */
+  this.app.gamification.on('bulkQuestsComplete', ({ type, done, xp, karma }) => {
+    const nice = type.charAt(0).toUpperCase() + type.slice(1);
+    this.app.showToast(
+      `✅ ${nice} quests complete! +${xp} XP` + (karma ? ` +${karma} Karma` : ''),
+      'success'
+    );
+  });
+
+  this.app.gamification.on('questProgress', () => this.render());
+  this.app.gamification.on('dailyQuestsComplete', () => this.app.showToast('🌟 All Daily Quests Complete! +50 Bonus XP 🌟', 'success'));
+  this.checkDailyReset();
+}
 
   checkDailyReset() {
     const today = new Date().toDateString();

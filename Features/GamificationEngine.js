@@ -11,31 +11,31 @@ export class GamificationEngine {
   /* ---------------------------------------------------------
      DEFAULT STATE
   --------------------------------------------------------- */
-  defaultState() {
-    return {
-      xp: 0,
-      level: 1,
-      karma: 0,
-      streak: { current: 0 },
-      completedSessions: { daily: 0, weekly: 0 },
-      achievements: [],
-      badges: [],
-      unlockedFeatures: [],
-      quests: { daily: [], weekly: [], monthly: [] },
-      logs: [],
-      totalWellnessRuns: 0,
-      totalTarotSpreads: 0,
-      totalJournalEntries: 0,
-      totalHappinessViews: 0,
-      settings: {
-        xpPerAction: 10,
-        xpPerLevel: 100,
-        streakResetDays: 1,
-        synergyBonus: 10
-      }
-    };
-  }
-
+defaultState() {
+  return {
+    xp: 0,
+    level: 1,
+    karma: 0,
+    streak: { current: 0 },
+    completedSessions: { daily: 0, weekly: 0 },
+    achievements: [],
+    badges: [],
+    unlockedFeatures: [],
+    quests: { daily: [], weekly: [], monthly: [] },
+    logs: [],
+    totalWellnessRuns: 0,
+    totalTarotSpreads: 0,
+    totalJournalEntries: 0,
+    totalHappinessViews: 0,
+    _bulkMode: false,
+    settings: {
+      xpPerAction: 10,
+      xpPerLevel: 100,
+      streakResetDays: 1,
+      synergyBonus: 10
+    }
+  };
+}
   /* ---------------------------------------------------------
      CLOUD + LOCAL PERSISTENCE (auto-drops old keys)
   --------------------------------------------------------- */
@@ -273,13 +273,39 @@ export class GamificationEngine {
   resetWeeklyQuests() { this._resetQuests('weekly'); }
   resetMonthlyQuests() { this._resetQuests('monthly'); }
 
-  _resetQuests(type) {
+   _resetQuests(type) {
     this.state.quests[type]?.forEach(q => {
       q.progress = 0; q.completed = false;
       if (q.id === 'energy_checkin') q.subProgress = { day: false, night: false };
     });
     this.emit('questsReset', type);
     this.saveState();
+  }
+
+  /* ----------  NEW BULK-COMPLETE HELPERS  ---------- */
+  completeAllDaily()   { this._completeBatch('daily');   }
+  completeAllWeekly()  { this._completeBatch('weekly');  }
+  completeAllMonthly() { this._completeBatch('monthly'); }
+
+  _completeBatch(type) {
+    const quests = this.state.quests[type];
+    if (!quests?.length) return;
+
+    let done = 0, xp = 0, karma = 0;
+    this._bulkMode = true;                 // 1. mute single toasts
+    quests.forEach(q => {
+      if (!q.completed) {
+        this.completeQuest(type, q.id);    // existing method
+        done++;
+        xp   += q.xpReward   || 50;
+        karma += q.karmaReward || 0;
+      }
+    });
+    this._bulkMode = false;                // 2. re-enable toasts
+
+    if (done) {
+      this.emit('bulkQuestsComplete', { type, done, xp, karma });
+    }
   }
 
   /* ---------------------------------------------------------
