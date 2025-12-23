@@ -108,7 +108,7 @@ class EnergyEngineEnhanced {
     const checkinStatus = timeOfDay === 'day' ? this.currentCheckin.dayCheckin : this.currentCheckin.nightCheckin;
 
 tab.innerHTML = `
-  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
 <!--  NEW UNIFIED HEADER  -->
