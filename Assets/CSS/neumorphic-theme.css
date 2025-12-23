@@ -412,7 +412,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
 .dashboard-progress-track {
   position: relative;
   width: 100%;
-  height: 28px;                           /* pill height */
+  height: 18px;                           /* pill height */
   background: var(--neuro-bg);
   border-radius: 9999px;
   box-shadow: var(--shadow-inset-lg);
