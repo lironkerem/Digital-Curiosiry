@@ -5362,12 +5362,12 @@ body.royal-indigo{
   }
   
   
-  /* ===== 4. CRITICAL: CARD SIZE FOR 3-CARDS-PER-ROW ===== */
+/* ===== 4. CRITICAL: CARD SIZE FOR 3-CARDS-PER-ROW ===== */
   
-  /* SMALLER cards to fit 3 per row */
+  /* SMALLER cards to fit 3 per row with breathing room */
   #tarot-tab .tarot-card-flip-container {
-    width: clamp(90px, 28vw, 140px) !important;
-    max-width: 140px;
+    width: clamp(85px, 26vw, 130px) !important;
+    max-width: 130px;
   }
   
   /* Card wrapper - allow shrinking */
@@ -5395,6 +5395,20 @@ body.royal-indigo{
     max-height: 80px;
     overflow-y: auto;
     font-size: 0.65rem;
+  }
+  
+  /* Ensure parent container has proper padding */
+  #tarot-tab .card[style*="padding: 2rem"] {
+    padding: 1rem !important;
+  }
+  
+  /* Grid container - explicit constraint */
+  #tarot-tab .grid.md\:grid-cols-3,
+  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3,
+  #tarot-tab .grid.grid-cols-3.place-items-center {
+    max-width: 100%;
+    padding: 0 0.25rem;
+    box-sizing: border-box;
   }
   
   
