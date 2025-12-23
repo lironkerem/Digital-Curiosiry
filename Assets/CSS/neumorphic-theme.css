@@ -100,14 +100,14 @@
 @media (max-width: 767px) {
   .desktop-nav { display: none !important; }
 }
-/* ---------- FLOATING SWIPE ARROWS – CORRECT POSITION ---------- */
+/* ---------- VERTICALLY-CENTRED FLOATING ARROWS ---------- */
 .swipe-arrows{
   position:fixed;
   inset:0;
   pointer-events:none;
   display:flex;
   align-items:center;              /* vertical middle */
-  justify-content:space-between;   /* push apart */
+  justify-content:space-between;   /* horizontal edges */
   padding:0 12px;
   z-index:90;
 }
@@ -132,7 +132,7 @@
 
 .swipe-arrow:active{ transform:scale(.92); }
 
-/* left arrow sticks to far left, right to far right */
+/* push arrows to opposite horizontal edges */
 .swipe-arrow.left{  margin-right:auto; }
 .swipe-arrow.right{ margin-left:auto;  }
 
