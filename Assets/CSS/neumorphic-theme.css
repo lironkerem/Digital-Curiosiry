@@ -106,24 +106,17 @@
   inset:0;
   pointer-events:none;
   display:flex;
-  align-items:center;              /* vertical middle */
-  justify-content:space-between;   /* horizontal edges */
+  align-items:center;
+  justify-content:space-between;
   padding:0 12px;
   z-index:90;
 }
 
-/* centre-line anchor */
-.swipe-arrows::before{
-  content:"";
-  position:absolute;
-  inset:50% auto auto 0;          /* pin to vertical centre */
-  width:1px;
-  height:1px;
-}
-
 .swipe-arrow{
   pointer-events:auto;
-  position:relative;               /* keeps them on the centre line */
+  position:fixed;               /* take them out of flow */
+  top:50%;                      /* vertical centre */
+  transform:translateY(-50%);  /* perfect centre */
   width:64px;
   height:64px;
   border-radius:50%;
@@ -140,15 +133,14 @@
   place-content:center;
 }
 
-.swipe-arrow:active{ transform:scale(.92); }
+.swipe-arrow:active{ transform:translateY(-50%) scale(.92); }
 
-/* push to horizontal edges */
-.swipe-arrow.left{  margin-right:auto; }
-.swipe-arrow.right{ margin-left:auto;  }
+.swipe-arrow.left{  left:12px;  right:auto; }
+.swipe-arrow.right{ right:12px; left:auto;  }
 
 @keyframes pulse{
-  0%,100%{ transform:scale(1); }
-  50%{ transform:scale(1.08); }
+  0%,100%{ transform:translateY(-50%) scale(1); }
+  50%{ transform:translateY(-50%) scale(1.08); }
 }
 
 @media (min-width:768px){ .swipe-arrows{ display:none !important; } }
