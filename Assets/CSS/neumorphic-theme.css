@@ -128,9 +128,10 @@
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 .swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}
 .swipe-arrow.right{right:-25px;left:auto;margin-left:auto;}
+/* 2.  kill ANY outline on ANY part */
 .swipe-arrow,
 .swipe-arrow svg,
-.swipe-arrow *{outline:none;}
+.swipe-arrow *{outline:none!important;}
 
 /* 30° total (15° each side) + half-bold stroke */
 .swipe-arrow svg{
@@ -171,17 +172,18 @@
   position:relative;
   overflow:visible;
 }
+/* 1.  shimmer IN FRONT of the stroke */
 .swipe-arrow svg::before{
   content:"";
   position:absolute;
-  inset:-4px;
+  inset:-6px;
+  z-index:2;                        /* in front */
   border-radius:inherit;
-  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.9) 50%,transparent 60%);
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.95) 50%,transparent 60%);
   transform:translateX(-150%);
   animation:shimmer 2.8s linear infinite;
   pointer-events:none;
-  z-index:1;
-  mix-blend-mode:overlay;
+  mix-blend-mode:screen;            /* brighter blend */
 }
 @keyframes shimmer{to{transform:translateX(150%);}}
 
