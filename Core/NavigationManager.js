@@ -216,24 +216,21 @@ export default class NavigationManager {
     /* -------------------------------------------------- */
     /*  floating swipe arrows (NEW)                       */
     /* -------------------------------------------------- */
-setupSwipeArrows() {
-  if (window.innerWidth > 767) return;
+setupSwipeArrows(){
+  if(window.innerWidth > 767) return;
   const leftBtn  = document.getElementById('swipe-left');
   const rightBtn = document.getElementById('swipe-right');
   const arrows   = document.getElementById('swipe-arrows');
-  if (!leftBtn || !rightBtn) return;
+  if(!leftBtn || !rightBtn) return;
 
-  // New SVG markup for wider, more open arrows
-  leftBtn.innerHTML  = `
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M34 24L4 44l30 30" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-`;
-  rightBtn.innerHTML = `
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M14 24l30-30-30 30" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-`;
+  /*  NEW: inject wide-angle SVGs  */
+leftBtn.innerHTML  = `<svg viewBox="0 0 100 64">
+  <path d="M85 8 L50 32 L85 56" fill="none" stroke="currentColor" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+rightBtn.innerHTML = `<svg viewBox="0 0 100 64">
+  <path d="M15 8 L50 32 L15 56" fill="none" stroke="currentColor" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
 
   const goto = (dir) => {
     const order = [
@@ -245,7 +242,7 @@ setupSwipeArrows() {
     let idx = order.indexOf(active);
     idx = (idx + dir + order.length) % order.length;
     const navItem = document.querySelector(`[data-tab="${order[idx]}"]`);
-    if (navItem) this.switchTab(order[idx], navItem.dataset.label);
+    if(navItem) this.switchTab(order[idx], navItem.dataset.label);
   };
 
   leftBtn.addEventListener('click',  () => goto(-1));
