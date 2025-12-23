@@ -3902,8 +3902,8 @@ body.royal-indigo{
 /* same specificity as the old one → wins because it comes later */
 .sheet-row img {
   width: auto;          /* keep ratio */
-  height: 100px;         /* or 40 px if you prefer */
-  max-height: 100px;
+  height: 200px;         /* or 40 px if you prefer */
+  max-height: 200px;
   object-fit: contain;
 }
 
