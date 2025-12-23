@@ -1,7 +1,7 @@
-// DashboardManager.js  – patched 16-Dec-2025
-// - Quest cards: daily / weekly / monthly all become clickable when incomplete
-// - Clicking any of them switches to the proper tab AND scrolls to top
-// - “👆 Click to start” hint shown for every clickable card (not only daily)
+// DashboardManager.js – PART 1 of 4
+// Imports and Constructor
+
+import { InquiryEngine } from '../Features/InquiryEngine.js';
 
 export default class DashboardManager {
   constructor(app) {
@@ -14,6 +14,11 @@ export default class DashboardManager {
     this.boostersLoaded = false;
     this.CARD_BACK_URL = 'https://raw.githubusercontent.com/lironkerem/self-analysis-pro/main/assets/Tarot%20Cards%20images/CardBacks.jpg';
     this.flippedCards = new Set();
+    
+    // Initialize Inquiry Engine
+    this.inquiryEngine = new InquiryEngine('beginner');
+    this.dailyInquiry = null;
+    
     this.loadHappinessBoosters();
     this.setupQuestListeners();
     this.setupWellnessTracking();
@@ -37,7 +42,7 @@ export default class DashboardManager {
   }
 
   /* ------------------------------------------------------------ */
-  /* ------------  existing methods untouched  ------------------ */
+  /* ------------  Reset & Countdown Methods  ------------------- */
   /* ------------------------------------------------------------ */
   _getNextResetTimes() {
     const now = new Date();
@@ -47,6 +52,7 @@ export default class DashboardManager {
     const monthly = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
     return { daily, weekly, monthly };
   }
+
   _formatCountdown(ms) {
     const totalSec = Math.max(0, Math.floor(ms / 1000));
     const d = Math.floor(totalSec / 86400);
@@ -58,6 +64,7 @@ export default class DashboardManager {
     parts.push(String(h).padStart(2, '0') + 'h', String(m).padStart(2, '0') + 'm', String(s).padStart(2, '0') + 's');
     return parts.join(' ');
   }
+
   updateCountdownDisplays() {
     if (!this.app.gamification) return;
     const resets = this._getNextResetTimes();
@@ -67,6 +74,7 @@ export default class DashboardManager {
       if (el) el.textContent = this._formatCountdown(resets[type] - now);
     });
   }
+
   setupQuestListeners() {
     if (!this.app.gamification) return;
     this.app.gamification.on('questCompleted', (quest) => {
@@ -78,11 +86,13 @@ export default class DashboardManager {
     this.app.gamification.on('dailyQuestsComplete', () => this.app.showToast('🌟 All Daily Quests Complete! +50 Bonus XP 🌟', 'success'));
     this.checkDailyReset();
   }
+
   checkDailyReset() {
     const today = new Date().toDateString();
     const lastReset = localStorage.getItem('last_quest_reset');
     if (lastReset !== today) { this.app.gamification.resetDailyQuests(); localStorage.setItem('last_quest_reset', today); }
   }
+
   setupWellnessTracking() {
     const tools = [
       { name: 'Self Reset', getStats: window.getSelfResetStats },
@@ -107,6 +117,9 @@ export default class DashboardManager {
       });
     }, 3000);
   }
+// DashboardManager.js – PART 2 of 4
+// Daily Cards Methods (Happiness Boosters, Tarot, Affirmation, Inquiry)
+
   async loadHappinessBoosters() {
     try {
       const res = await fetch('./Features/Data/HappinessBoostersList.json');
@@ -123,11 +136,13 @@ export default class DashboardManager {
       ]; this.boostersLoaded = true;
     }
   }
+
   getRandomBooster() {
     if (!this.boostersLoaded || !this.happinessBoosters?.length) return { id: 0, title: 'Loading...', emoji: '⏳', description: 'Please wait', duration: '...', category: 'Loading' };
     const i = Math.floor(Math.random() * this.happinessBoosters.length);
     this.currentBoosterIndex = i; return this.happinessBoosters[i];
   }
+
   getDailyTarotCard() {
     const today = new Date().toDateString();
     const stored = localStorage.getItem('daily_tarot_card');
@@ -139,6 +154,7 @@ export default class DashboardManager {
     const card = { name: eng.getTarotCardName(c.number, c.suit), meaning: eng.getTarotCardMeaning(c.number, c.suit), image: eng.getTarotCardImage(c.number, c.suit), date: today };
     localStorage.setItem('daily_tarot_card', JSON.stringify({ card, date: today })); return card;
   }
+
   getDailyAffirmation() {
     if (window.affirmations?.general_positive_affirmations) {
       const list = window.affirmations.general_positive_affirmations;
@@ -148,10 +164,38 @@ export default class DashboardManager {
     }
     return "I am worthy of love and belonging exactly as I am.";
   }
+
+  getDailyInquiry() {
+    const today = new Date().toDateString();
+    const stored = localStorage.getItem('daily_inquiry');
+    
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        if (data.date === today) return data.inquiry;
+      } catch (e) {
+        console.error('Failed to parse stored inquiry:', e);
+      }
+    }
+    
+    // Generate new inquiry for today
+    const domains = ['Responsibility and Power', 'Emotional Honesty', 'Identity and Roles', 
+                     'Creativity and Expression', 'Shadow and Integration', 'Wisdom and Insight', 
+                     'Joy and Fulfillment', 'Physical Well-Being and Energy', 'Relationship', 
+                     'Spiritual Growth'];
+    const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+    const inquiry = this.inquiryEngine.getRandomQuestion(randomDomain);
+    
+    // Store with date
+    localStorage.setItem('daily_inquiry', JSON.stringify({ inquiry, date: today }));
+    return inquiry;
+  }
+
   flipDailyCard(type) {
     const el = document.getElementById(`${type}-flip`);
     if (!el) return;
     const isFlipped = el.classList.contains('flipped');
+    
     if (type === 'booster' && !isFlipped) {
       const b = this.getRandomBooster();
       const box = el.querySelector('.dashboard-booster-content');
@@ -161,10 +205,35 @@ export default class DashboardManager {
         <p class="dashboard-booster-description">${b.description}</p>
         <p class="dashboard-booster-meta">${b.duration} • ${b.category}</p>`;
     }
+    
+    if (type === 'inquiry' && !isFlipped) {
+      const inquiry = this.getDailyInquiry();
+      const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
+      const box = el.querySelector('.dashboard-booster-content');
+      if (box) box.innerHTML = `
+        <div class="dashboard-booster-emoji" style="font-size: 2.5rem; margin-bottom: 1rem;">
+          ${intensityEmoji[inquiry.intensity] || '💭'}
+        </div>
+        <div style="margin-bottom: 1rem; padding: 0.5rem; background: var(--neuro-bg-secondary); border-radius: 8px;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--neuro-accent);">
+            ${inquiry.domain}
+          </span>
+        </div>
+        <h4 class="dashboard-booster-title" style="font-size: 1.1rem; line-height: 1.4; margin-bottom: 1rem; color: var(--neuro-text);">
+          ${inquiry.question}
+        </h4>
+        <p class="dashboard-booster-description" style="font-style: italic; color: var(--neuro-text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">
+          ${inquiry.holding}
+        </p>
+        <p class="dashboard-booster-meta" style="font-size: 0.8rem; color: var(--neuro-text-secondary);">
+          Level ${inquiry.intensity} • Self-Inquiry
+        </p>`;
+    }
+    
     el.classList.toggle('flipped');
     if (el.classList.contains('flipped')) {
       localStorage.setItem(`daily_card_flipped_${type}`, new Date().toDateString());
-      const msg = { tarot: '✨ Tarot card revealed!', affirmation: '💫 Affirmation revealed!', booster: '😊 Booster revealed!' };
+      const msg = { tarot: '✨ Tarot card revealed!', affirmation: '💫 Affirmation revealed!', booster: '😊 Booster revealed!', inquiry: '💭 Daily inquiry revealed!' };
       this.app.showToast(msg[type] || 'Card revealed!', 'success');
     }
   }
@@ -193,6 +262,7 @@ export default class DashboardManager {
         </div>
       </div>`;
   }
+
   refreshQuote() {
     if (!window.QuotesData) return;
     this.currentQuote = window.QuotesData.getRandomQuote();
@@ -213,79 +283,137 @@ export default class DashboardManager {
     this._flipCard('dashboard-quote-card', html);
     if (this.app.showToast) this.app.showToast('📜 New quote revealed!', 'success');
   }
+// DashboardManager.js – PART 3 of 4
+// Card Rendering Methods
 
-  /* -------------- FINAL RENDER -------------- */
-  render() {
-    const dashboard = document.getElementById('dashboard-tab');
-    if (!dashboard) return;
-    const dailyCard = this.getDailyTarotCard();
-    const dailyAff = this.getDailyAffirmation();
-    this.currentQuote = window.QuotesData ? window.QuotesData.getQuoteOfTheDay()
-                                         : { text: 'What you think, you become. What you feel, you attract. What you imagine, you create.', author: 'Buddha' };
-    const status = this.app.gamification ? this.app.gamification.getStatusSummary()
-                                        : { quests: { daily: [], weekly: [], monthly: [] }, achievements: [], badges: [], xp: 0, karma: 0, streak: { current: 0 } };
-    const stats = this.app.state?.getStats?.() || {};
-
-    dashboard.innerHTML = `
-      <div class="dashboard-container">
-        <div class="dashboard-content">
-          <header class="main-header project-curiosity">
-            <h1>${this.app.state.currentUser?.name || 'Seeker'}'s Spiritual Dashboard</h1>
-            <h3>Your journey inward begins here, so practice. explore. transform.</h3>
-          </header>
-          ${this.renderGamificationWidget(status, stats)}
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
-            ${this.renderAffirmationCard(dailyAff)}
-            ${this.renderBoosterCard(this.getRandomBooster())}
-            ${this.renderPlaceholderCard()}
+  renderDailyCard(type, card, title, backImage) {
+    const today = new Date().toDateString();
+    const wasFlipped = localStorage.getItem(`daily_card_flipped_${type}`) === today;
+    const flippedClass = wasFlipped ? 'flipped' : '';
+    return `
+      <div class="card dashboard-daily-card">
+        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('${type}')">
+          <div class="daily-card-inner ${flippedClass}" id="${type}-flip">
+            <div class="daily-card-back"><div class="card-content"><img src="${backImage}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">${title}</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
+            <div class="daily-card-front"><div class="card-content"><img src="${card.image}" alt="${card.name}" class="dashboard-card-image"><h3 class="dashboard-card-title-front">${card.name}</h3><p class="dashboard-card-meaning">${card.meaning}</p></div></div>
           </div>
-          ${this.renderWellnessToolkit()}
-          ${this.renderQuestHub(status)}
-          ${status.achievements.length > 0 ? this.renderRecentAchievements(status) : ''}
-          <div class="mb-8">${this.renderQuoteCard()}</div>
         </div>
       </div>`;
-
-    document.querySelectorAll('.dashboard-progress-width, .dashboard-quest-fill').forEach(el => {
-      el.style.width = el.dataset.width + '%';
-    });
-    this.attachEventListeners();
   }
 
-  /* -------------- restored 8-stat render -------------- */
-renderGamificationWidget(status, stats) {
-  if (!this.app.gamification) return '';
-  if (!this.app.state) return '<div class="card dashboard-gamification mb-6"><p style="text-align:center;padding:20px;">Loading your progress...</p></div>';
-  const levelInfo = this.app.gamification.calculateLevel();
-  const statItems = [
-    { value: status.karma, label: 'Karma', emoji: '💎' },
-    { value: stats.totalGratitudes || 0, label: 'Gratitudes', emoji: '❤️' },
-    { value: status.totalJournalEntries, label: 'Journaling', emoji: '📝' },
-    { value: status.totalHappinessViews, label: 'Boosters', emoji: '💡' },
-    { value: status.totalTarotSpreads, label: 'Tarot Spreads', emoji: '🔮' },
-    { value: stats.weeklyMeditations || 0, label: 'Meditations', emoji: '🧘' },
-    { value: status.totalWellnessRuns, label: 'Wellness Kit', emoji: '🌿' },
-    { value: status.badges.length, label: 'Badges', emoji: '🎖️' }
-  ];
-  return `
-    <div class="card dashboard-gamification mb-6">
-      <div class="dashboard-wellness-header"><h3 class="dashboard-wellness-title">🧬 Your Online Spiritual Progress</h3><p class="dashboard-wellness-subtitle">Track your online journey and celebrate every milestone</p></div>
-      <div class="text-center mb-4">
-        <h3 style="font-size:1.8rem;font-weight:bold;">You are ${levelInfo.title.match(/^[aeiou]/i) ? 'an' : 'a'} ${levelInfo.title} (Level ${levelInfo.level})</h3>
-        <p style="font-size:1.2rem;font-weight:600;margin:1rem 0;">Total XP - ${status.xp} &nbsp;•&nbsp; XP to next - ${levelInfo.pointsToNext}</p>
-        <div class="progress-bar"><div class="progress-fill dashboard-progress-width" data-width="${levelInfo.progress}"></div></div>
-      </div>
-      <div class="grid grid-cols-4 md:grid-cols-8 gap-2">
-        ${statItems.map(item => `
-          <div class="stat-card dashboard-stat-card" style="box-shadow:var(--shadow-inset);border-radius:12px;">
-            <div class="dashboard-stat-value">${item.value}</div>
-            <div class="dashboard-stat-emoji">${item.emoji}</div>
-            <div class="dashboard-stat-label" style="font-weight:700;">${item.label}</div>
-          </div>`).join('')}
-      </div>
-    </div>`;
-}
+  renderAffirmationCard(affirmation) {
+    const today = new Date().toDateString();
+    const wasFlipped = localStorage.getItem(`daily_card_flipped_affirmation`) === today;
+    const flippedClass = wasFlipped ? 'flipped' : '';
+    return `
+      <div class="card dashboard-daily-card">
+        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('affirmation')">
+          <div class="daily-card-inner ${flippedClass}" id="affirmation-flip">
+            <div class="daily-card-back"><div class="card-content"><img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">Daily Affirmation</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
+            <div class="daily-card-front"><div class="card-content"><div class="dashboard-affirmation-box"><p class="dashboard-affirmation-text">"${affirmation}"</p></div><h3 class="dashboard-card-title-front">Your Daily Affirmation</h3><p class="dashboard-card-subtitle">Embrace this message today</p></div></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  renderBoosterCard(booster) {
+    const today = new Date().toDateString();
+    const wasFlipped = localStorage.getItem(`daily_card_flipped_booster`) === today;
+    const flippedClass = wasFlipped ? 'flipped' : '';
+    return `
+      <div class="card dashboard-daily-card">
+        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('booster')">
+          <div class="daily-card-inner ${flippedClass}" id="booster-flip">
+            <div class="daily-card-back"><div class="card-content"><img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">Happiness Booster</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
+            <div class="daily-card-front"><div class="card-content"><div class="dashboard-booster-box"><div class="dashboard-booster-content"><div class="dashboard-booster-emoji">${booster.emoji}</div><h4 class="dashboard-booster-title">${booster.title}</h4><p class="dashboard-booster-description">${booster.description}</p><p class="dashboard-booster-meta">${booster.duration} • ${booster.category}</p></div></div><h3 class="dashboard-card-title-front">Your Happiness Booster</h3><p class="dashboard-card-subtitle">Do this to refresh yourself</p></div></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  renderInquiryCard(inquiry) {
+    const today = new Date().toDateString();
+    const wasFlipped = localStorage.getItem('daily_card_flipped_inquiry') === today;
+    const flippedClass = wasFlipped ? 'flipped' : '';
+    
+    const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
+    
+    return `
+      <div class="card dashboard-daily-card">
+        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('inquiry')">
+          <div class="daily-card-inner ${flippedClass}" id="inquiry-flip">
+            <div class="daily-card-back">
+              <div class="card-content">
+                <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
+                <h3 class="dashboard-card-title">Daily Inquiry</h3>
+                <p class="dashboard-card-subtitle">Click to Reveal</p>
+              </div>
+            </div>
+            <div class="daily-card-front">
+              <div class="card-content">
+                <div class="dashboard-booster-box" style="padding: 1.5rem;">
+                  <div class="dashboard-booster-content">
+                    <div class="dashboard-booster-emoji" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                      ${intensityEmoji[inquiry.intensity] || '💭'}
+                    </div>
+                    <div style="margin-bottom: 1rem; padding: 0.5rem; background: var(--neuro-bg-secondary); border-radius: 8px;">
+                      <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--neuro-accent);">
+                        ${inquiry.domain}
+                      </span>
+                    </div>
+                    <h4 class="dashboard-booster-title" style="font-size: 1.1rem; line-height: 1.4; margin-bottom: 1rem; color: var(--neuro-text);">
+                      ${inquiry.question}
+                    </h4>
+                    <p class="dashboard-booster-description" style="font-style: italic; color: var(--neuro-text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">
+                      ${inquiry.holding}
+                    </p>
+                    <p class="dashboard-booster-meta" style="font-size: 0.8rem; color: var(--neuro-text-secondary);">
+                      Level ${inquiry.intensity} • Self-Inquiry
+                    </p>
+                  </div>
+                </div>
+                <h3 class="dashboard-card-title-front">Your Daily Inquiry</h3>
+                <p class="dashboard-card-subtitle">Contemplate deeply</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  renderGamificationWidget(status, stats) {
+    if (!this.app.gamification) return '';
+    if (!this.app.state) return '<div class="card dashboard-gamification mb-6"><p style="text-align:center;padding:20px;">Loading your progress...</p></div>';
+    const levelInfo = this.app.gamification.calculateLevel();
+    const statItems = [
+      { value: status.karma, label: 'Karma', emoji: '💎' },
+      { value: stats.totalGratitudes || 0, label: 'Gratitudes', emoji: '❤️' },
+      { value: status.totalJournalEntries, label: 'Journaling', emoji: '📓' },
+      { value: status.totalHappinessViews, label: 'Boosters', emoji: '💡' },
+      { value: status.totalTarotSpreads, label: 'Tarot Spreads', emoji: '🔮' },
+      { value: stats.weeklyMeditations || 0, label: 'Meditations', emoji: '🧘' },
+      { value: status.totalWellnessRuns, label: 'Wellness Kit', emoji: '🌿' },
+      { value: status.badges.length, label: 'Badges', emoji: '🎖️' }
+    ];
+    return `
+      <div class="card dashboard-gamification mb-6">
+        <div class="dashboard-wellness-header"><h3 class="dashboard-wellness-title">🧬 Your Online Spiritual Progress</h3><p class="dashboard-wellness-subtitle">Track your online journey and celebrate every milestone</p></div>
+        <div class="text-center mb-4">
+          <h3 style="font-size:1.8rem;font-weight:bold;">You are ${levelInfo.title.match(/^[aeiou]/i) ? 'an' : 'a'} ${levelInfo.title} (Level ${levelInfo.level})</h3>
+          <p style="font-size:1.2rem;font-weight:600;margin:1rem 0;">Total XP - ${status.xp} &nbsp;•&nbsp; XP to next - ${levelInfo.pointsToNext}</p>
+          <div class="progress-bar"><div class="progress-fill dashboard-progress-width" data-width="${levelInfo.progress}"></div></div>
+        </div>
+        <div class="grid grid-cols-4 md:grid-cols-8 gap-2">
+          ${statItems.map(item => `
+            <div class="stat-card dashboard-stat-card" style="box-shadow:var(--shadow-inset);border-radius:12px;">
+              <div class="dashboard-stat-value">${item.value}</div>
+              <div class="dashboard-stat-emoji">${item.emoji}</div>
+              <div class="dashboard-stat-label" style="font-weight:700;">${item.label}</div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
   renderWellnessToolkit() {
     return `
       <div class="card dashboard-wellness-toolkit mb-8">
@@ -298,6 +426,9 @@ renderGamificationWidget(status, stats) {
         </div>
       </div>`;
   }
+// DashboardManager.js – PART 4 of 4
+// Quest Hub, Achievements, and Main Render
+
   renderQuestHub(status) {
     const dailyCompleted = status.quests?.daily?.filter(q => q.completed).length || 0;
     const dailyTotal = status.quests?.daily?.length || 0;
@@ -318,6 +449,7 @@ renderGamificationWidget(status, stats) {
         <div class="quest-tab-content" id="quest-content-monthly" style="display:none"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${status.quests.monthly.map(q => this.renderQuestCard(q, 'monthly')).join('')}</div>${monthlyCompleted === monthlyTotal && monthlyTotal > 0 ? `<div class="dashboard-quest-complete dashboard-quest-complete-monthly"><p class="dashboard-quest-complete-text">🎉 All Monthly Quests Complete! Legendary! 🎉</p></div>` : ''}</div>
       </div>`;
   }
+
   switchQuestTab(tabName) {
     document.querySelectorAll('.quest-tab-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.questTab === tabName);
@@ -329,7 +461,6 @@ renderGamificationWidget(status, stats) {
     });
   }
 
-  /* -------------- QUEST CARD – patched -------------- */
   renderQuestCard(quest, questType = 'daily') {
     let progressPercent = Math.min(100, ((quest.progress || 0) / (quest.target || 1)) * 100);
     let progressContent = `<div class="dashboard-quest-progress-header"><span>Progress</span><span>${quest.progress || 0}/${quest.target || 1}</span></div>`;
@@ -338,7 +469,7 @@ renderGamificationWidget(status, stats) {
       const nightDone = quest.subProgress?.night || false;
       progressContent = `<div class="dashboard-energy-checkin"><span class="${dayDone ? 'dashboard-energy-done' : ''}">☀️ Day ${dayDone ? '✓' : ''}</span><span class="${nightDone ? 'dashboard-energy-done' : ''}">🌙 Night ${nightDone ? '✓' : ''}</span></div>`;
     }
-    const isClickable = !quest.completed && quest.tab;               // ← any type, not only daily
+    const isClickable = !quest.completed && quest.tab;
     const completedClass = quest.completed ? 'dashboard-quest-completed' : '';
     const clickableClass = isClickable ? 'dashboard-quest-clickable' : '';
     const hintHtml = isClickable ? '<div class="dashboard-quest-hint">👆 Click to start</div>' : '';
@@ -356,83 +487,6 @@ renderGamificationWidget(status, stats) {
       </div>`;
   }
 
-  renderDailyCard(type, card, title, backImage) {
-    const today = new Date().toDateString();
-    const wasFlipped = localStorage.getItem(`daily_card_flipped_${type}`) === today;
-    const flippedClass = wasFlipped ? 'flipped' : '';
-    return `
-      <div class="card dashboard-daily-card">
-        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('${type}')">
-          <div class="daily-card-inner ${flippedClass}" id="${type}-flip">
-            <div class="daily-card-back"><div class="card-content"><img src="${backImage}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">${title}</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
-            <div class="daily-card-front"><div class="card-content"><img src="${card.image}" alt="${card.name}" class="dashboard-card-image"><h3 class="dashboard-card-title-front">${card.name}</h3><p class="dashboard-card-meaning">${card.meaning}</p></div></div>
-          </div>
-        </div>
-      </div>`;
-  }
-  renderAffirmationCard(affirmation) {
-    const today = new Date().toDateString();
-    const wasFlipped = localStorage.getItem(`daily_card_flipped_affirmation`) === today;
-    const flippedClass = wasFlipped ? 'flipped' : '';
-    return `
-      <div class="card dashboard-daily-card">
-        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('affirmation')">
-          <div class="daily-card-inner ${flippedClass}" id="affirmation-flip">
-            <div class="daily-card-back"><div class="card-content"><img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">Daily Affirmation</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
-            <div class="daily-card-front"><div class="card-content"><div class="dashboard-affirmation-box"><p class="dashboard-affirmation-text">"${affirmation}"</p></div><h3 class="dashboard-card-title-front">Your Daily Affirmation</h3><p class="dashboard-card-subtitle">Embrace this message today</p></div></div>
-          </div>
-        </div>
-      </div>`;
-  }
-  renderBoosterCard(booster) {
-    const today = new Date().toDateString();
-    const wasFlipped = localStorage.getItem(`daily_card_flipped_booster`) === today;
-    const flippedClass = wasFlipped ? 'flipped' : '';
-    return `
-      <div class="card dashboard-daily-card">
-        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('booster')">
-          <div class="daily-card-inner ${flippedClass}" id="booster-flip">
-            <div class="daily-card-back"><div class="card-content"><img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image"><h3 class="dashboard-card-title">Happiness Booster</h3><p class="dashboard-card-subtitle">Click to Reveal</p></div></div>
-            <div class="daily-card-front"><div class="card-content"><div class="dashboard-booster-box"><div class="dashboard-booster-content"><div class="dashboard-booster-emoji">${booster.emoji}</div><h4 class="dashboard-booster-title">${booster.title}</h4><p class="dashboard-booster-description">${booster.description}</p><p class="dashboard-booster-meta">${booster.duration} • ${booster.category}</p></div></div><h3 class="dashboard-card-title-front">Your Happiness Booster</h3><p class="dashboard-card-subtitle">Do this to refresh yourself</p></div></div>
-          </div>
-        </div>
-      </div>`;
-  }
-renderPlaceholderCard() {
-  const today = new Date().toDateString();
-  const wasFlipped = localStorage.getItem(`daily_card_flipped_placeholder`) === today;
-  const flippedClass = wasFlipped ? 'flipped' : '';
-
-  /* Mobile ≤ 767 px – full-feature mystery card */
-  return `
-    <div class="mobile-only mystery-card-wrapper">
-      <div class="dashboard-daily-card mystery-card" onclick="window.app.dashboard.flipDailyCard('placeholder')">
-        <div class="daily-card-inner ${flippedClass}" id="placeholder-flip">
-          <div class="daily-card-back">
-            <div class="card-content">
-              <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
-              <h3 class="dashboard-card-title">Mystery Card</h3>
-              <p class="dashboard-card-subtitle">Click to Reveal</p>
-            </div>
-          </div>
-          <div class="daily-card-front">
-            <div class="card-content">
-              <div class="dashboard-booster-box">
-                <div class="dashboard-booster-content">
-                  <div class="dashboard-booster-emoji">✨</div>
-                  <h4 class="dashboard-booster-title">Coming Soon</h4>
-                  <p class="dashboard-booster-description">More spiritual content on the way!</p>
-                  <p class="dashboard-booster-meta">Stay tuned • Updates</p>
-                </div>
-              </div>
-              <h3 class="dashboard-card-title-front">Mystery Revealed</h3>
-              <p class="dashboard-card-subtitle">New features arriving soon</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`;
-}
   renderRecentAchievements(status) {
     return `
       <div class="card dashboard-achievements mb-8" style="text-align:center;">
@@ -448,6 +502,49 @@ renderPlaceholderCard() {
         </div>
       </div>`;
   }
+
+  /* -------------- FINAL RENDER -------------- */
+  render() {
+    const dashboard = document.getElementById('dashboard-tab');
+    if (!dashboard) return;
+    
+    const dailyCard = this.getDailyTarotCard();
+    const dailyAff = this.getDailyAffirmation();
+    const dailyInquiry = this.getDailyInquiry();
+    
+    this.currentQuote = window.QuotesData ? window.QuotesData.getQuoteOfTheDay()
+                                         : { text: 'What you think, you become. What you feel, you attract. What you imagine, you create.', author: 'Buddha' };
+    const status = this.app.gamification ? this.app.gamification.getStatusSummary()
+                                        : { quests: { daily: [], weekly: [], monthly: [] }, achievements: [], badges: [], xp: 0, karma: 0, streak: { current: 0 } };
+    const stats = this.app.state?.getStats?.() || {};
+
+    dashboard.innerHTML = `
+      <div class="dashboard-container">
+        <div class="dashboard-content">
+          <header class="main-header project-curiosity">
+            <h1>${this.app.state.currentUser?.name || 'Seeker'}'s Spiritual Dashboard</h1>
+            <h3>Your journey inward begins here, so practice. explore. transform.</h3>
+          </header>
+          ${this.renderGamificationWidget(status, stats)}
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
+            ${this.renderAffirmationCard(dailyAff)}
+            ${this.renderBoosterCard(this.getRandomBooster())}
+            ${this.renderInquiryCard(dailyInquiry)}
+          </div>
+          ${this.renderWellnessToolkit()}
+          ${this.renderQuestHub(status)}
+          ${status.achievements.length > 0 ? this.renderRecentAchievements(status) : ''}
+          <div class="mb-8">${this.renderQuoteCard()}</div>
+        </div>
+      </div>`;
+
+    document.querySelectorAll('.dashboard-progress-width, .dashboard-quest-fill').forEach(el => {
+      el.style.width = el.dataset.width + '%';
+    });
+    this.attachEventListeners();
+  }
+
   attachEventListeners() {
     document.querySelectorAll('.dashboard-quest-fill, .dashboard-progress-width').forEach(el => el.style.width = el.dataset.width + '%');
   }

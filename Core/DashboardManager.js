@@ -381,38 +381,59 @@ export default class DashboardManager {
       </div>`;
   }
 
-  renderGamificationWidget(status, stats) {
-    if (!this.app.gamification) return '';
-    if (!this.app.state) return '<div class="card dashboard-gamification mb-6"><p style="text-align:center;padding:20px;">Loading your progress...</p></div>';
-    const levelInfo = this.app.gamification.calculateLevel();
-    const statItems = [
-      { value: status.karma, label: 'Karma', emoji: '💎' },
-      { value: stats.totalGratitudes || 0, label: 'Gratitudes', emoji: '❤️' },
-      { value: status.totalJournalEntries, label: 'Journaling', emoji: '📓' },
-      { value: status.totalHappinessViews, label: 'Boosters', emoji: '💡' },
-      { value: status.totalTarotSpreads, label: 'Tarot Spreads', emoji: '🔮' },
-      { value: stats.weeklyMeditations || 0, label: 'Meditations', emoji: '🧘' },
-      { value: status.totalWellnessRuns, label: 'Wellness Kit', emoji: '🌿' },
-      { value: status.badges.length, label: 'Badges', emoji: '🎖️' }
-    ];
-    return `
-      <div class="card dashboard-gamification mb-6">
-        <div class="dashboard-wellness-header"><h3 class="dashboard-wellness-title">🧬 Your Online Spiritual Progress</h3><p class="dashboard-wellness-subtitle">Track your online journey and celebrate every milestone</p></div>
-        <div class="text-center mb-4">
-          <h3 style="font-size:1.8rem;font-weight:bold;">You are ${levelInfo.title.match(/^[aeiou]/i) ? 'an' : 'a'} ${levelInfo.title} (Level ${levelInfo.level})</h3>
-          <p style="font-size:1.2rem;font-weight:600;margin:1rem 0;">Total XP - ${status.xp} &nbsp;•&nbsp; XP to next - ${levelInfo.pointsToNext}</p>
-          <div class="progress-bar"><div class="progress-fill dashboard-progress-width" data-width="${levelInfo.progress}"></div></div>
+renderGamificationWidget(status, stats) {
+  if (!this.app.gamification) return '';
+  if (!this.app.state) return '<div class="card dashboard-gamification mb-6"><p style="text-align:center;padding:20px;">Loading your progress...</p></div>';
+
+  const levelInfo = this.app.gamification.calculateLevel();
+  const statItems = [
+    { value: status.karma, label: 'Karma', emoji: '💎' },
+    { value: stats.totalGratitudes || 0, label: 'Gratitudes', emoji: '❤️' },
+    { value: status.totalJournalEntries, label: 'Journaling', emoji: '📓' },
+    { value: status.totalHappinessViews, label: 'Boosters', emoji: '💡' },
+    { value: status.totalTarotSpreads, label: 'Tarot Spreads', emoji: '🔮' },
+    { value: stats.weeklyMeditations || 0, label: 'Meditations', emoji: '🧘' },
+    { value: status.totalWellnessRuns, label: 'Wellness Kit', emoji: '🌿' },
+    { value: status.badges.length, label: 'Badges', emoji: '🎖️' }
+  ];
+
+  /* prettier-ignore */
+  return `
+    <div class="card dashboard-gamification mb-6">
+      <div class="dashboard-wellness-header">
+        <h3 class="dashboard-wellness-title">🧬 Your Online Spiritual Progress</h3>
+        <p class="dashboard-wellness-subtitle">Track your online journey and celebrate every milestone</p>
+      </div>
+
+      <!-- NEW: prettier bar above text -->
+      <div class="dashboard-progress-track">
+        <div class="dashboard-progress-fill" style="width:${levelInfo.progress}%">
+          <div class="dashboard-progress-shimmer"></div>
         </div>
-        <div class="grid grid-cols-4 md:grid-cols-8 gap-2">
-          ${statItems.map(item => `
-            <div class="stat-card dashboard-stat-card" style="box-shadow:var(--shadow-inset);border-radius:12px;">
-              <div class="dashboard-stat-value">${item.value}</div>
-              <div class="dashboard-stat-emoji">${item.emoji}</div>
-              <div class="dashboard-stat-label" style="font-weight:700;">${item.label}</div>
-            </div>`).join('')}
-        </div>
-      </div>`;
-  }
+      </div>
+      <p class="dashboard-xp-line">
+        <span class="dashboard-xp-current">${status.xp}</span> XP
+        <span class="dashboard-xp-sep">•</span>
+        <span class="dashboard-xp-next">${levelInfo.pointsToNext}</span> to next
+      </p>
+
+      <!-- level title / stats unchanged -->
+      <div class="text-center mb-4">
+        <h3 style="font-size:1.8rem;font-weight:bold;">
+          You are ${levelInfo.title.match(/^[aeiou]/i) ? 'an' : 'a'} ${levelInfo.title} (Level ${levelInfo.level})
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-4 md:grid-cols-8 gap-2">
+        ${statItems.map(item => `
+          <div class="stat-card dashboard-stat-card" style="box-shadow:var(--shadow-inset);border-radius:12px;">
+            <div class="dashboard-stat-value">${item.value}</div>
+            <div class="dashboard-stat-emoji">${item.emoji}</div>
+            <div class="dashboard-stat-label" style="font-weight:700;">${item.label}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
 
   renderWellnessToolkit() {
     return `
