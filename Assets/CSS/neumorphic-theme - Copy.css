@@ -128,7 +128,7 @@
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 .swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}
 .swipe-arrow.right{right:-25px;left:auto;margin-left:auto;}
-.swipe-arrow:focus-visible{outline:none;}
+.swipe-arrow{outline:none;}
 
 /* 30° total (15° each side) + half-bold stroke */
 .swipe-arrow svg{
@@ -146,22 +146,12 @@
   d:path("M80 18 L100 90 L80 162");   /* 15° each side */
 }
 
-/* left arrow → 5 px right & back (loop) */
-.swipe-arrow.left{
-  animation:slideRight 2s ease-in-out infinite;
+.swipe-arrow{
+  animation:drift 2.5s ease-in-out infinite;
 }
-@keyframes slideRight{
+@keyframes drift{
   0%,100%{transform:translateY(-50%) scale(2) translateX(0);}
-  50%{transform:translateY(-50%) scale(2) translateX(5px);}
-}
-
-/* right arrow → 5 px left & back (loop) */
-.swipe-arrow.right{
-  animation:slideLeft 2s ease-in-out infinite;
-}
-@keyframes slideLeft{
-  0%,100%{transform:translateY(-50%) scale(2) translateX(0);}
-  50%{transform:translateY(-50%) scale(2) translateX(-5px);}
+  50%{transform:translateY(-50%) scale(2) translateX(10%);}
 }
 
 @media (min-width:768px){.swipe-arrows{display:none!important;}}
