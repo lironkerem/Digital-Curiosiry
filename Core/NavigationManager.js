@@ -216,21 +216,24 @@ export default class NavigationManager {
     /* -------------------------------------------------- */
     /*  floating swipe arrows (NEW)                       */
     /* -------------------------------------------------- */
-setupSwipeArrows(){
-  if(window.innerWidth > 767) return;
+setupSwipeArrows() {
+  if (window.innerWidth > 767) return;
   const leftBtn  = document.getElementById('swipe-left');
   const rightBtn = document.getElementById('swipe-right');
   const arrows   = document.getElementById('swipe-arrows');
-  if(!leftBtn || !rightBtn) return;
+  if (!leftBtn || !rightBtn) return;
 
-  /*  NEW: inject wide-angle SVGs  */
-leftBtn.innerHTML  = `<svg viewBox="0 0 120 140">
-  <path d="M100 10 L60 70" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-</svg>`;
-
-rightBtn.innerHTML = `<svg viewBox="0 0 120 140">
-  <path d="M20 10 L60 70" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-</svg>`;
+  // New SVG markup for wider, more open arrows
+  leftBtn.innerHTML  = `
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M34 24L4 44l30 30" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+  rightBtn.innerHTML = `
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M14 24l30-30-30 30" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
 
   const goto = (dir) => {
     const order = [
@@ -242,7 +245,7 @@ rightBtn.innerHTML = `<svg viewBox="0 0 120 140">
     let idx = order.indexOf(active);
     idx = (idx + dir + order.length) % order.length;
     const navItem = document.querySelector(`[data-tab="${order[idx]}"]`);
-    if(navItem) this.switchTab(order[idx], navItem.dataset.label);
+    if (navItem) this.switchTab(order[idx], navItem.dataset.label);
   };
 
   leftBtn.addEventListener('click',  () => goto(-1));
