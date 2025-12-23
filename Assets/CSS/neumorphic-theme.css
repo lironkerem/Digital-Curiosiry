@@ -101,7 +101,7 @@
   .desktop-nav { display: none !important; }
 }
 
-/* ---------- NEW left/right ARROWS – wide, no bg, stroke-only shimmer ---------- */
+/* ---------- FLOATING 160° SWIPE ARROWS – COMPLETE ---------- */
 .swipe-arrows{
   position:fixed;
   inset:0;
@@ -120,42 +120,49 @@
   transform:translateY(-50%);
   width:64px;
   height:64px;
-  background:none;
   border:none;
-  color:var(--neuro-accent);
+  background:none;
   cursor:pointer;
-  transition:transform .2s;
   display:grid;
   place-content:center;
+  overflow:hidden;
 }
-.swipe-arrow:active{transform:translateY(-50%) scale(.92);}
+
+/* glassy shimmer sweep (behind SVG) */
+.swipe-arrow::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:linear-gradient(105deg,
+              transparent 30%,
+              rgba(255,255,255,.85) 50%,
+              transparent 70%);
+  transform:translateX(-150%);
+  animation:shimmer .9s linear infinite;
+  mix-blend-mode:overlay;
+}
+
+/* 160° wide, bold arrow on top */
+.swipe-arrow svg{
+  position:relative;
+  width:44px;
+  height:22px;
+  stroke:var(--neuro-accent);
+  stroke-width:3.5;
+  stroke-linecap:round;
+  fill:none;
+}
+
+@keyframes shimmer{
+  0%{transform:translateX(-150%);}
+  100%{transform:translateX(150%);}
+}
+
 .swipe-arrow.left{left:12px;}
 .swipe-arrow.right{right:12px;}
 
-/* wide-angle SVG inside */
-.swipe-arrow svg{
-  position:relative;
-  overflow:visible;
-}
-.swipe-arrow svg::before{          /* shimmer band */
-  content:"";
-  position:absolute;
-  inset:-6px;
-  background:linear-gradient(105deg,
-              transparent 30%,
-              rgba(255,255,255,.95) 50%,
-              transparent 70%);
-  transform:translateX(-180%);
-  animation:shimmer .9s linear infinite;
-  pointer-events:none;
-  mix-blend-mode:overlay;
-}
-@keyframes shimmer{
-  0%{transform:translateX(-180%);}
-  100%{transform:translateX(180%);}
-}
-
-@media (min-width:768px){.swipe-arrows{display:none !important;}}
+@media (min-width:768px){.swipe-arrows{display:none!important;}}
 
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
