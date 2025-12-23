@@ -397,32 +397,33 @@ renderGamificationWidget(status, stats) {
     { value: status.badges.length, label: 'Badges', emoji: '🎖️' }
   ];
 
-  /* 1.  bar hidden until ready  */
-  const progressHtml = `
-    <div class="dashboard-progress-track loading">
-      <div class="dashboard-progress-fill" style="width:${levelInfo.progress}%">
-        <div class="dashboard-progress-shimmer"></div>
-      </div>
-    </div>`;
-
-  /* 2.  build card  */
-  const html = `
+  /* prettier-ignore */
+  return `
     <div class="card dashboard-gamification mb-6">
       <div class="dashboard-wellness-header">
         <h3 class="dashboard-wellness-title">🧬 Your Online Spiritual Progress</h3>
         <p class="dashboard-wellness-subtitle">Track your online journey and celebrate every milestone</p>
       </div>
-      ${progressHtml}
+
+      <!-- NEW: prettier bar above text -->
+      <div class="dashboard-progress-track">
+        <div class="dashboard-progress-fill" style="width:${levelInfo.progress}%">
+          <div class="dashboard-progress-shimmer"></div>
+        </div>
+      </div>
       <p class="dashboard-xp-line">
         <span class="dashboard-xp-current">${status.xp}</span> XP
         <span class="dashboard-xp-sep">•</span>
         <span class="dashboard-xp-next">${levelInfo.pointsToNext}</span> to next
       </p>
+
+      <!-- level title / stats unchanged -->
       <div class="text-center mb-4">
         <h3 style="font-size:1.8rem;font-weight:bold;">
           You are ${levelInfo.title.match(/^[aeiou]/i) ? 'an' : 'a'} ${levelInfo.title} (Level ${levelInfo.level})
         </h3>
       </div>
+
       <div class="grid grid-cols-4 md:grid-cols-8 gap-2">
         ${statItems.map(item => `
           <div class="stat-card dashboard-stat-card" style="box-shadow:var(--shadow-inset);border-radius:12px;">
@@ -432,13 +433,6 @@ renderGamificationWidget(status, stats) {
           </div>`).join('')}
       </div>
     </div>`;
-
-  /* 3.  reveal bar after first paint  */
-  this.attachEventListeners();
-  requestAnimationFrame(() => {
-    document.querySelector('.dashboard-progress-track')?.classList.remove('loading');
-  });
-  return html;
 }
 
   renderWellnessToolkit() {

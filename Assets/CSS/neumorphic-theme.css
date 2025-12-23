@@ -101,8 +101,6 @@
   .desktop-nav { display: none !important; }
 }
 
-.dashboard-progress-track.loading{visibility:hidden;height:0;}
-
 /* ---------- FLOATING 160° SWIPE ARROWS – COMPLETE ---------- */
 .swipe-arrows{
   position:fixed;
