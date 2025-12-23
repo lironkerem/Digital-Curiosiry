@@ -5437,15 +5437,6 @@ body.royal-indigo{
     row-gap: 1rem !important;
   }
   
-/* Options spread - KEEP 3 COLUMNS PER SECTION */
-#tarot-tab .grid.md\:grid-cols-3.place-items-center {
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 0.5rem !important;
-  column-gap: 0.75rem !important;
-  row-gap: 0.5rem !important;
-}
-  
-  
   /* ===== 6. OPTIONS SPREAD SECTIONS ===== */
   
   /* Options section titles */
