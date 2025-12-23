@@ -576,6 +576,82 @@ body.matrix-code.dark-mode{--chat-border:1px solid rgba(255,0,65,.3);}
   }
 }
 /* =========================================================
+   BOTTOM TAB POPUP SHEETS - MATRIX GREEN THEME
+   ========================================================= */
+
+@media (max-width: 767px) {
+  /* Sheet scrim - green tinted overlay */
+  body.matrix-code .sheet-scrim {
+    background: rgba(0, 255, 65, 0.15) !important;
+  }
+
+  /* Main sheet - green background */
+  body.matrix-code .mobile-sheet {
+    background: rgba(0, 255, 65, 0.5) !important;
+    border-top: 2px solid var(--neuro-matrix);
+    box-shadow: 0 -8px 32px rgba(0, 255, 65, 0.4);
+  }
+
+  /* Grip bar - darker green */
+  body.matrix-code .sheet-grip {
+    background: rgba(0, 200, 50, 0.8) !important;
+  }
+
+  /* Sheet header */
+  body.matrix-code .sheet-header {
+    color: #000 !important;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 1);
+  }
+
+  /* Sheet rows - green with glow */
+  body.matrix-code .sheet-row {
+    background: rgba(0, 255, 65, 0.3) !important;
+    border: 1px solid rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+
+  body.matrix-code .sheet-row:active {
+    background: rgba(0, 255, 65, 0.5) !important;
+    box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.3);
+  }
+
+  body.matrix-code .sheet-row span {
+    color: #000 !important;
+    font-weight: 600;
+  }
+
+  /* Dark mode variant - RED */
+  body.matrix-code.dark-mode .sheet-scrim {
+    background: rgba(255, 0, 65, 0.15) !important;
+  }
+
+  body.matrix-code.dark-mode .mobile-sheet {
+    background: rgba(255, 0, 65, 0.5) !important;
+    border-top: 2px solid var(--neuro-matrix);
+    box-shadow: 0 -8px 32px rgba(255, 0, 65, 0.4);
+  }
+
+  body.matrix-code.dark-mode .sheet-grip {
+    background: rgba(200, 0, 50, 0.8) !important;
+  }
+
+  body.matrix-code.dark-mode .sheet-header {
+    text-shadow: 0 0 8px rgba(255, 0, 65, 1);
+  }
+
+  body.matrix-code.dark-mode .sheet-row {
+    background: rgba(255, 0, 65, 0.3) !important;
+    border: 1px solid rgba(255, 0, 65, 0.5);
+    box-shadow: 0 0 10px rgba(255, 0, 65, 0.2);
+  }
+
+  body.matrix-code.dark-mode .sheet-row:active {
+    background: rgba(255, 0, 65, 0.5) !important;
+    box-shadow: inset 0 0 10px rgba(255, 0, 65, 0.3);
+  }
+}
+/* =========================================================
    END MATRIX-CODE COMPLETE
    ✓ Digital rain cascade visible throughout (handled by JS at z-index: -1)
    ✓ All content backgrounds semi-transparent with backdrop-filter blur
