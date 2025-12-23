@@ -296,11 +296,13 @@ tab.innerHTML = `
   column-gap: 1.5rem;
 }
 
-/* Desktop: wider gaps */
+/* Desktop: wider gaps - MUST override mobile */
 @media (min-width: 768px) {
   #tarot-tab .grid.md\:grid-cols-3,
-  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3 {
+  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3,
+  #tarot-tab .grid.grid-cols-3.place-items-center {
     column-gap: 2rem !important;
+    row-gap: 1rem !important;
   }
 }
     /* Pyramid-specific tighter row spacing */
