@@ -14,7 +14,7 @@ class TarotEngine {
       pyramid: {
         name: 'The Pyramid Spread',
         cards: 9,
-        desc: 'Triangle of Past — Present — Future',
+        desc: 'Triangle of Past – Present – Future',
         positions: ['Where you came from', 'Where you came from', 'Where you came from', 'Where you are now', 'Where you are now', 'Where you are now', 'Where are you going', 'Where are you going', 'Where are you going']
       },
       cross: { name: 'The Simple Cross Spread', cards: 5, desc: 'A Simple Cross Snapshot of Now', positions: ['Direction of the Situation', 'The Root of the Situation', 'Summary', 'Positive side of Situation', 'Obstacles-Challanges'] }
@@ -138,15 +138,15 @@ if (this.app.gamification) this.app.gamification.incrementTarotSpreads();
   /* ---------- Layout helpers ---------- */
 cardMarkup(index, label) {
   return `
-    <div class="tarot-card-wrapper">
-      <h4 class="tarot-position-label">${label}</h4>
+    <div class="flex flex-col items-center mx-auto" style="width: clamp(140px, 24vw, 250px);">
+      <h4 class="text-lg font-bold h-8" style="color: var(--neuro-accent); margin-bottom: 0rem;">${label}</h4>
       <div class="tarot-card-flip-container" id="tarot-card-container-${index}" onclick="window.featuresManager.engines.tarot.flipCard(${index})">
         <div class="tarot-card-flip-inner">
           <div class="tarot-card-back"><img src="${this.CARD_BACK_URL}" alt="Card Back" class="tarot-card-image"></div>
           <div class="tarot-card-front"></div>
         </div>
       </div>
-      <div id="tarot-card-details-${index}" class="tarot-card-details"></div>
+      <div id="tarot-card-details-${index}" class="text-center" style="opacity: 0; height: clamp(60px, 12vw, 100px); overflow-y: auto; margin-top: 0rem;"></div>
     </div>`;
 }
 
@@ -154,19 +154,19 @@ cardMarkup(index, label) {
     const positions = this.spreads[spreadKey].positions;
 if (spreadKey === 'options') {
   return `
-    <div class="tarot-options-container">
-      <h3 class="tarot-section-title">Option 1</h3>
-      <div class="tarot-options-row">
+    <div class="flex flex-col items-center">
+      <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;margin-top: 2rem;">Option 1</h3>
+      <div class="grid grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
         ${positions.slice(0, 3).map((p, i) => this.cardMarkup(i, p)).join('')}
       </div>
       
-      <h3 class="tarot-section-title">Option 2</h3>
-      <div class="tarot-options-row">
+      <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;">Option 2</h3>
+      <div class="grid grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
         ${positions.slice(3, 6).map((p, i) => this.cardMarkup(i + 3, p)).join('')}
       </div>
       
-      <h3 class="tarot-section-title">Option 3</h3>
-      <div class="tarot-options-row">
+      <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;">Option 3</h3>
+      <div class="grid grid-cols-3 place-items-center">
         ${positions.slice(6, 9).map((p, i) => this.cardMarkup(i + 6, p)).join('')}
       </div>
     </div>`;
@@ -174,33 +174,18 @@ if (spreadKey === 'options') {
     if (spreadKey === 'pyramid') {
       return `
       <div class="pyramid-triangle">
-        <div class="pyr-row pyr-apex">${this.cardMarkup(8, positions[8])}</div>
-        <div class="pyr-row pyr-upper">
-          ${this.cardMarkup(7, positions[7])}
-          ${this.cardMarkup(0, positions[0])}
-        </div>
-        <div class="pyr-row pyr-lower">
-          ${this.cardMarkup(6, positions[6])}
-          ${this.cardMarkup(1, positions[1])}
-          ${this.cardMarkup(2, positions[2])}
-        </div>
-        <div class="pyr-row pyr-base">
-          ${this.cardMarkup(5, positions[5])}
-          ${this.cardMarkup(4, positions[4])}
-          ${this.cardMarkup(3, positions[3])}
-        </div>
+        <div class="pyr-row pyr-apex">${this.cardMarkup(8, positions[8])}${this.cardMarkup(0, positions[0])}</div>
+        <div class="pyr-row pyr-upper">${this.cardMarkup(7, positions[7])}${this.cardMarkup(1, positions[1])}</div>
+        <div class="pyr-row pyr-lower">${this.cardMarkup(6, positions[6])}${this.cardMarkup(2, positions[2])}</div>
+        <div class="pyr-row pyr-base">${this.cardMarkup(5, positions[5])}${this.cardMarkup(4, positions[4])}${this.cardMarkup(3, positions[3])}</div>
       </div>`;
     }
     if (spreadKey === 'cross') {
       return `
       <div class="cross-shape">
-        <div class="cross-row cross-top">${this.cardMarkup(3, positions[3])}</div>
-        <div class="cross-row cross-mid">
-          ${this.cardMarkup(0, positions[0])}
-          ${this.cardMarkup(2, positions[2])}
-          ${this.cardMarkup(1, positions[1])}
-        </div>
-        <div class="cross-row cross-bot">${this.cardMarkup(4, positions[4])}</div>
+        <div class="cross-top">${this.cardMarkup(3, positions[3])}</div>
+        <div class="cross-mid">${this.cardMarkup(0, positions[0])}${this.cardMarkup(2, positions[2])}${this.cardMarkup(1, positions[1])}</div>
+        <div class="cross-bot">${this.cardMarkup(4, positions[4])}</div>
       </div>`;
     }
   }
@@ -215,10 +200,11 @@ if (spreadKey === 'options') {
       cardArea = this.renderCustomSpread(this.selectedSpread);
     } else {
       const num = spread.cards;
-      let gridClass = 'tarot-grid-single';
-      if (num === 3) gridClass = 'tarot-grid-three';
-      else if (num === 6) gridClass = 'tarot-grid-six';
-      cardArea = `<div class="tarot-spread-grid ${gridClass}">${Array.from({ length: num }).map((_, i) => this.cardMarkup(i, spread.positions[i])).join('')}</div>`;
+      let gridClass = 'md:grid-cols-1';
+      if (num === 3) gridClass = 'md:grid-cols-3';
+      else if (num === 6) gridClass = 'grid-cols-2 md:grid-cols-3';
+      /*  NO gap-6 or mb-8 utilities here  */
+      cardArea = `<div class="grid ${gridClass} place-items-center">${Array.from({ length: num }).map((_, i) => this.cardMarkup(i, spread.positions[i])).join('')}</div>`;
     }
 tab.innerHTML = `
   <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
@@ -256,7 +242,7 @@ tab.innerHTML = `
           return `
             <button id="tarot-vision-ai-btn"
                     class="btn w-full inline-flex items-center justify-center gap-3 px-6 py-6 text-xl font-bold text-white rounded-xl shadow transition-transform ${locked?'opacity-50 cursor-not-allowed':'hover:scale-[1.02]'}">
-              🔮 Tarot Vision AI — Take a picture/upload a tarot card to analyse it
+              🔮 Tarot Vision AI – Take a picture/upload a tarot card to analyse it
               ${locked?'<span style="font-size: 3rem; opacity: .3; margin-left: .5rem;">🔒</span>':''}
               <span class="premium-badge">PREMIUM</span>
             </button>`;
@@ -264,199 +250,77 @@ tab.innerHTML = `
       </div>
 
       <div class="card" style="padding: 2rem;">
-        <div class="flex items-center justify-between" style="margin-bottom: 3rem;">
+        <div class="flex items-center justify-between" style="margin-bottom: 5rem;">
           <h3 class="text-2xl font-bold" style="color: var(--neuro-text);">${this.spreads[this.selectedSpread].name}</h3>
           <p style="color: var(--neuro-text-light);">Click the cards to reveal their meaning</p>
         </div>
-        ${cardArea}
+        ${(function(){
+          const spread = this.spreads[this.selectedSpread];
+          const customKeys = ['options', 'pyramid', 'cross'];
+          let cardArea = '';
+          if (customKeys.includes(this.selectedSpread)) {
+            cardArea = this.renderCustomSpread(this.selectedSpread);
+          } else {
+            const num = spread.cards;
+            let gridClass = 'md:grid-cols-1';
+            if (num === 3) gridClass = 'md:grid-cols-3';
+            else if (num === 6) gridClass = 'grid-cols-2 md:grid-cols-3';
+            cardArea = `<div class="grid ${gridClass} place-items-center">${Array.from({ length: num }).map((_, i) => this.cardMarkup(i, spread.positions[i])).join('')}</div>`;
+          }
+          return cardArea;
+        }).call(this)}
       </div>
 
     </div>
   </div>
 
   <style>
-    /* ===== CARD WRAPPER - CONSISTENT SIZING ===== */
-    .tarot-card-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 200px;
-      margin: 0 auto;
+    /* ----------  responsive identical card size  ---------- */
+    .tarot-card-flip-container { width: clamp(140px, 24vw, 250px); aspect-ratio: 200 / 350; perspective: 1000px; cursor: pointer; }
+    .tarot-card-flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+    .tarot-card-flip-container.flipped .tarot-card-flip-inner { transform: rotateY(180deg); }
+    .tarot-card-back, .tarot-card-front { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+    .tarot-card-front { transform: rotateY(180deg); }
+    .tarot-card-image { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .tarot-card-error { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 4rem; }
+    @media (min-width: 1600px) { .tarot-card-flip-container { width: clamp(160px, 18vw, 280px); } }
+
+    /*  tighter vertical spacing for ALL multi-row grids  */
+    #tarot-tab .grid,
+    #tarot-tab .md\:grid-cols-3,
+    #tarot-tab .grid-cols-3,
+    #tarot-tab .grid-cols-2,
+    #tarot-tab .cross-shape,
+    #tarot-tab .pyramid-triangle {
+      row-gap: 0.5rem !important;
+      column-gap: 2rem !important;
     }
-    
-    .tarot-position-label {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--neuro-accent);
-      text-align: center;
-      margin-bottom: 0.75rem;
-      min-height: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1.3;
-      width: 100%;
+    /* Pyramid-specific tighter row spacing */
+    #tarot-tab .pyramid-triangle {
+      row-gap: 0rem !important;
     }
-    
-    .tarot-card-details {
-      text-align: center;
-      opacity: 0;
-      margin-top: 0.75rem;
-      width: 100%;
-      min-height: 80px;
-      max-height: 120px;
-      overflow-y: auto;
-      padding: 0 0.5rem;
+    #tarot-tab .cross-shape,
+    #tarot-tab .pyramid-triangle {
+      margin: 0.0rem 0 !important;
+    }
+    #tarot-tab .mb-8 {
+      margin-bottom: 0rem !important;
     }
 
-    /* ===== CARD FLIP CONTAINER ===== */
-    .tarot-card-flip-container { 
-      width: 100%;
-      aspect-ratio: 200 / 350; 
-      perspective: 1000px; 
-      cursor: pointer;
-      max-width: 180px;
-      margin: 0 auto;
-    }
-    .tarot-card-flip-inner { 
-      position: relative; 
-      width: 100%; 
-      height: 100%; 
-      transition: transform 0.8s; 
-      transform-style: preserve-3d; 
-    }
-    .tarot-card-flip-container.flipped .tarot-card-flip-inner { 
-      transform: rotateY(180deg); 
-    }
-    .tarot-card-back, .tarot-card-front { 
-      position: absolute; 
-      width: 100%; 
-      height: 100%; 
-      -webkit-backface-visibility: hidden; 
-      backface-visibility: hidden; 
-    }
-    .tarot-card-front { 
-      transform: rotateY(180deg); 
-    }
-    .tarot-card-image { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: cover; 
-      border-radius: 12px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
-    }
-    .tarot-card-error { 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      height: 100%; 
-      font-size: 4rem; 
-    }
+    /* ----------  Triangle column gaps (your values)  ---------- */
+    .pyramid-triangle { display: flex; flex-direction: column; align-items: center; }
+    .pyr-row { display: flex; justify-content: center; }
+    .pyr-apex { gap: 2rem; }
+    .pyr-upper { gap: 15rem; }
+    .pyr-lower { gap: 25rem; }
+    .pyr-base { gap: 12rem; }
 
-    /* ===== SPREAD GRIDS - CONTAINED & CENTERED ===== */
-    .tarot-spread-grid {
-      display: grid;
-      gap: 2rem 1.5rem;
-      width: 100%;
-      max-width: 100%;
-      margin: 0 auto;
-      justify-items: center;
-      padding: 0 1rem;
-    }
-    
-    .tarot-grid-single {
-      grid-template-columns: 1fr;
-      max-width: 250px;
-    }
-    
-    .tarot-grid-three {
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 750px;
-    }
-    
-    .tarot-grid-six {
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 750px;
-    }
+    /* ----------  Cross layout  ---------- */
+    .cross-shape { display: flex; flex-direction: column; align-items: center; }
+    .cross-top, .cross-bot { display: flex; justify-content: center; }
+    .cross-mid { display: flex; justify-content: center; gap: 15rem; }
 
-    /* ===== OPTIONS SPREAD - PERFECT ALIGNMENT ===== */
-    .tarot-options-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2.5rem;
-      width: 100%;
-    }
-    
-    .tarot-section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--neuro-text);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    
-    .tarot-options-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem 1.5rem;
-      width: 100%;
-      max-width: 750px;
-      justify-items: center;
-    }
-
-    /* ===== PYRAMID SPREAD - PERFECT TRIANGLE ===== */
-    .pyramid-triangle { 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center;
-      gap: 1.5rem;
-      width: 100%;
-      padding: 1rem 0;
-    }
-    .pyr-row { 
-      display: flex; 
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-    }
-    .pyr-apex { 
-      gap: 0;
-    }
-    .pyr-upper { 
-      gap: 8rem;
-    }
-    .pyr-lower { 
-      gap: 4rem;
-    }
-    .pyr-base { 
-      gap: 2rem;
-    }
-
-    /* ===== CROSS SPREAD - PERFECT ALIGNMENT ===== */
-    .cross-shape { 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center;
-      gap: 1.5rem;
-      width: 100%;
-      padding: 1rem 0;
-    }
-    .cross-row { 
-      display: flex; 
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-    }
-    .cross-top, .cross-bot {
-      justify-content: center;
-    }
-    .cross-mid { 
-      gap: 6rem;
-    }
-
-    /* ===== PREMIUM BADGE ===== */
+    /* ----------  premium badge  ---------- */
     .premium-badge {
       position: static;
       transform: none;
@@ -468,122 +332,6 @@ tab.innerHTML = `
       padding: 4px 8px;
       border-radius: 9999px;
       letter-spacing: .5px;
-    }
-
-    /* ===== RESPONSIVE - TABLETS ===== */
-    @media (max-width: 1024px) {
-      .tarot-grid-three,
-      .tarot-grid-six,
-      .tarot-options-row {
-        max-width: 650px;
-      }
-      
-      .pyr-upper { gap: 6rem; }
-      .pyr-lower { gap: 3rem; }
-      .pyr-base { gap: 1.5rem; }
-      .cross-mid { gap: 4rem; }
-    }
-
-    /* ===== RESPONSIVE - MOBILE ===== */
-    @media (max-width: 767px) {
-      .tarot-card-wrapper {
-        max-width: 160px;
-      }
-      
-      .tarot-card-flip-container {
-        max-width: 140px;
-      }
-      
-      .tarot-position-label {
-        font-size: 0.75rem;
-        min-height: 2rem;
-      }
-      
-      .tarot-spread-grid {
-        gap: 1.5rem 1rem;
-        padding: 0 0.5rem;
-      }
-      
-      .tarot-grid-three {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 100%;
-      }
-      
-      .tarot-grid-six {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 100%;
-      }
-      
-      .tarot-options-row {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem 1rem;
-        max-width: 100%;
-      }
-      
-      .tarot-section-title {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
-      }
-      
-      .pyramid-triangle {
-        gap: 1rem;
-        transform: scale(0.9);
-      }
-      
-      .pyr-upper { gap: 4rem; }
-      .pyr-lower { gap: 2rem; }
-      .pyr-base { gap: 1rem; }
-      
-      .cross-shape {
-        gap: 1rem;
-        transform: scale(0.9);
-      }
-      
-      .cross-mid { gap: 3rem; }
-    }
-
-    /* ===== RESPONSIVE - SMALL MOBILE ===== */
-    @media (max-width: 480px) {
-      .tarot-card-wrapper {
-        max-width: 120px;
-      }
-      
-      .tarot-card-flip-container {
-        max-width: 110px;
-      }
-      
-      .tarot-position-label {
-        font-size: 0.7rem;
-        min-height: 1.75rem;
-      }
-      
-      .tarot-card-details {
-        font-size: 0.75rem;
-        min-height: 60px;
-        max-height: 80px;
-      }
-      
-      .tarot-spread-grid {
-        gap: 1rem 0.75rem;
-      }
-      
-      .tarot-options-row {
-        gap: 1rem 0.75rem;
-      }
-      
-      .pyramid-triangle {
-        transform: scale(0.8);
-      }
-      
-      .pyr-upper { gap: 3rem; }
-      .pyr-lower { gap: 1.5rem; }
-      .pyr-base { gap: 0.75rem; }
-      
-      .cross-shape {
-        transform: scale(0.8);
-      }
-      
-      .cross-mid { gap: 2rem; }
     }
   </style>
 `;
