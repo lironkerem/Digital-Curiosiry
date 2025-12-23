@@ -128,7 +128,8 @@ export default class NavigationManager {
       this.setupSwipeGestures();
       this.setupKeyboardNavigation();
       this.setupMobileBottomBar();
-      this.setupSwipeArrows();        // NEW
+      this.setupSwipeArrows();   
+      this.setupSheetSwipeClose();     // NEW
     }
 
     /* -------------------------------------------------- */
@@ -282,6 +283,46 @@ rightBtn.innerHTML = `<svg viewBox="0 0 200 180" style="transform:scale(0.5);">
         if(navItem) this.switchTab(swipeOrder[idx], navItem.dataset.label);
       },{passive:true});
     }
+
+/* -------------------------------------------------- */
+/*  swipe-down-to-close for open sheets               */
+/* -------------------------------------------------- */
+setupSheetSwipeClose() {
+  const sheets = document.querySelectorAll('.mobile-sheet');
+  const SWIPE_Y_THRESHOLD = 60;   // px
+  const VELOCITY_THRESHOLD = 0.5; // px/ms
+
+  sheets.forEach sheet => {
+    let startY = 0, startT = 0;
+
+    sheet.addEventListener('touchstart', e => {
+      startY = e.touches[0].clientY;
+      startT = Date.now();
+    }, {passive: true});
+
+    sheet.addEventListener('touchmove', e => {
+      const currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      if (deltaY > 0) {                       // only downward
+        sheet.style.transform = `translateY(${deltaY}px)`; // live drag
+      }
+    }, {passive: true});
+
+    sheet.addEventListener('touchend', e => {
+      const endY = e.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+      const deltaT = Date.now() - startT;
+      const velocity = deltaY / deltaT;
+
+      sheet.style.transform = '';             // always reset
+
+      if (deltaY > SWIPE_Y_THRESHOLD && velocity > VELOCITY_THRESHOLD) {
+        if (navigator.vibrate) navigator.vibrate(8);
+        this.closeSheets();
+      }
+    }, {passive: true});
+  });
+}
 
     /* -------------------------------------------------- */
     /*  tab switching helper                              */
