@@ -528,6 +528,45 @@ body.matrix-code{
 }
 body.matrix-code.dark-mode{--chat-border:1px solid rgba(255,0,65,.3);}
 /* =========================================================
+   BOTTOM NAVIGATION BAR - MATRIX GREEN THEME
+   ========================================================= */
+
+@media (max-width: 767px) {
+  body.matrix-code .mobile-bottom-bar {
+    background: rgba(0, 255, 65, 0.1) !important;
+    border-top: 2px solid var(--neuro-matrix);
+    box-shadow: 0 -4px 12px rgba(0, 255, 65, 0.3);
+  }
+
+  body.matrix-code .mobile-tab {
+    color: var(--neuro-text-light);
+  }
+
+  body.matrix-code .mobile-tab.active {
+    color: var(--neuro-matrix) !important;
+    text-shadow: var(--shadow-text);
+  }
+
+  body.matrix-code .mobile-tab:active {
+    background: rgba(0, 255, 65, 0.15);
+  }
+
+  /* Dark mode variant - RED */
+  body.matrix-code.dark-mode .mobile-bottom-bar {
+    background: rgba(255, 0, 65, 0.1) !important;
+    border-top: 2px solid var(--neuro-matrix);
+    box-shadow: 0 -4px 12px rgba(255, 0, 65, 0.3);
+  }
+
+  body.matrix-code.dark-mode .mobile-tab.active {
+    color: var(--neuro-matrix) !important;
+  }
+
+  body.matrix-code.dark-mode .mobile-tab:active {
+    background: rgba(255, 0, 65, 0.15);
+  }
+}
+/* =========================================================
    END MATRIX-CODE COMPLETE
    ✓ Digital rain cascade visible throughout (handled by JS at z-index: -1)
    ✓ All content backgrounds semi-transparent with backdrop-filter blur
