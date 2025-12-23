@@ -533,37 +533,46 @@ body.matrix-code.dark-mode{--chat-border:1px solid rgba(255,0,65,.3);}
 
 @media (max-width: 767px) {
   body.matrix-code .mobile-bottom-bar {
-    background: rgba(0, 255, 65, 0.1) !important;
+    background: rgba(0, 255, 65, 0.5) !important;
     border-top: 2px solid var(--neuro-matrix);
-    box-shadow: 0 -4px 12px rgba(0, 255, 65, 0.3);
+    box-shadow: 0 -4px 12px rgba(0, 255, 65, 0.5),
+                0 -8px 24px rgba(0, 255, 65, 0.3);
   }
 
   body.matrix-code .mobile-tab {
-    color: var(--neuro-text-light);
+    color: rgba(0, 0, 0, 0.7);
   }
 
   body.matrix-code .mobile-tab.active {
-    color: var(--neuro-matrix) !important;
-    text-shadow: var(--shadow-text);
+    color: #000 !important;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 1);
   }
 
   body.matrix-code .mobile-tab:active {
-    background: rgba(0, 255, 65, 0.15);
+    background: rgba(0, 255, 65, 0.3);
   }
 
   /* Dark mode variant - RED */
   body.matrix-code.dark-mode .mobile-bottom-bar {
-    background: rgba(255, 0, 65, 0.1) !important;
+    background: rgba(255, 0, 65, 0.5) !important;
     border-top: 2px solid var(--neuro-matrix);
-    box-shadow: 0 -4px 12px rgba(255, 0, 65, 0.3);
+    box-shadow: 0 -4px 12px rgba(255, 0, 65, 0.5),
+                0 -8px 24px rgba(255, 0, 65, 0.3);
+  }
+
+  body.matrix-code.dark-mode .mobile-tab {
+    color: rgba(0, 0, 0, 0.7);
   }
 
   body.matrix-code.dark-mode .mobile-tab.active {
-    color: var(--neuro-matrix) !important;
+    color: #000 !important;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 0, 65, 1);
   }
 
   body.matrix-code.dark-mode .mobile-tab:active {
-    background: rgba(255, 0, 65, 0.15);
+    background: rgba(255, 0, 65, 0.3);
   }
 }
 /* =========================================================
