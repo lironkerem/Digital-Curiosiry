@@ -225,11 +225,11 @@ setupSwipeArrows(){
 
   /*  NEW: inject wide-angle SVGs  */
 leftBtn.innerHTML  = `<svg viewBox="0 0 200 180">
-  <path d="M115 10 L100 90 L115 170" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+  <path d="M115 10 L100 90 L115 170" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
 </svg>`;
 
-rightBtn.innerHTML = `<svg viewBox="0 0 200 180">
-  <path d="M85 10 L100 90 L85 170" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+rightBtn.innerHTML = `<svg viewBox="0 0 200 180" style="transform:scaleX(-1);">
+  <path d="M115 10 L100 90 L115 170" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
 </svg>`;
 
   const goto = (dir) => {
