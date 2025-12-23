@@ -121,7 +121,7 @@
   height:64px;
   border:none;
   background:none;
-  cursor:pointer;
+  color:var(--neuro-accent);
   display:grid;
   place-content:center;
 }
