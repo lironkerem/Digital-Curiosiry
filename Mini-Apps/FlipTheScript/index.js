@@ -55,7 +55,7 @@ export default class FlipTheScriptApp {
     /* 5.  build the responsive shell (1280 px desktop / 100 % - 3 rem mobile) */
     const tab = document.getElementById('flip-script-tab');
 tab.innerHTML = `
-  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
       <!--  NEW UNIFIED HEADER  -->

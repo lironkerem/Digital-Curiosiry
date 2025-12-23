@@ -14,7 +14,7 @@ async render() {
   if (isLocked) {
     // Show locked state
 tab.innerHTML = `
-  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
       <header class="main-header project-curiosity">

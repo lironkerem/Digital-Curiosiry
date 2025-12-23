@@ -37,7 +37,7 @@ export default class SelfAnalysisLauncher {
 
         // Build layout with Big-App header
         host.innerHTML = `
-  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
       <!-- Big-App Unified Header -->
