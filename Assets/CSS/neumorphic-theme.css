@@ -3833,16 +3833,16 @@ body.royal-indigo{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 2px;
     color: var(--neuro-text-light);
-    font-size: 11px;
+    font-size: 14px;
     transition: background .2s;
     -webkit-tap-highlight-color: transparent;
   }
 
   .mobile-tab img {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
   }
 
