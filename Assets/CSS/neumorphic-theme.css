@@ -101,7 +101,7 @@
   .desktop-nav { display: none !important; }
 }
 
-/* ---------- FINAL ARROWS: 50° angle, 2× size/bold, no shimmer, edge-hugging ---------- */
+/* ---------- FINAL 30° arrows: thin, edge-touch, no shimmer ---------- */
 .swipe-arrows{
   position:fixed;
   inset:0;
@@ -109,15 +109,14 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 4px;                 /* hug the edges */
+  padding:0;                      /* touch the very edge */
   z-index:90;
 }
-
 .swipe-arrow{
   pointer-events:auto;
   position:fixed;
   top:50%;
-  transform:translateY(-50%) scale(2);   /* 2× bigger */
+  transform:translateY(-50%) scale(2);
   width:64px;
   height:64px;
   border:none;
@@ -127,24 +126,24 @@
   place-content:center;
 }
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
+.swipe-arrow.left{left:0;right:auto;margin-right:auto;}
+.swipe-arrow.right{right:0;left:auto;margin-left:auto;}
 
-/* edge-hugging positions */
-.swipe-arrow.left{left:4px;right:auto;margin-right:auto;}
-.swipe-arrow.right{right:4px;left:auto;margin-left:auto;}
-
-/* 2× bolder stroke, same 50° angle */
+/* 30° total (15° each side) + half-bold stroke */
 .swipe-arrow svg{
   position:relative;
   width:88px;
   height:88px;
   stroke:currentColor;
-  stroke-width:10;         /* 2× bolder */
+  stroke-width:5;          /* half of previous 10 */
   stroke-linecap:round;
   fill:none;
 }
 
-/* no shimmer animation */
-/* (whole ::before layer and @keyframes removed) */
+/* 30° angle paths */
+.swipe-arrow svg path{
+  d:path("M80 18 L100 90 L80 162");   /* 15° each side */
+}
 
 @media (min-width:768px){.swipe-arrows{display:none!important;}}
 
