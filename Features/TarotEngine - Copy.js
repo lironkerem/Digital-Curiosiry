@@ -285,25 +285,16 @@ tab.innerHTML = `
     .tarot-card-error { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 4rem; }
     @media (min-width: 1600px) { .tarot-card-flip-container { width: clamp(160px, 18vw, 280px); } }
 
-/*  tighter vertical spacing for ALL multi-row grids  */
-#tarot-tab .grid,
-#tarot-tab .md\:grid-cols-3,
-#tarot-tab .grid-cols-3,
-#tarot-tab .grid-cols-2,
-#tarot-tab .cross-shape,
-#tarot-tab .pyramid-triangle {
-  row-gap: 0.5rem !important;
-  column-gap: 1.5rem;
-}
-/* Desktop: wider gaps */
-@media (min-width: 768px) {
-  #tarot-tab .grid,
-  #tarot-tab .md\:grid-cols-3,
-  #tarot-tab .grid-cols-3,
-  #tarot-tab .grid-cols-2 {
-    column-gap: 2rem !important;
-  }
-}
+    /*  tighter vertical spacing for ALL multi-row grids  */
+    #tarot-tab .grid,
+    #tarot-tab .md\:grid-cols-3,
+    #tarot-tab .grid-cols-3,
+    #tarot-tab .grid-cols-2,
+    #tarot-tab .cross-shape,
+    #tarot-tab .pyramid-triangle {
+      row-gap: 0.5rem !important;
+      column-gap: 2rem !important;
+    }
     /* Pyramid-specific tighter row spacing */
     #tarot-tab .pyramid-triangle {
       row-gap: 0rem !important;
