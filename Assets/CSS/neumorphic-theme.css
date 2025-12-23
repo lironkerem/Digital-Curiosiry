@@ -3920,8 +3920,8 @@ body.royal-indigo{
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 8px 16px;
-    margin-bottom: 10px;
+    padding: 8px 10px;
+    margin-bottom: 5px;
     border-radius: 14px;
     background: var(--neuro-bg);
     box-shadow: var(--shadow-raised);
