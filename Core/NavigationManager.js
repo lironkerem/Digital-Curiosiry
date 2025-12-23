@@ -292,7 +292,7 @@ setupSheetSwipeClose() {
   const SWIPE_Y_THRESHOLD = 60;   // px
   const VELOCITY_THRESHOLD = 0.5; // px/ms
 
-  sheets.forEach sheet => {
+  sheets.forEach(sheet => {          // ← added parentheses
     let startY = 0, startT = 0;
 
     sheet.addEventListener('touchstart', e => {
@@ -303,8 +303,8 @@ setupSheetSwipeClose() {
     sheet.addEventListener('touchmove', e => {
       const currentY = e.touches[0].clientY;
       const deltaY = currentY - startY;
-      if (deltaY > 0) {                       // only downward
-        sheet.style.transform = `translateY(${deltaY}px)`; // live drag
+      if (deltaY > 0) {
+        sheet.style.transform = `translateY(${deltaY}px)`;
       }
     }, {passive: true});
 
@@ -314,7 +314,7 @@ setupSheetSwipeClose() {
       const deltaT = Date.now() - startT;
       const velocity = deltaY / deltaT;
 
-      sheet.style.transform = '';             // always reset
+      sheet.style.transform = '';
 
       if (deltaY > SWIPE_Y_THRESHOLD && velocity > VELOCITY_THRESHOLD) {
         if (navigator.vibrate) navigator.vibrate(8);
