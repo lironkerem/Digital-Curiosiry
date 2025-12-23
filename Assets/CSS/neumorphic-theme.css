@@ -3899,6 +3899,19 @@ body.royal-indigo{
     color: var(--neuro-text);
   }
 
+/* --- bigger images inside the same 56 px row --- */
+.sheet-row img {
+  width: auto;               /* keep original aspect ratio */
+  height: 36px;              /* 40 px free space (56-12-8) → use 36 px for nice air */
+  max-height: 36px;          /* cap it */
+  object-fit: contain;
+}
+
+/* (optional) if you want them *slightly* bigger on very tall phones */
+@media (max-width: 767px) and (min-height: 700px) {
+  .sheet-row img { height: 40px; max-height: 40px; }
+}
+
   .sheet-scroller {
     flex: 1;
     overflow-y: auto;
