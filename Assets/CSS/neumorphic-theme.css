@@ -3902,14 +3902,9 @@ body.royal-indigo{
 /* same specificity as the old one → wins because it comes later */
 .sheet-row img {
   width: auto;          /* keep ratio */
-  height: 40px;         /* or 40 px if you prefer */
-  max-height: 40px;
+  height: 60px;         /* or 40 px if you prefer */
+  max-height: 60px;
   object-fit: contain;
-}
-
-/* optional extra bump on tall phones */
-@media (max-height: 800px) and (min-height: 700px) {
-  .sheet-row img { height: 40px; max-height: 40px; }
 }
 
   .sheet-scroller {
