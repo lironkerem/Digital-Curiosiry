@@ -11,7 +11,7 @@ class JournalEngine {
   render() {
     const tab = document.getElementById('journal-tab');
 tab.innerHTML = `
-  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
 <!--  NEW UNIFIED HEADER  -->

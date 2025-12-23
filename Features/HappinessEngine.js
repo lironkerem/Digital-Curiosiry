@@ -240,7 +240,7 @@ class HappinessEngine {
     const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
 
 tab.innerHTML = `
-  <div style="background:var(--neuro-bg);padding:1.5rem;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
       <header class="text-center" style="margin-bottom: 2.5rem;">
