@@ -100,40 +100,54 @@
 @media (max-width: 767px) {
   .desktop-nav { display: none !important; }
 }
-/* ---------- floating swipe arrows (mobile only) ---------- */
+/* ---------- BIG, MIDDLE-LEFT / MIDDLE-RIGHT SWIPE ARROWS ---------- */
 .swipe-arrows{
   position:fixed;
   inset:0;
   pointer-events:none;
   display:flex;
-  align-items:center;
+  align-items:center;              /* vertical middle */
   justify-content:space-between;
   padding:0 12px;
-  z-index:90;                 /* below toast, above content */
+  z-index:90;
 }
+
 .swipe-arrow{
   pointer-events:auto;
-  width:48px;
-  height:48px;
+  width:64px;                      /* bigger circle */
+  height:64px;
   border-radius:50%;
   background:rgba(255,255,255,.85);
   color:var(--neuro-accent);
   border:none;
-  font-size:1.4rem;
+  font-size:2.2rem;                /* bigger arrow glyph */
   font-weight:700;
-  box-shadow:0 4px 12px rgba(0,0,0,.15), var(--shadow-raised);
+  box-shadow:
+    12px 12px 24px var(--neuro-shadow-dark),
+   -12px -12px 24px var(--neuro-shadow-light),
+    inset 0 0 0 rgba(255,255,255,.3);
   cursor:pointer;
   transition:transform .2s;
-  animation:pulse 2s infinite;
+  animation:pulse 2.2s infinite;
+  display:grid;
+  place-content:center;
 }
+
 .swipe-arrow:active{ transform:scale(.92); }
-.swipe-arrow.left{ margin-left:env(safe-area-inset-left,0); }
+
+/* left / right margin respects safe-area */
+.swipe-arrow.left{  margin-left:env(safe-area-inset-left,0);  }
 .swipe-arrow.right{ margin-right:env(safe-area-inset-right,0); }
+
+/* pulse keyframes */
 @keyframes pulse{
   0%,100%{ transform:scale(1); }
   50%{ transform:scale(1.08); }
 }
+
+/* hide on desktop */
 @media (min-width:768px){ .swipe-arrows{ display:none !important; } }
+
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
