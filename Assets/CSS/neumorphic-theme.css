@@ -134,32 +134,25 @@
 
 /* wide-angle SVG inside */
 .swipe-arrow svg{
-  width:36px;
-  height:36px;
-  stroke:currentColor;
-  stroke-width:2.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  fill:none;
   position:relative;
   overflow:visible;
 }
-
-/* shimmer sweep */
-.swipe-arrow svg::before{
+.swipe-arrow svg::before{          /* shimmer band */
   content:"";
   position:absolute;
-  inset:-4px;
-  border-radius:inherit;
-  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.9) 50%,transparent 60%);
-  transform:translateX(-150%);
-  animation:shimmer 2.8s linear infinite;
+  inset:-6px;
+  background:linear-gradient(105deg,
+              transparent 30%,
+              rgba(255,255,255,.95) 50%,
+              transparent 70%);
+  transform:translateX(-180%);
+  animation:shimmer .9s linear infinite;
   pointer-events:none;
   mix-blend-mode:overlay;
 }
 @keyframes shimmer{
-  0%{transform:translateX(-150%);}
-  100%{transform:translateX(150%);}
+  0%{transform:translateX(-180%);}
+  100%{transform:translateX(180%);}
 }
 
 @media (min-width:768px){.swipe-arrows{display:none !important;}}

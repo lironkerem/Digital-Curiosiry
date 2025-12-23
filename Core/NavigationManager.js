@@ -224,8 +224,13 @@ setupSwipeArrows(){
   if(!leftBtn || !rightBtn) return;
 
   /*  NEW: inject wide-angle SVGs  */
-  leftBtn.innerHTML  = `<svg viewBox="0 0 24 24"><path d="M17 5L7 12l10 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-  rightBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M7 5l10 7-10 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+leftBtn.innerHTML  = `<svg viewBox="0 0 48 24">
+  <path d="M40 3 L24 12 L40 21" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+rightBtn.innerHTML = `<svg viewBox="0 0 48 24">
+  <path d="M8 3 L24 12 L8 21" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
 
   const goto = (dir) => {
     const order = [
