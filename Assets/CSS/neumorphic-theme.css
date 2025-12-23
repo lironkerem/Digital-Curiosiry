@@ -3902,8 +3902,8 @@ body.royal-indigo{
 /* same specificity as the old one → wins because it comes later */
 .sheet-row img {
   width: auto;          /* keep ratio */
-  height: 200px;         /* or 40 px if you prefer */
-  max-height: 200px;
+  height: 40px;         /* or 40 px if you prefer */
+  max-height: 40px;
   object-fit: contain;
 }
 
@@ -3920,7 +3920,7 @@ body.royal-indigo{
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 12px 16px;
+    padding: 8px 16px;
     margin-bottom: 10px;
     border-radius: 14px;
     background: var(--neuro-bg);
