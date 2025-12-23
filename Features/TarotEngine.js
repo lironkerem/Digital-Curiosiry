@@ -150,23 +150,23 @@ cardMarkup(index, label) {
     </div>`;
 }
 
-  renderCustomSpread(spreadKey) {
+renderCustomSpread(spreadKey) {
     const positions = this.spreads[spreadKey].positions;
 if (spreadKey === 'options') {
   return `
     <div class="flex flex-col items-center">
       <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;margin-top: 2rem;">Option 1</h3>
-      <div class="grid grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
+      <div class="grid md:grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
         ${positions.slice(0, 3).map((p, i) => this.cardMarkup(i, p)).join('')}
       </div>
       
       <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;">Option 2</h3>
-      <div class="grid grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
+      <div class="grid md:grid-cols-3 place-items-center" style="margin-bottom: 1.5rem;">
         ${positions.slice(3, 6).map((p, i) => this.cardMarkup(i + 3, p)).join('')}
       </div>
       
       <h3 class="text-2xl font-bold" style="margin-bottom: 1rem;">Option 3</h3>
-      <div class="grid grid-cols-3 place-items-center">
+      <div class="grid md:grid-cols-3 place-items-center">
         ${positions.slice(6, 9).map((p, i) => this.cardMarkup(i + 6, p)).join('')}
       </div>
     </div>`;
