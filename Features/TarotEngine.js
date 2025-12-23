@@ -295,12 +295,11 @@ tab.innerHTML = `
   row-gap: 0.5rem !important;
   column-gap: 1.5rem;
 }
+
 /* Desktop: wider gaps */
 @media (min-width: 768px) {
-  #tarot-tab .grid,
-  #tarot-tab .md\:grid-cols-3,
-  #tarot-tab .grid-cols-3,
-  #tarot-tab .grid-cols-2 {
+  #tarot-tab .grid.md\:grid-cols-3,
+  #tarot-tab .grid.grid-cols-2.md\:grid-cols-3 {
     column-gap: 2rem !important;
   }
 }
