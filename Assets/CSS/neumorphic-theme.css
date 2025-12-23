@@ -100,7 +100,7 @@
 @media (max-width: 767px) {
   .desktop-nav { display: none !important; }
 }
-/* ---------- VERTICALLY-CENTRED FLOATING ARROWS ---------- */
+/* ---------- DEAD-CENTRE FLOATING ARROWS ---------- */
 .swipe-arrows{
   position:fixed;
   inset:0;
@@ -112,8 +112,18 @@
   z-index:90;
 }
 
+/* centre-line anchor */
+.swipe-arrows::before{
+  content:"";
+  position:absolute;
+  inset:50% auto auto 0;          /* pin to vertical centre */
+  width:1px;
+  height:1px;
+}
+
 .swipe-arrow{
   pointer-events:auto;
+  position:relative;               /* keeps them on the centre line */
   width:64px;
   height:64px;
   border-radius:50%;
@@ -132,7 +142,7 @@
 
 .swipe-arrow:active{ transform:scale(.92); }
 
-/* push arrows to opposite horizontal edges */
+/* push to horizontal edges */
 .swipe-arrow.left{  margin-right:auto; }
 .swipe-arrow.right{ margin-left:auto;  }
 
