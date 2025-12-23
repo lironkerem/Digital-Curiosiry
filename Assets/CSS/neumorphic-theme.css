@@ -100,23 +100,20 @@
 @media (max-width: 767px) {
   .desktop-nav { display: none !important; }
 }
-/* ---------- FLOATING MIDDLE-LEFT / MIDDLE-RIGHT ARROWS ---------- */
+/* ---------- FLOATING SWIPE ARROWS – CORRECT POSITION ---------- */
 .swipe-arrows{
   position:fixed;
-  inset:0 0 env(safe-area-inset-bottom, 0) 0;   /* bottom respects mobile nav */
+  inset:0;
   pointer-events:none;
   display:flex;
   align-items:center;              /* vertical middle */
-  justify-content:space-between;   /* push buttons to L/R edges */
+  justify-content:space-between;   /* push apart */
   padding:0 12px;
   z-index:90;
 }
 
 .swipe-arrow{
   pointer-events:auto;
-  position:sticky;                 /* keep them on screen even if page scrolls */
-  top:50%;                         /* vertical centre */
-  transform:translateY(-50%);
   width:64px;
   height:64px;
   border-radius:50%;
@@ -125,9 +122,7 @@
   border:none;
   font-size:2.2rem;
   font-weight:700;
-  box-shadow:
-    12px 12px 24px var(--neuro-shadow-dark),
-   -12px -12px 24px var(--neuro-shadow-light);
+  box-shadow:12px 12px 24px var(--neuro-shadow-dark), -12px -12px 24px var(--neuro-shadow-light);
   cursor:pointer;
   transition:transform .2s;
   animation:pulse 2.2s infinite;
@@ -135,14 +130,15 @@
   place-content:center;
 }
 
-.swipe-arrow:active{ transform:translateY(-50%) scale(.92); }
+.swipe-arrow:active{ transform:scale(.92); }
 
-.swipe-arrow.left{  margin-left:env(safe-area-inset-left,0);  }
-.swipe-arrow.right{ margin-right:env(safe-area-inset-right,0); }
+/* left arrow sticks to far left, right to far right */
+.swipe-arrow.left{  margin-right:auto; }
+.swipe-arrow.right{ margin-left:auto;  }
 
 @keyframes pulse{
-  0%,100%{ transform:translateY(-50%) scale(1); }
-  50%{ transform:translateY(-50%) scale(1.08); }
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.08); }
 }
 
 @media (min-width:768px){ .swipe-arrows{ display:none !important; } }
