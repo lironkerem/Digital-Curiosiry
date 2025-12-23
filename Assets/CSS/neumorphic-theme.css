@@ -101,7 +101,7 @@
   .desktop-nav { display: none !important; }
 }
 
-/* ---------- FLOATING 160° SWIPE ARROWS – COMPLETE ---------- */
+/* ---------- FINAL ARROWS: 50° angle, 2× size/bold, no shimmer, edge-hugging ---------- */
 .swipe-arrows{
   position:fixed;
   inset:0;
@@ -109,7 +109,7 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 12px;
+  padding:0 4px;                 /* hug the edges */
   z-index:90;
 }
 
@@ -117,7 +117,7 @@
   pointer-events:auto;
   position:fixed;
   top:50%;
-  transform:translateY(-50%);
+  transform:translateY(-50%) scale(2);   /* 2× bigger */
   width:64px;
   height:64px;
   border:none;
@@ -125,42 +125,26 @@
   cursor:pointer;
   display:grid;
   place-content:center;
-  overflow:hidden;
 }
+.swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 
-/* glassy shimmer sweep (behind SVG) */
-.swipe-arrow::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:linear-gradient(105deg,
-              transparent 30%,
-              rgba(255,255,255,.85) 50%,
-              transparent 70%);
-  transform:translateX(-150%);
-  animation:shimmer .9s linear infinite;
-  mix-blend-mode:overlay;
-}
+/* edge-hugging positions */
+.swipe-arrow.left{left:4px;right:auto;margin-right:auto;}
+.swipe-arrow.right{right:4px;left:auto;margin-left:auto;}
 
-/* 160° wide, bold arrow on top */
+/* 2× bolder stroke, same 50° angle */
 .swipe-arrow svg{
   position:relative;
-  width:44px;
-  height:22px;
-  stroke:var(--neuro-accent);
-  stroke-width:3.5;
+  width:88px;
+  height:88px;
+  stroke:currentColor;
+  stroke-width:10;         /* 2× bolder */
   stroke-linecap:round;
   fill:none;
 }
 
-@keyframes shimmer{
-  0%{transform:translateX(-150%);}
-  100%{transform:translateX(150%);}
-}
-
-.swipe-arrow.left{left:12px;}
-.swipe-arrow.right{right:12px;}
+/* no shimmer animation */
+/* (whole ::before layer and @keyframes removed) */
 
 @media (min-width:768px){.swipe-arrows{display:none!important;}}
 
