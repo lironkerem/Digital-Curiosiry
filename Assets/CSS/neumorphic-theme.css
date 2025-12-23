@@ -100,6 +100,40 @@
 @media (max-width: 767px) {
   .desktop-nav { display: none !important; }
 }
+/* ---------- floating swipe arrows (mobile only) ---------- */
+.swipe-arrows{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  z-index:90;                 /* below toast, above content */
+}
+.swipe-arrow{
+  pointer-events:auto;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:rgba(255,255,255,.85);
+  color:var(--neuro-accent);
+  border:none;
+  font-size:1.4rem;
+  font-weight:700;
+  box-shadow:0 4px 12px rgba(0,0,0,.15), var(--shadow-raised);
+  cursor:pointer;
+  transition:transform .2s;
+  animation:pulse 2s infinite;
+}
+.swipe-arrow:active{ transform:scale(.92); }
+.swipe-arrow.left{ margin-left:env(safe-area-inset-left,0); }
+.swipe-arrow.right{ margin-right:env(safe-area-inset-right,0); }
+@keyframes pulse{
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.08); }
+}
+@media (min-width:768px){ .swipe-arrows{ display:none !important; } }
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
