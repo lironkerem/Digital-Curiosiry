@@ -124,6 +124,9 @@
   color:var(--neuro-accent);
   display:grid;
   place-content:center;
+  /* kill the mobile tap flash */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
 }
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 .swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}
@@ -132,6 +135,7 @@
 .swipe-arrow,
 .swipe-arrow svg,
 .swipe-arrow *{outline:none!important;}
+
 
 /* 30° total (15° each side) + half-bold stroke */
 .swipe-arrow svg{
