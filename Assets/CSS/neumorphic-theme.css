@@ -3492,31 +3492,26 @@ body.royal-indigo{
     font-size: clamp(2rem, 6vw, 2.5rem);
   }
   
-  /* Daily cards */
-  .dashboard-card-title,
-  .dashboard-card-title-front {
-    font-size: clamp(1rem, 3.5vw, 1.25rem);
-  }
-  
-  .dashboard-card-subtitle {
-    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-  }
-  
-  .dashboard-card-meaning {
-    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-  }
-  
-  .dashboard-affirmation-text {
-    font-size: clamp(1rem, 3.5vw, 1.25rem);
-  }
-  
-  .dashboard-booster-title {
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
-  }
-  
-  .dashboard-booster-description {
-    font-size: clamp(0.85rem, 3vw, 1rem);
-  }
+/* Daily cards – unified scalable body text */
+.dashboard-card-meaning,
+.dashboard-affirmation-text,
+.dashboard-booster-description,
+.dashboard-booster-box p {
+  font-family: "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size: clamp(0.875rem, 2.5vw, 1rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+  color: rgba(255,255,255,.92) !important;
+}
+
+/* keep titles/bigger elements adjustable if you want */
+.dashboard-card-title,
+.dashboard-card-title-front {
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+}
+.dashboard-booster-title {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+}
   
   /* Achievements */
   .dashboard-achievements-title {
