@@ -301,7 +301,6 @@ export default class DailyCards {
                     <div class="dashboard-booster-emoji">${booster.emoji}</div>
                     <h4 class="dashboard-booster-title">${booster.title}</h4>
                     <p class="dashboard-booster-description">${booster.description}</p>
-                    <p class="dashboard-booster-meta">${booster.duration} • ${booster.category}</p>
                   </div>
                 </div>
                 <h3 class="dashboard-card-title-front">Your Happiness Booster</h3>

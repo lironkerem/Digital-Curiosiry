@@ -96,23 +96,38 @@ class TarotEngine {
   shuffleDeck(deck) { const shuffled = [...deck]; for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; } return shuffled; }
   prepareReading() { const fullDeck = this.buildFullDeck(); this.shuffledDeck = this.shuffleDeck(fullDeck); this.flippedCards.clear(); this.currentReading = []; }
 
-  /* ---------- Flip & reveal ---------- */
-  flipCard(index) {
-    if (this.flippedCards.has(index) || !this.shuffledDeck.length) return;
-    this.flippedCards.add(index);
-    const cardData = this.shuffledDeck.pop();
-    const card = { name: this.getTarotCardName(cardData.number, cardData.suit), meaning: this.getTarotCardMeaning(cardData.number, cardData.suit), imageUrl: this.getTarotCardImage(cardData.number, cardData.suit), cardData };
-    this.currentReading.push(card);
+/* ---------- Flip & reveal ---------- */
+flipCard(index) {
+  if (this.flippedCards.has(index) || !this.shuffledDeck.length) return;
 
-    const container = document.getElementById(`tarot-card-container-${index}`);
-    const front = container.querySelector('.tarot-card-front');
-    const details = document.getElementById(`tarot-card-details-${index}`);
-    front.innerHTML = `<img src="${card.imageUrl}" alt="${card.name}" class="tarot-card-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'tarot-card-error\\'>🃏</div>'">`;
-    details.innerHTML = `<h4 class="font-bold mt-4 mb-2" style="color: var(--neuro-text);">${card.name}</h4><p style="color: var(--neuro-text-light);" class="text-sm leading-relaxed">${card.meaning}</p>`;
-    details.style.opacity = '1'; details.style.transition = 'opacity 0.5s ease 0.5s';
-    container.classList.add('flipped');
-    this.checkSpreadCompletion();
+  /* --- mobile-pyramid jump fix --- */
+  const pyramid = document.querySelector('.pyramid-triangle');
+  if (pyramid) {
+    pyramid.style.setProperty('--pyramid-height', pyramid.offsetHeight + 'px');
+    pyramid.classList.add('flipping');
+    setTimeout(() => pyramid.classList.remove('flipping'), 900);
   }
+
+  this.flippedCards.add(index);
+  const cardData = this.shuffledDeck.pop();
+  const card = {
+    name: this.getTarotCardName(cardData.number, cardData.suit),
+    meaning: this.getTarotCardMeaning(cardData.number, cardData.suit),
+    imageUrl: this.getTarotCardImage(cardData.number, cardData.suit),
+    cardData
+  };
+  this.currentReading.push(card);
+
+  const container = document.getElementById(`tarot-card-container-${index}`);
+  const front = container.querySelector('.tarot-card-front');
+  const details = document.getElementById(`tarot-card-details-${index}`);
+  front.innerHTML = `<img src="${card.imageUrl}" alt="${card.name}" class="tarot-card-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'tarot-card-error\\'>🃏</div>'">`;
+  details.innerHTML = `<h4 class="font-bold mt-4 mb-2" style="color: var(--neuro-text);">${card.name}</h4><p style="color: var(--neuro-text-light);" class="text-sm leading-relaxed">${card.meaning}</p>`;
+  details.style.opacity = '1';
+  details.style.transition = 'opacity 0.5s ease 0.5s';
+  container.classList.add('flipped');
+  this.checkSpreadCompletion();
+}
 
   /* ---------- Quest & achievements ---------- */
   checkSpreadCompletion() { if (this.flippedCards.size === this.spreads[this.selectedSpread].cards) this.completeTarotSpread(); }
