@@ -362,10 +362,10 @@ export default class DailyCards {
     setTimeout(() => this.initMidnightTimer(), 100);
     
     return `
-      <div class="card mb-8">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2 class="section-title" style="margin: 0;">Your Daily Cards</h2>
-          <span id="daily-cards-timer" style="font-size: 0.9rem; color: var(--neuro-text-secondary);"></span>
+      <div class="card dashboard-quest-hub mb-8">
+        <div class="dashboard-quest-header" style="text-align:center;">
+          <h3 class="dashboard-quest-title">🎴 Your Daily Cards</h3>
+          <span id="daily-cards-timer" class="countdown-badge" style="margin-left: 0.75rem;"></span>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
           ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
