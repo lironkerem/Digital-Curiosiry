@@ -109,34 +109,6 @@ export default class DailyCards {
     return inquiry;
   }
 
-  /* ===== Midnight Timer ===== */
-  initMidnightTimer() {
-    const updateTimer = () => {
-      const now = new Date();
-      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-      const msUntilMidnight = tomorrow - now;
-      
-      const hours = Math.floor(msUntilMidnight / (1000 * 60 * 60));
-      const minutes = Math.floor((msUntilMidnight % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((msUntilMidnight % (1000 * 60)) / 1000);
-      
-      const timerEl = document.getElementById('daily-cards-timer');
-      if (timerEl) {
-        timerEl.textContent = `Resets in ${hours}h ${minutes}m ${seconds}s`;
-      }
-      
-      // Reset at midnight
-      if (msUntilMidnight <= 1000) {
-        setTimeout(() => {
-          location.reload();
-        }, msUntilMidnight);
-      }
-    };
-    
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  }
-
   /* ===== Card Flip Handler ===== */
   flipDailyCard(type) {
     const el = document.getElementById(`${type}-flip`);
@@ -328,23 +300,12 @@ export default class DailyCards {
     const dailyAff = this.getDailyAffirmation();
     const dailyInquiry = this.getDailyInquiry();
     
-    // Start timer after render
-    setTimeout(() => this.initMidnightTimer(), 100);
-    
     return `
-      <div class="card mb-8">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2 class="section-title" style="margin: 0;">Your Daily Cards</h2>
-          <span id="daily-cards-timer" style="font-size: 0.9rem; color: var(--neuro-text-secondary);"></span>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-          ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
-          ${this.renderAffirmationCard(dailyAff)}
-          ${this.renderBoosterCard(this.getRandomBooster())}
-          <div class="md:hidden">
-            ${this.renderInquiryCard(dailyInquiry)}
-          </div>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
+        ${this.renderAffirmationCard(dailyAff)}
+        ${this.renderBoosterCard(this.getRandomBooster())}
+        ${this.renderInquiryCard(dailyInquiry)}
       </div>`;
   }
 }
