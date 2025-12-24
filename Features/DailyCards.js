@@ -1,6 +1,8 @@
 // DailyCards.js
 // Handles all daily card functionality: Tarot, Affirmation, Booster, and Inquiry
 
+import { InquiryEngine } from '../Features/InquiryEngine.js';
+
 export default class DailyCards {
   constructor(app) {
     this.app = app;
