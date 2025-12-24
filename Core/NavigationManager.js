@@ -238,18 +238,22 @@ rightBtn.innerHTML = `<svg viewBox="0 0 200 180" style="transform:scale(0.5);">
   <path d="M115 10 L100 90 L115 170" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
 </svg>`;
 
-  const goto = (dir) => {
-    const order = [
-      'dashboard','energy','tarot','gratitude','happiness',
-      'journal','meditations','flip-script','calculator',
-      'shadow-alchemy','karma-shop'
-    ];
-    const active = localStorage.getItem('pc_active_tab') || 'dashboard';
-    let idx = order.indexOf(active);
-    idx = (idx + dir + order.length) % order.length;
-    const navItem = document.querySelector(`[data-tab="${order[idx]}"]`);
-    if(navItem) this.switchTab(order[idx], navItem.dataset.label);
-  };
+const goto = (dir) => {
+  const order = [
+    'dashboard','energy','tarot','gratitude','happiness',
+    'journal','meditations','flip-script','calculator',
+    'shadow-alchemy','karma-shop'
+  ];
+  const active = localStorage.getItem('pc_active_tab') || 'dashboard';
+  let idx = order.indexOf(active);
+  idx = (idx + dir + order.length) % order.length;
+  const navItem = document.querySelector(`[data-tab="${order[idx]}"]`);
+  if(navItem) this.switchTab(order[idx], navItem.dataset.label);
+};
+
+/* ----- bind the clicks ----- */
+leftBtn.addEventListener('click',  () => goto(-1));
+rightBtn.addEventListener('click', () => goto(1));
 
   // hide while sheet open
   const observer = new MutationObserver(()=>{
