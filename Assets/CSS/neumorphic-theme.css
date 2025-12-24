@@ -101,100 +101,104 @@
   .desktop-nav { display: none !important; }
 }
 
-/* ---------- FINAL 30° arrows: thin, edge-touch, no shimmer ---------- */
-.swipe-arrows{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0;                      /* touch the very edge */
-  z-index:90;
+/* ---------- FINAL 30° arrows: thin, edge-touch, real shimmer ---------- */
+.swipe-arrows {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  z-index: 90;
 }
-.swipe-arrow{
-  pointer-events:auto;
-  position:fixed;
-  top:50%;
-  transform:translateY(-50%) scale(2);
-  width:64px;
-  height:64px;
-  border:none;
-  background:none;
-  color:var(--neuro-accent);
-  display:grid;
-  place-content:center;
-  /* kill the mobile tap flash */
+
+.swipe-arrow {
+  pointer-events: auto;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%) scale(2);
+  width: 64px;
+  height: 64px;
+  border: none;
+  background: none;
+  color: var(--neuro-accent);
+  display: grid;
+  place-content: center;
+  overflow: hidden; /* clip shimmer bar */
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  -webkit-focus-ring-color: transparent;   /* old Safari */
-  -webkit-appearance: none;                /* reset UA button skin */
-  user-select: none; 
-}
-.swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
-.swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}
-.swipe-arrow.right{right:-25px;left:auto;margin-left:auto;}
-/* 2.  kill ANY outline on ANY part */
-.swipe-arrow,
-.swipe-arrow svg,
-.swipe-arrow *{outline:none!important;}
-
-
-/* 30° total (15° each side) + half-bold stroke */
-.swipe-arrow svg{
-  position:relative;
-  width:88px;
-  height:88px;
-  stroke:currentColor;
-  stroke-width:5;          /* half of previous 10 */
-  stroke-linecap:round;
-  fill:none;
+  -webkit-appearance: none;
+  user-select: none;
 }
 
-/* 30° angle paths */
-.swipe-arrow svg path{
-  d:path("M80 18 L100 90 L80 162");   /* 15° each side */
+.swipe-arrow:active {
+  transform: translateY(-50%) scale(1.9);
 }
 
-/* left arrow → 5 px right & back (loop) */
-.swipe-arrow.left{
-  animation:slideRight 2s ease-in-out infinite;
-}
-@keyframes slideRight{
-  0%,100%{transform:translateY(-50%) scale(2) translateX(0);}
-  50%{transform:translateY(-50%) scale(2) translateX(5px);}
+.swipe-arrow.left {
+  left: -25px;
+  animation: slideRight 2s ease-in-out infinite;
 }
 
-/* right arrow → 5 px left & back (loop) */
-.swipe-arrow.right{
-  animation:slideLeft 2s ease-in-out infinite;
-}
-@keyframes slideLeft{
-  0%,100%{transform:translateY(-50%) scale(2) translateX(0);}
-  50%{transform:translateY(-50%) scale(2) translateX(-5px);}
+.swipe-arrow.right {
+  right: -25px;
+  animation: slideLeft 2s ease-in-out infinite;
 }
 
-/* shimmer sweep across the stroke */
-.swipe-arrow svg{
-  position:relative;
-  overflow:visible;
+@keyframes slideRight {
+  0%, 100% { transform: translateY(-50%) scale(2) translateX(0); }
+  50% { transform: translateY(-50%) scale(2) translateX(5px); }
 }
-/* 1.  shimmer IN FRONT of the stroke */
-.swipe-arrow svg::before{
-  content:"";
-  position:absolute;
-  inset:-6px;
-  z-index:2;                        /* in front */
-  border-radius:inherit;
-  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.95) 50%,transparent 60%);
-  transform:translateX(-150%);
-  animation:shimmer 2.8s linear infinite;
-  pointer-events:none;
-  mix-blend-mode:screen;            /* brighter blend */
-}
-@keyframes shimmer{to{transform:translateX(150%);}}
 
-@media (min-width:768px){.swipe-arrows{display:none!important;}}
+@keyframes slideLeft {
+  0%, 100% { transform: translateY(-50%) scale(2) translateX(0); }
+  50% { transform: translateY(-50%) scale(2) translateX(-5px); }
+}
+
+/* 30° SVG arrow */
+.swipe-arrow svg {
+  width: 88px;
+  height: 88px;
+  stroke: var(--neuro-accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.swipe-arrow svg path {
+  d: path("M80 18 L100 90 L80 162");
+}
+
+/* real shimmer bar on the BUTTON */
+.swipe-arrow::before {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -50%;
+  width: 40%;
+  height: 150%;
+  background: linear-gradient(
+                105deg,
+                transparent 40%,
+                rgba(255, 255, 255, 0.95) 50%,
+                transparent 60%
+              );
+  transform: rotate(20deg);
+  animation: shimmer 2.8s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@keyframes shimmer {
+  to { transform: rotate(20deg) translateX(350%); }
+}
+
+@media (min-width: 768px) {
+  .swipe-arrows {
+    display: none !important;
+  }
+}
 
 /* ===== GLOBAL RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
