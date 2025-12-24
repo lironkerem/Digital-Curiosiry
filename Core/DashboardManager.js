@@ -369,9 +369,9 @@ renderInquiryCard(inquiry) {
                   <div class="dashboard-booster-emoji" style="font-size: 3rem; margin-bottom: 1.5rem;">
                     ${intensityEmoji[inquiry.intensity] || '💭'}
                   </div>
-                  <h4 class="dashboard-booster-title" style="font-size: 1.2rem; line-height: 1.5; color: var(--neuro-text);">
+                  <p class="dashboard-booster-description" style="font-size: 1rem; line-height: 1.5; margin-bottom: 0.75rem; color: rgba(255, 255, 255, 0.9);">
                     ${inquiry.question}
-                  </h4>
+                  </p>
                 </div>
               </div>
               <h3 class="dashboard-card-title-front">Your Daily Inquiry</h3>
