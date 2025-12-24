@@ -129,6 +129,7 @@
   outline: none;
   -webkit-focus-ring-color: transparent;   /* old Safari */
   -webkit-appearance: none;                /* reset UA button skin */
+  user-select: none; 
 }
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 .swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}

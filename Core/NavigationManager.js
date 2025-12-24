@@ -252,8 +252,8 @@ const goto = (dir) => {
 };
 
 /* ----- bind the clicks ----- */
-leftBtn.addEventListener('click',  e => { goto(-1); e.currentTarget.blur(); });
-rightBtn.addEventListener('click', e => { goto(1);  e.currentTarget.blur(); });
+leftBtn.addEventListener('click',  e => { e.preventDefault(); goto(-1); });
+rightBtn.addEventListener('click', e => { e.preventDefault(); goto(1);  });
 
   // hide while sheet open
   const observer = new MutationObserver(()=>{
