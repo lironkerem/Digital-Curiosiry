@@ -14,6 +14,20 @@ export default class DailyCards {
     // Initialize Inquiry Engine
     this.inquiryEngine = new InquiryEngine('beginner');
     
+    // Load boosters synchronously with fallback
+    this.initializeBoosters();
+  }
+
+  initializeBoosters() {
+    // Set fallback boosters immediately
+    this.happinessBoosters = [
+      { id: 1, title: '5-Minute Dance Party', emoji: '💃', description: 'Put on your favorite song and move!', duration: '5 min', category: 'Movement' },
+      { id: 2, title: 'Gratitude Snapshot', emoji: '📸', description: 'Notice 3 beautiful things around you', duration: '3 min', category: 'Gratitude' },
+      { id: 3, title: 'Power Pose', emoji: '🦸', description: 'Stand like a superhero for 2 minutes', duration: '2 min', category: 'Confidence' }
+    ];
+    this.boostersLoaded = true;
+    
+    // Try to load from JSON asynchronously
     this.loadHappinessBoosters();
   }
 
@@ -24,15 +38,14 @@ export default class DailyCards {
       if (!res.ok) throw new Error(res.status);
       const data = await res.json();
       this.happinessBoosters = data.boosters;
-      this.boostersLoaded = true;
     } catch {
       this.happinessBoosters = [
         { id: 1, title: '5-Minute Dance Party', emoji: '💃', description: 'Put on your favorite song and move!', duration: '5 min', category: 'Movement' },
         { id: 2, title: 'Gratitude Snapshot', emoji: '📸', description: 'Notice 3 beautiful things around you', duration: '3 min', category: 'Gratitude' },
         { id: 3, title: 'Power Pose', emoji: '🦸', description: 'Stand like a superhero for 2 minutes', duration: '2 min', category: 'Confidence' }
       ];
-      this.boostersLoaded = true;
     }
+    this.boostersLoaded = true;
   }
 
   getRandomBooster() {
