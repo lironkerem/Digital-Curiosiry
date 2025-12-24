@@ -36,12 +36,28 @@ export default class DailyCards {
   }
 
   getRandomBooster() {
-    if (!this.boostersLoaded || !this.happinessBoosters?.length) {
+    if (!this.happinessBoosters?.length) {
       return { id: 0, title: 'Loading...', emoji: '⏳', description: 'Please wait', duration: '...', category: 'Loading' };
     }
     const i = Math.floor(Math.random() * this.happinessBoosters.length);
     this.currentBoosterIndex = i;
     return this.happinessBoosters[i];
+  }
+
+  getDailyBooster() {
+    const today = new Date().toDateString();
+    const stored = localStorage.getItem('daily_booster');
+    
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        if (data.date === today) return data.booster;
+      } catch {}
+    }
+    
+    const booster = this.getRandomBooster();
+    localStorage.setItem('daily_booster', JSON.stringify({ booster, date: today }));
+    return booster;
   }
 
   /* ===== Daily Tarot Card ===== */
@@ -326,6 +342,7 @@ export default class DailyCards {
   renderDailyCardsSection() {
     const dailyCard = this.getDailyTarotCard();
     const dailyAff = this.getDailyAffirmation();
+    const dailyBooster = this.getDailyBooster();
     const dailyInquiry = this.getDailyInquiry();
     
     // Start timer after render
@@ -340,7 +357,7 @@ export default class DailyCards {
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
           ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
           ${this.renderAffirmationCard(dailyAff)}
-          ${this.renderBoosterCard(this.getRandomBooster())}
+          ${this.renderBoosterCard(dailyBooster)}
           <div class="md:hidden">
             ${this.renderInquiryCard(dailyInquiry)}
           </div>
