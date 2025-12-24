@@ -344,44 +344,55 @@ setupQuestListeners() {
       </div>`;
   }
 
-renderInquiryCard(inquiry) {
-  const today = new Date().toDateString();
-  const wasFlipped = localStorage.getItem('daily_card_flipped_inquiry') === today;
-  const flippedClass = wasFlipped ? 'flipped' : '';
-  
-  const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
-  
-  return `
-    <div class="card dashboard-daily-card">
-      <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('inquiry')">
-        <div class="daily-card-inner ${flippedClass}" id="inquiry-flip">
-          <div class="daily-card-back">
-            <div class="card-content">
-              <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
-              <h3 class="dashboard-card-title">Daily Inquiry</h3>
-              <p class="dashboard-card-subtitle">Click to Reveal</p>
-            </div>
-          </div>
-          <div class="daily-card-front">
-            <div class="card-content">
-              <div class="dashboard-booster-box" style="padding: 1.5rem;">
-                <div class="dashboard-booster-content">
-                  <div class="dashboard-booster-emoji" style="font-size: 3rem; margin-bottom: 1.5rem;">
-                    ${intensityEmoji[inquiry.intensity] || '💭'}
-                  </div>
-                  <h4 class="dashboard-booster-title" style="font-size: 1.2rem; line-height: 1.5; color: var(--neuro-text);">
-                    ${inquiry.question}
-                  </h4>
-                </div>
+  renderInquiryCard(inquiry) {
+    const today = new Date().toDateString();
+    const wasFlipped = localStorage.getItem('daily_card_flipped_inquiry') === today;
+    const flippedClass = wasFlipped ? 'flipped' : '';
+    
+    const intensityEmoji = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '🔥' };
+    
+    return `
+      <div class="card dashboard-daily-card">
+        <div class="daily-card-wrapper" onclick="window.app.dashboard.flipDailyCard('inquiry')">
+          <div class="daily-card-inner ${flippedClass}" id="inquiry-flip">
+            <div class="daily-card-back">
+              <div class="card-content">
+                <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
+                <h3 class="dashboard-card-title">Daily Inquiry</h3>
+                <p class="dashboard-card-subtitle">Click to Reveal</p>
               </div>
-              <h3 class="dashboard-card-title-front">Your Daily Inquiry</h3>
-              <p class="dashboard-card-subtitle">Contemplate deeply</p>
+            </div>
+            <div class="daily-card-front">
+              <div class="card-content">
+                <div class="dashboard-booster-box" style="padding: 1.5rem;">
+                  <div class="dashboard-booster-content">
+                    <div class="dashboard-booster-emoji" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                      ${intensityEmoji[inquiry.intensity] || '💭'}
+                    </div>
+                    <div style="margin-bottom: 1rem; padding: 0.5rem; background: var(--neuro-bg-secondary); border-radius: 8px;">
+                      <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--neuro-accent);">
+                        ${inquiry.domain}
+                      </span>
+                    </div>
+                    <h4 class="dashboard-booster-title" style="font-size: 1.1rem; line-height: 1.4; margin-bottom: 1rem; color: var(--neuro-text);">
+                      ${inquiry.question}
+                    </h4>
+                    <p class="dashboard-booster-description" style="font-style: italic; color: var(--neuro-text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">
+                      ${inquiry.holding}
+                    </p>
+                    <p class="dashboard-booster-meta" style="font-size: 0.8rem; color: var(--neuro-text-secondary);">
+                      Level ${inquiry.intensity} • Self-Inquiry
+                    </p>
+                  </div>
+                </div>
+                <h3 class="dashboard-card-title-front">Your Daily Inquiry</h3>
+                <p class="dashboard-card-subtitle">Contemplate deeply</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>`;
-}
+      </div>`;
+  }
 
 renderGamificationWidget(status, stats) {
   if (!this.app.gamification) return '';
