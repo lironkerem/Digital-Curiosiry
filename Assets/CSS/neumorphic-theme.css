@@ -958,7 +958,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   font-weight: 700;
   color: white;
 }
-/* ===== DAILY CARDS ===== */
+/* ===== DAILY CARDS - BASE STYLES ===== */
 .dashboard-daily-card {
   padding: 1.875rem;
 }
@@ -1026,6 +1026,11 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   padding: 0;
 }
 
+.daily-card-front .card-content {
+  min-height: auto;
+  height: auto;
+}
+
 .dashboard-card-image {
   width: 100%;
   height: auto;
@@ -1060,19 +1065,23 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   font-size: 0.875rem;
   color: var(--neuro-text);
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ===== AFFIRMATION BOX ===== */
 .dashboard-affirmation-box {
   width: 100%;
-  aspect-ratio: 200/350;
+  min-height: 180px;
+  max-height: none;
+  aspect-ratio: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
   padding: 1.25rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: visible;
   background: linear-gradient(135deg, var(--neuro-accent), var(--neuro-accent-light));
 }
 
@@ -1082,12 +1091,16 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   text-align: center;
   color: white;
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ===== BOOSTER BOX ===== */
 .dashboard-booster-box {
   width: 100%;
-  aspect-ratio: 200/350;
+  min-height: 180px;
+  max-height: none;
+  aspect-ratio: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1096,7 +1109,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   border-radius: 0.75rem;
   padding: 1.25rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: visible;
   background: linear-gradient(135deg, var(--neuro-success), #16a34a);
 }
 
@@ -1114,6 +1127,8 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   font-weight: 700;
   margin-bottom: 0.75rem;
   color: white;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .dashboard-booster-description {
@@ -1121,6 +1136,8 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   color: rgba(255, 255, 255, 0.9);
   font-size: 1rem;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .dashboard-booster-meta {
@@ -1163,6 +1180,22 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   margin-bottom: 1.5rem;
   color: var(--neuro-accent);
 }
+
+/* ===== DESKTOP - 3 CARDS (NO INQUIRY) ===== */
+@media (min-width: 768px) {
+  /* Hide 4th card (inquiry) on desktop */
+  .dashboard-content > div.grid.mb-8 > .dashboard-daily-card:nth-child(4) {
+    display: none !important;
+  }
+  
+  /* 3-column grid for remaining 3 cards */
+  .dashboard-content > div.grid.mb-8 {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+}
+
 
 /* ===== ACHIEVEMENTS ===== */
 .dashboard-achievements {
@@ -3538,9 +3571,10 @@ body.royal-indigo{
   }
   
   
-  /* ===== 3. DAILY CARDS - 2x2 GRID (4 CARDS) ===== */
+/* ===== MOBILE - 2x2 GRID (ALL 4 CARDS) ===== */
+@media (max-width: 767px) {
   
-  /* Target the daily cards grid specifically */
+  /* Show all 4 cards in 2x2 grid */
   .dashboard-content > div.grid.mb-8 {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -3582,7 +3616,7 @@ body.royal-indigo{
     gap: 0.5rem;
   }
   
-  /* Card image - no extra container needed, direct styling */
+  /* Card image - smaller on mobile */
   .dashboard-card-image {
     max-height: 180px;
     width: 100%;
@@ -3591,7 +3625,7 @@ body.royal-indigo{
     flex-shrink: 0;
   }
   
-  /* Fix affirmation/booster/placeholder boxes to show all text */
+  /* Fix affirmation/booster boxes to show all text */
   .dashboard-affirmation-box,
   .dashboard-booster-box {
     width: 100%;
@@ -3613,6 +3647,7 @@ body.royal-indigo{
     overflow-wrap: break-word;
     word-break: break-word;
     line-height: 1.4;
+    font-size: 1rem;
   }
   
   .dashboard-booster-content {
@@ -3623,6 +3658,14 @@ body.royal-indigo{
   .dashboard-booster-emoji {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+  }
+  
+  .dashboard-booster-title {
+    font-size: 1.1rem;
+  }
+  
+  .dashboard-booster-description {
+    font-size: 0.9rem;
   }
   
   .dashboard-booster-title,
@@ -3637,13 +3680,15 @@ body.royal-indigo{
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
     flex-shrink: 0;
+    font-size: 1rem;
   }
   
   .dashboard-card-subtitle,
   .dashboard-card-meaning {
     flex-shrink: 0;
+    font-size: 0.8rem;
   }
-  
+}
   
   /* ===== 5. QUEST HUB - 2x3 GRID ===== */
   
