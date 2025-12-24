@@ -2,7 +2,7 @@
 // Imports and Constructor
 
 import { InquiryEngine } from '../Features/InquiryEngine.js';
-import DailyCards from '../Features/DailyCards.js';
+import DailyCards from './DailyCards.js';
 
 export default class DashboardManager {
   constructor(app) {
@@ -11,6 +11,11 @@ export default class DashboardManager {
     
     // Initialize Daily Cards module
     this.dailyCards = new DailyCards(app);
+    
+    // Expose dailyCards globally for onclick handlers
+    if (window.app) {
+      window.app.dailyCards = this.dailyCards;
+    }
     
     this.setupQuestListeners();
     this.setupWellnessTracking();
