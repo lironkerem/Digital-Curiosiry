@@ -126,7 +126,9 @@
   place-content:center;
   /* kill the mobile tap flash */
   -webkit-tap-highlight-color: transparent;
-  -webkit-focus-ring-color: transparent;
+  outline: none;
+  -webkit-focus-ring-color: transparent;   /* old Safari */
+  -webkit-appearance: none;                /* reset UA button skin */
 }
 .swipe-arrow:active{transform:translateY(-50%) scale(1.9);}
 .swipe-arrow.left{left:-25px;right:auto;margin-right:auto;}

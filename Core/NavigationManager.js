@@ -224,6 +224,11 @@ setupSwipeArrows(){
   const arrows   = document.getElementById('swipe-arrows');
   if(!leftBtn || !rightBtn) return;
 
+  /* ----- NEW: make them non-focusable ----- */
+  leftBtn.tabIndex  = -1;
+  rightBtn.tabIndex = -1;
+  /* ----------------------------------------- */
+
   /*  NEW: inject wide-angle SVGs  */
 leftBtn.innerHTML  = `<svg viewBox="0 0 200 180" style="transform:scaleX(-1) scale(0.5);">
   <path d="M115 10 L100 90 L115 170" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
