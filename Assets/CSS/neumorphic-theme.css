@@ -3,159 +3,50 @@
    Production-ready, optimized, fully integrated
    ========================================================= */
 
-/* --------------------------------------------------
-   TERRACOTTA-METALLIC  (drop-in replacement)
-   -------------------------------------------------- */
+/* ===== ROOT DESIGN TOKENS ===== */
 :root {
-  /* ------ Cream / Gold base ------ */
-  --neuro-bg:               #fdf6e9;          /* warm cream */
-  --neuro-shadow-light:     #ffffff;          /* pure white highlights */
-  --neuro-shadow-dark:      #c4a98a;          /* muted terracotta */
+  /* colours */
+  --neuro-bg: #e0e5ec;
+  --neuro-shadow-dark: #b8bec5;
+  --neuro-shadow-light: #ffffff;
+  --neuro-text: #2c3e50;
+  --neuro-text-light: #6c757d;
+  --neuro-text-lighter: #8e9aaf;
+  --neuro-accent: #667eea;
+  --neuro-accent-light: #764ba2;
+  --neuro-success: #22c55e;
+  --neuro-warning: #f59e0b;
+  --neuro-error: #ef4444;
+  --neuro-info: #3b82f6;
 
-  /* ------ Premium text ------ */
-  --neuro-text:             #3e2723;          /* deep espresso */
-  --neuro-text-light:       #8d6e63;          /* mid terracotta */
-  --neuro-text-lighter:     #bcaaa4;          /* pale terracotta */
-
-  /* ------ Liquid-metal gold ------ */
-  --neuro-accent:           #e6a336;          /* rich gold */
-  --neuro-accent-light:     #ffd54f;          /* champagne */
-
-  /* ------ Functional (metallic twist) ------ */
-  --neuro-success:          #c9a145;          /* antique gold */
-  --neuro-warning:          #e6a336;          /* same as accent */
-  --neuro-error:            #bf7e6e;          /* copper patina */
-  --neuro-info:             #c9a145;          /* antique gold */
-
-  /* ------ Spacing / radius / motion (unchanged) ------ */
+  /* spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
+
+  /* radius */
   --radius-sm: 12px;
   --radius-md: 16px;
   --radius-lg: 20px;
   --radius-xl: 24px;
   --radius-2xl: 30px;
   --radius-full: 9999px;
+
+  /* motion */
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 300ms ease-in-out;
   --transition-slow: 500ms ease-in-out;
 
-  /* ------ Stronger neumorphic shadows ------ */
-  --shadow-raised: 16px 16px 32px var(--neuro-shadow-dark), -16px -16px 32px var(--neuro-shadow-light);
-  --shadow-raised-lg: 24px 24px 48px var(--neuro-shadow-dark), -24px -24px 48px var(--neuro-shadow-light);
-  --shadow-raised-hover: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+  /* shadows */
+  --shadow-raised: 8px 8px 16px var(--neuro-shadow-dark), -8px -8px 16px var(--neuro-shadow-light);
+  --shadow-raised-lg: 20px 20px 40px var(--neuro-shadow-dark), -20px -20px 40px var(--neuro-shadow-light);
+  --shadow-raised-hover: 10px 10px 20px var(--neuro-shadow-dark), -10px -10px 20px var(--neuro-shadow-light);
   --shadow-inset: inset 4px 4px 8px var(--neuro-shadow-dark), inset -4px -4px 8px var(--neuro-shadow-light);
   --shadow-inset-sm: inset 2px 2px 4px var(--neuro-shadow-dark), inset -2px -2px 4px var(--neuro-shadow-light);
   --shadow-inset-lg: inset 6px 6px 12px var(--neuro-shadow-dark), inset -6px -6px 12px var(--neuro-shadow-light);
-}
-
-/* 1.  SHIMMERING BORDERS  (all cards & buttons) ------------------ */
-@keyframes borderShimmer {
-  0%   { border-image: linear-gradient(60deg, var(--neuro-accent), var(--neuro-accent-light), var(--neuro-accent)) 1; }
-  50%  { border-image: linear-gradient(240deg, var(--neuro-accent-light), var(--neuro-accent), var(--neuro-accent-light)) 1; }
-  100% { border-image: linear-gradient(60deg, var(--neuro-accent), var(--neuro-accent-light), var(--neuro-accent)) 1; }
-}
-.card, .neuro-card, .calc-card, .auth-card,
-.calc-summary-card, .calc-expandable-card,
-.dashboard-quest-card, .karma-shop-item,
-.dashboard-daily-card, .wellness-tool-btn,
-.neuro-modal, #flip-script-tab .output-card,
-#flip-script-tab .collapsible-card,
-#shadow-alchemy-tab .card, #calculator-tab .card {
-  border: 1.5px solid transparent;
-  animation: borderShimmer 4s linear infinite;
-  box-shadow:
-    18px 18px 36px var(--neuro-shadow-dark),
-    -18px -18px 36px var(--neuro-shadow-light);
-}
-
-/* 2.  GLEAMING TERRACOTTA BUTTONS  ------------------------------ */
-@keyframes btnSheen {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-.btn-primary, .neuro-btn, button[type="submit"],
-#btn-analyze, .flip-main-btn,
-.karma-shop-item-btn:not(:disabled),
-.tarot-vision-ai-btn:not(:disabled) {
-  background: linear-gradient(110deg,
-               #d87a50 30%,   /* true terracotta */
-               #e6a336 50%,   /* gold core */
-               #d87a50 70%);
-  background-size: 200% 100%;
-  animation: goldShimmer 3s linear infinite;
-  position: relative;
-  overflow: hidden;
-}
-.btn-primary::after,
-.neuro-btn::after,
-button[type="submit"]::after,
-#btn-analyze::after,
-.flip-main-btn::after,
-.karma-shop-item-btn:not(:disabled)::after,
-.tarot-vision-ai-btn:not(:disabled)::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg,
-               transparent 40%,
-               rgba(255, 255, 255, 0.45) 50%,
-               transparent 60%);
-  transform: translateX(-100%);
-  animation: btnSheen 2.5s infinite;
-}
-
-/* 3.  GOLD MICRO-GLOW ON FOCUS  -------------------------------- */
-.form-input:focus,
-input:focus, textarea:focus, select:focus,
-input[type="range"]:focus::-webkit-slider-thumb {
-  outline: none;
-  box-shadow:
-    var(--shadow-inset),
-    0 0 0 2px var(--neuro-accent),
-    0 0 16px rgba(230, 163, 54, 0.5);
-}
-
-/* 4.  METALLIC TEXT SHEEN  -------------------------------------- */
-.main-header.project-curiosity h1,
-.karma-shop-balance-title,
-.dashboard-wellness-title,
-.karma-shop-category-title,
-.lux-title {
-  background: linear-gradient(92deg,
-               #ffd54f 0%,
-               #e6a336 30%,
-               #ffd54f 60%,
-               #e6a336 100%);
-  background-size: 200% auto;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  animation: textShine 6s linear infinite;
-}
-@keyframes textShine { to { background-position: 200% center; } }
-
-/* 5.  GOLD PULSE ON COMPLETED BARS  ---------------------------- */
-.dashboard-progress-fill[style*="100%"] {
-  animation: goldPulse 2s ease-in-out infinite;
-}
-@keyframes goldPulse {
-  0%, 100% { box-shadow: 0 0 12px rgba(230, 163, 54, 0.35); }
-  50%      { box-shadow: 0 0 24px rgba(230, 163, 54, 0.6); }
-}
-
-/* 6.  MICRO-BOUNCE ON TAP  (mobile)  ---------------------------- */
-@media (hover: none) and (pointer: coarse) {
-  .btn:active, .card:active,
-  .karma-shop-item:active,
-  .wellness-tool-btn:active {
-    transform: scale(0.97);
-    transition: transform 0.1s;
-  }
 }
 
 /* Container creates the "floating" card effect */
