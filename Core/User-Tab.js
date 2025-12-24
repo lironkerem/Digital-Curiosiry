@@ -441,3 +441,4 @@ loadAdminPanel() {
       mount.innerHTML = '<div style="color:#ff4757;padding:10px;">Failed to load admin panel: ' + err.message + '</div>';
     });
 }
+}
