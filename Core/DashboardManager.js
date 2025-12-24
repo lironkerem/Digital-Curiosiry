@@ -2,7 +2,7 @@
 // Imports and Constructor
 
 import { InquiryEngine } from '../Features/InquiryEngine.js';
-import DailyCards from './DailyCards.js';
+import DailyCards from '../Features/DailyCards.js';
 
 export default class DashboardManager {
   constructor(app) {
