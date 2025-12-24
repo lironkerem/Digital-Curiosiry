@@ -230,14 +230,14 @@ export default class DailyCards {
         <div class="daily-card-wrapper" onclick="window.app.dailyCards.flipDailyCard('${type}')">
           <div class="daily-card-inner ${flippedClass}" id="${type}-flip">
             <div class="daily-card-back">
-              <div class="card-content">
+              <div class="card-content h-full overflow-y-auto">
                 <img src="${backImage}" alt="Card Back" class="dashboard-card-image">
                 <h3 class="dashboard-card-title">${title}</h3>
                 <p class="dashboard-card-subtitle">Click to Reveal</p>
               </div>
             </div>
             <div class="daily-card-front">
-              <div class="card-content">
+              <div class="card-content h-full overflow-y-auto">
                 <img src="${card.image}" alt="${card.name}" class="dashboard-card-image">
                 <h3 class="dashboard-card-title-front">${card.name}</h3>
                 <p class="dashboard-card-meaning">${card.meaning}</p>
@@ -258,19 +258,19 @@ export default class DailyCards {
         <div class="daily-card-wrapper" onclick="window.app.dailyCards.flipDailyCard('affirmation')">
           <div class="daily-card-inner ${flippedClass}" id="affirmation-flip">
             <div class="daily-card-back">
-              <div class="card-content">
+              <div class="card-content h-full overflow-y-auto">
                 <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
                 <h3 class="dashboard-card-title">Daily Affirmation</h3>
                 <p class="dashboard-card-subtitle">Click to Reveal</p>
               </div>
             </div>
             <div class="daily-card-front">
-              <div class="card-content">
-                <div class="dashboard-affirmation-box">
-                  <p class="dashboard-affirmation-text">"${affirmation}"</p>
+              <div class="card-content daily-front-split">
+                <div class="dashboard-affirmation-box-scroll">
+                  <p class="dashboard-affirmation-text">${affirmation}</p>
                 </div>
-                <h3 class="dashboard-card-title-front">Your Daily Affirmation</h3>
-                <p class="dashboard-card-subtitle">Embrace this message today</p>
+                <h3 class="dashboard-card-title-front daily-heading-bottom">Your Daily Affirmation</h3>
+                <p class="dashboard-card-subtitle daily-sub-bottom">Embrace this message today</p>
               </div>
             </div>
           </div>
@@ -288,23 +288,24 @@ export default class DailyCards {
         <div class="daily-card-wrapper" onclick="window.app.dailyCards.flipDailyCard('booster')">
           <div class="daily-card-inner ${flippedClass}" id="booster-flip">
             <div class="daily-card-back">
-              <div class="card-content">
+              <div class="card-content h-full overflow-y-auto">
                 <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
                 <h3 class="dashboard-card-title">Happiness Booster</h3>
                 <p class="dashboard-card-subtitle">Click to Reveal</p>
               </div>
             </div>
             <div class="daily-card-front">
-              <div class="card-content">
-                <div class="dashboard-booster-box">
+              <div class="card-content daily-front-split">
+                <div class="dashboard-booster-box-scroll">
                   <div class="dashboard-booster-content">
                     <div class="dashboard-booster-emoji">${booster.emoji}</div>
                     <h4 class="dashboard-booster-title">${booster.title}</h4>
                     <p class="dashboard-booster-description">${booster.description}</p>
+                    <p class="dashboard-booster-meta">${booster.duration} • ${booster.category}</p>
                   </div>
                 </div>
-                <h3 class="dashboard-card-title-front">Your Happiness Booster</h3>
-                <p class="dashboard-card-subtitle">Do this to refresh yourself</p>
+                <h3 class="dashboard-card-title-front daily-heading-bottom">Your Happiness Booster</h3>
+                <p class="dashboard-card-subtitle daily-sub-bottom">Do this to refresh yourself</p>
               </div>
             </div>
           </div>
@@ -323,26 +324,24 @@ export default class DailyCards {
         <div class="daily-card-wrapper" onclick="window.app.dailyCards.flipDailyCard('inquiry')">
           <div class="daily-card-inner ${flippedClass}" id="inquiry-flip">
             <div class="daily-card-back">
-              <div class="card-content">
+              <div class="card-content h-full overflow-y-auto">
                 <img src="${this.CARD_BACK_URL}" alt="Card Back" class="dashboard-card-image">
                 <h3 class="dashboard-card-title">Daily Inquiry</h3>
                 <p class="dashboard-card-subtitle">Click to Reveal</p>
               </div>
             </div>
             <div class="daily-card-front">
-              <div class="card-content">
-                <div class="dashboard-booster-box" style="padding: 1.5rem;">
+              <div class="card-content daily-front-split">
+                <div class="dashboard-inquiry-box-scroll">
                   <div class="dashboard-booster-content">
-                    <div class="dashboard-booster-emoji" style="font-size: 3rem; margin-bottom: 1.5rem;">
+                    <div class="dashboard-booster-emoji" style="font-size: 3rem; margin-bottom: 1rem;">
                       ${intensityEmoji[inquiry.intensity] || '💭'}
                     </div>
-                    <p class="dashboard-booster-description" style="font-size: 1rem; line-height: 1.5; margin-bottom: 0.75rem; color: rgba(255, 255, 255, 0.9);">
-                      ${inquiry.question}
-                    </p>
+                    <p class="dashboard-booster-description">${inquiry.question}</p>
                   </div>
                 </div>
-                <h3 class="dashboard-card-title-front">Your Daily Inquiry</h3>
-                <p class="dashboard-card-subtitle">Contemplate deeply</p>
+                <h3 class="dashboard-card-title-front daily-heading-bottom">Your Daily Inquiry</h3>
+                <p class="dashboard-card-subtitle daily-sub-bottom">Contemplate deeply</p>
               </div>
             </div>
           </div>
@@ -362,8 +361,8 @@ export default class DailyCards {
     
     return `
       <div class="card dashboard-quest-hub mb-8" style="position: relative;">
-        <span id="daily-cards-timer" class="countdown-badge" style="position: absolute; top: 1.5rem; right: 1.5rem;"></span>
-        <div class="dashboard-quest-header" style="text-align:center;">
+        <span id="daily-cards-timer" class="countdown-badge mt-4 md:mt-0" style="position: absolute; top: 1.5rem; right: 1.5rem;"></span>
+        <div class="dashboard-quest-header mt-8 md:mt-0" style="text-align:center;">
           <h3 class="dashboard-quest-title">🎴 Your Daily Cards</h3>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
