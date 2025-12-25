@@ -3844,7 +3844,6 @@ body.royal-indigo{
     overflow: hidden;
     height: 100vh;
   }
-
   /* 2. 3-button tab bar – sits at the very bottom */
   .mobile-bottom-bar {
     position: fixed;
@@ -3860,7 +3859,6 @@ body.royal-indigo{
     z-index: 98;
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
-
   .mobile-tab {
     flex: 1 1 33%;
     height: 100%;
@@ -3877,27 +3875,22 @@ body.royal-indigo{
     transition: background .2s;
     -webkit-tap-highlight-color: transparent;
   }
-
   .mobile-tab img {
     width: 32px;
     height: 32px;
     object-fit: contain;
   }
-
   .mobile-tab.active {
     color: var(--neuro-accent);
     font-weight: 600;
   }
-
   .mobile-tab:active {
     background: rgba(0, 0, 0, .05);
   }
-
   /* 4. footer behind sheets when open */
   body.sheet-open .lux-footer {
     z-index: 95;
   }
-
   /* 5. scrollable sheets – stop scroll propagation */
   .mobile-sheet {
     position: fixed;
@@ -3916,11 +3909,9 @@ body.royal-indigo{
     overscroll-behavior: contain;
     touch-action: pan-y;
   }
-
   .mobile-sheet[aria-hidden="false"] {
     transform: translateY(0);
   }
-
   .sheet-grip {
     width: 40px;
     height: 4px;
@@ -3928,15 +3919,13 @@ body.royal-indigo{
     border-radius: 2px;
     margin: 12px auto 6px;
   }
-
   .sheet-header {
-    padding: 12px 24px 8px;
+    padding: 12px 24px 20px; /* increased bottom padding from 8px to 20px */
     font-size: 18px;
     font-weight: 600;
     text-align: center;
     color: var(--neuro-text);
   }
-
 /* same specificity as the old one → wins because it comes later */
 .sheet-row img {
   width: auto;          /* keep ratio */
@@ -3944,7 +3933,6 @@ body.royal-indigo{
   max-height: 40px;
   object-fit: contain;
 }
-
   .sheet-scroller {
     flex: 1;
     overflow-y: auto;
@@ -3953,37 +3941,32 @@ body.royal-indigo{
     overscroll-behavior: contain;
     touch-action: pan-y;
   }
-
   .sheet-row {
     display: flex;
     align-items: center;
     gap: 14px;
     padding: 8px 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px; /* increased from 5px to 10px */
     border-radius: 14px;
     background: var(--neuro-bg);
     box-shadow: var(--shadow-raised);
     cursor: pointer;
   }
-
   .sheet-row:active {
     transform: scale(.97);
     box-shadow: var(--shadow-inset);
   }
-
   /* 6. bigger images inside sheets */
   .sheet-row img {
     width: 40px;
     height: 40px;
     object-fit: contain;
   }
-
   .sheet-row span {
     font-size: 16px;
     font-weight: 500;
     color: var(--neuro-text);
   }
-
   /* 7. SCRIM - CRITICAL FIX */
   .sheet-scrim {
     position: fixed;
@@ -3995,12 +3978,10 @@ body.royal-indigo{
     transition: opacity 0.3s ease;
     display: block !important; /* Override the display: none !important */
   }
-
   .sheet-scrim.visible {
     opacity: 1;
     pointer-events: auto;
   }
-
   /* 8. final z-index stack */
   .sheet-scrim       { z-index: 99; }
   .mobile-sheet      { z-index: 100; }
