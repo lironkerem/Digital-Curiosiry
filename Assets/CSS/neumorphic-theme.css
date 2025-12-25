@@ -6951,6 +6951,10 @@ body.royal-indigo{
     font-size: clamp(0.875rem, 3vw, 1rem) !important;
   }
   
+#calculator-tab .location-dropdown.active,
+#app-page .location-dropdown.active {
+  display: block !important;
+}
   
   /* ===== 8. TOOLTIPS - MOBILE OPTIMIZED ===== */
   
