@@ -3926,13 +3926,6 @@ body.royal-indigo{
     text-align: center;
     color: var(--neuro-text);
   }
-/* same specificity as the old one → wins because it comes later */
-.sheet-row img {
-  width: auto;          /* keep ratio */
-  height: 40px;         /* or 40 px if you prefer */
-  max-height: 40px;
-  object-fit: contain;
-}
   .sheet-scroller {
     flex: 1;
     overflow-y: auto;
@@ -3958,8 +3951,8 @@ body.royal-indigo{
   }
   /* 6. bigger images inside sheets */
   .sheet-row img {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
   }
   .sheet-row span {
