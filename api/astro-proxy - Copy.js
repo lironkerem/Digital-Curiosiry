@@ -1,17 +1,10 @@
 // ============================================
-// /api/astro-proxy.js - FIXED VERSION
+// /api/astro-proxy.js
+// This runs on the SERVER (Vercel serverless function)
 // ============================================
+import tzlookup from "tz-lookup";
 
 export default async function handler(req, res) {
-  // Add CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -23,9 +16,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Missing endpoint or params" });
     }
 
-    console.log('🔍 Astro-proxy received:', { endpoint, params });
-
-    // SPECIAL CASE: timezone-only request
+    // SPECIAL CASE: timezone-only request from app.js fetchTimezoneWithRetry
     if (endpoint === 'timezone') {
       try {
         const tzone = await resolveTzOffset(params.lat, params.lon, params.dateOfBirth);
@@ -37,24 +28,20 @@ export default async function handler(req, res) {
     }
 
     // Resolve timezone offset if not already provided
-    if (!params.tzone && params.latitude && params.longitude && params.date) {
+    if (!params.tzone && params.lat && params.lon && params.dateOfBirth) {
       try {
-        // Build date string from params
-        const dateStr = `${params.year}-${String(params.month).padStart(2, '0')}-${String(params.date).padStart(2, '0')}`;
-        params.tzone = await resolveTzOffset(params.latitude, params.longitude, dateStr);
-        console.log(`✅ Resolved timezone offset: ${params.tzone}`);
+        params.tzone = await resolveTzOffset(params.lat, params.lon, params.dateOfBirth);
+        console.log(`Resolved timezone offset: ${params.tzone}`);
       } catch (tzError) {
-        console.error("⚠️ Timezone resolution failed:", tzError);
+        console.error("Timezone resolution failed:", tzError);
         params.tzone = 0;
       }
     }
 
     if (!process.env.FREE_ASTRO_API_KEY) {
-      console.error("❌ FREE_ASTRO_API_KEY not set");
+      console.error("FREE_ASTRO_API_KEY not set");
       return res.status(500).json({ error: "Astrology API not configured" });
     }
-
-    console.log('📡 Calling Free Astrology API:', endpoint);
 
     // Call Free Astrology API
     const response = await fetch(`https://json.freeastrologyapi.com/${endpoint}`, {
@@ -69,22 +56,20 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("❌ Free Astrology API error:", response.status, data);
+      console.error("Free Astrology API error:", response.status, data);
       return res.status(response.status).json({ 
         error: "Free Astrology API error", 
         details: data 
       });
     }
 
-    console.log('✅ Free Astrology API success');
     return res.status(200).json(data);
 
   } catch (error) {
-    console.error("💥 Astro Proxy Error:", error);
+    console.error("Astro Proxy Error:", error);
     return res.status(500).json({ 
       error: "Internal server error",
-      message: error.message,
-      stack: error.stack
+      message: error.message
     });
   }
 }
@@ -95,48 +80,48 @@ async function resolveTzOffset(lat, lon, dateStr) {
     const longitude = parseFloat(lon);
     
     if (isNaN(latitude) || isNaN(longitude)) {
-      console.warn('⚠️ Invalid coordinates');
       return 0;
     }
 
     const apiKey = process.env.TIMEZONEDB_API_KEY;
     if (!apiKey) {
-      console.warn("⚠️ TIMEZONEDB_API_KEY not set, using UTC");
+      console.warn("TIMEZONEDB_API_KEY not set");
       return 0;
+    }
+
+    let tzName;
+    try {
+      tzName = tzlookup(latitude, longitude);
+      console.log(`Timezone: ${tzName}`);
+    } catch (e) {
+      console.warn("tz-lookup failed:", e.message);
     }
 
     const dateObj = new Date(dateStr);
     if (isNaN(dateObj.getTime())) {
-      console.warn('⚠️ Invalid date');
       return 0;
     }
     
     const timestamp = Math.floor(dateObj.getTime() / 1000);
     const url = `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=position&lat=${latitude}&lng=${longitude}&time=${timestamp}`;
     
-    console.log('🌍 Fetching timezone from TimezoneDB...');
-    
     const response = await fetch(url, {
       signal: AbortSignal.timeout(5000)
     });
 
     if (!response.ok) {
-      console.warn('⚠️ TimezoneDB request failed');
       return 0;
     }
 
     const data = await response.json();
 
     if (data.status === "OK" && typeof data.gmtOffset === "number") {
-      const offset = data.gmtOffset / 3600;
-      console.log(`✅ Timezone offset: ${offset}`);
-      return offset;
+      return data.gmtOffset / 3600;
     }
     
-    console.warn('⚠️ TimezoneDB returned invalid data');
     return 0;
   } catch (err) {
-    console.error("❌ resolveTzOffset error:", err);
+    console.error("resolveTzOffset error:", err);
     return 0;
   }
 }
