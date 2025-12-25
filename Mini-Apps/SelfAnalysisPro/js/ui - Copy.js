@@ -185,39 +185,23 @@ class UIManager {
     return ok;
   }
 
-getFormData() {
-  if (!this.form) return {};
-  const formEl = this.form;
-  const loc = document.getElementById('location-birth');
-  
-  // FIX: Properly extract lat/lon from dataset
-  const locationLat = loc?.dataset?.lat || '';
-  const locationLon = loc?.dataset?.lon || '';
-  
-  console.log('📍 UI collecting location data:', {
-    value: loc?.value,
-    lat: locationLat,
-    lon: locationLon
-  });
-  
-  const fd = {
-    firstName: window.Utils?.sanitizeInput(formEl.elements['firstName']?.value || ''),
-    middleName: window.Utils?.sanitizeInput(formEl.elements['middleName']?.value || ''),
-    lastName: window.Utils?.sanitizeInput(formEl.elements['lastName']?.value || ''),
-    dateOfBirth: formEl.elements['dateOfBirth']?.value || '',
-    timeOfBirth: formEl.elements['timeOfBirth']?.value || '',
-    locationOfBirth: window.Utils?.sanitizeInput(formEl.elements['locationOfBirth']?.value || ''),
-    locationLat: locationLat,  // FIX: Add coordinates
-    locationLon: locationLon,  // FIX: Add coordinates
-    includeY: formEl.elements['includeY']?.checked || false
-  };
-  
-  fd.first = fd.firstName;
-  fd.last = fd.lastName;
-  fd.fullName = `${fd.firstName} ${fd.middleName ? fd.middleName + ' ' : ''}${fd.lastName}`.trim();
-  
-  return fd;
-}
+  getFormData() {
+    if (!this.form) return {};
+    const formEl = this.form;
+    const fd = {
+      firstName: window.Utils?.sanitizeInput(formEl.elements['firstName']?.value || ''),
+      middleName: window.Utils?.sanitizeInput(formEl.elements['middleName']?.value || ''),
+      lastName: window.Utils?.sanitizeInput(formEl.elements['lastName']?.value || ''),
+      dateOfBirth: formEl.elements['dateOfBirth']?.value || '',
+      timeOfBirth: formEl.elements['timeOfBirth']?.value || '',
+      locationOfBirth: window.Utils?.sanitizeInput(formEl.elements['locationOfBirth']?.value || ''),
+      includeY: formEl.elements['includeY']?.checked || false
+    };
+    fd.first = fd.firstName;
+    fd.last = fd.lastName;
+    fd.fullName = `${fd.firstName} ${fd.middleName ? fd.middleName + ' ' : ''}${fd.lastName}`.trim();
+    return fd;
+  }
 
   /* ------------------ Progress & Toast ------------------ */
   showProgress(percentage, message = '') {

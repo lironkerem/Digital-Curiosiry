@@ -40,34 +40,24 @@ class SelfAnalysisApp {
   }
 
   /* ----------  Form Data  ---------- */
-collectFormData() {
-  const form = document.getElementById('analysis-form');
-  if (!form) return;
-  
-  const loc = document.getElementById('location-birth');
-  
-  // FIX: Properly extract lat/lon from dataset
-  const locationLat = loc?.dataset?.lat || '';
-  const locationLon = loc?.dataset?.lon || '';
-  
-  console.log('📍 Collecting location data:', {
-    value: loc?.value,
-    lat: locationLat,
-    lon: locationLon
-  });
-  
-  return {
-    firstName: Utils.sanitizeInput(form.firstName?.value || ''),
-    middleName: Utils.sanitizeInput(form.middleName?.value || ''),
-    lastName: Utils.sanitizeInput(form.lastName?.value || ''),
-    dateOfBirth: form.dateOfBirth?.value || '',
-    timeOfBirth: form.timeOfBirth?.value || '',
-    locationOfBirth: Utils.sanitizeInput(loc?.value || ''),
-    locationLat: locationLat,  // FIX: These were previously empty
-    locationLon: locationLon,  // FIX: These were previously empty
-    includeY: form.includeY?.checked || false
-  };
-}
+  collectFormData() {
+    const form = document.getElementById('analysis-form');
+    if (!form) return;
+    
+    const loc = document.getElementById('location-birth');
+    
+    return {
+      firstName: Utils.sanitizeInput(form.firstName?.value || ''),
+      middleName: Utils.sanitizeInput(form.middleName?.value || ''),
+      lastName: Utils.sanitizeInput(form.lastName?.value || ''),
+      dateOfBirth: form.dateOfBirth?.value || '',
+      timeOfBirth: form.timeOfBirth?.value || '',
+      locationOfBirth: Utils.sanitizeInput(loc?.value || ''),
+      locationLat: loc?.dataset.lat || '',
+      locationLon: loc?.dataset.lon || '',
+      includeY: form.includeY?.checked || false
+    };
+  }
 
   saveProgress() {
     try {
