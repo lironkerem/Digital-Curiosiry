@@ -7326,7 +7326,7 @@ body.royal-indigo{
   }
   
   
-  /* ===== 2. STATS BAR - MOBILE GRID ===== */
+  /* ===== 2. STATS BAR - MOBILE GRID (2x2) ===== */
   
   #shadow-alchemy-tab .stats-bar {
     display: grid !important;
@@ -7338,11 +7338,6 @@ body.royal-indigo{
   #shadow-alchemy-tab .neuro-stat {
     padding: 0.875rem !important;
     text-align: center;
-  }
-  
-  /* Companion visual - center it */
-  #shadow-alchemy-tab .neuro-stat:first-child {
-    grid-column: 1 / -1;
   }
   
   
