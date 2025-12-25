@@ -255,6 +255,10 @@ const goto = (dir) => {
 leftBtn.addEventListener('click',  e => { e.preventDefault(); e.currentTarget.blur(); goto(-1); });
 rightBtn.addEventListener('click', e => { e.preventDefault(); e.currentTarget.blur(); goto(1);  });
 
+/* ----- add touchend blur for mobile ----- */
+leftBtn.addEventListener('touchend', e => { e.currentTarget.blur(); });
+rightBtn.addEventListener('touchend', e => { e.currentTarget.blur(); });
+
   // hide while sheet open
   const observer = new MutationObserver(()=>{
     arrows.style.display = this.sheetOpen ? 'none' : 'flex';
