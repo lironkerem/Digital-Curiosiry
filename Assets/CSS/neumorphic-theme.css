@@ -3937,8 +3937,8 @@ body.royal-indigo{
   .sheet-row {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 0px 0px;
+    gap: 20px;
+    padding: 0px 1px;
     margin-bottom: 10px; /* increased from 5px to 10px */
     border-radius: 14px;
     background: var(--neuro-bg);
