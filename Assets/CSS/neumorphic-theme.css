@@ -2605,6 +2605,10 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   border-bottom: 1px solid rgba(184, 190, 197, 0.3);
 }
 
+#calculator-tab .location-dropdown.active {
+  display: block !important;
+}
+
 #calculator-tab .location-item:hover,
 #calculator-tab .location-option:hover { background-color: rgba(102, 126, 234, 0.1); }
 
