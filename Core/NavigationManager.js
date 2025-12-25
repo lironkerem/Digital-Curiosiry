@@ -252,12 +252,24 @@ const goto = (dir) => {
 };
 
 /* ----- bind the clicks ----- */
-leftBtn.addEventListener('click',  e => { e.preventDefault(); e.currentTarget.blur(); goto(-1); });
-rightBtn.addEventListener('click', e => { e.preventDefault(); e.currentTarget.blur(); goto(1);  });
+leftBtn.addEventListener('click',  e => { 
+  e.preventDefault(); 
+  goto(-1); 
+  setTimeout(() => e.currentTarget.blur(), 0);
+});
+rightBtn.addEventListener('click', e => { 
+  e.preventDefault(); 
+  goto(1);
+  setTimeout(() => e.currentTarget.blur(), 0);
+});
 
 /* ----- add touchend blur for mobile ----- */
-leftBtn.addEventListener('touchend', e => { e.currentTarget.blur(); });
-rightBtn.addEventListener('touchend', e => { e.currentTarget.blur(); });
+leftBtn.addEventListener('touchend', e => { 
+  setTimeout(() => e.currentTarget.blur(), 10);
+});
+rightBtn.addEventListener('touchend', e => { 
+  setTimeout(() => e.currentTarget.blur(), 10);
+});
 
   // hide while sheet open
   const observer = new MutationObserver(()=>{
