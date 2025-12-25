@@ -2174,23 +2174,23 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
 
 #calculator-tab .top-row {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;  /* CHANGED from 2rem */
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-start;  /* CHANGED from center */
 }
 
 #calculator-tab .form-card,
 #calculator-tab .summary-card {
-  width: 440px;
-  min-width: 320px;
+  width: auto;  /* CHANGED from 440px */
+  min-width: 0;  /* CHANGED from 320px */
   max-width: 100%;
   flex: 1;
 }
 
 #calculator-tab .details-card {
   width: 100%;
-  max-width: 920px;
-  margin: 1.875rem auto 0;
+  max-width: 100%;  /* CHANGED from 920px */
+  margin: 1.875rem 0 0;  /* CHANGED - removed auto centering */
 }
 
 #calculator-tab .step-indicator {

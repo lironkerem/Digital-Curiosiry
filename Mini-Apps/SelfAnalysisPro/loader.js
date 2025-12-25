@@ -37,7 +37,7 @@ export default class SelfAnalysisLauncher {
 
         // Build layout with Big-App header (NO WRAPPER CARD - FIXED WIDTH ISSUE)
         host.innerHTML = `
-  <div style="padding:0;min-height:100vh;">
+  <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
 
       <!-- Big-App Unified Header -->
