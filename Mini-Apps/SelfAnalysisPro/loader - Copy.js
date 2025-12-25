@@ -1,4 +1,4 @@
-/*  /js/apps/selfanalysis/loader.js  — Clean Big-App Integration  */
+/*  /js/apps/selfanalysis/loader.js  – Clean Big-App Integration  */
 
 export default class SelfAnalysisLauncher {
   constructor(bigApp) {
@@ -35,7 +35,7 @@ export default class SelfAnalysisLauncher {
           throw new Error('app-page element not found in HTML');
         }
 
-        // Build layout with Big-App header (NO WRAPPER CARD - FIXED WIDTH ISSUE)
+        // Build layout with Big-App header
         host.innerHTML = `
   <div style="padding:1.5rem;min-height:100vh;">
     <div class="universal-content">
@@ -47,7 +47,7 @@ export default class SelfAnalysisLauncher {
       </header>
 
       <!-- Mini-App Content -->
-      <div class="selfanalysis-scope">
+      <div class="card selfanalysis-scope">
         ${appPage.innerHTML}
       </div>
 
