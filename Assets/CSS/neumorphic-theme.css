@@ -3925,6 +3925,7 @@ body.royal-indigo{
     font-weight: 600;
     text-align: center;
     color: var(--neuro-text);
+    margin-bottom: 12px;
   }
 /* same specificity as the old one → wins because it comes later */
 .sheet-row img {
