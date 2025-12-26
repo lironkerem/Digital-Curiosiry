@@ -356,7 +356,12 @@ export class KarmaShopEngine {
           <p class="karma-shop-item-description">${item.description}</p>
         </div>
         <div class="karma-shop-item-footer">
-
+          <div class="karma-shop-item-meta">
+            <span class="karma-shop-item-rarity karma-shop-rarity-${item.rarity}">${item.rarity}</span>
+           <span class="karma-shop-item-rarity karma-shop-item-cost karma-shop-rarity-${item.rarity}">
+            ${item.cost} 💎
+           </span>
+          </div>
           <button 
             onclick="window.featuresManager.engines['karma-shop'].purchase('${item.id}')" 
             class="btn ${canBuy.can ? 'btn-primary' : 'btn-secondary'} karma-shop-item-btn" 
