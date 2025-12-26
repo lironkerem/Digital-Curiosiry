@@ -2,7 +2,10 @@
   "name": "digitalcuriosiry",
   "version": "1.0.0",
   "type": "module",
-  "dependencies": {},
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "web-push": "^3.6.6"
+  },
   "engines": {
     "node": ">=18.x"
   }
