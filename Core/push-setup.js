@@ -2,7 +2,8 @@
 const VAPID_PUBLIC_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe6-IGyD1zC_t5mtH3-HG1P4GndS8PnSrOc';
 
 const pushBtn = document.getElementById('pushBtn');
-if (pushBtn) start();   // only run if button exists
+if (!pushBtn) throw new Error('pushBtn not found'); // loud error
+start();
 
 function start() {
   let subscription = null;
