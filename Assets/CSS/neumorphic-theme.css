@@ -1402,44 +1402,41 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
 .karma-shop-item-footer {
   margin-top: auto;
 }
-
 .karma-shop-item-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-
 .karma-shop-item-rarity {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   font-weight: 700;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   background: rgba(255, 255, 255, 0.8);
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.65rem;
   border-radius: 0.25rem;
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
+  text-shadow:
+    1px 1px 0 #000, -1px -1px 0 #000,
+    1px -1px 0 #000, -1px 1px 0 #000,
+    0 1px 3px rgba(0, 0, 0, 0.5);
 }
-
 .karma-shop-rarity-common {
   color: #9ca3af;
 }
-
 .karma-shop-rarity-uncommon {
   color: var(--neuro-success);
 }
-
 .karma-shop-rarity-rare {
   color: var(--neuro-info);
 }
-
 .karma-shop-rarity-epic {
   color: #a855f7;
 }
-
 .karma-shop-rarity-legendary {
   color: var(--neuro-warning);
 }
-
 .karma-shop-item-cost {
   font-size: 1rem;
   font-weight: 800;
@@ -1449,11 +1446,9 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
     1px 1px 0 #000, -1px -1px 0 #000,
     1px -1px 0 #000, -1px 1px 0 #000;
 }
-
 .karma-shop-item-btn {
   width: 100%;
 }
-
 .karma-shop-item-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;

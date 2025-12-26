@@ -10,7 +10,7 @@ export class KarmaShopEngine {
       this.checkExpiredBoosts();
       this.buildCatalog();
     } catch (err) {
-      console.error('[KarmaShop] init failed — using fallbacks', err);
+      console.error('[KarmaShop] init failed – using fallbacks', err);
       this.activeBoosts = [];
       this.items = [];
     }
@@ -159,16 +159,8 @@ export class KarmaShopEngine {
     if (!item.consumable && this.isItemOwned(itemId)) return { can: false, reason: 'Already owned' };
     return { can: true };
   }
-  
   isItemOwned(itemId) {
-    // Check purchase history
-    const inHistory = this.getPurchaseHistory().some(p => p.itemId === itemId);
-    
-    // Check if feature is actually unlocked in gamification system
-    const isUnlocked = this.app.gamification?.state?.unlockedFeatures?.includes(itemId);
-    
-    // If either is true, item is owned for life
-    return inHistory || isUnlocked;
+    return this.getPurchaseHistory().some(p => p.itemId === itemId);
   }
 
   purchase(itemId) {
@@ -211,10 +203,10 @@ export class KarmaShopEngine {
           this.app.showToast('🔥 2× XP + 2× Karma active for 48 h!', 'success');
           break;
 
-        /*  QUEST HELPERS — now behave like boosts  */
+        /*  QUEST HELPERS – now behave like boosts  */
         case 'skip_all_daily':
           this.app.gamification.state.quests.daily.filter(q => !q.completed).forEach(q => this.safeCompleteQuest('daily', q.id));
-          this.activateBoost('skip_all_daily', item.duration);
+          this.activateBoost('skip_all_daily', item.duration);   // <<<< NEW
           this.app.showToast('✅ All daily quests completed!', 'success');
           break;
         case 'skip_all_weekly':
@@ -266,7 +258,7 @@ export class KarmaShopEngine {
       }
     } catch (err) {
       console.error('[KarmaShop] applyItemEffect error:', err);
-      this.app.showToast('❌ Could not apply item — please reload', 'error');
+      this.app.showToast('❌ Could not apply item – please reload', 'error');
     }
   }
 
