@@ -2,44 +2,46 @@
 const VAPID_PUBLIC_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe6-IGyD1zC_t5mtH3-HG1P4GndS8PnSrOc';
 
 const pushBtn = document.getElementById('pushBtn');
-if (!pushBtn) return; // safety
+if (pushBtn) start();   // only run if button exists
 
-let subscription = null;
+function start() {
+  let subscription = null;
 
-window.addEventListener('load', async () => {
-  if (!('serviceWorker' in navigator)) {
-    pushBtn.style.display = 'none';
-    return;
+  window.addEventListener('load', async () => {
+    if (!('serviceWorker' in navigator)) {
+      pushBtn.style.display = 'none';
+      return;
+    }
+    const sw = await navigator.serviceWorker.ready;
+    subscription = await sw.pushManager.getSubscription();
+    updateButton();
+  });
+
+  pushBtn.addEventListener('click', toggleSubscription);
+
+  async function toggleSubscription() {
+    const sw = await navigator.serviceWorker.ready;
+    if (subscription) {
+      await subscription.unsubscribe();
+      subscription = null;
+    } else {
+      subscription = await sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
+      });
+      // send sub to server so we can use it later
+      await fetch('/api/save-sub', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(subscription)
+      });
+    }
+    updateButton();
   }
-  const sw = await navigator.serviceWorker.ready;
-  subscription = await sw.pushManager.getSubscription();
-  updateButton();
-});
 
-pushBtn.addEventListener('click', toggleSubscription);
-
-async function toggleSubscription() {
-  const sw = await navigator.serviceWorker.ready;
-  if (subscription) {
-    await subscription.unsubscribe();
-    subscription = null;
-  } else {
-    subscription = await sw.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
-    });
-    // send sub to server so we can use it later
-    await fetch('/api/save-sub', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(subscription)
-    });
+  function updateButton() {
+    pushBtn.textContent = subscription ? 'Notifications ON' : 'Enable notifications';
   }
-  updateButton();
-}
-
-function updateButton() {
-  pushBtn.textContent = subscription ? 'Notifications ON' : 'Enable notifications';
 }
 
 function urlB64ToUint8Array(base64String) {
