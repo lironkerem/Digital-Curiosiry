@@ -6,6 +6,7 @@ if (!pushBtn) throw new Error('pushBtn not found'); // loud error
 start();
 
 function start() {
+console.log('start() entered');
   let subscription = null;
 
   window.addEventListener('load', async () => {
