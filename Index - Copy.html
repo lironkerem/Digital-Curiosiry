@@ -11,26 +11,22 @@
   <script src=https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js></script>
 
   <!-- ===== PWA ===== -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#3F7652">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="The Curiosity Path">
-  <link rel="apple-touch-icon" href="Icons/apple-touch-icon.png">
-  <link rel="icon" href="Icons/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="Icons/favicon.ico">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#3F7652">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="The Curiosity Path">
+<link rel="apple-touch-icon" href="Icons/apple-touch-icon.png">
+<link rel="icon" href="Icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="Icons/favicon.ico">
 
   <!-- ===== Theme ===== -->
   <link rel=stylesheet href=./Assets/CSS/neumorphic-theme.css>
   <link rel=stylesheet href=./Assets/CSS/dark-mode.css id=dark-mode-css>
+
 </head>
 
 <body>
-  <!-- PUSH NOTIFICATION BUTTON -->
-  <button id="pushBtn" style="padding:8px 16px;background:#FFD700;border:none;border-radius:4px;cursor:pointer;">
-    Enable notifications
-  </button>
-
   <!-- ===== Auth Gate ===== -->
   <div id=auth-screen></div>
 
@@ -38,20 +34,21 @@
   <div id=app-container>
     <div id=main-app class=hidden>
       <main id=main-content>
-        <div id=dashboard-tab class="tab-content active"></div>
-        <div id=calculator-tab class="tab-content hidden" aria-live=polite></div>
-        <div id=flip-script-tab class="tab-content hidden"></div>
-        <div id=meditations-tab class="tab-content hidden"></div>
-        <div id=tarot-tab class="tab-content hidden"></div>
-        <div id=energy-tab class="tab-content hidden"></div>
-        <div id=happiness-tab class="tab-content hidden"></div>
-        <div id=gratitude-tab class="tab-content hidden"></div>
-        <div id=journal-tab class="tab-content hidden"></div>
-        <div id=karma-shop-tab class="tab-content hidden"></div>
-        <div id=shadow-alchemy-tab class="tab-content hidden"></div>
+        <div id=dashboard-tab class="tab-content active"></div>          <!-- DashboardManager -->
+        <div id=calculator-tab class="tab-content hidden" aria-live=polite></div> <!-- loader.js -->
+        <div id=flip-script-tab class="tab-content hidden"></div>       <!-- FlipScriptEngine -->
+        <div id=meditations-tab class="tab-content hidden"></div>       <!-- MeditationsEngine -->
+        <div id=tarot-tab class="tab-content hidden"></div>             <!-- TarotEngine -->
+        <div id=energy-tab class="tab-content hidden"></div>            <!-- EnergyEngine -->
+        <div id=happiness-tab class="tab-content hidden"></div>         <!-- HappinessEngine -->
+        <div id=gratitude-tab class="tab-content hidden"></div>         <!-- GratitudeEngine -->
+        <div id=journal-tab class="tab-content hidden"></div>           <!-- JournalEngine -->
+        <div id=karma-shop-tab class="tab-content hidden"></div>        <!-- KarmaShopEngine -->
+        <div id=shadow-alchemy-tab class="tab-content hidden"></div>    <!-- ShadowAlchemyEngine -->
       </main>
-      <div id=modal-container></div>
-      <div id=audio-player class=hidden></div>
+
+      <div id=modal-container></div>   <!-- global overlays -->
+      <div id=audio-player class=hidden></div> <!-- MeditationsEngine -->
     </div>
   </div>
 
@@ -64,7 +61,7 @@
   </div>
   <div id=toast-container></div>
 
-  <!-- ===== ChatBot Floater ===== -->
+  <!-- ===== ChatBot Floater (outside scaled container) ===== -->
   <script type=module>
   import{ChatBotAI}from'./Features/ChatBotAI.js';
   ChatBotAI.float({apiUrl:'/API/chat'});
@@ -112,8 +109,5 @@
     ? document.addEventListener('DOMContentLoaded',init)
     : init();
   </script>
-
-  <!-- ===== PUSH SETUP ===== -->
-  <script src="/Core/push-setup.js"></script>
 </body>
 </html>
