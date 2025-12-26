@@ -1,4 +1,4 @@
-// api/save-sub.js  (shared memory)
+// api/save-sub.js  (shared Map)
 global._pushSubs = global._pushSubs || new Map();
 
 export default async (req, res) => {
