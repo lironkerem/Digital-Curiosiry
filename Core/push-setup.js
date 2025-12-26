@@ -4,27 +4,26 @@ const VAPID_PUBLIC_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe
 const pushBtn = document.getElementById('pushBtn');
 if (!pushBtn) throw new Error('pushBtn not found');
 
-let subscription = null;
-
 pushBtn.onclick = async () => {
   try {
     const sw = await navigator.serviceWorker.ready;
     const sub = await sw.pushManager.getSubscription();
     if (sub) {
       await sub.unsubscribe();
-      subscription = null;
+      pushBtn.textContent = 'Enable notifications';
     } else {
-      subscription = await sw.pushManager.subscribe({
+      const newSub = await sw.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
       });
       await fetch('/api/save-sub', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(subscription)
+        body: JSON.stringify(newSub)
       });
+      pushBtn.textContent = 'Notifications ON';
+      setTimeout(() => pushBtn.textContent = 'Notifications ON', 2000); // force stay
     }
-    pushBtn.textContent = subscription ? 'Notifications ON' : 'Enable notifications';
   } catch (err) {
     alert('Error: ' + err.message);
   }
