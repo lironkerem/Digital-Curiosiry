@@ -21,3 +21,24 @@ self.addEventListener('fetch', e => {
     caches.match(e.request).then(res => res || fetch(e.request))
   );
 });
+
+// PUSH NOTIFICATION LISTENER
+self.addEventListener('push', event => {
+  const { title, body, icon, tag, data } = event.data.json();
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body,
+      icon: icon || '/Icons/icon-192x192.png',
+      tag: tag || 'default',
+      data: data || {},
+      badge: '/Icons/icon-192x192.png',
+      vibrate: [200, 100, 200]
+    })
+  );
+});
+
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const urlToOpen = event.notification.data?.url || '/';
+  event.waitUntil(clients.openWindow(urlToOpen));
+});
