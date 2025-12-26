@@ -1,9 +1,0 @@
-{
-  "name": "digitalcuriosiry",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {},
-  "engines": {
-    "node": ">=18.x"
-  }
-}
