@@ -1,19 +1,21 @@
 const CACHE_NAME = 'dc-v1';
 const urlsToCache = [
   './',
-  './Index.html',
-  './Assets/CSS/champagne-gold.css',
-  './Assets/CSS/dark-mode.css',
-  './Core/Index.js',
-  './Core/ProjectCuriosityApp.js',
   './Icons/icon-192x192.png',
   './Icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+      .catch(err => console.error('Cache failed:', err))
   );
+  self.skipWaiting(); // Activate immediately
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(clients.claim()); // Take control immediately
 });
 
 self.addEventListener('fetch', e => {
