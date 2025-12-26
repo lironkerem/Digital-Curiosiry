@@ -4,40 +4,25 @@ const VAPID_PUBLIC_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe
 const pushBtn = document.getElementById('pushBtn');
 if (!pushBtn) throw new Error('pushBtn not found');
 
-let subscription = null;
-
-async function init() {
-  if (!('serviceWorker' in navigator)) {
-    pushBtn.style.display = 'none';
-    return;
-  }
+pushBtn.onclick = async () => {
   const sw = await navigator.serviceWorker.ready;
-  subscription = await sw.pushManager.getSubscription();
-  updateButton();
-}
-
-async function toggle() {
-  const sw = await navigator.serviceWorker.ready;
-  if (subscription) {
-    await subscription.unsubscribe();
-    subscription = null;
+  const sub = await sw.pushManager.getSubscription();
+  if (sub) {
+    await sub.unsubscribe();
+    pushBtn.textContent = 'Enable notifications';
   } else {
-    subscription = await sw.pushManager.subscribe({
+    const newSub = await sw.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
     });
     await fetch('/api/save-sub', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(subscription)
+      body: JSON.stringify(newSub)
     });
+    pushBtn.textContent = 'Notifications ON';
   }
-  updateButton();
-}
-
-function updateButton() {
-  pushBtn.textContent = subscription ? 'Notifications ON' : 'Enable notifications';
-}
+};
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -47,6 +32,3 @@ function urlB64ToUint8Array(base64String) {
   for (let i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
   return outputArray;
 }
-
-// attach handler after every other script
-setTimeout(() => document.getElementById('pushBtn').onclick = toggle, 1500);
