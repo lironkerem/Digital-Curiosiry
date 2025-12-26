@@ -1195,7 +1195,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   }
 }
 
-/* ===== ACHIEVEMENTS ===== */
+/* ===== ACHIEVEMENTS & BADGES (Inset Neomorphic Style) ===== */
 .dashboard-achievements {
   padding: 2.5rem;
 }
@@ -1207,34 +1207,53 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
   color: var(--neuro-text);
 }
 
-.dashboard-achievement-card {
-  padding: 1rem;
+.dashboard-achievement-card-inset {
+  padding: 1.5625rem;
+  min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background: rgba(102, 126, 234, 0.05);
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  box-shadow: inset 2px 2px 4px var(--neuro-shadow-dark), 
+              inset -2px -2px 4px var(--neuro-shadow-light);
+  border: 1px solid var(--neuro-shadow-light);
   border-radius: 0.75rem;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  background: var(--neuro-bg);
+}
+
+.dashboard-achievement-card-inset:hover {
+  box-shadow: inset 3px 3px 6px var(--neuro-shadow-dark), 
+              inset -3px -3px 6px var(--neuro-shadow-light);
 }
 
 .dashboard-achievement-icon {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  color: var(--neuro-accent);
 }
 
 .dashboard-achievement-name {
   font-weight: 700;
   margin-bottom: 0.25rem;
   color: var(--neuro-text);
+  font-size: 1rem;
 }
 
 .dashboard-achievement-desc {
   font-size: 0.75rem;
   margin-bottom: 0.5rem;
   color: var(--neuro-text-light);
+  line-height: 1.4;
 }
 
 .dashboard-achievement-xp {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
   color: var(--neuro-warning);
+  margin-top: auto;
 }
 /* =========================================================
    KARMA SHOP STYLES

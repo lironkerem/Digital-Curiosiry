@@ -406,39 +406,21 @@ export default class DashboardManager {
       </div>`;
   }
 
-renderRecentAchievements(status) {
-  return `
-    <div class="card dashboard-achievements mb-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Recent Achievements -->
-        <div style="text-align:center;">
-          <h3 class="dashboard-achievements-title">🏆 Recent Achievements</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            ${status.achievements.slice(-4).reverse().map(a => `
-              <div class="dashboard-achievement-card-inset">
-                <div class="dashboard-achievement-icon">${a.icon || '🏆'}</div>
-                <h4 class="dashboard-achievement-name">${a.name}</h4>
-                <p class="dashboard-achievement-desc">${a.inspirational || ''}</p>
-                <span class="dashboard-achievement-xp">+${a.xp} XP</span>
-              </div>`).join('')}
-          </div>
+  renderRecentAchievements(status) {
+    return `
+      <div class="card dashboard-achievements mb-8" style="text-align:center;">
+        <h3 class="dashboard-achievements-title">🏆 Recent Achievements</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          ${status.achievements.slice(-6).reverse().map(a => `
+            <div class="dashboard-achievement-card">
+              <div class="dashboard-achievement-icon">${a.icon || '🏆'}</div>
+              <h4 class="dashboard-achievement-name">${a.name}</h4>
+              <p class="dashboard-achievement-desc">${a.inspirational || ''}</p>
+              <span class="dashboard-achievement-xp">+${a.xp} XP</span>
+            </div>`).join('')}
         </div>
-
-        <!-- Badges -->
-        <div style="text-align:center;">
-          <h3 class="dashboard-achievements-title">🎖️ Badges Earned</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            ${status.badges.length > 0 ? status.badges.map(b => `
-              <div class="dashboard-achievement-card-inset">
-                <div class="dashboard-achievement-icon" style="font-size:2.5rem;">${b.icon || '🎖️'}</div>
-                <h4 class="dashboard-achievement-name" style="font-size:0.9rem;">${b.name}</h4>
-                ${b.description ? `<p class="dashboard-achievement-desc" style="font-size:0.75rem;">${b.description}</p>` : ''}
-              </div>`).join('') : '<p style="color:var(--neuro-text);opacity:0.7;">No badges earned yet. Keep going!</p>'}
-          </div>
-        </div>
-      </div>
-    </div>`;
-}
+      </div>`;
+  }
 
   /* -------------- FINAL RENDER -------------- */
   render() {
