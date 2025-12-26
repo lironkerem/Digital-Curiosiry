@@ -39,12 +39,6 @@ function updateButton() {
   pushBtn.textContent = subscription ? 'Notifications ON' : 'Enable notifications';
 }
 
-// attach AFTER every other script
-setTimeout(() => {
-  init();
-  pushBtn.onclick = toggle;
-}, 1000);
-
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
@@ -53,3 +47,6 @@ function urlB64ToUint8Array(base64String) {
   for (let i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
   return outputArray;
 }
+
+// attach handler after every other script
+setTimeout(() => document.getElementById('pushBtn').onclick = toggle, 1500);
