@@ -4845,18 +4845,49 @@ body.royal-indigo{
   }
   
   
-  /* ===== 6. INSPIRATION SECTION ===== */
-  
-  /* Inspiration card styling */
-  #gratitude-tab .card[style*="rgba(102,126,234,0.05)"] {
-    padding: 1.25rem !important;
-    margin-bottom: 1.5rem !important;
-  }
-  
-  #gratitude-tab .card[style*="rgba(102,126,234,0.05)"] h4 {
-    margin-bottom: 0.75rem !important;
-    font-size: clamp(1rem, 3.5vw, 1.125rem) !important;
-  }
+/* ===== 6. INSPIRATION SECTION ===== */
+
+/* Inspiration card styling - neumorphic */
+#gratitude-tab .card[style*="rgba(102,126,234,0.05)"] {
+  padding: 0.75rem !important;
+  background: var(--neuro-bg) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-inset) !important;
+  margin-bottom: 1.5rem !important;
+}
+
+#gratitude-tab .suggestion-label {
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0 !important;
+  color: var(--neuro-text);
+  text-align: center;
+  font-weight: 600;
+}
+
+#gratitude-tab .gratitude-inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+#gratitude-tab .suggestion-btn {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--neuro-bg);
+  color: var(--neuro-text);
+  cursor: pointer;
+  box-shadow: 4px 4px 8px var(--neuro-shadow-dark), -4px -4px 8px var(--neuro-shadow-light);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#gratitude-tab .suggestion-btn:hover {
+  box-shadow: var(--shadow-inset-sm);
+}
   
   
   /* ===== 7. HISTORY ENTRIES ===== */
