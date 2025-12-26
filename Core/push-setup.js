@@ -1,12 +1,11 @@
-// push-setup.js
+// Core/push-setup.js
 const VAPID_PUBLIC_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe6-IGyD1zC_t5mtH3-HG1P4GndS8PnSrOc';
 
 const pushBtn = document.getElementById('pushBtn');
-if (!pushBtn) throw new Error('pushBtn not found'); // loud error
+if (!pushBtn) throw new Error('pushBtn not found');
 start();
 
 function start() {
-console.log('start() entered');
   let subscription = null;
 
   window.addEventListener('load', async () => {
@@ -31,7 +30,6 @@ console.log('start() entered');
         userVisibleOnly: true,
         applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
       });
-      // send sub to server so we can use it later
       await fetch('/api/save-sub', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
