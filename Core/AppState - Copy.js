@@ -107,51 +107,44 @@ export default class AppState {
     if (window.app?.gamification) this.triggerGamificationForEntry(type, entry);
   }
 
-triggerGamificationForEntry(type, entry) {
-  const g = window.app.gamification;
-  switch (type) {
-    case 'energy':
-      g.addXP(20, 'Energy Check-in');
-      g.progressQuest('daily', 'energy_checkin', 1);
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
-      break;
-    case 'gratitude':
-      const cnt = entry.entries?.length || 1;
-      g.addXP(30 * cnt, 'Gratitude Journal');
-      g.progressQuest('daily', 'gratitude_1', cnt);
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
-      break;
-    case 'meditation':
-      const dur = entry.duration || 10;
-      g.addXP(dur * 5, 'Meditation');
-      g.progressQuest('daily', 'meditate_10', dur);
-      g.progressQuest('weekly', 'meditate_5', 1);
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
-      if (entry.chakra) g.updateChakra(entry.chakra, 5);
-      break;
-    case 'tarot':
-      g.addXP(25, 'Tarot Reading');
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
-      break;
-    case 'flip':
-      g.addXP(40, 'Flip The Script');
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
-      break;
-    case 'journal':
-      g.addXP(35, 'Journal Entry');
-      g.progressQuest('daily', 'journal_1', 1);
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
-      break;
-    default:
-      g.addXP(10, 'Activity');
-      g.updateStreak();
-      g.checkAllBadges(); // ADD THIS
+  triggerGamificationForEntry(type, entry) {
+    const g = window.app.gamification;
+    switch (type) {
+      case 'energy':
+        g.addXP(20, 'Energy Check-in');
+        g.progressQuest('daily', 'energy_checkin', 1);
+        g.updateStreak();
+        break;
+      case 'gratitude':
+        const cnt = entry.entries?.length || 1;
+        g.addXP(30 * cnt, 'Gratitude Journal');
+        g.progressQuest('daily', 'gratitude_1', cnt);
+        g.updateStreak();
+        break;
+      case 'meditation':
+        const dur = entry.duration || 10;
+        g.addXP(dur * 5, 'Meditation');
+        g.progressQuest('daily', 'meditate_10', dur);
+        g.progressQuest('weekly', 'meditate_5', 1);
+        g.updateStreak();
+        if (entry.chakra) g.updateChakra(entry.chakra, 5);
+        break;
+      case 'tarot':
+        g.addXP(25, 'Tarot Reading');
+        g.updateStreak();
+        break;
+      case 'flip':
+        g.addXP(40, 'Flip The Script');
+        g.updateStreak();
+        break;
+      case 'journal':
+        g.addXP(35, 'Journal Entry');
+        g.progressQuest('daily', 'journal_1', 1);
+        g.updateStreak();
+        break;
+      default:
+        g.addXP(10, 'Activity');
+        g.updateStreak();
+    }
   }
-}
 }

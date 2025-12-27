@@ -69,7 +69,10 @@ class EnergyEngineEnhanced {
     const entry = { energy: this.currentCheckin.overallEnergy, moodTags: this.currentCheckin.moodTags, chakras: this.currentCheckin.chakras, notes: this.currentCheckin.notes, practicesDone: commit ? [...(this.currentCheckin.practicesDone || []), 'manual'] : (this.currentCheckin.practicesDone || []), timestamp: Date.now(), date: today, dayCheckin: this.currentCheckin.dayCheckin, nightCheckin: this.currentCheckin.nightCheckin, timeOfDay: tod };
     if (idx >= 0) { entry.dayCheckin = entry.dayCheckin || entries[idx].dayCheckin; entry.nightCheckin = entry.nightCheckin || entries[idx].nightCheckin; entries[idx] = entry; } else entries.unshift(entry);
     this.app.state.data.energyEntries = entries; this.app.state.saveAppData(); this.app.state.updateStreak();
-    if (this.app.gamification) this.app.gamification.progressEnergyCheckin(tod);
+    if (this.app.gamification) {
+    this.app.gamification.progressEnergyCheckin(tod);
+     this.app.gamification.checkChakraBadges(this.currentCheckin.chakras);
+  }
     this.app.showToast(`✅ ${tod === 'day' ? 'Day' : 'Night'} energy check-in saved!`, 'success');
     this.checkAchievements(); this.render();
   }
