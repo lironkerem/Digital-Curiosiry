@@ -536,7 +536,7 @@ async sendPushNotificationToUser(userId, title, body) {
         if (xp > 0 && karma > 0) {
           notificationBody = `You received +${xp} XP and +${karma} Karma from Aanandoham!`;
         } else if (xp > 0) {
-          notificationBody = `You received +${xp} XP from Aanandiham!`;
+          notificationBody = `You received +${xp} XP from Aanandoham!`;
         } else if (karma > 0) {
           notificationBody = `You received +${karma} Karma from Aanandoham!`;
         }
