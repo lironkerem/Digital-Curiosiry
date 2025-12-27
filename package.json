@@ -8,5 +8,8 @@
   },
   "engines": {
     "node": ">=18.x"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.18"
   }
 }
