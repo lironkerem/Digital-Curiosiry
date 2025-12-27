@@ -1,4 +1,4 @@
-// User-Tab.js – 100 % complete, no stubs
+// User-Tab.js – 100% complete with Notifications
 
 export default class UserTab {
   constructor(app) {
@@ -25,6 +25,8 @@ export default class UserTab {
           <div class="accordion-panel" id="panel-profile"></div>
           <button class="dropdown-item" data-section="settings">🎭 Skins</button>
           <div class="accordion-panel" id="panel-settings"></div>
+          <button class="dropdown-item" data-section="notifications">🔔 Notifications</button>
+          <div class="accordion-panel" id="panel-notifications"></div>
           <button class="dropdown-item" data-section="automations">⚙️ Automations</button>
           <div class="accordion-panel" id="panel-automations"></div>
           <button class="dropdown-item" data-section="about">ℹ️ About the App</button>
@@ -68,15 +70,15 @@ export default class UserTab {
         .dropdown-item:active{box-shadow:var(--shadow-inset);}
         .accordion-panel{padding:8px 12px;font-size:.85rem;color:var(--neuro-text-light);display:none;}
         .accordion-panel.active{display:block;}
-        .avatar-upload-label{position:relative;cursor:pointer;display:inline-block;}
+.avatar-upload-label{position:relative;cursor:pointer;display:inline-block;}
         .avatar-upload-label input[type=file]{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
         .profile-avatar-container{width:80px;height:80px;border-radius:50%;background:var(--neuro-bg);box-shadow:var(--shadow-inset);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;position:relative;margin:0 auto 10px;}
         .profile-avatar-container img{width:100%;height:100%;object-fit:cover;}
         .profile-avatar-emoji{font-size:2.5rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
-        .accordion-inner input[type=text],.accordion-inner input[type=email],.accordion-inner input[type=tel],.accordion-inner input[type=date],.accordion-inner select{width:100%;padding:6px 8px;font-size:.8rem;border-radius:8px;border:none;background:var(--neuro-bg);box-shadow:var(--shadow-inset-sm);margin-bottom:8px;font-family:inherit;color:var(--neuro-text);}
+        .accordion-inner input[type=text],.accordion-inner input[type=email],.accordion-inner input[type=tel],.accordion-inner input[type=date],.accordion-inner input[type=time],.accordion-inner select{width:100%;padding:6px 8px;font-size:.8rem;border-radius:8px;border:none;background:var(--neuro-bg);box-shadow:var(--shadow-inset-sm);margin-bottom:8px;font-family:inherit;color:var(--neuro-text);}
         .btn-link{font-size:.8rem;padding:4px 8px;background:transparent;border:none;color:var(--neuro-accent);cursor:pointer;text-decoration:underline;border-radius:4px;}
         .btn-link:hover{background:rgba(102,126,234,.08);}
-        .automation-group{background:rgba(102,126,234,.05);border-radius:8px;padding:10px;margin-bottom:10px;}
+        .automation-group,.notification-section{background:rgba(102,126,234,.05);border-radius:8px;padding:10px;margin-bottom:10px;}
         .automation-label{display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;color:var(--neuro-text);}
         .automation-controls{padding-left:28px;font-size:.85rem;color:var(--neuro-text-light);}
         .automation-controls.disabled{opacity:.4;}
@@ -85,7 +87,7 @@ export default class UserTab {
         .toggle-switch input{opacity:0;width:0;height:0;}
         .toggle-slider{position:absolute;inset:0;background:var(--neuro-shadow-dark);border-radius:22px;transition:.3s;box-shadow:var(--shadow-inset-sm);}
         .toggle-slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:var(--neuro-bg);border-radius:50%;transition:.3s;box-shadow:var(--shadow-raised);}
-        .toggle-switch input:checked + .toggle-slider{background:var(--neuro-accent);}
+.toggle-switch input:checked + .toggle-slider{background:var(--neuro-accent);}
         .toggle-switch input:checked + .toggle-slider:before{transform:translateX(22px);}
       </style>
     `;
@@ -124,6 +126,135 @@ export default class UserTab {
           </div>
         `;
       };
+window.app.renderNotificationsHTML = () => {
+        const settings = JSON.parse(localStorage.getItem('notification_settings')) || {
+          enabled: false,
+          reminders: {
+            morning: { enabled: false, time: '08:00' },
+            afternoon: { enabled: false, time: '13:00' },
+            evening: { enabled: false, time: '18:00' },
+            night: { enabled: false, time: '21:00' }
+          },
+          quotes: {
+            enabled: false,
+            frequency: 'moderate'
+          },
+          wellness: {
+            enabled: false,
+            syncWithAutomations: true
+          }
+        };
+
+        return `
+          <div class="accordion-inner">
+            <div style="background:rgba(102,126,234,.1);border-radius:12px;padding:12px;margin-bottom:16px;">
+              <div class="toggle-switch-container">
+                <span class="toggle-switch-label" style="font-weight:600;">🔔 Enable Notifications</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="master-notifications-toggle" ${settings.enabled ? 'checked' : ''}>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <small style="opacity:.7;display:block;margin-top:8px;">
+                ${settings.enabled ? '✅ Notifications are enabled' : '⚠️ Enable to receive notifications'}
+              </small>
+            </div>
+
+            <div id="notification-options" style="${settings.enabled ? '' : 'opacity:.4;pointer-events:none;'}">
+              
+              <div class="notification-section">
+                <h4 style="font-size:.9rem;font-weight:600;margin-bottom:12px;">📅 Daily Check-ins</h4>
+                
+                <div class="toggle-switch-container">
+                  <span class="toggle-switch-label">🌅 Morning</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="reminder-morning" ${settings.reminders.morning.enabled ? 'checked' : ''}>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <input type="time" id="time-morning" value="${settings.reminders.morning.time}" 
+                  ${settings.reminders.morning.enabled ? '' : 'disabled'}>
+
+                <div class="toggle-switch-container">
+                  <span class="toggle-switch-label">☀️ Afternoon</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="reminder-afternoon" ${settings.reminders.afternoon.enabled ? 'checked' : ''}>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <input type="time" id="time-afternoon" value="${settings.reminders.afternoon.time}" 
+                  ${settings.reminders.afternoon.enabled ? '' : 'disabled'}>
+<div class="toggle-switch-container">
+                  <span class="toggle-switch-label">🌆 Evening</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="reminder-evening" ${settings.reminders.evening.enabled ? 'checked' : ''}>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <input type="time" id="time-evening" value="${settings.reminders.evening.time}" 
+                  ${settings.reminders.evening.enabled ? '' : 'disabled'}>
+
+                <div class="toggle-switch-container">
+                  <span class="toggle-switch-label">🌙 Night</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="reminder-night" ${settings.reminders.night.enabled ? 'checked' : ''}>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <input type="time" id="time-night" value="${settings.reminders.night.time}" 
+                  ${settings.reminders.night.enabled ? '' : 'disabled'}>
+              </div>
+
+              <hr style="border:none;height:1px;background:rgba(0,0,0,.1);margin:16px 0;">
+
+              <div class="notification-section">
+                <h4 style="font-size:.9rem;font-weight:600;margin-bottom:12px;">✨ Inspirational Content</h4>
+                
+                <div class="toggle-switch-container">
+                  <span class="toggle-switch-label">💭 Quotes & Affirmations</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="quotes-enabled" ${settings.quotes.enabled ? 'checked' : ''}>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div style="margin-top:12px;${settings.quotes.enabled ? '' : 'opacity:.4;pointer-events:none;'}">
+                  <label style="font-size:.85rem;display:block;margin-bottom:8px;">Frequency:</label>
+                  <select id="quotes-frequency" ${settings.quotes.enabled ? '' : 'disabled'}>
+                    <option value="light" ${settings.quotes.frequency === 'light' ? 'selected' : ''}>Light (2-3 per day)</option>
+                    <option value="moderate" ${settings.quotes.frequency === 'moderate' ? 'selected' : ''}>Moderate (4-6 per day)</option>
+                    <option value="intense" ${settings.quotes.frequency === 'intense' ? 'selected' : ''}>Intense (8-10 per day)</option>
+                  </select>
+                </div>
+              </div>
+
+              <hr style="border:none;height:1px;background:rgba(0,0,0,.1);margin:16px 0;">
+
+              <div class="notification-section">
+                <h4 style="font-size:.9rem;font-weight:600;margin-bottom:12px;">🧘 Wellness Reminders</h4>
+<div class="toggle-switch-container">
+                  <span class="toggle-switch-label">Connect to Wellness Kit</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="wellness-notifications" ${settings.wellness.enabled ? 'checked' : ''}>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <small style="opacity:.7;display:block;margin-top:8px;font-size:.75rem;">
+                  When enabled, you'll receive push notifications based on your Wellness Automation settings.
+                </small>
+              </div>
+
+              <button class="btn-link" id="save-notification-settings" style="margin-top:16px;">Save Settings</button>
+              
+              <hr style="border:none;height:1px;background:rgba(0,0,0,.1);margin:16px 0;">
+              
+              <button class="btn-link" id="test-notification" style="font-size:.8rem;">🧪 Send Test Notification</button>
+            </div>
+          </div>
+        `;
+      };
+
       window.app.renderAboutHTML = () => `
         <div class="accordion-inner">
           <p><strong>Digital Curiosity</strong> by Aanandoham, 2026.</p>
@@ -132,6 +263,7 @@ export default class UserTab {
           <p>It is a convenient, accessible way, to stay connected to your 'Self', by small daily practices.</p>
           <p>My hope is that you will utilize it to enhance your life, one small function at a time.</p>
         </div>`;
+
       window.app.renderRulesHTML = () => `
         <div class="accordion-inner" style="white-space: pre-line; line-height: 1.45; max-height: 260px; overflow-y: auto; padding-right: 6px;">
 This App is designed to create a fun, safe space, to encourage you and motivate you on a daily basis.
@@ -160,6 +292,7 @@ Level 10 - Emptiness    - 400,000
 Have fun,
 Aanandoham, 2026.
         </div>`;
+
       window.app.renderContactHTML = () => `
         <div class="accordion-inner">
           <p>Contact me for questions, private sessions, classes, retreats, guidance or any technical issues.</p>
@@ -167,10 +300,12 @@ Aanandoham, 2026.
           <a href="mailto:lironkerem@gmail.com" style="font-weight:bold;text-decoration:underline;color:var(--neuro-accent);">Email me</a><br>
           <a href="https://www.facebook.com/AanandohamsProjectCuriosity" target="_blank" style="font-weight:bold;text-decoration:underline;color:var(--neuro-accent);">Facebook Page</a>
         </div>`;
+
       window.app.renderExportHTML = () => `
         <div class="accordion-inner">
           <button class="btn-link" onclick="window.app.exportUserData()">Download JSON</button>
         </div>`;
+
       window.app.renderBillingHTML = () => `
         <div class="accordion-inner">
           <p><strong>Free</strong> - basic tools, ads free forever.</p>
@@ -179,11 +314,12 @@ Aanandoham, 2026.
           <p><strong>Master</strong> - Premium packs + Discounts + 1-on-1 calls.</p>
           <button class="btn-link">Choose plan</button>
         </div>`;
+
       window.app.renderAdminHTML = () => `
         <div class="accordion-inner" id="admin-panel-container">
           <div id="admin-tab-mount"></div>
         </div>`;
-      window.app.renderSettingsHTML = () => {
+window.app.renderSettingsHTML = () => {
         const activeTheme = localStorage.getItem('activeTheme') || 'default';
         const isDarkMode = document.body.classList.contains('dark-mode');
         const hasChampagne = this.app.gamification?.state?.unlockedFeatures?.includes('luxury_champagne_gold_skin');
@@ -252,7 +388,7 @@ Aanandoham, 2026.
           <small style="opacity:.7">Changes apply immediately. Dark mode works with all themes!</small>
         </div>`;
       };
-      window.app.renderAutomationsHTML = () => {
+window.app.renderAutomationsHTML = () => {
         const automations = JSON.parse(localStorage.getItem('wellness_automations')) || {
           selfReset: { enabled: false, interval: 60 },
           fullBodyScan: { enabled: false, interval: 180 },
@@ -339,9 +475,246 @@ Aanandoham, 2026.
             <small style="opacity:.7;font-size:0.75rem;">⚠️ Automations will trigger pop-up reminders at your chosen intervals while the app is open.</small>
           </div>`;
       };
-    }
+// Notification helper functions
+      window.app.enablePushNotifications = async function() {
+        if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+          this.showToast('❌ Push notifications not supported', 'error');
+          return false;
+        }
 
-    const dropdown = document.getElementById('user-dropdown');
+        try {
+          const permission = await Notification.requestPermission();
+          if (permission !== 'granted') {
+            this.showToast('❌ Notification permission denied', 'error');
+            return false;
+          }
+
+          const sw = await navigator.serviceWorker.ready;
+          const existingSub = await sw.pushManager.getSubscription();
+          
+          if (!existingSub) {
+            const VAPID_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe6-IGyD1zC_t5mtH3-HG1P4GndS8PnSrOc';
+            const newSub = await sw.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: this.urlBase64ToUint8Array(VAPID_KEY)
+            });
+
+            const response = await fetch('/api/save-sub', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(newSub)
+            });
+
+            if (!response.ok) throw new Error('Failed to save subscription');
+          }
+
+          this.showToast('✅ Notifications enabled!', 'success');
+          return true;
+        } catch (err) {
+          console.error('Push subscription error:', err);
+          this.showToast('❌ Failed to enable notifications', 'error');
+          return false;
+        }
+      };
+
+      window.app.disablePushNotifications = async function() {
+        try {
+          const sw = await navigator.serviceWorker.ready;
+          const sub = await sw.pushManager.getSubscription();
+          if (sub) {
+            await sub.unsubscribe();
+            this.showToast('🔕 Notifications disabled', 'success');
+          }
+        } catch (err) {
+          console.error('Unsubscribe error:', err);
+        }
+      };
+
+      window.app.urlBase64ToUint8Array = function(base64String) {
+        const padding = '='.repeat((4 - base64String.length % 4) % 4);
+        const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+        const rawData = atob(base64);
+        return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
+      };
+window.app.saveNotificationSettings = function() {
+        const settings = {
+          enabled: document.getElementById('master-notifications-toggle')?.checked || false,
+          reminders: {
+            morning: {
+              enabled: document.getElementById('reminder-morning')?.checked || false,
+              time: document.getElementById('time-morning')?.value || '08:00'
+            },
+            afternoon: {
+              enabled: document.getElementById('reminder-afternoon')?.checked || false,
+              time: document.getElementById('time-afternoon')?.value || '13:00'
+            },
+            evening: {
+              enabled: document.getElementById('reminder-evening')?.checked || false,
+              time: document.getElementById('time-evening')?.value || '18:00'
+            },
+            night: {
+              enabled: document.getElementById('reminder-night')?.checked || false,
+              time: document.getElementById('time-night')?.value || '21:00'
+            }
+          },
+          quotes: {
+            enabled: document.getElementById('quotes-enabled')?.checked || false,
+            frequency: document.getElementById('quotes-frequency')?.value || 'moderate'
+          },
+          wellness: {
+            enabled: document.getElementById('wellness-notifications')?.checked || false,
+            syncWithAutomations: true
+          }
+        };
+
+        localStorage.setItem('notification_settings', JSON.stringify(settings));
+        this.scheduleNotifications(settings);
+        this.showToast('✅ Notification settings saved!', 'success');
+      };
+
+      window.app.sendTestNotification = async function() {
+        try {
+          const res = await fetch('/api/subs');
+          const subs = await res.json();
+          
+          if (!subs.length) {
+            this.showToast('❌ No subscriptions found. Enable notifications first.', 'error');
+            return;
+          }
+
+          await fetch('/api/send', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              sub: subs[0],
+              payload: {
+                title: '✨ Digital Curiosity',
+                body: 'Test notification working perfectly!',
+                icon: '/Icons/icon-192x192.png',
+                data: { url: '/' }
+              }
+            })
+          });
+
+          this.showToast('📱 Test notification sent!', 'success');
+        } catch (err) {
+          console.error('Test notification error:', err);
+          this.showToast('❌ Failed to send test notification', 'error');
+        }
+      };
+
+      window.app.scheduleNotifications = function(settings) {
+        if (this._notificationTimers) {
+          this._notificationTimers.forEach(timer => clearTimeout(timer));
+        }
+        this._notificationTimers = [];
+
+        if (!settings.enabled) return;
+
+        Object.entries(settings.reminders).forEach(([period, config]) => {
+          if (config.enabled) {
+            this.scheduleDailyNotification(period, config.time);
+          }
+        });
+
+        if (settings.quotes.enabled) {
+          this.scheduleQuoteNotifications(settings.quotes.frequency);
+        }
+      };
+window.app.scheduleDailyNotification = function(period, time) {
+        const [hours, minutes] = time.split(':').map(Number);
+        const now = new Date();
+        const scheduled = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
+        
+        if (scheduled < now) {
+          scheduled.setDate(scheduled.getDate() + 1);
+        }
+
+        const delay = scheduled - now;
+        const timer = setTimeout(() => {
+          this.sendScheduledNotification(period);
+          this.scheduleDailyNotification(period, time);
+        }, delay);
+
+        this._notificationTimers.push(timer);
+      };
+
+      window.app.sendScheduledNotification = async function(period) {
+        const messages = {
+          morning: { title: '🌅 Good Morning!', body: 'Start your day with intention. How are you feeling?' },
+          afternoon: { title: '☀️ Afternoon Check-in', body: 'Take a moment to breathe and reflect.' },
+          evening: { title: '🌆 Evening Reflection', body: 'How was your day? Time to unwind.' },
+          night: { title: '🌙 Goodnight', body: 'Rest well. Tomorrow is a new beginning.' }
+        };
+
+        try {
+          const res = await fetch('/api/subs');
+          const subs = await res.json();
+          
+          if (!subs.length) return;
+
+          await fetch('/api/send', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              sub: subs[0],
+              payload: {
+                ...messages[period],
+                icon: '/Icons/icon-192x192.png',
+                data: { url: '/' }
+              }
+            })
+          });
+        } catch (err) {
+          console.error('Notification send error:', err);
+        }
+      };
+
+      window.app.scheduleQuoteNotifications = function(frequency) {
+        const intervals = {
+          light: 4 * 60 * 60 * 1000,
+          moderate: 2 * 60 * 60 * 1000,
+          intense: 90 * 60 * 1000
+        };
+
+        const sendRandomQuote = async () => {
+          const quote = window.QuotesData?.getRandomQuote() || { text: 'Stay curious!', author: 'Digital Curiosity' };
+          
+          try {
+            const res = await fetch('/api/subs');
+            const subs = await res.json();
+            if (!subs.length) return;
+
+            await fetch('/api/send', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                sub: subs[0],
+                payload: {
+                  title: '✨ Daily Inspiration',
+                  body: `"${quote.text}" - ${quote.author}`,
+                  icon: '/Icons/icon-192x192.png',
+                  data: { url: '/' }
+                }
+              })
+            });
+          } catch (err) {
+            console.error('Quote notification error:', err);
+          }
+        };
+
+        const scheduleNext = () => {
+          const timer = setTimeout(() => {
+            sendRandomQuote();
+            scheduleNext();
+          }, intervals[frequency]);
+          this._notificationTimers.push(timer);
+        };
+
+        scheduleNext();
+      };
+    }
+const dropdown = document.getElementById('user-dropdown');
     if (!dropdown) return;
 
     document.querySelectorAll('.dropdown-item[data-section]').forEach(btn => {
@@ -354,14 +727,33 @@ Aanandoham, 2026.
           panel.classList.add('active');
           if (!panel.dataset.filled) {
             switch (section) {
-              case 'profile':      panel.innerHTML = window.app.renderProfileHTML();      break;
-              case 'settings':     panel.innerHTML = window.app.renderSettingsHTML();     break;
-              case 'automations':  panel.innerHTML = window.app.renderAutomationsHTML();  break;
-              case 'about':        panel.innerHTML = window.app.renderAboutHTML();        break;
-              case 'rules':        panel.innerHTML = window.app.renderRulesHTML();        break;
-              case 'contact':      panel.innerHTML = window.app.renderContactHTML();      break;
-              case 'export':       panel.innerHTML = window.app.renderExportHTML();       break;
-              case 'billing':      panel.innerHTML = window.app.renderBillingHTML();      break;
+              case 'profile':      
+                panel.innerHTML = window.app.renderProfileHTML();
+                break;
+              case 'settings':     
+                panel.innerHTML = window.app.renderSettingsHTML();
+                break;
+              case 'notifications':
+                panel.innerHTML = window.app.renderNotificationsHTML();
+                break;
+              case 'automations':  
+                panel.innerHTML = window.app.renderAutomationsHTML();
+                break;
+              case 'about':        
+                panel.innerHTML = window.app.renderAboutHTML();
+                break;
+              case 'rules':        
+                panel.innerHTML = window.app.renderRulesHTML();
+                break;
+              case 'contact':      
+                panel.innerHTML = window.app.renderContactHTML();
+                break;
+              case 'export':       
+                panel.innerHTML = window.app.renderExportHTML();
+                break;
+              case 'billing':      
+                panel.innerHTML = window.app.renderBillingHTML();
+                break;
               case 'admin':        
                 panel.innerHTML = window.app.renderAdminHTML();
                 this.loadAdminPanel();
@@ -370,6 +762,7 @@ Aanandoham, 2026.
             panel.dataset.filled = '1';
             if (section === 'profile') this.attachProfileHandlers();
             if (section === 'settings') this.attachSettingsHandlers();
+            if (section === 'notifications') this.attachNotificationsHandlers();
             if (section === 'automations') this.attachAutomationsHandlers();
           }
         }
@@ -406,9 +799,7 @@ Aanandoham, 2026.
     this.syncAvatar();
     this.loadActiveTheme();
   }
-
-  /* ----------  all helpers present  ---------- */
-  attachProfileHandlers() {
+attachProfileHandlers() {
     document.getElementById('profile-emoji')?.addEventListener('change', e => {
       const emojiSpan = document.querySelector('.profile-avatar-emoji');
       const img = document.getElementById('profile-avatar-img');
@@ -444,6 +835,51 @@ Aanandoham, 2026.
     });
   }
 
+  attachNotificationsHandlers() {
+    const masterToggle = document.getElementById('master-notifications-toggle');
+    const optionsDiv = document.getElementById('notification-options');
+    
+    masterToggle?.addEventListener('change', async (e) => {
+      if (e.target.checked) {
+        const granted = await this.app.enablePushNotifications();
+        if (!granted) {
+          e.target.checked = false;
+          return;
+        }
+        optionsDiv.style.opacity = '1';
+        optionsDiv.style.pointerEvents = 'auto';
+      } else {
+        await this.app.disablePushNotifications();
+        optionsDiv.style.opacity = '.4';
+        optionsDiv.style.pointerEvents = 'none';
+      }
+    });
+
+    ['morning', 'afternoon', 'evening', 'night'].forEach(period => {
+      const toggle = document.getElementById(`reminder-${period}`);
+      const timeInput = document.getElementById(`time-${period}`);
+      toggle?.addEventListener('change', (e) => {
+        timeInput.disabled = !e.target.checked;
+      });
+    });
+
+    const quotesToggle = document.getElementById('quotes-enabled');
+    const quotesFreq = document.getElementById('quotes-frequency');
+    quotesToggle?.addEventListener('change', (e) => {
+      quotesFreq.disabled = !e.target.checked;
+      quotesFreq.parentElement.style.opacity = e.target.checked ? '1' : '.4';
+      quotesFreq.parentElement.style.pointerEvents = e.target.checked ? 'auto' : 'none';
+    });
+
+    document.getElementById('save-notification-settings')?.addEventListener('click', () => {
+      this.app.saveNotificationSettings();
+    });
+
+    document.getElementById('test-notification')?.addEventListener('click', () => {
+      this.app.sendTestNotification();
+    });
+  }
+
   attachAutomationsHandlers() {
     const tools = ['self-reset', 'full-body-scan', 'nervous-system', 'tension-sweep'];
     tools.forEach(tool => {
@@ -459,8 +895,7 @@ Aanandoham, 2026.
     });
     document.getElementById('save-automations-btn')?.addEventListener('click', () => this.saveAutomations());
   }
-
-  saveAutomations() {
+saveAutomations() {
     const automations = {
       selfReset: {
         enabled: document.getElementById('auto-self-reset')?.checked || false,
@@ -550,7 +985,6 @@ Aanandoham, 2026.
       });
   }
 
-  /* ----------  disc helpers  ---------- */
   syncAvatar() {
     const u = this.app.state.currentUser || {};
     const iconFace = this.btn.querySelector('.disc-icon');
