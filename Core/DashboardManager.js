@@ -409,7 +409,7 @@ export default class DashboardManager {
 renderRecentAchievements(status) {
   return `
     <div class="card dashboard-achievements mb-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 gap-6">
         <!-- Recent Achievements -->
         <div style="text-align:center;">
           <h3 class="dashboard-achievements-title">🏆 Recent Achievements</h3>
