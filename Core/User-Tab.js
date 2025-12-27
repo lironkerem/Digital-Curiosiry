@@ -258,7 +258,8 @@ init() {
                 </small>
               </div>
 
-              <button class="btn-link" id="save-notification-settings" style="margin-top:16px;">Save Settings</button>
+              <button class="btn-link" id="save-notification-settings" style="margin-top:16px;">💾 Save Now</button>
+             <small style="opacity:.6;display:block;margin-top:8px;font-size:.7rem;text-align:center;">Settings auto-save after changes</small>
               
               <hr style="border:none;height:1px;background:rgba(0,0,0,.1);margin:16px 0;">
               
@@ -971,6 +972,15 @@ attachNotificationsHandlers() {
     const masterToggle = document.getElementById('master-notifications-toggle');
     const optionsDiv = document.getElementById('notification-options');
     
+    let saveTimeout;
+    
+    const autoSave = () => {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        this.app.saveNotificationSettings();
+      }, 1500);
+    };
+    
     masterToggle?.addEventListener('change', async (e) => {
       if (e.target.checked) {
         const granted = await this.app.enablePushNotifications();
@@ -985,14 +995,19 @@ attachNotificationsHandlers() {
         optionsDiv.style.opacity = '.4';
         optionsDiv.style.pointerEvents = 'none';
       }
+      autoSave();
     });
 
     ['morning', 'afternoon', 'evening', 'night'].forEach(period => {
       const toggle = document.getElementById(`reminder-${period}`);
       const timeInput = document.getElementById(`time-${period}`);
+      
       toggle?.addEventListener('change', (e) => {
         timeInput.disabled = !e.target.checked;
+        autoSave();
       });
+      
+      timeInput?.addEventListener('change', autoSave);
     });
 
     const quotesToggle = document.getElementById('quotes-enabled');
@@ -1006,10 +1021,23 @@ attachNotificationsHandlers() {
       freqSelect.parentElement.style.pointerEvents = anyEnabled ? 'auto' : 'none';
     };
 
-    quotesToggle?.addEventListener('change', updateFrequencyState);
-    affirmationsToggle?.addEventListener('change', updateFrequencyState);
+    quotesToggle?.addEventListener('change', () => {
+      updateFrequencyState();
+      autoSave();
+    });
+    
+    affirmationsToggle?.addEventListener('change', () => {
+      updateFrequencyState();
+      autoSave();
+    });
+    
+    freqSelect?.addEventListener('change', autoSave);
+
+    const wellnessToggle = document.getElementById('wellness-notifications');
+    wellnessToggle?.addEventListener('change', autoSave);
 
     document.getElementById('save-notification-settings')?.addEventListener('click', () => {
+      clearTimeout(saveTimeout);
       this.app.saveNotificationSettings();
     });
 
