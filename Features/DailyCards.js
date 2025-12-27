@@ -365,14 +365,16 @@ export default class DailyCards {
         <div class="dashboard-quest-header mt-8 md:mt-0" style="text-align:center;">
           <h3 class="dashboard-quest-title">🎴 Your Daily Cards</h3>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-          ${this.renderDailyCard('tarot', dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
-          ${this.renderAffirmationCard(dailyAff)}
-          ${this.renderBoosterCard(dailyBooster)}
-          <div class="md:hidden">
-            ${this.renderInquiryCard(dailyInquiry)}
-          </div>
-        </div>
-      </div>`;
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+      ${this.renderDailyCard('tarot',  dailyCard, 'Daily Tarot Card', this.CARD_BACK_URL)}
+      ${this.renderAffirmationCard(dailyAff)}
+      ${this.renderBoosterCard(dailyBooster)}
+    </div>
+
+    <!-- mobile-only inquiry, outside the 3-col grid -->
+    <div class="md:hidden mt-6">
+      ${this.renderInquiryCard(dailyInquiry)}
+    </div>
+  </div>`;
   }
 }
