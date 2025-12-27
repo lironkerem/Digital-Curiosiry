@@ -1,25 +1,29 @@
 // Core/push-setup.js
 const VAPID_PUBLIC_KEY = 'BGC3GSs75wSk-IXvSHfsmr725CJnQxNuYJHExJZ113yITzwPgAZrVe6-IGyD1zC_t5mtH3-HG1P4GndS8PnSrOc';
 
+// 1. REGISTER SERVICE WORKER
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./service-worker.js')
     .then(reg => console.log('SW registered:', reg))
     .catch(err => console.error('SW registration failed:', err));
 }
 
+// 2. UPDATE BUTTON STATE ON LOAD
 async function updateButtonState() {
   if (!('serviceWorker' in navigator)) return;
   const sw = await navigator.serviceWorker.ready;
   const sub = await sw.pushManager.getSubscription();
   const btn = document.getElementById('pushBtn');
-  if (btn) btn.textContent = sub ? 'Notifications ON' : 'Enable notifications';
+  btn.textContent = sub ? 'Notifications ON' : 'Enable notifications';
 }
 
+// Check state when SW is ready
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.ready.then(updateButtonState);
 }
 
-document.getElementById('pushBtn')?.addEventListener('click', async () => {
+// 3. HANDLE BUTTON CLICK
+document.getElementById('pushBtn').onclick = async () => {
   const btn = document.getElementById('pushBtn');
   
   try {
@@ -27,41 +31,35 @@ document.getElementById('pushBtn')?.addEventListener('click', async () => {
     const sub = await sw.pushManager.getSubscription();
     
     if (sub) {
+      // Unsubscribe
       await sub.unsubscribe();
-      if (btn) btn.textContent = 'Enable notifications';
+      btn.textContent = 'Enable notifications';
       console.log('Unsubscribed from push');
     } else {
+      // Subscribe
       const newSub = await sw.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
       });
-
-      // Get current user ID if available
-      const currentUser = window.app?.state?.currentUser;
-      const payload = currentUser?.id ? { ...newSub.toJSON(), user_id: currentUser.id } : newSub;
       
       const response = await fetch('/api/save-sub', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(window.app?.auth?.session?.access_token && {
-            'Authorization': `Bearer ${window.app.auth.session.access_token}`
-          })
-        },
-        body: JSON.stringify(payload)
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newSub)
       });
       
       if (!response.ok) throw new Error('Failed to save subscription');
       
-      if (btn) btn.textContent = 'Notifications ON';
+      btn.textContent = 'Notifications ON';
       console.log('Subscribed to push:', newSub);
     }
   } catch (err) {
     console.error('Push subscription error:', err);
     alert('Failed to toggle notifications: ' + err.message);
   }
-});
+};
 
+// Helper to convert base64 VAPID key
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)

@@ -240,7 +240,8 @@ export class AdminTab {
 
     return container;
   }
-async fetchUsers() {
+
+  async fetchUsers() {
     try {
       const { data: profiles, error: profileError } = await this.supabase
         .from('profiles')
@@ -367,14 +368,14 @@ async fetchUsers() {
               <label style="display:block;margin-bottom:10px;font-weight:600;color:var(--neuro-text);font-size:1rem;">📌 Message Title</label>
               <input type="text" id="messageTitle" class="admin-input" placeholder="e.g., Special Announcement" style="margin-bottom:20px;">
               
-              <label style="display:block;margin-bottom:10px;font-weight:600;color:var(--neuro-text);font-size:1rem;">✏️ Message Content</label>
+              <label style="display:block;margin-bottom:10px;font-weight:600;color:var(--neuro-text);font-size:1rem;">✍️ Message Content</label>
               <textarea id="messageContent" class="admin-input" rows="6" placeholder="Write your message here..." style="resize:vertical;font-family:inherit;margin-bottom:16px;"></textarea>
               
               <button id="sendMessage" class="admin-btn">💬 Send to Selected Users</button>
               
               <div style="margin-top:16px;padding:12px;background:rgba(255,193,7,0.1);border-radius:8px;border:1px solid rgba(255,193,7,0.3);">
                 <p style="font-size:0.85rem;color:var(--neuro-text-light);margin:0;line-height:1.5;">
-                  💡 <strong>Note:</strong> Messages will be stored in user profiles and users will receive push notifications immediately.
+                  💡 <strong>Note:</strong> Messages will be stored in user profiles and displayed on their next login. You'll need to implement a notification system to show these messages.
                 </p>
               </div>
             </div>
@@ -483,39 +484,6 @@ async fetchUsers() {
       await this.batchSendMessage(container, title, content);
     });
   }
-async sendPushNotificationToUser(userId, title, body) {
-    try {
-      const { data: subs, error } = await this.supabase
-        .from('push_subscriptions')
-        .select('subscription')
-        .eq('user_id', userId);
-
-      if (error) throw error;
-      if (!subs || subs.length === 0) return;
-
-      for (const subData of subs) {
-        try {
-          await fetch('/api/send', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              sub: subData.subscription,
-              payload: {
-                title,
-                body,
-                icon: '/Icons/icon-192x192.png',
-                data: { url: '/' }
-              }
-            })
-          });
-        } catch (err) {
-          console.error('Failed to send notification:', err);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching user subscriptions:', error);
-    }
-  }
 
   async batchUpdate(container, xp, karma) {
     this.showMessage(container, 'Updating users...', 'info');
@@ -530,21 +498,6 @@ async sendPushNotificationToUser(userId, title, body) {
           karma_delta: karma
         });
         if (error) throw error;
-
-        // Send push notification
-        let notificationBody = '';
-        if (xp > 0 && karma > 0) {
-          notificationBody = `You received +${xp} XP and +${karma} Karma from Aanandoham!`;
-        } else if (xp > 0) {
-          notificationBody = `You received +${xp} XP from Aanandiham!`;
-        } else if (karma > 0) {
-          notificationBody = `You received +${karma} Karma from Aanandoham!`;
-        }
-        
-        if (notificationBody) {
-          await this.sendPushNotificationToUser(user.id, '🎁 Aanandoham's Gift!', notificationBody);
-        }
-
         success++;
       } catch (error) {
         console.error(`Failed for user ${user.name}:`, error);
@@ -560,6 +513,7 @@ async sendPushNotificationToUser(userId, title, body) {
   async batchUnlockFeatures(container, features, duration) {
     this.showMessage(container, 'Unlocking features...', 'info');
     
+    // For now, we'll unlock permanently. Duration tracking would need additional DB setup
     if (duration !== 'permanent') {
       alert('Temporary unlocks require additional setup. Unlocking permanently for now.');
     }
@@ -576,15 +530,6 @@ async sendPushNotificationToUser(userId, title, body) {
           });
           if (error) throw error;
         }
-
-        // Send push notification
-        const featureList = features.map(f => f.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', ');
-        await this.sendPushNotificationToUser(
-          user.id,
-          '🔓 New Features Unlocked!',
-          `Admin unlocked: ${featureList}`
-        );
-
         success++;
       } catch (error) {
         console.error(`Failed for user ${user.name}:`, error);
@@ -628,13 +573,6 @@ async sendPushNotificationToUser(userId, title, body) {
             .eq('user_id', user.id);
 
           if (error) throw error;
-
-          // Send push notification
-          await this.sendPushNotificationToUser(
-            user.id,
-            '🎖️ New Badge Earned!',
-            `You received the "${badge.name}" badge from Aanandoham!`
-          );
         }
         success++;
       } catch (error) {
@@ -648,6 +586,7 @@ async sendPushNotificationToUser(userId, title, body) {
   async batchSendMessage(container, title, content) {
     this.showMessage(container, 'Sending messages...', 'info');
     
+    // Store messages in user_progress payload under a 'adminMessages' array
     let success = 0;
     for (const user of this.selectedUsers) {
       try {
@@ -677,14 +616,6 @@ async sendPushNotificationToUser(userId, title, body) {
           .eq('user_id', user.id);
 
         if (error) throw error;
-
-        // Send push notification
-        await this.sendPushNotificationToUser(
-          user.id,
-          `💬 ${title}`,
-          content.substring(0, 100) + (content.length > 100 ? '...' : '')
-        );
-
         success++;
       } catch (error) {
         console.error(`Failed for user ${user.name}:`, error);

@@ -11,30 +11,12 @@ export default async (req, res) => {
   
   const sub = req.body;
   if (!sub?.endpoint) return res.status(400).json({ error: 'bad sub' });
-
-  // Get user_id from auth header or session
-  const authHeader = req.headers.authorization;
-  let userId = null;
-
-  if (authHeader) {
-    const token = authHeader.replace('Bearer ', '');
-    const { data: { user }, error } = await supabase.auth.getUser(token);
-    if (!error && user) {
-      userId = user.id;
-    }
-  }
-
-  // If no user_id from auth, try to get from request body
-  if (!userId && req.body.user_id) {
-    userId = req.body.user_id;
-  }
-
+  
   const { data, error } = await supabase
     .from('push_subscriptions')
     .upsert({
       endpoint: sub.endpoint,
-      subscription: sub,
-      user_id: userId
+      subscription: sub
     }, { onConflict: 'endpoint' });
   
   if (error) {
@@ -42,6 +24,6 @@ export default async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
   
-  console.log('Saved sub:', sub.endpoint, 'for user:', userId);
+  console.log('Saved sub:', sub.endpoint);
   res.json({ ok: true });
 };
