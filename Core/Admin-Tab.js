@@ -661,7 +661,7 @@ async sendPushNotificationToUser(userId, title, body) {
         const messages = currentPayload.adminMessages || [];
         
         messages.push({
-          id: Date.now() + Math.random(),
+          id: `${Date.now()}_${Math.random()}`,,
           title,
           content,
           date: new Date().toISOString(),
