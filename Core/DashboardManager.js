@@ -144,7 +144,7 @@ export default class DashboardManager {
               <span class="text-3xl mr-4">📜</span>
               <h2 class="text-2xl font-bold" style="color: var(--neuro-text);">Inspirational Quote</h2>
             </div>
-            <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent); line-height: 1.6;">
+            <p class="text-2xl font-semibold text-center" style="color: var(--neuro-accent); line-height: 2.2;">
             "${this.currentQuote.text}"
              </p>
             <p class="mt-3 text-center text-lg" style="color: var(--neuro-text);">
