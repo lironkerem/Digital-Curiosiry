@@ -413,7 +413,7 @@ renderRecentAchievements(status) {
         <!-- Recent Achievements -->
         <div style="text-align:center;">
           <h3 class="dashboard-achievements-title">🏆 Recent Achievements</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 gap-4">
             ${status.achievements.slice(-4).reverse().map(a => `
               <div class="dashboard-achievement-card-inset">
                 <div class="dashboard-achievement-icon">${a.icon || '🏆'}</div>
@@ -427,7 +427,7 @@ renderRecentAchievements(status) {
         <!-- Badges -->
         <div style="text-align:center;">
           <h3 class="dashboard-achievements-title">🎖️ Badges Earned</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 gap-4">
             ${status.badges.length > 0 ? status.badges.map(b => `
               <div class="dashboard-achievement-card-inset">
                 <div class="dashboard-achievement-icon" style="font-size:2.5rem;">${b.icon || '🎖️'}</div>
