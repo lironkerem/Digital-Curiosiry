@@ -633,7 +633,7 @@ async sendPushNotificationToUser(userId, title, body) {
           await this.sendPushNotificationToUser(
             user.id,
             '🎖️ New Badge Earned!',
-            `You received the "${badge.name}" badge from Aanandoham!`
+            `You received the ${badge.name} badge from Aanandoham!`
           );
         }
         success++;
@@ -661,7 +661,7 @@ async sendPushNotificationToUser(userId, title, body) {
         const messages = currentPayload.adminMessages || [];
         
         messages.push({
-          id: `${Date.now()}_${Math.random()}`,,
+          id: Date.now() + Math.random(),
           title,
           content,
           date: new Date().toISOString(),
