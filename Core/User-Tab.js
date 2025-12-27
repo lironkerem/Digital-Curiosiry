@@ -1140,15 +1140,17 @@ attachNotificationsHandlers() {
     }
   }
 
-  loadAdminPanel() {
-    const mount = document.getElementById('admin-tab-mount');
-    if (!mount) return;
-    mount.innerHTML = '<div style="text-align:center;padding:20px;color:var(--neuro-text);">Loading admin panel...</div>';
-    import('./Admin-Tab.js')
-      .then(({ AdminTab }) => import('./Supabase.js').then(({ supabase }) => {
+loadAdminPanel() {
+  const mount = document.getElementById('admin-tab-mount');
+  if (!mount) return;
+  mount.innerHTML = '<div style="text-align:center;padding:20px;color:var(--neuro-text);">Loading admin panel...</div>';
+  import('./Admin-Tab.js')
+    .then(({ AdminTab }) => {
+      return import('./Supabase.js').then(({ supabase }) => {
         const adminTab = new AdminTab(supabase);
         return adminTab.render();
-      }))
+      });
+    })
       .then(content => {
         mount.innerHTML = '';
         mount.appendChild(content);
