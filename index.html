@@ -26,9 +26,6 @@
 </head>
 
 <body>
-  <!-- PUSH BUTTON (outside app shell) -->
-  <button id="pushBtn" style="position:fixed;top:8px;left:8px;z-index:9999;padding:8px 16px;background:#FFD700;border:none;border-radius:4px;cursor:pointer;">Enable notifications</button>
-
   <!-- ===== Auth Gate ===== -->
   <div id=auth-screen></div>
 
@@ -80,6 +77,7 @@
   <script type=module src=./Features/EnergyTracker.js></script>
   <script type=module src=./Core/Features.js></script>
   <script src=./Features/WellnessKit.js></script>
+  <script src="./Core/push-setup.js"></script>
 
   <!-- ===== Bootstrap ===== -->
   <script type=module>
@@ -110,9 +108,5 @@
     ? document.addEventListener('DOMContentLoaded',init)
     : init();
   </script>
-
-  <!-- ===== PUSH SETUP ===== -->
-  <script src="./Core/push-setup.js"></script>
-
 </body>
 </html>
